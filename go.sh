@@ -13,6 +13,7 @@ then
 	read -p "请设置替换项目名称:" replacename
 	[ "$replacename" == "" ] && echo "替换项目名称不能为空！" && exit 1
 fi
+
 replace_files(){  
 	for file2 in `ls -a $1`  
 	do  
