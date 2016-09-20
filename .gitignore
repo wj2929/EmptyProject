@@ -13,3 +13,4 @@ obj/*
 /EmptyProject.Repository/bin
 /EmptyProject.Repository.Interface/obj
 /EmptyProject.Repository.Interface/bin
+*.suo
