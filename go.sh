@@ -68,4 +68,4 @@ contains() {
 replace_files ./
 # echo "replace_dirs"
 replace_dirs  ./
-echo "ok!""
+echo "ok!"
