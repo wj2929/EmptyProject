@@ -1,0 +1,15 @@
+*.bak
+bin/*
+obj/*
+/EmptyProject.Domain/bin
+/EmptyProject.Domain/obj
+/EmptyProject.DomainService/obj
+/EmptyProject.DomainService/bin
+/EmptyProject.DomainService.Interface/obj
+/EmptyProject.DomainService.Interface/bin
+/EmptyProject.Models/obj
+/EmptyProject.Models/bin
+/EmptyProject.Repository/obj
+/EmptyProject.Repository/bin
+/EmptyProject.Repository.Interface/obj
+/EmptyProject.Repository.Interface/bin

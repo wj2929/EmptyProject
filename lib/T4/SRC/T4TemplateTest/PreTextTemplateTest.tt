@@ -1,0 +1,37 @@
+﻿<#@ template language="C#" #>
+
+//1.	Write() 和WriteLine() 方法
+// 输出文本：文本块方式
+<#
+	var stanrdStr = "// 输出文本：标准控制块方式";
+    this.WriteLine(stanrdStr);	
+#>
+<#
+	var expressionStr = "// 输出文本：表达式块方式";	
+#>
+<#=expressionStr#>
+
+
+
+//2.	输出文本缩进设置
+<#
+	 // System.Reflection.Assembly.GetExecutingAssembly()
+	this.PushIndent("//");
+    this.WriteLine("line1");
+    this.PushIndent("《格式1》");
+    this.WriteLine("line2");
+    this.PushIndent("《格式2》");
+    this.WriteLine("line3");
+    System.Reflection.Assembly.GetExecutingAssembly();
+
+    this.PopIndent();  // 去掉格式2
+    this.WriteLine("line4");
+    this.ClearIndent();
+#>
+
+//3.	错误报告
+<#
+	this.Error("Error");
+    this.Warning("Warning");
+#>
+

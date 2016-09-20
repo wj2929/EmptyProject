@@ -1,0 +1,40 @@
+<#+ 
+public class Common
+{
+        public static string GetMemberType(string Type,string dbType)
+        {
+            if (dbType == "UniqueIdentifier")
+                return "Guid?";
+            else if (dbType == "UniqueIdentifier NOT NULL")
+                return "Guid";
+            else if (dbType == "DateTime")
+                return "DateTime?";
+            else if (dbType == "DateTime NOT NULL")
+                return "DateTime?";
+            else if (dbType.Contains("TinyInt NOT NULL"))
+                return "byte";
+            else if (dbType == "TinyInt")
+                return "byte?";
+            else if (dbType.Contains("Int NOT NULL"))
+                return "int";
+            else if (dbType == "Int")
+                return "int?";
+            else if (dbType.Contains("VarChar") || dbType.ToLower().Contains("ntext"))
+                return "string";
+            else if (dbType == "Decimal")
+                return "double?";
+            else if (dbType.Contains("Decimal"))
+                return "double";
+            else if (dbType == "Bit")
+                return "bool?";
+            else if (dbType == "Bit NOT NULL")
+                return "bool";
+            else if (dbType == "Double")
+                return "double?";
+            else if (dbType == "Double NOT NULL")
+                return "double?";
+            else
+                return Type;
+        }
+}
+ #>

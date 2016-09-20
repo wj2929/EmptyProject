@@ -1,0 +1,61 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{2F43061F-60DE-44DD-9AF0-D20A8A570BCD}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>Microsoft.VisualStudio.TextTemplating.Modeling.10.0</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.10.0" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Integration.Shell.10.0" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.Integration.10.0" />
+    <Reference Include="Microsoft.VisualStudio.Modeling.Sdk.10.0" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0" />
+    <Reference Include="System" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.VSHost.10.0" />
+    <Reference Include="Microsoft.VisualStudio.ComponentModelHost" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Core" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Microsoft\VisualStudio\Modeling\Integration\StringComparer.cs" />
+    <Compile Include="Microsoft\VisualStudio\Modeling\Integration\Utilities.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Modeling\IStatefulAdapterManager.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\ModelingTextTransformation.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Modeling\ModelBusEnabledTextTransformation.cs" />
+    <Compile Include="Microsoft\VisualStudio\Modeling\CriticalException.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Modeling\ModelBusExceptionMessages.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Modeling\Properties\Resources.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Modeling\SessionStoreCache.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Modeling\VsTextTemplatingModelingAdapterManager.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Modeling\VsTextTemplatingModelingDocumentHandler.cs" />
+    <EmbeddedResource Include="Microsoft.VisualStudio.TextTemplating.Modeling.Properties.Resources.resources" />
+  </ItemGroup>
+</Project>

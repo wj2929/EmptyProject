@@ -1,0 +1,69 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{DCD49908-AE20-44E0-A866-7783E22A027A}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>Microsoft.VisualStudio.TextTemplating.10.0</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="envdte, Version=8.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+      <EmbedInteropTypes>False</EmbedInteropTypes>
+    </Reference>
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0" />
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\AssemblyRecord.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\AssemblyCache.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\AssemblyCacheMonitor.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\AssemblyResolver.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\CodeDom\CodeDomHelpers.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\DirectiveProcessor.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\DirectiveProcessorException.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\IRecognizeHostSpecific.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\EncodingHelper.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Engine.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Properties\Resources.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\ParameterDirectiveProcessor.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\RequiresProvidesDirectiveProcessor.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\ShadowCopyMonitor.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\ShadowTimes.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\TemplateParser.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\BlockType.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Block.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\Directive.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\TemplateProcessingSession.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\SupportedLanguages.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\TextTransformation.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\TextTemplatingSession.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\ToStringHelper.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\TransformationRunner.cs" />
+    <EmbeddedResource Include="Microsoft.VisualStudio.TextTemplating.Properties.Resources.resources" />
+  </ItemGroup>
+</Project>

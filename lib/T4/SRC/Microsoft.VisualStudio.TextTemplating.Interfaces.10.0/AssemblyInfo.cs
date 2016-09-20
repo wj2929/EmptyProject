@@ -1,0 +1,22 @@
+﻿// Assembly Microsoft.VisualStudio.TextTemplating.Interfaces.10.0, Version 10.0.0.0
+
+[assembly: System.Reflection.AssemblyVersion("10.0.0.0")]
+[assembly: System.Reflection.AssemblyTitle("Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll")]
+[assembly: System.Reflection.AssemblyDescription("Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll")]
+[assembly: System.Runtime.CompilerServices.CompilationRelaxations(8)]
+[assembly: System.Runtime.Versioning.TargetFramework(".NETFramework,Version=v4.0", FrameworkDisplayName="")]
+[assembly: System.Runtime.InteropServices.ComVisible(false)]
+[assembly: System.CLSCompliant(false)]
+[assembly: System.Reflection.AssemblyInformationalVersion("10.0.30319.1")]
+[assembly: System.Diagnostics.Debuggable(System.Diagnostics.DebuggableAttribute.DebuggingModes.IgnoreSymbolStoreSequencePoints | System.Diagnostics.DebuggableAttribute.DebuggingModes.Default)]
+[assembly: System.Reflection.AssemblyCompany("Microsoft Corporation")]
+[assembly: System.Reflection.AssemblyProduct("Microsoft (R) Visual Studio (R) 2010")]
+[assembly: System.Reflection.AssemblyCopyright("\x00a9 Microsoft Corporation. All rights reserved.")]
+[assembly: System.Reflection.AssemblyFileVersion("10.0.30319.1")]
+[assembly: System.Reflection.AssemblyDefaultAlias("Microsoft.VisualStudio.TextTemplating.Interfaces.10.0.dll")]
+[assembly: System.Resources.SatelliteContractVersion("10.0.0.0")]
+[assembly: System.Resources.NeutralResourcesLanguage("en-US")]
+[assembly: System.Reflection.AssemblyDelaySign(true)]
+[assembly: System.Reflection.AssemblyKeyFile(@"f:\dd\tools\devdiv\FinalPublicKey.snk")]
+[assembly: System.Runtime.CompilerServices.RuntimeCompatibility(WrapNonExceptionThrows=true)]
+

@@ -1,0 +1,74 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".txt" #>
+<#@ include file="$(SolutionDir)lib\T4\Reference.ttinclude"  #>
+<#@ assembly name="$(TargetDir)EmptyProject.Models.dll" #>
+<#@ import namespace="EmptyProject.Models" #>
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text;
+using BaseCommon.DDD;
+
+namespace EmptyProject.Models
+{
+<# 
+	EmptyProject.Models.EmptyProjectDataClassesDataContext db1 = new  EmptyProject.Models.EmptyProjectDataClassesDataContext();
+	var tables1 = from t in db1.Mapping.GetTables()
+			orderby t.TableName
+			select t;
+	foreach (var table in tables1)
+		{
+		   var className = table.TableName.Replace("dbo.","").Replace("[","").Replace("]","");
+			if(table.RowType.DataMembers.Count(d => d.Member.Name == "CreateDate") != 0 & table.RowType.DataMembers.Count(d => d.Member.Name == "Id") != 0){#>
+    public partial class <#=className#> : BaseCommon.DDD.IEntity<Guid> { }
+	<#}else if(table.RowType.DataMembers.Count(d => d.Member.Name == "CreateDate") == 0 && table.RowType.DataMembers.Count(d => d.Member.Name == "Id") == 0){#>
+	public partial class <#=className#> : BaseCommon.DDD.IEntity<Guid>
+		{
+			protected Guid _Id;
+			// Properties
+			public virtual Guid Id
+			{
+				get
+				{
+					if (this._Id.IsEmpty())
+					{
+						this._Id = Guid.NewGuid();
+					}
+					return this._Id;
+				}
+				protected set
+				{
+					this._Id = value;
+				}
+			}
+
+			public DateTime CreateDate { get; set; }
+		}
+	<#}else if(table.RowType.DataMembers.Count(d => d.Member.Name == "CreateDate") == 0){#>
+	public partial class <#=className#> : BaseCommon.DDD.IEntity<Guid>
+		{
+			public DateTime CreateDate { get; set; }
+		}
+	<#}else if(table.RowType.DataMembers.Count(d => d.Member.Name == "Id") == 0){#>
+	public partial class <#=className#> : BaseCommon.DDD.IEntity<Guid>
+		{
+			protected Guid _Id;
+			// Properties
+			public virtual Guid Id
+			{
+				get
+				{
+					if (this._Id.IsEmpty())
+					{
+						this._Id = Guid.NewGuid();
+					}
+					return this._Id;
+				}
+				protected set
+				{
+					this._Id = value;
+				}
+			}
+		}
+	<#}}#>
+}

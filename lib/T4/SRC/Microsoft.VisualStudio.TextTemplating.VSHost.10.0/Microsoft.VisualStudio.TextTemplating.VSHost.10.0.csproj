@@ -1,0 +1,111 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" DefaultTargets="Build">
+  <PropertyGroup>
+    <ProjectType>local</ProjectType>
+    <ProjectVersion>7.10.377</ProjectVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5607B19D-E7E5-4068-965B-A3C7A683EB42}</ProjectGuid>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <AssemblyName>Microsoft.VisualStudio.TextTemplating.VSHost.10.0</AssemblyName>
+    <OutputType>Library</OutputType>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|x86' ">
+    <PlatformTarget>x86</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <ItemGroup>
+    <Reference Include="Microsoft.VisualStudio.ComponentModelHost" />
+    <Reference Include="System" />
+    <Reference Include="Microsoft.VisualStudio.Shell.10.0" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Immutable.10.0" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop" />
+    <Reference Include="Microsoft.VisualStudio.OLE.Interop" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.Interfaces.10.0" />
+    <Reference Include="System.ComponentModel.Composition" />
+    <Reference Include="Microsoft.VisualStudio.CommonIDE" />
+    <Reference Include="Microsoft.VisualStudio.ExtensibilityHosting" />
+    <Reference Include="EnvDTE" />
+    <Reference Include="Microsoft.VisualStudio.Shell.Interop.8.0" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="Microsoft.VisualStudio.ExtensionManager" />
+    <Reference Include="EnvDTE80" />
+    <Reference Include="VSLangProj" />
+    <Reference Include="VsWebSite.Interop" />
+    <Reference Include="VsWebSite.Interop90" />
+    <Reference Include="Microsoft.VisualStudio.VSHelp" />
+    <Reference Include="Microsoft.VisualStudio.TextTemplating.10.0" />
+    <Reference Include="Microsoft.VisualStudio.Designer.Interfaces" />
+    <Reference Include="Microsoft.VisualStudio.TextManager.Interop" />
+    <Reference Include="System.Core" />
+    <Reference Include="WindowsBase" />
+    <Compile Include="AssemblyInfo.cs" />
+    <Compile Include="Global.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\CompositionServices.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\LocalComponentModel.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\OrchestratorCommandSet.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\CommandIds.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\SRDescriptionAttribute.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\SRDisplayNameAttribute.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\SRCategoryAttribute.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\LocalizedBooleanTypeConverter.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\OrchestratorOptionsPage.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\OrchestratorOptionsAutomation.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\OrchestratorPackage.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\IVsGeneratorProgress.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\IVsSingleFileGenerator.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\Resources.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\ProvideAutomationPropertiesAttribute.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\ProvideCodeGeneratorAttribute.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\ProvideCodeGeneratorExtensionAttribute.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\ProvideDirectiveProcessorAttribute.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\ProvideIncludeFolderAttribute.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\ProvideSolutionPersistenceAttribute.cs" />
+    <Compile Include="Microsoft\VisualStudio\Modeling\Shell\DialogBase.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\SecurityWarningDialog.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\BaseCodeGenerator.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\BaseCodeGeneratorWithSite.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\BaseTemplatedCodeGenerator.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\TemplatedPreprocessor.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\TemplatedCodeGenerator.cs" />
+    <Compile Include="Microsoft\Internal\Performance\CodeMarkers.cs" />
+    <Compile Include="Microsoft\Internal\Performance\CodeMarkerStartEnd.cs" />
+    <Compile Include="Microsoft\Internal\Performance\CodeMarkerEvent.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\GlobalAssemblyCacheHelper.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\ASSEMBLYINFO_FLAG.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\ASSEMBLY_INFO.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\IAssemblyCache.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\AssemblyCacheFlags.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\NativeMethods.cs" />
+    <Compile Include="Microsoft\VisualStudio\Modeling\Shell\NativeMethods.cs" />
+    <Compile Include="Microsoft\VisualStudio\Modeling\CriticalException.cs" />
+    <Compile Include="Microsoft\VisualStudio\Modeling\SafeWindowTarget.cs" />
+    <Compile Include="Microsoft\VisualStudio\TextTemplating\VSHost\TextTemplatingService.cs" />
+    <EmbeddedResource Include="Properties.Resources.resources" />
+    <EmbeddedResource Include="VSPackage.resources" />
+    <EmbeddedResource Include="Microsoft.VisualStudio.TextTemplating.VSHost.SecurityWarningDialog.resources" />
+  </ItemGroup>
+</Project>
