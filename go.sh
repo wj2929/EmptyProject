@@ -37,7 +37,7 @@ replace_files(){
 replace_dirs(){  
 	for file2 in `ls -a $1`  
 	do  
-		if [ x"$file2" != x"." -a x"$file2" != x".." -a x"$file2" != x.git" -a x"$file2" != x".gitignore" -a x"$file2" != x"lib" -a x"$file2" != x"bin" -a x"$file2" != x"obj" -a x"$file2" != x"packages" ];then
+		if [ x"$file2" != x"." -a x"$file2" != x".." -a x"$file2" != x".git" -a x"$file2" != x".gitignore" -a x"$file2" != x"lib" -a x"$file2" != x"bin" -a x"$file2" != x"obj" -a x"$file2" != x"packages" ];then
 			if [ -d "$1/$file2" ];then  
 				replace_dirs $1/$file2
 				# echo $1
