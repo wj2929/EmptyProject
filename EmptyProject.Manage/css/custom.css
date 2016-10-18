@@ -1,0 +1,480 @@
+@media (min-width: 768px) {
+.modal-dialog {
+    margin: 30px auto;
+    width: 600px;
+}
+.modal-content {
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+}
+.modal-sm {
+    width: 300px;
+}
+}
+@media (min-width: 992px) {
+.modal-lg {
+    width: 900px;
+}
+.modal-max {
+    width: 99%;
+}
+.modal-max2 {
+    width: 80%;
+}
+}
+
+.doing {
+    background: #ea7500 none repeat scroll 0 0;
+    color: #ffffff;
+    height: 25px;
+    line-height: 25px;
+    padding: 0 10px;
+    position: fixed;
+    right: 0;
+    top: 65px;
+    z-index:10000
+}
+.more {
+    color: #bbb;
+    cursor: pointer;
+    display: inline-block;
+    font-size: 16px;
+    text-align: center;
+    width: 100%;
+}
+
+.form-group label.control-label{
+/*white-space:nowrap;*/
+}
+
+.stocksearchform div{
+    width:130px
+}
+
+.stocksearchform div input{
+    width:130px!important
+}
+.stocksearchform div select{
+    width:130px!important
+}
+
+.form-control{
+    color:Black
+}
+/*
+.btn-default{
+    color:Black
+}
+.btn-default [class*="icon-"]{
+    color:#fff
+}
+*/
+
+.panel-heading {
+    border-color: #0082d1;
+    font-size: 16px;
+    font-weight: bold;
+}
+.form-control{
+	background: #d5e1f2 none repeat scroll 0 0;
+}
+.table th{
+	font-weight: normal;
+}
+
+#DetailTable tbody tr td{
+    word-break:keep-all;
+    white-space:nowarp;
+}
+
+#ImportDetailTable tbody tr td{
+    word-break:keep-all;
+    white-space:nowarp;
+}
+
+div.pro-img-list dd {
+    background-color: #ffffff;
+    display: inline;
+    float: left;
+    height: 80px;
+    margin: 5px;
+    padding: 1px;
+    position: relative;
+    width: 80px;
+    cursor: pointer;
+}
+div.pro-img-list dd span, div.pro-img-list dd em {
+    display: none;
+}
+div.pro-img-list dd.curr, div.pro-img-list dd:hover {
+    border: 2px solid #ff8000;
+    /*margin: 3px;*/
+}
+
+div.pro-img-list dd:hover em {
+    background: rgba(0, 0, 0, 0) url("/images/delete.gif") no-repeat scroll 0 0;
+    bottom: 1px;
+    display: block;
+    height: 15px;
+    left: 1px;
+    position: absolute;
+    width: 15px;
+}
+div.pro-img-list dd .img {
+    cursor: pointer;
+    height: 72px;
+    width: 72px;
+}
+
+.dropdown-menu  li > a {
+    clear: both;
+    color: #333;
+    display: block;
+    font-weight: 400;
+    line-height: 1.42857;
+    padding: 3px 20px;
+    white-space: nowrap;
+}
+.dropdown-menu  li > a:focus, .dropdown-menu  li > a:hover {
+    background-color: #f5f5f5;
+    color: #262626;
+    text-decoration: none;
+}
+.dropdown-menu  .active > a, .dropdown-menu  .active > a:focus, .dropdown-menu  .active > a:hover {
+    background-color: #337ab7;
+    color: #fff;
+    outline: 0 none;
+    text-decoration: none;
+}
+.dropdown-menu  .disabled  a, .dropdown-menu > .disabled  a:focus, .dropdown-menu  .disabled > a:hover {
+    color: #777;
+}
+.dropdown-menu  .disabled > a:focus, .dropdown-menu  .disabled > a:hover {
+    background-color: transparent;
+    background-image: none;
+    cursor: not-allowed;
+    text-decoration: none;
+}
+/*!
+* jquery.fixedHeaderTable. The jQuery fixedHeaderTable plugin
+*
+* Copyright (c) 2011 Mark Malek
+* http://fixedheadertable.com
+*
+* Licensed under MIT
+* http://www.opensource.org/licenses/mit-license.php
+* 
+* http://docs.jquery.com/Plugins/Authoring
+* jQuery authoring guidelines
+*
+* Launch  : October 2009
+* Version : 1.3
+* Released: May 9th, 2011
+*
+* 
+* all CSS sizing (width,height) is done in pixels (px)
+*/
+
+/* @group Reset */
+
+.fht-table,
+.fht-table thead,
+.fht-table tfoot,
+.fht-table tbody,
+.fht-table tr,
+.fht-table th,
+.fht-table td {
+	/* position */
+    margin: 0;
+    
+    /* size */
+	padding: 0;
+
+	/* text */
+	font-size: 100%;
+	font: inherit;
+	vertical-align: top;
+	}
+
+.fht-table {
+	/* appearance */
+    border-collapse: collapse;
+    border-spacing: 0;
+	}
+
+/* @end */
+
+/* @group Content */
+
+.fht-table-wrapper,
+.fht-table-wrapper .fht-thead,
+.fht-table-wrapper .fht-tfoot,
+.fht-table-wrapper .fht-fixed-column .fht-tbody,
+.fht-table-wrapper .fht-fixed-body .fht-tbody,
+.fht-table-wrapper .fht-tbody {
+	/* appearance */
+	overflow: hidden;
+	
+	/* position */
+	position: relative;
+	}
+
+	.fht-table-wrapper .fht-fixed-body .fht-tbody,
+	.fht-table-wrapper .fht-tbody {
+		/* appearance */
+	    overflow: auto;
+		}
+
+		.fht-table-wrapper .fht-table .fht-cell {
+			/* appearance */
+			overflow: hidden;
+			
+			/* size */
+		    height: 1px;
+			}
+	
+	.fht-table-wrapper .fht-fixed-column,
+	.fht-table-wrapper .fht-fixed-body {
+	    /* position */
+	    top: 0;
+	    left: 0;
+	    position: absolute;
+	    }
+	    
+	.fht-table-wrapper .fht-fixed-column {
+	    /* position */
+	    z-index: 1;
+	    }
+
+/* @end */
+
+.table_options {
+	/* appearance */
+	background-color: #252525;
+	background-image: -moz-linear-gradient(
+		top,
+		rgba(255,255,255,0.05) 20%,
+		rgba(255,255,255,0.0) 80%);
+	
+	background-image: -webkit-gradient(
+		linear, left top, left bottom,
+		color-stop(20%,rgba(255,255,255,0.05)),
+		color-stop(80%,rgba(255,255,255,0.0)));
+	border: 1px solid #000000;
+	-webkit-box-shadow: 0 5px 10px rgba(0,0,0,0.75);
+	-moz-box-shadow: 0 5px 10px rgba(0,0,0,0.75);
+	box-shadow: 0 5px 10px rgba(0,0,0,0.75);
+	overflow: hidden;
+	
+	/* size */
+	padding: 10px 0;
+	
+	}
+	h2 {
+		/* text */
+		color: #dadada;
+		font-size: 14px;
+		font-weight: bold;
+		text-align: center;
+		text-shadow: 0 -1px 1px #000000;
+		}
+	.table_options fieldset {
+		/* appearance */
+		border: none;
+		
+		/* size */
+		padding: 5px 0;
+		
+		/* text */
+		text-align: right;
+		}
+		.table_options label {
+			/* size */
+			padding: 0 10px 0 0;
+			
+			/* text */
+			color: #b2b2b2;
+			font-size: 12px;
+			text-shadow: 0 -1px 1px #000000;
+			
+			}
+		.table_options input,
+		.table_options input:focus {
+			/* appearance */
+			background-color: #1f1f1f;
+			border: 1px solid #000000;
+			-webkit-border-radius: 5px;
+			-moz-border-radius: 5px;
+			border-radius: 5px;
+			-webkit-box-shadow: 0 1px 1px rgba(63,63,63,1), 0 1px 3px rgba(0,0,0,1) inset;
+			-moz-box-shadow: 0 1px 1px rgba(63,63,63,1), 0 1px 3px rgba(0,0,0,1) inset;
+			box-shadow: 0 1px 1px rgba(63,63,63,1), 0 1px 3px rgba(0,0,0,1) inset;
+			
+			/* size */
+			padding: 8px 5px;
+			width: 50px;
+			
+			/* text */
+			color: #fff;
+			}
+		.table_options input:focus {
+			outline: 1px solid #fff;
+			}
+			
+			
+			
+			
+/* Fancy Dark Table */	
+.fancyDarkTable .numeric {
+	/* text */
+	text-align: right;
+	}
+
+.fancyDarkTable td, .fancyDarkTable th {
+	border: 1px solid #000000;
+	padding: 5px;
+}
+
+.fancyDarkTable thead tr th {
+	padding: 10px 5px 10px 5px;
+	}
+
+.fancyDarkTable {
+	/*border-collapse: separate;*/
+	
+	/* text */
+	font-family: 'Helvetica Neue', Helvetica, Arial, sans-serif;
+	}
+
+.fancyDarkTable tbody tr td {
+	/* appearance */
+	background-color: #3f3f3f;
+	background-image: -moz-linear-gradient(
+		top,
+		rgba(255,255,255,0.0) 0%,
+		rgba(255,255,255,0.02) 100%);
+	
+	background-image: -webkit-gradient(
+		linear, left top, left bottom,
+		color-stop(0%,rgba(255,255,255,0.0)),
+		color-stop(100%,rgba(255,255,255,0.02)));
+	border-bottom-color: #2f2f2f;
+	border-right-color: #2f2f2f;
+
+	/* size */
+	padding: 10px 5px 30px 5px;
+
+	/* text */
+	color: #FFFFFF;
+	font-size: 11px;
+	font-weight: bold;
+	text-shadow: 0 -1px 1px #000000;
+	}
+
+.fancyDarkTable tbody tr.odd td {
+	/* appearance */
+	background-color: #464646;
+	background-image: -moz-linear-gradient(
+		top,
+		rgba(255,255,255,0.0) 0%,
+		rgba(255,255,255,0.02) 100%);
+	
+	background-image: -webkit-gradient(
+		linear, left top, left bottom,
+		color-stop(0%,rgba(255,255,255,0.0)),
+		color-stop(100%,rgba(255,255,255,0.02)));
+	border-right-color: #2f2f2f;
+	}
+
+.fancyDarkTable thead tr th,
+.fancyDarkTable tfoot tr td {
+	/* appearance */
+	background-color: #151515;
+	background-image: -moz-linear-gradient(
+		top,
+		rgba(255,255,255,0.05) 0%,
+		rgba(255,255,255,0.0) 100%);
+	
+	background-image: -webkit-gradient(
+		linear, left top, left bottom,
+		color-stop(0%,rgba(255,255,255,0.05)),
+		color-stop(100%,rgba(255,255,255,0.0)));
+		
+	/* text */
+	color: #ffffff;
+	font-size: 12px;
+	font-weight: bold;
+	text-shadow: 0 -1px 1px #000;
+	}
+	
+.fancyDarkTable .fht-head {
+	-webkit-box-shadow: 0 -1px 0 #3f3f3f;
+	-moz-box-shadow: 0 -1px 0 #3f3f3f;
+	box-shadow: 0 -1px 0 #3f3f3f;
+	z-index: 1;
+	position: relative;
+	}
+	
+.fancyTable th,
+.fancyTable td {
+	/* appearance */
+	border: 1px solid #798088;
+	
+	/* size */
+	padding: 10px;
+	}
+
+.fancyTable thead tr th,
+.fancyTable tfoot tr td {
+	/* appearance */
+	background-color: #abb3bb;
+	background-image: -moz-linear-gradient(
+		top,
+		rgba(255,255,255,0) 100%,
+		rgba(255,255,255,0) 51%,
+		rgba(255,255,255,0.8) 50%,
+		rgba(255,255,255,0.2) 0%), url(../images/table_texture.png);
+	background-image: -webkit-gradient(
+		linear, left top, left bottom,
+		color-stop(100%,rgba(255,255,255,0)),
+		color-stop(51%,rgba(255,255,255,0.1)),
+		color-stop(50%,rgba(255,255,255,0.2)),
+		color-stop(0%,rgba(255,255,255,0))), url(../images/table_texture.png);
+	-webkit-box-shadow: -1px 1px 0px rgba(255,255,255,0.5) inset;
+	-moz-box-shadow: -1px 1px 0px rgba(255,255,255,0.5) inset;
+	box-shadow: -1px 1px 0px rgba(255,255,255,0.5) inset;
+	
+	/* text */
+	color: #FFF;
+	text-align: left;
+	text-shadow: 0 -1px 0 rgba(0,0,0,0.5);
+	vertical-align: middle;
+	}
+.fancyTable tbody tr td {
+	/* appearance */
+	background-color: #e1e5e9;
+	border-color: #9aa2ac;
+	-webkit-box-shadow: -1px 1px 0px rgba(255,255,255,0.5) inset;
+	-moz-box-shadow: -1px 1px 0px rgba(255,255,255,0.5) inset;
+	box-shadow: -1px 1px 0px rgba(255,255,255,0.5) inset;
+	
+	/* text */
+	color: #2d3134;
+	font-size: 12px;
+	font-weight: 400;
+	}
+.fancyTable tbody tr.odd td {
+	/* appearance */
+	background-color: #FFF;
+	}	
+	
+	
+.fht-fixed-column table tbody tr,.fht-fixed-column table thead,.fht-fixed-column table tfoot{
+    background-color: #f1f1f1;
+}
+#main-content .wrapper
+{
+    padding-bottom: 0px
+}
+#MainContent>div.panel {
+    margin-bottom: 0px;
+}

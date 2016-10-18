@@ -1,0 +1,43 @@
+{
+
+  "configVars": {
+    "app": "app",
+    "appjs": "common/libs",
+    "appcss": "css",
+    "build": "build",
+    "dist": "dist",
+    "hostname": "localhost",
+    "port": 58732
+  },
+  "bowerFiles": [
+    "angular/angular.js",
+    "angular/angular.min.js",
+    "angular-route/angular-route.js",
+    "angular-route/angular-route.min.js",
+    "angularAMD/angularAMD.js",
+    "angularAMD/angularAMD.min.js",
+    "angularAMD/ngload.js",
+    "angularAMD/ngload.min.js",
+    "requirejs/require.js",
+    "es5-shim/es5-shim.js",
+    "json3/lib/json3.js",
+    "angular-resource/angular-resource.js",
+    "angular-resource/angular-resource.min.js",
+    "angular-ui-router/release/angular-ui-router.js",
+    "angular-ui-router/release/angular-ui-router.min.js",
+	"angular-w5c-validator/w5cValidator.min.js",
+	"angular-w5c-validator/w5cValidator.js",
+	"jquery/jquery.min.js",
+	"ng-elif/src/elif.js"
+  ],
+  "cssFiles": [
+    "/css/**"
+  ],
+  "cssFonts": [
+    "bootstrap/fonts/glyphicons-halflings-regular.*"
+  ],
+  "buildFiles": [
+    "images/**", "views/**", "scripts/ext/require.js"
+  ]
+
+}

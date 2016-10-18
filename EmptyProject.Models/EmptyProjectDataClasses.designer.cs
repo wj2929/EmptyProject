@@ -33,7 +33,7 @@ namespace EmptyProject.Models
     #endregion
 		
 		public EmptyProjectDataClassesDataContext() : 
-				base(global::EmptyProject.Models.Properties.Settings.Default.EmptyProjectConnectionString3, mappingSource)
+				base(global::EmptyProject.Models.Properties.Settings.Default.EmptyProjectConnectionString2, mappingSource)
 		{
 			OnCreated();
 		}

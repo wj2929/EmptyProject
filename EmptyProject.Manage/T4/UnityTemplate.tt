@@ -1,0 +1,67 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ output extension=".config" #>
+<#@ include file="$(SolutionDir)lib\T4\Reference.ttinclude"  #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Models\bin\Debug\EmptyProject.Models.dll" #>
+<#@ import namespace="EmptyProject.Models" #><# 
+	EmptyProject.Models.EmptyProjectDataClassesDataContext db1 = new  EmptyProject.Models.EmptyProjectDataClassesDataContext();
+	var tables1 = from t in db1.Mapping.GetTables()
+			orderby t.TableName
+			select t;
+#><?xml version="1.0" encoding="utf-8" ?>
+<configuration>
+	<configSections>
+		<section name="unity" type="Microsoft.Practices.Unity.Configuration.UnityConfigurationSection, Microsoft.Practices.Unity.Configuration"/>
+	</configSections>
+	<unity xmlns="http://EmptyProjects.microsoft.com/practices/2010/unity">
+		<assembly name="EmptyProject.Repository.Interface"/>
+		<namespace name="EmptyProject.Repository.Interface"/>
+		<alias alias="IUnitOfWork" type="BaseCommon.DDD.IUnitOfWork,BaseCommon.DDD"/>
+		<alias alias="UnitOfWork" type="BaseCommon.DDD.UnitOfWork,BaseCommon.DDD"/>
+		<alias alias="IDatabaseFactory" type="BaseCommon.DDD.IDatabaseFactory,BaseCommon.DDD"/>
+		<alias alias="DatabaseFactory" type="BaseCommon.DDD.DatabaseFactory,BaseCommon.DDD"/>
+		<alias alias="HttpContext" type="BaseCommon.IoC.WebOnly.HttpContextLifetimeManager,BaseCommon.IoC.WebOnly"/>
+
+		<alias alias="IConfigAccessHelper`1" type="BaseCommon.Core.Config.IConfigAccessHelper`1,BaseCommon.Core"/>
+		<alias alias="LocalConfigurationAccessHelper`1" type="BaseCommon.Core.Config.LocalConfigurationAccessHelper`1,BaseCommon.Core"/>
+
+	<# 
+		foreach (var table in tables1)
+		{
+		   var className = table.TableName.Replace("dbo.","").Replace("[","").Replace("]","");
+			if(className == "TaskPlan")continue;
+	 #>
+	<!--<#= className #>-->
+		<alias alias="I<#= className #>Repository" type="EmptyProject.Repository.Interface.I<#= className #>Repository,EmptyProject.Repository.Interface"/>
+		<alias alias="<#= className #>Repository" type="EmptyProject.Repository.<#= className #>Repository,EmptyProject.Repository"/>
+		<alias alias="I<#= className #>Service" type="EmptyProject.DomainService.Interface.I<#= className #>Service,EmptyProject.DomainService.Interface"/>
+		<alias alias="<#= className #>Service" type="EmptyProject.DomainService.<#= className #>Service,EmptyProject.DomainService"/>
+
+	<# 
+        }
+	 #>
+    <sectionExtension type="Microsoft.Practices.Unity.InterceptionExtension.Configuration.InterceptionConfigurationExtension,Microsoft.Practices.Unity.Interception.Configuration" />
+	<container name="Default">
+      <register type="IDatabaseFactory" mapTo="DatabaseFactory">
+        <lifetime type="HttpContext" typeConverter="BaseCommon.IoC.WebOnly.HttpContextLifetimeManagerConverter[IDatabaseFactory],BaseCommon.IoC.WebOnly"/>
+      </register>
+      <register type="IUnitOfWork" mapTo="UnitOfWork">
+        <lifetime type="HttpContext" typeConverter="BaseCommon.IoC.WebOnly.HttpContextLifetimeManagerConverter[IUnitOfWork],BaseCommon.IoC.WebOnly"/>
+      </register>
+
+	<# 
+		foreach (var table in tables1)
+		{
+		   var className = table.TableName.Replace("dbo.","").Replace("[","").Replace("]","");
+			if(className == "TaskPlan")continue;
+	 #>
+
+			<!--<#= className #>-->
+			<register type="I<#= className #>Repository" mapTo="<#= className #>Repository"/>
+			<register type="I<#= className #>Service" mapTo="<#= className #>Service"/>
+	<# 
+        }
+	 #>
+
+	</container>
+</unity>
+</configuration>
