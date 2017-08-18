@@ -1,0 +1,35 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.AutoMapper</name>
+    </assembly>
+    <members>
+        <member name="M:BC.AutoMapper.AutoMapperObjectMapper.Map``2(``0)">
+            <summary>
+            两对象之间映射
+            </summary>
+            <typeparam name="TForm">来源类型</typeparam>
+            <typeparam name="TTo">目标类型</typeparam>
+            <param name="Source">来源对象实例</param>
+            <returns>映射好的目标对象实例</returns>
+        </member>
+        <member name="M:BC.AutoMapper.AutoMapperObjectMapper.Map``2(``0,``1)">
+            <summary>
+            将来源对象的值映射到目标对象
+            </summary>
+            <typeparam name="TFrom">来源对象数据类型</typeparam>
+            <typeparam name="TTo">目标对象数据类型</typeparam>
+            <param name="Source">来源对象实例</param>
+            <param name="Target">目标对象实例</param>
+            <returns>映射好的目标对象实例</returns>
+        </member>
+        <member name="M:BC.AutoMapper.AutoMapperObjectMapper.Map``1(System.Object)">
+            <summary>
+            将动态类型转换为静态类型
+            </summary>
+            <typeparam name="TTo">目标类型</typeparam>
+            <param name="Source">要转换的对象</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

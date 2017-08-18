@@ -1,1 +1,0 @@
-C:\Users\lin\Desktop\T4DLL\SRC\Microsoft.VisualStudio.TextTemplating.VSHost.10.0\obj\x86\Debug\ResolveAssemblyReference.cache

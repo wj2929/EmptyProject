@@ -1,0 +1,51 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.Message.Alidayu</name>
+    </assembly>
+    <members>
+        <member name="P:BC.Message.Alidayu.AlidayuConfig.Key">
+            <summary>
+            Key
+            </summary>
+        </member>
+        <member name="P:BC.Message.Alidayu.AlidayuConfig.SecretKey">
+            <summary>
+            秘钥
+            </summary>
+        </member>
+        <member name="P:BC.Message.Alidayu.AlidayuConfig.Signature">
+            <summary>
+            公司签名
+            </summary>
+        </member>
+        <member name="P:BC.Message.Alidayu.AlidayuConfig.TemplateId">
+            <summary>
+            模板Id
+            </summary>
+        </member>
+        <member name="P:BC.Message.Alidayu.AlidayuConfig.Url">
+            <summary>
+            Url
+            </summary>
+        </member>
+        <member name="M:BC.Message.Alidayu.AlidayuConfig.ToConfig">
+            <summary>
+            转换为配置文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Message.Alidayu.AlidayuConfig.FromConfig(System.String)">
+            <summary>
+            从配置文件创建对象
+            </summary>
+            <param name="Config"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Message.Alidayu.AlidayuSMSSender.Config">
+            <summary>
+            配置文件
+            </summary>
+        </member>
+    </members>
+</doc>

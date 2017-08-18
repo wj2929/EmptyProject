@@ -1,0 +1,5272 @@
+﻿<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <link href="Styles/compiled.css" rel="stylesheet" />
+    <link href="Content/icons/icomoon/styles.css" rel="stylesheet" />
+    <link href="Content/components.min.css" rel="stylesheet" />
+    <script src="Scripts/jquery.min.js"></script>
+    <script src="Scripts/bootstrap.min.js"></script>
+    <script src="Scripts/compiled.js"></script>
+    <script src="Scripts/TestCommon.js"></script>
+    <script src="Scripts/test.js"></script>
+    <!--<script src="Scripts/sidebar_detached_sticky_native.js"></script>-->
+    <style>
+        /*.nav > li > a {
+        display: block;
+        padding: 15px 5px 10px 5px;
+        position: relative;
+    }*/
+    </style>
+    <title>文档</title>
+</head>
+<body data-spy="scroll" data-target=".sidebar-detached" class="has-detached-right ">
+    <header class="navbar navbar-inverse navbar-fixed-top" role="banner">
+        <div class="container">
+            <div class="navbar-header">
+                <button class="navbar-toggle" type="button" data-toggle="collapse" data-target="#HeaderNav">
+                    <span class="sr-only">Toggle navigation</span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                    <span class="icon-bar"></span>
+                </button>
+                <a href="../" class="navbar-brand" style="display:none">API</a>
+            </div>
+            <nav class="collapse navbar-collapse" role="navigation" id="HeaderNav">
+                <ul class="nav navbar-nav">
+                    <li style="display:none"><a href="#Tools">工具</a></li>
+                    <li><a href="#Organization">机构</a></li>
+                    <li><a href="#Term">学期</a></li>
+                    <li><a href="#GradeGroup">年级分组</a></li>
+                    <li><a href="#Grade">年级</a></li>
+                    <li><a href="#SCRule">选课规则</a></li>
+                    <li><a href="#SCPlan">选课计划</a></li>
+                    <li><a href="#Course">课程</a></li>
+                    <li><a href="#OptionalCourse">选修班</a></li>
+                    <li><a href="#Student">学生</a></li>
+                    <li><a href="#Teacher">教师</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+    <div class="container" id="Main">
+        <div class="alert alert-info"><a href="#Version">当前版本：<strong>0.1.0</strong>，最后更新时间：2017/06/26 13:30</a></div>
+        <section id="Tools" style="display:none">
+            <div class="page-header">
+                <h1>工具</h1>
+            </div>
+            <h2>Tools/Config <small>GET</small></h2>
+            <p class="lead">获取设置</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">无</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+    "State": true,
+    "Message": null,
+    "Data": [
+    
+    ],
+    "DataObject": {
+    "DebugMode": true,
+    "FeedbackEmail": "wj2929@gmail.com"
+    }
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>DataObject.DebugMode</td>
+                            <td>bool</td>
+                            <td>是否调试模式</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.FeedbackEmail</td>
+                            <td>string</td>
+                            <td>反馈Email</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Log/Error <small>POST</small></h2>
+            <p class="lead">上报出错日志</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Origin</td>
+                            <td>string</td>
+                            <td>来源，建议安卓客户端：Android_API，苹果客户端：IOS_API</td>
+                        </tr>
+                        <tr>
+                            <td>Content</td>
+                            <td>string</td>
+                            <td>出错内容</td>
+                        </tr>
+                        <tr>
+                            <td>JsonExpandData</td>
+                            <td>string</td>
+                            <td>扩展数据，Json数据结构</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+    "State": true,
+    "Message": ""
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Log/List <small>GET</small></h2>
+            <p class="lead">获取出错日志</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Origin</td>
+                            <td>string</td>
+                            <td>来源，建议安卓客户端：Android_API，苹果客户端：IOS_API</td>
+                        </tr>
+                        <tr>
+                            <td>PageNum</td>
+                            <td>int</td>
+                            <td>返回第几页课程，可选，默认值为1</td>
+                        </tr>
+                        <tr>
+                            <td>PageSize</td>
+                            <td>int</td>
+                            <td>每页包含几条数据，可选，默认值为10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+    "State": true,
+    "Message": ""
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>SMS/SendCode <small>POST</small></h2>
+            <p class="lead">发送短信验证码</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Phone</td>
+                            <td>string</td>
+                            <td>手机号</td>
+                        </tr>
+                        <tr>
+                            <td>CodeType</td>
+                            <td>string</td>
+                            <td>验证码类型</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+    "State": true,
+    "Message": ""
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="Organization">
+            <div class="page-header">
+                <h1>机构</h1>
+            </div>
+            <h2>Organization/List <small>GET</small></h2>
+            <p class="lead">机构列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">无</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "Id": "Test",
+      "Name": "Test"
+    }
+  ]
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>string</td>
+                            <td>机构Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>机构名称</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="Term">
+            <div class="page-header">
+                <h1>学期</h1>
+            </div>
+            <h2>Term/List <small>GET</small></h2>
+            <p class="lead">获取学期列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">无</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "Id": "ced62372-ebb6-447d-920f-f14063a8acf5",
+      "Name": "2016年下学期",
+      "First": false,
+      "StartDate": "\/Date(1487520000000)\/",
+      "EndDate": "\/Date(1503763200000)\/",
+      "TermSetting": {
+        "Monday": true,
+        "Tuesday": true,
+        "Wednesday": true,
+        "Thursday": true,
+        "Friday": true,
+        "Saturday": false,
+        "Sunday": false,
+        "Sections": [
+          {
+            "Num": 1,
+            "StartTime": "08:30",
+            "EndTime": "09:15"
+          },
+          {
+            "Num": 2,
+            "StartTime": "09:25",
+            "EndTime": "10:10"
+          },
+          {
+            "Num": 3,
+            "StartTime": "10:20",
+            "EndTime": "11:05"
+          },
+          {
+            "Num": 4,
+            "StartTime": "11:15",
+            "EndTime": "12:00"
+          },
+          {
+            "Num": 5,
+            "StartTime": "13:05",
+            "EndTime": "13:50"
+          },
+          {
+            "Num": 6,
+            "StartTime": "14:00",
+            "EndTime": "14:45"
+          },
+          {
+            "Num": 7,
+            "StartTime": "14:55",
+            "EndTime": "15:40"
+          },
+          {
+            "Num": 8,
+            "StartTime": "15:55",
+            "EndTime": "16:40"
+          }
+        ],
+        "SchoolYearMap": [
+          {
+            "GradeId": "9cd9ffea-942e-4ede-b7fb-9cd0c7fb5619",
+            "SchoolYear": 2017
+          },
+          {
+            "GradeId": "415aee84-0f31-4f91-ab9a-30177195b703",
+            "SchoolYear": 2016
+          },
+          {
+            "GradeId": "61c32f73-0b7d-4114-9ae2-92fa5c3da53e",
+            "SchoolYear": 2015
+          }
+        ]
+      }
+    }
+  ]
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>学期名称</td>
+                        </tr>
+                        <tr>
+                            <td>First</td>
+                            <td>bool</td>
+                            <td>是否该学年第一学期</td>
+                        </tr>
+                        <tr>
+                            <td>StartDate</td>
+                            <td>datetime</td>
+                            <td>学期开始时间</td>
+                        </tr>
+                        <tr>
+                            <td>EndDate</td>
+                            <td>datetime</td>
+                            <td>学期截止时间</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting</td>
+                            <td>对象</td>
+                            <td>学期设置</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Monday</td>
+                            <td>bool</td>
+                            <td>周一是否有课</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Tuesday</td>
+                            <td>bool</td>
+                            <td>周二是否有课</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Wednesday</td>
+                            <td>bool</td>
+                            <td>周三是否有课</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Thursday</td>
+                            <td>bool</td>
+                            <td>周四是否有课</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Friday</td>
+                            <td>bool</td>
+                            <td>周五是否有课</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Saturday</td>
+                            <td>bool</td>
+                            <td>周六是否有课</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Sunday</td>
+                            <td>bool</td>
+                            <td>周日是否有课</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Sections</td>
+                            <td>集合</td>
+                            <td>每天上课时间段</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Sections.Num</td>
+                            <td>int</td>
+                            <td>序号，第几节课</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Sections.StartTime</td>
+                            <td>string</td>
+                            <td>上课时间</td>
+                        </tr>
+                        <tr>
+                            <td>TermSetting.Sections.EndTime</td>
+                            <td>string</td>
+                            <td>下课时间</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="GradeGroup">
+            <div class="page-header">
+                <h1>年级分组</h1>
+            </div>
+            <h2>GradeGroup/List <small>GET</small></h2>
+            <p class="lead">获取年级分组列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">无</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "Id": "34dd9346-7067-428d-b492-37620e4151cc",
+      "Name": "高中",
+      "OrderBy": 0,
+      "Grades": [
+        {
+          "Id": "3b15596d-18bb-46ed-af7e-839108b824b7",
+          "Name": "高一",
+          "OrderBy": 0
+        },
+        {
+          "Id": "11558b73-2062-4f2d-a5bf-831164402de4",
+          "Name": "高二",
+          "OrderBy": 1
+        },
+        {
+          "Id": "907dab4a-6da3-494b-99b8-1eb82ceea074",
+          "Name": "高三",
+          "OrderBy": 2
+        }
+      ]
+    },
+    {
+      "Id": "eb1390de-805f-4f95-8728-01ca75917d77",
+      "Name": "初中",
+      "OrderBy": 1,
+      "Grades": [
+        {
+          "Id": "82612b00-94fc-42cd-9eb5-059ca7b13de2",
+          "Name": "初一",
+          "OrderBy": 0
+        },
+        {
+          "Id": "49db5455-8985-4af8-b04a-7b53ca5dcb40",
+          "Name": "初二",
+          "OrderBy": 1
+        },
+        {
+          "Id": "84845add-6c74-4b86-b55a-80b26181c93c",
+          "Name": "初三",
+          "OrderBy": 2
+        }
+      ]
+    }
+  ]
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>年级分组Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>年级分组名称</td>
+                        </tr>
+                        <tr>
+                            <td>OrderBy</td>
+                            <td>int</td>
+                            <td>排序</td>
+                        </tr>
+                        <tr>
+                            <td>Grades</td>
+                            <td>集合</td>
+                            <td>年级分组下的年级列表</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>GradeGroup/Create <small>POST</small></h2>
+            <p class="lead">创建年级分组</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>名称</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Id": "369f08a1-a389-4ac9-95de-e8092f2b4e0d",
+    "Name": "test",
+    "OrderBy": 2,
+    "Grades": [
+      
+    ]
+  }
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>年级分组Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>年级分组名称</td>
+                        </tr>
+                        <tr>
+                            <td>OrderBy</td>
+                            <td>int</td>
+                            <td>排序</td>
+                        </tr>
+                        <tr>
+                            <td>Grades</td>
+                            <td>集合</td>
+                            <td>年级分组下的年级列表</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>GradeGroup/Edit <small>POST</small></h2>
+            <p class="lead">编辑年级分组</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>名称</td>
+                        </tr>
+                        <tr>
+                            <td>EditId</td>
+                            <td>Guid</td>
+                            <td>待编辑年级分组Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Id": "369f08a1-a389-4ac9-95de-e8092f2b4e0d",
+    "Name": "test",
+    "OrderBy": 2,
+    "Grades": [
+      
+    ]
+  }
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>年级分组Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>年级分组名称</td>
+                        </tr>
+                        <tr>
+                            <td>OrderBy</td>
+                            <td>int</td>
+                            <td>排序</td>
+                        </tr>
+                        <tr>
+                            <td>Grades</td>
+                            <td>集合</td>
+                            <td>年级分组下的年级列表</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>GradeGroup/Remove <small>POST</small></h2>
+            <p class="lead">删除年级分组</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RemoveId</td>
+                            <td>Guid</td>
+                            <td>待删除年级分组Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="Grade">
+            <div class="page-header">
+                <h1>年级</h1>
+            </div>
+            <h2>Grade/List <small>GET</small></h2>
+            <p class="lead">获取年级列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">无</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "Id": "3b15596d-18bb-46ed-af7e-839108b824b7",
+      "Name": "高一",
+      "OrderBy": 0
+    },
+    {
+      "Id": "11558b73-2062-4f2d-a5bf-831164402de4",
+      "Name": "高二",
+      "OrderBy": 1
+    },
+    {
+      "Id": "907dab4a-6da3-494b-99b8-1eb82ceea074",
+      "Name": "高三",
+      "OrderBy": 2
+    },
+    {
+      "Id": "82612b00-94fc-42cd-9eb5-059ca7b13de2",
+      "Name": "初一",
+      "OrderBy": 0
+    },
+    {
+      "Id": "49db5455-8985-4af8-b04a-7b53ca5dcb40",
+      "Name": "初二",
+      "OrderBy": 1
+    },
+    {
+      "Id": "84845add-6c74-4b86-b55a-80b26181c93c",
+      "Name": "初三",
+      "OrderBy": 2
+    }
+  ]
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>年级Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>年级名称</td>
+                        </tr>
+                        <tr>
+                            <td>OrderBy</td>
+                            <td>int</td>
+                            <td>排序</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <h2>Grade/Create <small>POST</small></h2>
+            <p class="lead">创建年级</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>GradeGroupId</td>
+                            <td>Guid</td>
+                            <td>年级分组Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>名称</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Id": "369f08a1-a389-4ac9-95de-e8092f2b4e0d",
+    "Name": "test",
+    "OrderBy": 2,
+    "Grades": [
+      
+    ]
+  }
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>年级Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>年级名称</td>
+                        </tr>
+                        <tr>
+                            <td>OrderBy</td>
+                            <td>int</td>
+                            <td>排序</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Grade/Edit <small>POST</small></h2>
+            <p class="lead">编辑年级</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>EditId</td>
+                            <td>Guid</td>
+                            <td>待编辑年级Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>名称</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Id": "369f08a1-a389-4ac9-95de-e8092f2b4e0d",
+    "Name": "test",
+    "OrderBy": 2,
+    "Grades": [
+      
+    ]
+  }
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>年级Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>年级名称</td>
+                        </tr>
+                        <tr>
+                            <td>OrderBy</td>
+                            <td>int</td>
+                            <td>排序</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Grade/Remove <small>POST</small></h2>
+            <p class="lead">删除年级</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RemoveId</td>
+                            <td>Guid</td>
+                            <td>待删除年级Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="SCRule">
+            <div class="page-header">
+                <h1>选课规则</h1>
+            </div>
+            <h2>SCRule/List <small>GET</small></h2>
+            <p class="lead">获取选课规则列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>学期</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "Id": "11cffff1-3ca8-4f79-8313-1c2d391824e1",
+      "Name": "test",
+      "SCRuleSetting": {
+        "StudentRules": [
+          {
+            "Key": "Sex",
+            "Value": "All",
+            "Descritpion": "男、女"
+          },
+          {
+            "Key": "Grade",
+            "Value": "All",
+            "Descritpion": "高一、高二、高三、初一、初二、初三"
+          }
+        ],
+        "OptionalCourseRules": [
+          {
+            "Key": "OptionalCourse",
+            "Value": "cf8e6203-071e-4826-b58b-e2f9caf5e0be",
+            "Descritpion": "可选课程（1门）"
+          }
+        ]
+      }
+    }
+  ]
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>名称</td>
+                            <td>名称</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting</td>
+                            <td>对象</td>
+                            <td>选课规则设置</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting.StudentRules</td>
+                            <td>集合</td>
+                            <td>学生规则</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting.OptionalCourseRules</td>
+                            <td>集合</td>
+                            <td>选修班规则</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>SCRule/CreateOrEdit <small>POST</small></h2>
+            <p class="lead">创建或编辑选课规则</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>学期</td>
+                        </tr>
+                        <tr>
+                            <td>SexRule</td>
+                            <td>string</td>
+                            <td>性别规则，All，或0：男，1：女</td>
+                        </tr>
+                        <tr>
+                            <td>GradeRule</td>
+                            <td>string</td>
+                            <td>年级规则，All，或班级Id，多个用半角逗号连接</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourseRule</td>
+                            <td>string</td>
+                            <td>选课班规则，All，或选修班Id，多个用半角逗号连接</td>
+                        </tr>
+                        <!--<tr>
+                            <td>SCRuleSetting.StudentRules[0].Key</td>
+                            <td>string</td>
+                            <td>性别，Sex</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting.StudentRules[0].Value</td>
+                            <td>string</td>
+                            <td>All，或0：男，1：女</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting.StudentRules[1].Key</td>
+                            <td>string</td>
+                            <td>所在班级，Grade</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting.StudentRules[1].Value</td>
+                            <td>string</td>
+                            <td>All，或班级Id，多个用半角逗号连接</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting.OptionalCourseRules[0].Key</td>
+                            <td>string</td>
+                            <td>选修班，OptionalCourse</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting.OptionalCourseRules[0].Value</td>
+                            <td>string</td>
+                            <td>选修班Id，多个用半角逗号连接</td>
+                        </tr>-->
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Id": "11cffff1-3ca8-4f79-8313-1c2d391824e1",
+    "Name": "test",
+    "SCRuleSetting": {
+      "StudentRules": [
+        {
+          "Key": "Sex",
+          "Value": "All",
+          "Descritpion": "男、女"
+        },
+        {
+          "Key": "Grade",
+          "Value": "All",
+          "Descritpion": "高一、高二、高三、初一、初二、初三"
+        }
+      ],
+      "OptionalCourseRules": [
+        {
+          "Key": "OptionalCourse",
+          "Value": "cf8e6203-071e-4826-b58b-e2f9caf5e0be",
+          "Descritpion": "可选课程（1门）"
+        }
+      ]
+    }
+  }
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>名称</td>
+                            <td>名称</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting</td>
+                            <td>对象</td>
+                            <td>选课规则设置</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting.StudentRules</td>
+                            <td>集合</td>
+                            <td>学生规则</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleSetting.OptionalCourseRules</td>
+                            <td>集合</td>
+                            <td>选修班规则</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>SCRule/Remove <small>POST</small></h2>
+            <p class="lead">移除选课规则</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RemoveId</td>
+                            <td>Guid</td>
+                            <td>Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="SCPlan">
+            <div class="page-header">
+                <h1>选课计划</h1>
+            </div>
+            <h2>SCPlan/Paging <small>GET</small></h2>
+            <p class="lead">获取选课计划分页列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>PageNum</td>
+                            <td>int</td>
+                            <td>返回第几页课程，可选，默认值为1</td>
+                        </tr>
+                        <tr>
+                            <td>PageSize</td>
+                            <td>int</td>
+                            <td>每页包含几条数据，可选，默认值为10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Module_Page": {
+      "PageCount": 1,
+      "PageNum": 1,
+      "PageSize": 10,
+      "AllCount": 1,
+      "LastPageCount": 1,
+      "PageName": "",
+      "Max": 10,
+      "First": 0,
+      "End": 1,
+      "NextPageNum": 1,
+      "PrevPageNum": 1,
+      "PageListMaxNumber": 1,
+      "PageListFirstNum": 1,
+      "PageListEndNum": 1,
+      "NextPageUrl": null,
+      "PrevPageUrl": null,
+      "FirstPageUrl": null,
+      "EndPageUrl": null
+    },
+    "PageListInfos": [
+      {
+        "Id": "0ff0df50-f0d3-4b2f-8322-d58ebb94ff34",
+        "Name": "第一轮选课",
+        "StartDate": "\/Date(1498529203997)\/",
+        "EndDate": "\/Date(1498615603997)\/",
+        "TermId": "ced62372-ebb6-447d-920f-f14063a8acf5",
+        "Status": 1,
+        "StatusName": "进行中",
+        "SCRules": [
+          {
+            "StudentRules": [
+              {
+                "Key": "Sex",
+                "Value": "男"
+              }
+            ],
+            "OptionalCourseIds": [
+              "9a850480-3d3a-41e8-9608-08f4d8c03544",
+              "88d518a2-c9e8-466b-be49-5d579bcebfe5"
+            ]
+          }
+        ]
+      }
+    ]
+  }
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Module_Page</td>
+                            <td>对象</td>
+                            <td>分页信息</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos</td>
+                            <td>集合</td>
+                            <td>选课计划集合</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Id</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Name</td>
+                            <td>string</td>
+                            <td>选课计划名称</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.StartDate</td>
+                            <td>datetime</td>
+                            <td>选课计划开始时间</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.EndDate</td>
+                            <td>datetime</td>
+                            <td>选课计划结束时间</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.TermId</td>
+                            <td>Guid</td>
+                            <td>所属学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Status</td>
+                            <td>int</td>
+                            <td>状态值</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.StatusName</td>
+                            <td>string</td>
+                            <td>状态名</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.SCRules</td>
+                            <td>集合</td>
+                            <td>选课规则集合</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>SCPlan/Create <small>POST</small></h2>
+            <p class="lead">创建选课计划</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>StartDate</td>
+                            <td>datatime</td>
+                            <td>开始时间</td>
+                        </tr>
+                        <tr>
+                            <td>EndDate</td>
+                            <td>datetime</td>
+                            <td>结束时间</td>
+                        </tr>
+                        <tr>
+                            <td>SCRuleIds</td>
+                            <td>string</td>
+                            <td>选课规则Id，多个用半角逗号间隔</td>
+                        </tr>
+
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": "",
+  "Data": [
+    
+  ],
+  "DataObject": null
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>选课计划名称</td>
+                        </tr>
+                        <tr>
+                            <td>StartDate</td>
+                            <td>datetime</td>
+                            <td>选课计划开始时间</td>
+                        </tr>
+                        <tr>
+                            <td>EndDate</td>
+                            <td>datetime</td>
+                            <td>选课计划结束时间</td>
+                        </tr>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>所属学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>int</td>
+                            <td>状态值</td>
+                        </tr>
+                        <tr>
+                            <td>StatusName</td>
+                            <td>string</td>
+                            <td>状态名</td>
+                        </tr>
+                        <tr>
+                            <td>SCRules</td>
+                            <td>集合</td>
+                            <td>选课规则集合</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>SCPlan/Single <small>GET</small></h2>
+            <p class="lead">获取选课计划</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>选课Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": "",
+  "Data": [
+    
+  ],
+  "DataObject": null
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>选课计划名称</td>
+                        </tr>
+                        <tr>
+                            <td>StartDate</td>
+                            <td>datetime</td>
+                            <td>选课计划开始时间</td>
+                        </tr>
+                        <tr>
+                            <td>EndDate</td>
+                            <td>datetime</td>
+                            <td>选课计划结束时间</td>
+                        </tr>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>所属学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>int</td>
+                            <td>状态值</td>
+                        </tr>
+                        <tr>
+                            <td>StatusName</td>
+                            <td>string</td>
+                            <td>状态名</td>
+                        </tr>
+                        <tr>
+                            <td>SCRules</td>
+                            <td>集合</td>
+                            <td>选课规则集合</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>SCPlan/Suspend <small>POST</small></h2>
+            <p class="lead">暂停选课计划</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>选课计划</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>SCPlan/End <small>POST</small></h2>
+            <p class="lead">结束选课计划</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>选课计划</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>SCPlan/Remove <small>POST</small></h2>
+            <p class="lead">删除未开始的选课计划</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RemoveId</td>
+                            <td>Guid</td>
+                            <td>选课计划</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>SCPlan/StudentAvailableSCPlanList <small>GET</small></h2>
+            <p class="lead">获取学生可见的选课计划(默认当前学生用户名：20161240)</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr >
+                            <td colspan="3">无</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "Id": "0ff0df50-f0d3-4b2f-8322-d58ebb94ff34",
+      "Name": "第一轮选课",
+      "StartDate": "\/Date(1498529203997)\/",
+      "EndDate": "\/Date(1498615603997)\/",
+      "TermId": "ced62372-ebb6-447d-920f-f14063a8acf5",
+      "Status": 1,
+      "StatusName": "进行中",
+      "CreateDate": "\/Date(1498529203997)\/",
+      "SCRules": [
+        {
+          "StudentRules": [
+            {
+              "Key": "Sex",
+              "Value": "男",
+              "Descritpion": null
+            }
+          ],
+          "OptionalCourseRules": [
+            
+          ]
+        }
+      ]
+    }
+  ]
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>选课计划名称</td>
+                        </tr>
+                        <tr>
+                            <td>StartDate</td>
+                            <td>datetime</td>
+                            <td>选课计划开始时间</td>
+                        </tr>
+                        <tr>
+                            <td>EndDate</td>
+                            <td>datetime</td>
+                            <td>选课计划结束时间</td>
+                        </tr>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>所属学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>int</td>
+                            <td>状态值</td>
+                        </tr>
+                        <tr>
+                            <td>StatusName</td>
+                            <td>string</td>
+                            <td>状态名</td>
+                        </tr>
+                        <tr>
+                            <td>SCRules</td>
+                            <td>集合</td>
+                            <td>选课规则集合</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="Course">
+            <div class="page-header">
+                <h1>课程</h1>
+            </div>
+            <h2>Course/List <small>GET</small></h2>
+            <p class="lead">获取课程列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">无</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "Id": "5d71c301-160f-418e-840c-c0a25f413a10",
+      "Name": "Test"
+    },
+    {
+      "Id": "8eb21571-5df7-43c0-b793-c7f00454aabe",
+      "Name": "历史"
+    },
+    {
+      "Id": "377850b9-d974-42cd-8860-c98757f4d4b5",
+      "Name": "生物"
+    },
+    {
+      "Id": "c912a48b-271a-4789-a225-05eb2970a04c",
+      "Name": "体育1"
+    },
+    {
+      "Id": "4c0cb610-649a-46dc-9db0-190e5eba99fb",
+      "Name": "地理"
+    },
+    {
+      "Id": "e33dcddc-8bd5-493f-8a17-4594ba49f1f3",
+      "Name": "语文"
+    },
+    {
+      "Id": "385ebb00-e592-404e-b440-5e876f1a7548",
+      "Name": "化学"
+    },
+    {
+      "Id": "3527eb3e-3504-474a-86e7-82fe8dce93c2",
+      "Name": "英语"
+    },
+    {
+      "Id": "9b7212e7-33e1-4c13-a430-8ec8f9afbd19",
+      "Name": "物理"
+    },
+    {
+      "Id": "57a3525e-1aa5-46f9-85fb-cb5621862e23",
+      "Name": "数学"
+    }
+  ]
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>课程Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>课程名称</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Course/Create <small>POST</small></h2>
+            <p class="lead">创建课程</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>名称</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Id": "5d71c301-160f-418e-840c-c0a25f413a10",
+    "Name": "Test"
+  }
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>课程Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>课程名称</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Course/Edit <small>POST</small></h2>
+            <p class="lead">编辑课程</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>名称</td>
+                        </tr>
+                        <tr>
+                            <td>EditId</td>
+                            <td>Guid</td>
+                            <td>待编辑课程Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Id": "c912a48b-271a-4789-a225-05eb2970a04c",
+    "Name": "体育1"
+  }
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>课程Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>课程名称</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Course/Remove <small>POST</small></h2>
+            <p class="lead">删除课程</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明（POST）</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>RemoveId</td>
+                            <td>Guid</td>
+                            <td>待删除课程Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null
+}</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="OptionalCourse">
+            <div class="page-header">
+                <h1>选修班</h1>
+            </div>
+            <h2>OptionalCourse/Paging <small>GET</small></h2>
+            <p class="lead">获取选修班分页列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>IsOptional</td>
+                            <td>bool</td>
+                            <td>是否选修，true：取选修，false：取必修（或行政班），空：全取</td>
+                        </tr>
+                        <tr>
+                            <td>PageNum</td>
+                            <td>int</td>
+                            <td>返回第几页课程，可选，默认值为1</td>
+                        </tr>
+                        <tr>
+                            <td>PageSize</td>
+                            <td>int</td>
+                            <td>每页包含几条数据，可选，默认值为10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Module_Page": {
+      "PageCount": 1,
+      "PageNum": 1,
+      "PageSize": 10,
+      "AllCount": 2,
+      "LastPageCount": 2,
+      "PageName": "",
+      "Max": 10,
+      "First": 0,
+      "End": 2,
+      "NextPageNum": 1,
+      "PrevPageNum": 1,
+      "PageListMaxNumber": 1,
+      "PageListFirstNum": 1,
+      "PageListEndNum": 1,
+      "NextPageUrl": null,
+      "PrevPageUrl": null,
+      "FirstPageUrl": null,
+      "EndPageUrl": null
+    },
+    "PageListInfos": [
+      {
+        "Id": "c2067291-4dca-4721-a053-2b8ad4acc70a",
+        "Name": "老子阅读",
+        "Number": "CH001",
+        "Description": "",
+        "StartWeek": 1,
+        "EndWeek": 4,
+        "Duration": 1,
+        "Capacity": 30,
+        "Credit": 2,
+        "ScheduleSetting": {
+          "Items": [
+            {
+              "Day": 2,
+              "Section": 1
+            },
+            {
+              "Day": 2,
+              "Section": 2
+            },
+            {
+              "Day": 5,
+              "Section": 2
+            },
+            {
+              "Day": 5,
+              "Section": 3
+            }
+          ],
+          "AlternateType": "All"
+        },
+        "ClassRoom": {
+          "Id": "4c3063e9-38f3-476f-8303-156b8cecc65e",
+          "Name": "1号楼2层教室1",
+          "MultiClass": false,
+          "LimitCourse": false,
+          "Capacity": 50
+        },
+        "Course": {
+          "Id": "a735d6a7-d497-4a1e-9c9a-c6de87439e4a",
+          "Name": "语文"
+        },
+        "Teachers": [
+          {
+            "Id": "d566ccbd-fd1d-44b9-92cc-affda2661523",
+            "FullName": "李四",
+            "UserName": "F0001",
+            "Phone": "13521207000",
+            "Sex": 1,
+            "Address": null,
+            "Avatar": null,
+            "Email": "ls@seiue.com"
+          }
+        ]
+      },
+      {
+        "Id": "fee25adc-b9e6-4297-a629-fa1b66189876",
+        "Name": "老子阅读",
+        "Number": "CH001",
+        "Description": "",
+        "StartWeek": 1,
+        "EndWeek": 4,
+        "Duration": 1,
+        "Capacity": 30,
+        "Credit": 2,
+        "ScheduleSetting": {
+          "Items": [
+            {
+              "Day": 2,
+              "Section": 1
+            },
+            {
+              "Day": 2,
+              "Section": 2
+            },
+            {
+              "Day": 5,
+              "Section": 2
+            },
+            {
+              "Day": 5,
+              "Section": 3
+            }
+          ],
+          "AlternateType": "SingleWeek"
+        },
+        "ClassRoom": {
+          "Id": "043db015-bce8-438b-91d5-dc9ec232760b",
+          "Name": "1号楼2层教室3",
+          "MultiClass": false,
+          "LimitCourse": false,
+          "Capacity": 50
+        },
+        "Course": {
+          "Id": "a735d6a7-d497-4a1e-9c9a-c6de87439e4a",
+          "Name": "语文"
+        },
+        "Teachers": [
+          {
+            "Id": "d566ccbd-fd1d-44b9-92cc-affda2661523",
+            "FullName": "李四",
+            "UserName": "F0001",
+            "Phone": "13521207000",
+            "Sex": 1,
+            "Address": null,
+            "Avatar": null,
+            "Email": "ls@seiue.com"
+          },
+          {
+            "Id": "45931720-2390-4935-86f3-cbbc64b96deb",
+            "FullName": "王五",
+            "UserName": "F0002",
+            "Phone": "13521207001",
+            "Sex": 0,
+            "Address": null,
+            "Avatar": null,
+            "Email": "ls1@seiue.com"
+          }
+        ]
+      }
+    ]
+  }
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Module_Page</td>
+                            <td>对象</td>
+                            <td>分页信息</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos</td>
+                            <td>集合</td>
+                            <td>选修班分页信息集合</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Id</td>
+                            <td>Guid</td>
+                            <td>课程Id</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Name</td>
+                            <td>string</td>
+                            <td>选修班课程名</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Number</td>
+                            <td>string</td>
+                            <td>选修班课程编号</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Description</td>
+                            <td>string</td>
+                            <td>选修班课程描述</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.StartWeek</td>
+                            <td>int</td>
+                            <td>开始周</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.EndWeek</td>
+                            <td>int</td>
+                            <td>结束周</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Duration</td>
+                            <td>int</td>
+                            <td>周课时</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Capacity</td>
+                            <td>int</td>
+                            <td>班级容量</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Credit</td>
+                            <td>int</td>
+                            <td>学分</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ScheduleSetting</td>
+                            <td>集合</td>
+                            <td>上课时间设置集合</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ScheduleSetting.Items.Day</td>
+                            <td>int</td>
+                            <td>周一~周日，对应1~7</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ScheduleSetting.Items.Section</td>
+                            <td>int</td>
+                            <td>第几节</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ClassRoom</td>
+                            <td>对象</td>
+                            <td>上课教室</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ClassRoom.Id</td>
+                            <td>Guid</td>
+                            <td>教室Id</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ClassRoom.Name</td>
+                            <td>string</td>
+                            <td>教室名称</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ClassRoom.MultiClass</td>
+                            <td>bool</td>
+                            <td>是否允许多班同时上课</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ClassRoom.LimitCourse</td>
+                            <td>bool</td>
+                            <td>是否限制上课课程</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ClassRoom.Courses</td>
+                            <td>集合</td>
+                            <td>仅当PageListInfos.ClassRoom.LimitCourse=true，表示限制的课程列表</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.ClassRoom.Capacity</td>
+                            <td>int</td>
+                            <td>教室最大容量</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Course</td>
+                            <td>对象</td>
+                            <td>所属课程</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Teachers</td>
+                            <td>集合</td>
+                            <td>任课教师列表</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>OptionalCourse/ListBySCPlanId <small>GET</small></h2>
+            <p class="lead">选修计划的选修班列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SCPlanId</td>
+                            <td>Guid</td>
+                            <td>选修计划Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "DefaultStudentCount": 5,
+      "SignUpStudentCount": 0,
+      "Id": "9a850480-3d3a-41e8-9608-08f4d8c03544",
+      "Name": "老子阅读",
+      "Number": "CH001",
+      "Description": "",
+      "StartWeek": 1,
+      "EndWeek": 4,
+      "Duration": 1,
+      "Capacity": 30,
+      "Credit": 2,
+      "ScheduleSetting": {
+        "Items": [
+          {
+            "Day": 2,
+            "Section": 1
+          },
+          {
+            "Day": 2,
+            "Section": 2
+          },
+          {
+            "Day": 5,
+            "Section": 2
+          },
+          {
+            "Day": 5,
+            "Section": 3
+          }
+        ],
+        "AlternateType": "All"
+      },
+      "ClassRoom": {
+        "Id": "301df4c8-e5ff-4b47-8d34-5612d0c1d1f7",
+        "Name": "1号楼2层教室1",
+        "MultiClass": false,
+        "LimitCourse": false,
+        "Capacity": 50,
+        "Courses": [
+          
+        ]
+      },
+      "Course": {
+        "Id": "e33dcddc-8bd5-493f-8a17-4594ba49f1f3",
+        "Name": "语文"
+      },
+      "Teachers": [
+        {
+          "Id": "86354985-2658-4184-bc46-421f69ae3e90",
+          "FullName": "李四",
+          "UserName": "F0001",
+          "Phone": "13521207000",
+          "Sex": 1,
+          "Address": null,
+          "Avatar": null,
+          "Email": "ls@seiue.com"
+        }
+      ]
+    },
+    {
+      "DefaultStudentCount": 1,
+      "SignUpStudentCount": 0,
+      "Id": "88d518a2-c9e8-466b-be49-5d579bcebfe5",
+      "Name": "老子阅读",
+      "Number": "CH001",
+      "Description": "",
+      "StartWeek": 1,
+      "EndWeek": 4,
+      "Duration": 1,
+      "Capacity": 30,
+      "Credit": 2,
+      "ScheduleSetting": {
+        "Items": [
+          {
+            "Day": 2,
+            "Section": 1
+          },
+          {
+            "Day": 2,
+            "Section": 2
+          },
+          {
+            "Day": 5,
+            "Section": 2
+          },
+          {
+            "Day": 5,
+            "Section": 3
+          }
+        ],
+        "AlternateType": "SingleWeek"
+      },
+      "ClassRoom": {
+        "Id": "00c743e4-d932-4fba-bb46-a3bc1fd29098",
+        "Name": "1号楼2层教室3",
+        "MultiClass": false,
+        "LimitCourse": false,
+        "Capacity": 50,
+        "Courses": [
+          
+        ]
+      },
+      "Course": {
+        "Id": "e33dcddc-8bd5-493f-8a17-4594ba49f1f3",
+        "Name": "语文"
+      },
+      "Teachers": [
+        {
+          "Id": "86354985-2658-4184-bc46-421f69ae3e90",
+          "FullName": "李四",
+          "UserName": "F0001",
+          "Phone": "13521207000",
+          "Sex": 1,
+          "Address": null,
+          "Avatar": null,
+          "Email": "ls@seiue.com"
+        },
+        {
+          "Id": "28d0a1e4-766f-4c70-a68e-a6dbb0cc8cd9",
+          "FullName": "王五",
+          "UserName": "F0002",
+          "Phone": "13521207001",
+          "Sex": 0,
+          "Address": null,
+          "Avatar": null,
+          "Email": "ls1@seiue.com"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos</td>
+                            <td>集合</td>
+                            <td>选修班分页信息集合</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.DefaultStudentCount</td>
+                            <td>int</td>
+                            <td>内定人数</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.HasSignUp</td>
+                            <td>bool</td>
+                            <td>是否已报名</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.IsDefault</td>
+                            <td>bool</td>
+                            <td>是否内定学生</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.DefaultStudents</td>
+                            <td>集合</td>
+                            <td>内定学生列表</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.Id</td>
+                            <td>Guid</td>
+                            <td>课程Id</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.Name</td>
+                            <td>string</td>
+                            <td>选修班课程名</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.Number</td>
+                            <td>string</td>
+                            <td>选修班课程编号</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.Description</td>
+                            <td>string</td>
+                            <td>选修班课程描述</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.StartWeek</td>
+                            <td>int</td>
+                            <td>开始周</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.EndWeek</td>
+                            <td>int</td>
+                            <td>结束周</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.Duration</td>
+                            <td>int</td>
+                            <td>周课时</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.Capacity</td>
+                            <td>int</td>
+                            <td>班级容量</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.Credit</td>
+                            <td>int</td>
+                            <td>学分</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ScheduleSetting</td>
+                            <td>集合</td>
+                            <td>上课时间设置集合</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ScheduleSetting.Items.Day</td>
+                            <td>int</td>
+                            <td>周一~周日，对应1~7</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ScheduleSetting.Items.Section</td>
+                            <td>int</td>
+                            <td>第几节</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ClassRoom</td>
+                            <td>对象</td>
+                            <td>上课教室</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ClassRoom.Id</td>
+                            <td>Guid</td>
+                            <td>教室Id</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ClassRoom.Name</td>
+                            <td>string</td>
+                            <td>教室名称</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ClassRoom.MultiClass</td>
+                            <td>bool</td>
+                            <td>是否允许多班同时上课</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ClassRoom.LimitCourse</td>
+                            <td>bool</td>
+                            <td>是否限制上课课程</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ClassRoom.Courses</td>
+                            <td>集合</td>
+                            <td>仅当DataObject.ClassRoom.LimitCourse=true，表示限制的课程列表</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.ClassRoom.Capacity</td>
+                            <td>int</td>
+                            <td>教室最大容量</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.Course</td>
+                            <td>对象</td>
+                            <td>所属课程</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject.Teachers</td>
+                            <td>集合</td>
+                            <td>任课教师列表</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>OptionalCourse/CourseGroupListBySCPlanId <small>GET</small></h2>
+            <p class="lead">按科目获取选修计划的选修班分组列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SCPlanId</td>
+                            <td>Guid</td>
+                            <td>选修计划Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "CourseName": "语文",
+      "OptionalCourses": [
+        {
+          "DefaultStudentCount": 3,
+          "SignUpStudentCount": 0,
+          "HasSignUp": false,
+          "IsDefault": false,
+          "DefaultStudents": [
+            {
+              "Id": "96c2785f-48d1-41bc-905d-454211d37335",
+              "TimeOfEnrollment": "\/Date(1441036800000)\/",
+              "FullName": "赵六",
+              "IDNumber": "110102200006060004",
+              "UserName": "20161237",
+              "Phone": "13521206003",
+              "Sex": 0,
+              "Address": null,
+              "Avatar": null,
+              "GraduatesIn": 2017,
+              "Email": "zs3@seiue.com",
+              "GradeGroupId": "96ed734a-5e9c-4638-bc6d-14b7a9f371d9",
+              "GradeGroupName": "高中",
+              "GradeName": null
+            },
+            {
+              "Id": "c586efda-b673-4a1b-b114-64d5e339e44c",
+              "TimeOfEnrollment": "\/Date(1441036800000)\/",
+              "FullName": "孙七",
+              "IDNumber": "110102200006060005",
+              "UserName": "20161238",
+              "Phone": "13521206004",
+              "Sex": 0,
+              "Address": null,
+              "Avatar": null,
+              "GraduatesIn": 2017,
+              "Email": "zs4@seiue.com",
+              "GradeGroupId": "96ed734a-5e9c-4638-bc6d-14b7a9f371d9",
+              "GradeGroupName": "高中",
+              "GradeName": null
+            },
+            {
+              "Id": "db365004-ea2a-4578-9b26-752534c88eed",
+              "TimeOfEnrollment": "\/Date(1441036800000)\/",
+              "FullName": "周八",
+              "IDNumber": "110102200006060006",
+              "UserName": "20161239",
+              "Phone": "13521206005",
+              "Sex": 1,
+              "Address": null,
+              "Avatar": null,
+              "GraduatesIn": 2017,
+              "Email": "zs5@seiue.com",
+              "GradeGroupId": "96ed734a-5e9c-4638-bc6d-14b7a9f371d9",
+              "GradeGroupName": "高中",
+              "GradeName": null
+            }
+          ],
+          "Id": "b0676c34-1ee3-4311-bbb9-4b23ed9f5daa",
+          "Name": "老子阅读",
+          "IsMust": false,
+          "Number": "CH001",
+          "Description": "",
+          "StartWeek": 1,
+          "EndWeek": 4,
+          "Duration": 1,
+          "Capacity": 30,
+          "Credit": 2,
+          "ScheduleSetting": {
+            "Items": [
+              {
+                "Day": 2,
+                "Section": 1
+              },
+              {
+                "Day": 2,
+                "Section": 2
+              },
+              {
+                "Day": 5,
+                "Section": 2
+              },
+              {
+                "Day": 5,
+                "Section": 3
+              }
+            ],
+            "AlternateType": "All"
+          },
+          "ClassRoom": {
+            "Id": "301df4c8-e5ff-4b47-8d34-5612d0c1d1f7",
+            "Name": "1号楼2层教室1",
+            "MultiClass": false,
+            "LimitCourse": false,
+            "Capacity": 50,
+            "Courses": [
+              
+            ]
+          },
+          "Course": {
+            "Id": "e33dcddc-8bd5-493f-8a17-4594ba49f1f3",
+            "Name": "语文"
+          },
+          "Teachers": [
+            {
+              "Id": "86354985-2658-4184-bc46-421f69ae3e90",
+              "FullName": "李四",
+              "UserName": "F0001",
+              "Phone": "13521207000",
+              "Sex": 1,
+              "Address": null,
+              "Avatar": null,
+              "Email": "ls@seiue.com"
+            }
+          ],
+          "CourseName": "语文",
+          "TeacherNames": "李四"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>CourseName</td>
+                            <td>string</td>
+                            <td>科目名称</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses</td>
+                            <td>集合</td>
+                            <td>选修班集合</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.DefaultStudentCount</td>
+                            <td>int</td>
+                            <td>内定人数</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.HasSignUp</td>
+                            <td>bool</td>
+                            <td>是否已报名</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.IsDefault</td>
+                            <td>bool</td>
+                            <td>是否内定学生</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.DefaultStudents</td>
+                            <td>集合</td>
+                            <td>内定学生列表</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Id</td>
+                            <td>Guid</td>
+                            <td>课程Id</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Name</td>
+                            <td>string</td>
+                            <td>选修班课程名</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Number</td>
+                            <td>string</td>
+                            <td>选修班课程编号</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Description</td>
+                            <td>string</td>
+                            <td>选修班课程描述</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.StartWeek</td>
+                            <td>int</td>
+                            <td>开始周</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.EndWeek</td>
+                            <td>int</td>
+                            <td>结束周</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Duration</td>
+                            <td>int</td>
+                            <td>周课时</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Capacity</td>
+                            <td>int</td>
+                            <td>班级容量</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Credit</td>
+                            <td>int</td>
+                            <td>学分</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ScheduleSetting</td>
+                            <td>集合</td>
+                            <td>上课时间设置集合</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ScheduleSetting.Items.Day</td>
+                            <td>int</td>
+                            <td>周一~周日，对应1~7</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ScheduleSetting.Items.Section</td>
+                            <td>int</td>
+                            <td>第几节</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom</td>
+                            <td>对象</td>
+                            <td>上课教室</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.Id</td>
+                            <td>Guid</td>
+                            <td>教室Id</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.Name</td>
+                            <td>string</td>
+                            <td>教室名称</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.MultiClass</td>
+                            <td>bool</td>
+                            <td>是否允许多班同时上课</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.LimitCourse</td>
+                            <td>bool</td>
+                            <td>是否限制上课课程</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.Courses</td>
+                            <td>集合</td>
+                            <td>仅当OptionalCourses.ClassRoom.LimitCourse=true，表示限制的课程列表</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.Capacity</td>
+                            <td>int</td>
+                            <td>教室最大容量</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Course</td>
+                            <td>对象</td>
+                            <td>所属课程</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Teachers</td>
+                            <td>集合</td>
+                            <td>任课教师列表</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>OptionalCourse/TermGroupListByTeacher <small>GET</small></h2>
+            <p class="lead">按学期分组获取教师任选修课列表（默认教师用户名为：F0001）</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">无</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "Term": {
+        "Id": "ced62372-ebb6-447d-920f-f14063a8acf5",
+        "Name": "2016年下学期"
+      },
+      "OptionalCourses": [
+        {
+          "IsSCPlanProcessing": false,
+          "Id": "9a850480-3d3a-41e8-9608-08f4d8c03544",
+          "Name": "老子阅读",
+          "Number": "CH001",
+          "Description": "",
+          "StartWeek": 1,
+          "EndWeek": 4,
+          "Duration": 1,
+          "Capacity": 30,
+          "Credit": 2,
+          "ScheduleSetting": {
+            "Items": [
+              {
+                "Day": 2,
+                "Section": 1
+              },
+              {
+                "Day": 2,
+                "Section": 2
+              },
+              {
+                "Day": 5,
+                "Section": 2
+              },
+              {
+                "Day": 5,
+                "Section": 3
+              }
+            ],
+            "AlternateType": "All"
+          },
+          "ClassRoom": {
+            "Id": "301df4c8-e5ff-4b47-8d34-5612d0c1d1f7",
+            "Name": "1号楼2层教室1",
+            "MultiClass": false,
+            "LimitCourse": false,
+            "Capacity": 50,
+            "Courses": [
+              
+            ]
+          },
+          "Course": {
+            "Id": "e33dcddc-8bd5-493f-8a17-4594ba49f1f3",
+            "Name": "语文"
+          },
+          "Teachers": [
+            {
+              "Id": "86354985-2658-4184-bc46-421f69ae3e90",
+              "FullName": "李四",
+              "UserName": "F0001",
+              "Phone": "13521207000",
+              "Sex": 1,
+              "Address": null,
+              "Avatar": null,
+              "Email": "ls@seiue.com"
+            }
+          ],
+          "CourseName": "语文",
+          "TeacherNames": "李四"
+        },
+        {
+          "IsSCPlanProcessing": false,
+          "Id": "88d518a2-c9e8-466b-be49-5d579bcebfe5",
+          "Name": "老子阅读",
+          "Number": "CH001",
+          "Description": "",
+          "StartWeek": 1,
+          "EndWeek": 4,
+          "Duration": 1,
+          "Capacity": 30,
+          "Credit": 2,
+          "ScheduleSetting": {
+            "Items": [
+              {
+                "Day": 2,
+                "Section": 1
+              },
+              {
+                "Day": 2,
+                "Section": 2
+              },
+              {
+                "Day": 5,
+                "Section": 2
+              },
+              {
+                "Day": 5,
+                "Section": 3
+              }
+            ],
+            "AlternateType": "SingleWeek"
+          },
+          "ClassRoom": {
+            "Id": "00c743e4-d932-4fba-bb46-a3bc1fd29098",
+            "Name": "1号楼2层教室3",
+            "MultiClass": false,
+            "LimitCourse": false,
+            "Capacity": 50,
+            "Courses": [
+              
+            ]
+          },
+          "Course": {
+            "Id": "e33dcddc-8bd5-493f-8a17-4594ba49f1f3",
+            "Name": "语文"
+          },
+          "Teachers": [
+            {
+              "Id": "86354985-2658-4184-bc46-421f69ae3e90",
+              "FullName": "李四",
+              "UserName": "F0001",
+              "Phone": "13521207000",
+              "Sex": 1,
+              "Address": null,
+              "Avatar": null,
+              "Email": "ls@seiue.com"
+            },
+            {
+              "Id": "28d0a1e4-766f-4c70-a68e-a6dbb0cc8cd9",
+              "FullName": "王五",
+              "UserName": "F0002",
+              "Phone": "13521207001",
+              "Sex": 0,
+              "Address": null,
+              "Avatar": null,
+              "Email": "ls1@seiue.com"
+            }
+          ],
+          "CourseName": "语文",
+          "TeacherNames": "李四,王五"
+        }
+      ]
+    }
+  ]
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Term</td>
+                            <td>对象</td>
+                            <td>学期信息</td>
+                        </tr>
+                        <tr>
+                            <td>Term.Id</td>
+                            <td>Guid</td>
+                            <td>学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>Term.Name</td>
+                            <td>string</td>
+                            <td>学期名称</td>
+                        </tr>
+                        <tr>
+                            <td>Term.IsCurrent</td>
+                            <td>bool</td>
+                            <td>是否本学期</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses</td>
+                            <td>集合</td>
+                            <td>选课班列表</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.IsSCPlanProcessing</td>
+                            <td>bool</td>
+                            <td>是否处于选课计划中</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Id</td>
+                            <td>Guid</td>
+                            <td>课程Id</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Name</td>
+                            <td>string</td>
+                            <td>选修班课程名</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Number</td>
+                            <td>string</td>
+                            <td>选修班课程编号</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Description</td>
+                            <td>string</td>
+                            <td>选修班课程描述</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.StartWeek</td>
+                            <td>int</td>
+                            <td>开始周</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.EndWeek</td>
+                            <td>int</td>
+                            <td>结束周</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Duration</td>
+                            <td>int</td>
+                            <td>周课时</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Capacity</td>
+                            <td>int</td>
+                            <td>班级容量</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Credit</td>
+                            <td>int</td>
+                            <td>学分</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ScheduleSetting</td>
+                            <td>集合</td>
+                            <td>上课时间设置集合</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ScheduleSetting.Items.Day</td>
+                            <td>int</td>
+                            <td>周一~周日，对应1~7</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ScheduleSetting.Items.Section</td>
+                            <td>int</td>
+                            <td>第几节</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom</td>
+                            <td>对象</td>
+                            <td>上课教室</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.Id</td>
+                            <td>Guid</td>
+                            <td>教室Id</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.Name</td>
+                            <td>string</td>
+                            <td>教室名称</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.MultiClass</td>
+                            <td>bool</td>
+                            <td>是否允许多班同时上课</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.LimitCourse</td>
+                            <td>bool</td>
+                            <td>是否限制上课课程</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.Courses</td>
+                            <td>集合</td>
+                            <td>仅当OptionalCourses.ClassRoom.LimitCourse=true，表示限制的课程列表</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.ClassRoom.Capacity</td>
+                            <td>int</td>
+                            <td>教室最大容量</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Course</td>
+                            <td>对象</td>
+                            <td>所属课程</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourses.Teachers</td>
+                            <td>集合</td>
+                            <td>任课教师列表</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="Student">
+            <div class="page-header">
+                <h1>学生</h1>
+            </div>
+            <h2>Student/Paging <small>GET</small></h2>
+            <p class="lead">获取学生分页列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>IsAllSex</td>
+                            <td>bool</td>
+                            <td>是否所有性别</td>
+                        </tr>
+                        <tr>
+                            <td>Sexs</td>
+                            <td>string</td>
+                            <td>0：男，1：女，多个用半角逗号间隔</td>
+                        </tr>
+                        <tr>
+                            <td>IsAllGrade</td>
+                            <td>bool</td>
+                            <td>是否所有年级</td>
+                        </tr>
+                        <tr>
+                            <td>Grades</td>
+                            <td>string</td>
+                            <td>年级Id，多个用半角逗号间隔</td>
+                        </tr>
+                        <tr>
+                            <td>PageNum</td>
+                            <td>int</td>
+                            <td>返回第几页课程，可选，默认值为1</td>
+                        </tr>
+                        <tr>
+                            <td>PageSize</td>
+                            <td>int</td>
+                            <td>每页包含几条数据，可选，默认值为10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+      "Id": "0ff0df50-f0d3-4b2f-8322-d58ebb94ff34",
+      "Name": "第一轮选课",
+      "StartDate": "\/Date(1498529203997)\/",
+      "EndDate": "\/Date(1498615603997)\/",
+      "TermId": "ced62372-ebb6-447d-920f-f14063a8acf5",
+      "Status": 1,
+      "StatusName": "进行中",
+      "SCRules": [
+        {
+          "StudentRules": [
+            {
+              "Key": "Sex",
+              "Value": "男"
+            }
+          ],
+          "OptionalCourseIds": [
+            "9a850480-3d3a-41e8-9608-08f4d8c03544",
+            "88d518a2-c9e8-466b-be49-5d579bcebfe5"
+          ]
+        }
+      ]
+    }
+  ]
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>选课计划名称</td>
+                        </tr>
+                        <tr>
+                            <td>StartDate</td>
+                            <td>datetime</td>
+                            <td>选课计划开始时间</td>
+                        </tr>
+                        <tr>
+                            <td>EndDate</td>
+                            <td>datetime</td>
+                            <td>选课计划结束时间</td>
+                        </tr>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>所属学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>int</td>
+                            <td>状态值</td>
+                        </tr>
+                        <tr>
+                            <td>StatusName</td>
+                            <td>string</td>
+                            <td>状态名</td>
+                        </tr>
+                        <tr>
+                            <td>SCRules</td>
+                            <td>集合</td>
+                            <td>选课规则集合</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Student/EnrolledCount <small>GET</small></h2>
+            <p class="lead">获取在校学生数</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td colspan="3">无</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": 7
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>DataObject</td>
+                            <td>int</td>
+                            <td>在校学生数</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Student/SignUpOptionalCourse <small>POST</small></h2>
+            <p class="lead">报名选课计划选课班</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SCPlanId</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourseId</td>
+                            <td>Guid</td>
+                            <td>选课班Id</td>
+                        </tr>
+                        <!--<tr>
+                            <td>UserName</td>
+                            <td>string</td>
+                            <td>报名学生用户名|学号</td>
+                        </tr>-->
+                        <tr>
+                            <td>UseWillingPoint</td>
+                            <td>int</td>
+                            <td>使用意愿币</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": false,
+  "Message": "选课信息不存在！",
+  "Data": [
+    
+  ],
+  "DataObject": null
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <!--<h2>Student/AvailableSCPlanList <small>GET</small></h2>
+            <p class="lead">获取学生可见的选课计划</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>UserName</td>
+                            <td>string</td>
+                            <td>学生用户名</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Module_Page": {
+      "PageCount": 1,
+      "PageNum": 1,
+      "PageSize": 10,
+      "AllCount": 7,
+      "LastPageCount": 7,
+      "PageName": "",
+      "Max": 10,
+      "First": 0,
+      "End": 7,
+      "NextPageNum": 1,
+      "PrevPageNum": 1,
+      "PageListMaxNumber": 1,
+      "PageListFirstNum": 1,
+      "PageListEndNum": 1,
+      "NextPageUrl": null,
+      "PrevPageUrl": null,
+      "FirstPageUrl": null,
+      "EndPageUrl": null
+    },
+    "PageListInfos": [
+      {
+        "Id": "67b5a05b-f9a2-48e7-b1dc-35a35eb3159b",
+        "TimeOfEnrollment": "\/Date(1441036800000)\/",
+        "FullName": "张三",
+        "IDNumber": "110102200006060001",
+        "UserName": "20161234",
+        "Phone": "13521206000",
+        "Sex": 0,
+        "Address": null,
+        "Avatar": null,
+        "GraduatesIn": 2017,
+        "Email": "zs@seiue.com",
+        "GradeGroupId": "8c6c65de-3469-42c1-924a-435040cb9728",
+        "GradeGroupName": "高中"
+      }]
+    }
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Id</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>Name</td>
+                            <td>string</td>
+                            <td>选课计划名称</td>
+                        </tr>
+                        <tr>
+                            <td>StartDate</td>
+                            <td>datetime</td>
+                            <td>选课计划开始时间</td>
+                        </tr>
+                        <tr>
+                            <td>EndDate</td>
+                            <td>datetime</td>
+                            <td>选课计划结束时间</td>
+                        </tr>
+                        <tr>
+                            <td>TermId</td>
+                            <td>Guid</td>
+                            <td>所属学期Id</td>
+                        </tr>
+                        <tr>
+                            <td>Status</td>
+                            <td>int</td>
+                            <td>状态值</td>
+                        </tr>
+                        <tr>
+                            <td>StatusName</td>
+                            <td>string</td>
+                            <td>状态名</td>
+                        </tr>
+                        <tr>
+                            <td>SCRules</td>
+                            <td>集合</td>
+                            <td>选课规则集合</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>-->
+            <h2>Student/SignUpSCPlanPaging <small>GET</small></h2>
+            <p class="lead">参与选课学生列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SCPlanId</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>PageNum</td>
+                            <td>int</td>
+                            <td>返回第几页课程，可选，默认值为1</td>
+                        </tr>
+                        <tr>
+                            <td>PageSize</td>
+                            <td>int</td>
+                            <td>每页包含几条数据，可选，默认值为10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Module_Page": {
+      "PageCount": 1,
+      "PageNum": 1,
+      "PageSize": 10,
+      "AllCount": 1,
+      "LastPageCount": 1,
+      "PageName": "",
+      "Max": 10,
+      "First": 0,
+      "End": 1,
+      "NextPageNum": 1,
+      "PrevPageNum": 1,
+      "PageListMaxNumber": 1,
+      "PageListFirstNum": 1,
+      "PageListEndNum": 1,
+      "NextPageUrl": null,
+      "PrevPageUrl": null,
+      "FirstPageUrl": null,
+      "EndPageUrl": null
+    },
+    "PageListInfos": [
+      {
+        "StudentId": "96c2785f-48d1-41bc-905d-454211d37335",
+        "StudentFullName": "赵六",
+        "StudentUserName": "20161237",
+        "StudentGraduatesIn": 2017,
+        "OptionalCourseCredit": 2,
+        "UseWillingPoint": 50,
+        "HighPriority": false
+      }
+    ]
+  }
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Module_Page</td>
+                            <td>对象</td>
+                            <td>分页信息</td>
+                        </tr>
+                        <tr>
+                            <td>StudentId</td>
+                            <td>Guid</td>
+                            <td>学生Id</td>
+                        </tr>
+                        <tr>
+                            <td>StudentUserName</td>
+                            <td>string</td>
+                            <td>学生学号</td>
+                        </tr>
+                        <tr>
+                            <td>StudentGraduatesIn</td>
+                            <td>int</td>
+                            <td>学生界别</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourseCredit</td>
+                            <td>int</td>
+                            <td>选课班学分</td>
+                        </tr>
+                        <tr>
+                            <td>UseWillingPoint</td>
+                            <td>int</td>
+                            <td>使用意愿币</td>
+                        </tr>
+                        <tr>
+                            <td>HighPriority</td>
+                            <td>bool</td>
+                            <td>是否优先</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Student/SignUpOptionalCourseList <small>GET</small></h2>
+            <p class="lead">报名选课计划的选修班学生列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SCPlanId</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourseId</td>
+                            <td>Guid</td>
+                            <td>选课班Id</td>
+                        </tr>
+                        <tr>
+                            <td>HighPriority</td>
+                            <td>bool ?</td>
+                            <td>是否取优先学生，默认空，不判断该条件；true：取优先；false：取不优先</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+        "StudentId": "96c2785f-48d1-41bc-905d-454211d37335",
+        "StudentFullName": "赵六",
+        "StudentUserName": "20161237",
+        "StudentGraduatesIn": 2017,
+        "OptionalCourseCredit": 2,
+        "UseWillingPoint": 50,
+        "HighPriority": false
+    }
+  ]
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>StudentFullName</td>
+                            <td>string</td>
+                            <td>学生姓名</td>
+                        </tr>
+                        <tr>
+                            <td>StudentId</td>
+                            <td>Guid</td>
+                            <td>学生Id</td>
+                        </tr>
+                        <tr>
+                            <td>StudentUserName</td>
+                            <td>string</td>
+                            <td>学生学号</td>
+                        </tr>
+                        <tr>
+                            <td>StudentGraduatesIn</td>
+                            <td>int</td>
+                            <td>学生界别</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourseCredit</td>
+                            <td>int</td>
+                            <td>选课班学分</td>
+                        </tr>
+                        <tr>
+                            <td>UseWillingPoint</td>
+                            <td>int</td>
+                            <td>使用意愿币</td>
+                        </tr>
+                        <tr>
+                            <td>HighPriority</td>
+                            <td>bool</td>
+                            <td>是否优先</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Student/OptionalCourseSelectedList <small>GET</small></h2>
+            <p class="lead">选课计划的选修班选上的学生列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SCPlanId</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourseId</td>
+                            <td>Guid</td>
+                            <td>选课班Id</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": [
+    {
+        "StudentId": "96c2785f-48d1-41bc-905d-454211d37335",
+        "StudentFullName": "赵六",
+        "StudentUserName": "20161237",
+        "StudentGraduatesIn": 2017,
+        "OptionalCourseCredit": 2
+    }
+  ]
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>StudentFullName</td>
+                            <td>string</td>
+                            <td>学生姓名</td>
+                        </tr>
+                        <tr>
+                            <td>StudentId</td>
+                            <td>Guid</td>
+                            <td>学生Id</td>
+                        </tr>
+                        <tr>
+                            <td>StudentUserName</td>
+                            <td>string</td>
+                            <td>学生学号</td>
+                        </tr>
+                        <tr>
+                            <td>StudentGraduatesIn</td>
+                            <td>int</td>
+                            <td>学生界别</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourseCredit</td>
+                            <td>int</td>
+                            <td>选课班学分</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="Teacher">
+            <div class="page-header">
+                <h1>教师</h1>
+            </div>
+            <h2>Teacher/Paging <small>GET</small></h2>
+            <p class="lead">获取教师分页列表</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Sex</td>
+                            <td>int</td>
+                            <td>性别，-1：全部，0：男，1：女</td>
+                        </tr>
+                        <tr>
+                            <td>PageNum</td>
+                            <td>int</td>
+                            <td>返回第几页课程，可选，默认值为1</td>
+                        </tr>
+                        <tr>
+                            <td>PageSize</td>
+                            <td>int</td>
+                            <td>每页包含几条数据，可选，默认值为10</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null,
+  "Data": [
+    
+  ],
+  "DataObject": {
+    "Module_Page": {
+      "PageCount": 1,
+      "PageNum": 1,
+      "PageSize": 10,
+      "AllCount": 2,
+      "LastPageCount": 2,
+      "PageName": "",
+      "Max": 10,
+      "First": 0,
+      "End": 2,
+      "NextPageNum": 1,
+      "PrevPageNum": 1,
+      "PageListMaxNumber": 1,
+      "PageListFirstNum": 1,
+      "PageListEndNum": 1,
+      "NextPageUrl": null,
+      "PrevPageUrl": null,
+      "FirstPageUrl": null,
+      "EndPageUrl": null
+    },
+    "PageListInfos": [
+      {
+        "Id": "45931720-2390-4935-86f3-cbbc64b96deb",
+        "FullName": "王五",
+        "UserName": "F0002",
+        "Phone": "13521207001",
+        "Sex": 0,
+        "Address": null,
+        "Avatar": null,
+        "Email": "ls1@seiue.com"
+      },
+      {
+        "Id": "d566ccbd-fd1d-44b9-92cc-affda2661523",
+        "FullName": "李四",
+        "UserName": "F0001",
+        "Phone": "13521207000",
+        "Sex": 1,
+        "Address": null,
+        "Avatar": null,
+        "Email": "ls@seiue.com"
+      }
+    ]
+  }
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                        <tr>
+                            <td>Module_Page</td>
+                            <td>对象</td>
+                            <td>分页信息</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos</td>
+                            <td>集合</td>
+                            <td>学生信息集合</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Id</td>
+                            <td>Guid</td>
+                            <td>教师Id</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.FullName</td>
+                            <td>string</td>
+                            <td>姓名</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.UserName</td>
+                            <td>string</td>
+                            <td>工号</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Phone</td>
+                            <td>string</td>
+                            <td>手机号</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Sex</td>
+                            <td>int</td>
+                            <td>性别，0：男，1：女</td>
+                        </tr>
+                        <tr>
+                            <td>PageListInfos.Address</td>
+                            <td>string</td>
+                            <td>住址</td>
+                        </tr>
+                         <tr>
+                            <td>PageListInfos.Email</td>
+                            <td>Email</td>
+                            <td>头像Url</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Teacher/HighPriorityStudent <small>POST</small></h2>
+            <p class="lead">提高学生的选课优先级</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SCPlanId</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourseId</td>
+                            <td>Guid</td>
+                            <td>选课班Id</td>
+                        </tr>
+                        <tr>
+                            <td>StudentId</td>
+                            <td>Guid</td>
+                            <td>学生Id</td>
+                        </tr>
+                        <tr>
+                            <td>TeacherUserName</td>
+                            <td>string</td>
+                            <td>教师或教务用户名|工号，正式环境将从Cookie获取</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h2>Teacher/CancelHighPriorityStudent <small>POST</small></h2>
+            <p class="lead">取消提高学生的选课优先级</p>
+            <div class="panel panel-default">
+                <div class="panel-heading">参数说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">参数名</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>SCPlanId</td>
+                            <td>Guid</td>
+                            <td>选课计划Id</td>
+                        </tr>
+                        <tr>
+                            <td>OptionalCourseId</td>
+                            <td>Guid</td>
+                            <td>选课班Id</td>
+                        </tr>
+                        <tr>
+                            <td>StudentId</td>
+                            <td>Guid</td>
+                            <td>学生Id</td>
+                        </tr>
+                        <tr>
+                            <td>TeacherUserName</td>
+                            <td>string</td>
+                            <td>教师或教务用户名|工号，正式环境将从Cookie获取</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <h3>返回值</h3>
+            <div class="panel panel-default">
+                <div class="panel-heading">格式</div>
+                <div class="panel-body">
+                    <pre class="highlight">{
+  "State": true,
+  "Message": null
+}
+</pre>
+                </div>
+            </div>
+            <div class="panel panel-default">
+                <div class="panel-heading">成员说明</div>
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th style="width:150px">成员</th>
+                            <th style="width:150px">类型</th>
+                            <th>说明</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>State</td>
+                            <td>bool</td>
+                            <td>操作结果（是否成功）</td>
+                        </tr>
+                        <tr>
+                            <td>Message</td>
+                            <td>string</td>
+                            <td>操作结果的说明，检查到错误立刻返回，只返回一个错误</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </section>
+        <section id="Version">
+            <div class="page-header">
+                <h1>修订历史</h1>
+            </div>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th style="width:180px;">版本</th>
+                        <th style="width:200px;">时间</th>
+                        <th>说明</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>0.1.0</td>
+                        <td>2017/06/26 13:30</td>
+                        <td>文档建立</td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+</div>
+    <!-- Detached sidebar -->
+    <div class="sidebar-detached affix" style="top:70px;display:none">
+        <div class="sidebar sidebar-default">
+            <div class="sidebar-content">
+                <!-- Navigation -->
+                <div class="sidebar-category">
+                    <div class="category-title">
+                        <span>导航</span>
+                        <i class="icon-menu7 text-muted pull-right"></i>
+                    </div>
+                    <div class="category-content no-padding">
+                        <ul class="nav navigation no-padding-top">
+                            <!--<li class="navigation-header"><i class="icon-menu7 text-muted pull-right"></i> 导航</li>-->
+                            <!--<li>
+                                <a href="#Passport">通行证</a>
+                                <ul>
+                                    <li><a href="#Passport_Login_Nav">用户登录</a></li>
+                                    <li><a href="#markup_secondary">Secondary sidebar</a></li>
+                                    <li><a href="#markup_opposite">Opposite sidebar</a></li>
+                                    <li><a href="#markup_detached">Detached sidebar</a></li>
+                                </ul>
+                            </li>
+                            <li>
+                                <a href="#Category">分类</a>
+                                <ul>
+                                    <li><a href="#markup_main">Main sidebar</a></li>
+                                    <li><a href="#markup_secondary">Secondary sidebar</a></li>
+                                    <li><a href="#markup_opposite">Opposite sidebar</a></li>
+                                    <li><a href="#markup_detached">Detached sidebar</a></li>
+                                </ul>
+                            </li>-->
+                            <!--<li class="navigation-divider"></li>
+                            <li><a href="#Passport">Go to top <i class="icon-circle-up2 pull-right"></i></a></li>-->
+                        </ul>
+                    </div>
+                </div>
+                <!-- /navigation -->
+
+            </div>
+        </div>
+    </div>
+    <script type="text/javascript">
+        $(function () {
+            $(".highlight").each(function () {
+                $(this).html("<code class='language-javascript'>" + $(this).html() + "</code>");
+            });
+
+            hljs.initHighlightingOnLoad();
+
+
+            $(document).delegate("a", "click", function () {
+                url = $(this).attr("href");
+                var id = url.split('#')[1];
+                if (id) {
+                    var t = $("#" + id).offset().top;
+                    $(window).scrollTop(t - 60);
+                }
+                if ($(this).parent().parent().hasClass("dropdown-menu")) {
+                    $("#HeaderNav li.dropdown").removeClass("open");
+                    //                    $(this).parent().parent().find("li").removeClass("active").eq($(this).parent().index()).addClass("active");
+                }
+                return false;
+            });
+            $(document).click(function () {
+                $("#HeaderNav li.dropdown").removeClass("open");
+            });
+
+            // ========================================
+            //
+            // Layout
+            //
+            // ========================================
+
+
+            // Calculate page container height
+            // -------------------------
+
+            // Window height - navbars heights
+            function containerHeight() {
+                //var availableHeight = $(window).height() - $('body > .navbar').outerHeight() - $('body > .navbar + .navbar').outerHeight() - $('body > .navbar + .navbar-collapse').outerHeight();
+
+                //$('.page-container').attr('style', 'min-height:' + availableHeight + 'px');
+            }
+
+            //// ========================================
+            ////
+            //// Main navigation
+            ////
+            //// ========================================
+
+
+            // Main navigation
+            // -------------------------
+
+            // Add 'active' class to parent list item in all levels
+            $('.navigation').find('li.active').parents('li').addClass('active');
+
+            // Hide all nested lists
+            $('.navigation').find('li').not('.active, .category-title').has('ul').children('ul').addClass('hidden-ul');
+
+            // Highlight children links
+            $('.navigation').find('li').has('ul').children('a').addClass('has-ul');
+
+            // Add active state to all dropdown parent levels
+            $('.dropdown-menu:not(.dropdown-content), .dropdown-menu:not(.dropdown-content) .dropdown-submenu').has('li.active').addClass('active').parents('.navbar-nav .dropdown, .navbar-nav .dropup').addClass('active');
+
+
+            //// Collapsible functionality
+            //// -------------------------
+
+            //// Main navigation
+            //$('.navigation-main').find('li').has('ul').children('a').on('click', function (e) {
+            //    e.preventDefault();
+
+            //    // Collapsible
+            //    $(this).parent('li').not('.disabled').not($('.sidebar-xs').not('.sidebar-xs-indicator').find('.navigation-main').children('li')).toggleClass('active').children('ul').slideToggle(250);
+
+            //    // Accordion
+            //    if ($('.navigation-main').hasClass('navigation-accordion')) {
+            //        $(this).parent('li').not('.disabled').not($('.sidebar-xs').not('.sidebar-xs-indicator').find('.navigation-main').children('li')).siblings(':has(.has-ul)').removeClass('active').children('ul').slideUp(250);
+            //    }
+            //});
+
+
+            //// Alternate navigation
+            //$('.navigation-alt').find('li').has('ul').children('a').on('click', function (e) {
+            //    e.preventDefault();
+
+            //    // Collapsible
+            //    $(this).parent('li').not('.disabled').toggleClass('active').children('ul').slideToggle(200);
+
+            //    // Accordion
+            //    if ($('.navigation-alt').hasClass('navigation-accordion')) {
+            //        $(this).parent('li').not('.disabled').siblings(':has(.has-ul)').removeClass('active').children('ul').slideUp(200);
+            //    }
+            //});
+
+            //// ========================================
+            ////
+            //// Sidebars
+            ////
+            //// ========================================
+
+
+            //// Sidebar controls
+            //// -------------------------
+
+            ////// Disable click in disabled navigation items
+            ////$(document).on('click', '.navigation .disabled a', function (e) {
+            ////    e.preventDefault();
+            ////});
+
+
+            ////// Adjust page height on sidebar control button click
+            ////$(document).on('click', '.sidebar-control', function (e) {
+            ////    containerHeight();
+            ////});
+
+
+            ////// Hide main sidebar in Dual Sidebar
+            ////$(document).on('click', '.sidebar-main-hide', function (e) {
+            ////    e.preventDefault();
+            ////    $('body').toggleClass('sidebar-main-hidden');
+            ////});
+
+
+            ////// Hide detached sidebar
+            ////$(document).on('click', '.sidebar-detached-hide', function (e) {
+            ////    e.preventDefault();
+            ////    $('body').toggleClass('sidebar-detached-hidden');
+            ////});
+
+
+            ////// Mobile sidebar controls
+            ////// -------------------------
+
+            ////// Toggle main sidebar
+            ////$('.sidebar-mobile-main-toggle').on('click', function (e) {
+            ////    e.preventDefault();
+            ////    $('body').toggleClass('sidebar-mobile-main').removeClass('sidebar-mobile-secondary sidebar-mobile-opposite sidebar-mobile-detached');
+            ////});
+
+
+            ////// Toggle detached sidebar
+            ////$('.sidebar-mobile-detached-toggle').on('click', function (e) {
+            ////    e.preventDefault();
+            ////    $('body').toggleClass('sidebar-mobile-detached').removeClass('sidebar-mobile-main sidebar-mobile-secondary sidebar-mobile-opposite');
+            ////});
+
+
+
+            //// Mobile sidebar setup
+            //// -------------------------
+
+            //$(window).on('resize', function () {
+            //    setTimeout(function () {
+            //        containerHeight();
+
+            //        if ($(window).width() <= 768) {
+
+            //            // Add mini sidebar indicator
+            //            $('body').addClass('sidebar-xs-indicator');
+
+            //            // Place detached sidebar before content
+            //            $('.sidebar-detached').insertBefore('.content-wrapper');
+            //        }
+            //        else {
+
+            //            // Remove mini sidebar indicator
+            //            $('body').removeClass('sidebar-xs-indicator');
+
+            //            // Remove all mobile sidebar classes
+            //            $('body').removeClass('sidebar-mobile-main sidebar-mobile-secondary sidebar-mobile-detached sidebar-mobile-opposite');
+
+            //            // Revert left detached position
+            //            if ($('body').hasClass('has-detached-left')) {
+            //                $('.sidebar-detached').insertBefore('.container-detached');
+            //            }
+
+            //                // Revert right detached position
+            //            else if ($('body').hasClass('has-detached-right')) {
+            //                $('.sidebar-detached').insertAfter('.container-detached');
+            //            }
+            //        }
+            //    }, 100);
+            //}).resize();
+        });
+        $("#TestUserRegister").click(function () {
+            $.post("http://lmsapi.netmall.org.cn/User/Register", $("#TestUserRegisterForm").serialize(), function (data) {
+                $("#TestUserRegisterResult").html(data);
+            });
+        });
+    </script>
+</body>
+</html>

@@ -1,0 +1,197 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.DDD.EntityFramework</name>
+    </assembly>
+    <members>
+        <member name="T:BC.DDD.EntityFramework.BaseDBContextRepository`2">
+            <summary>
+            存储器基本对象
+            </summary>
+            <typeparam name="TEntity"></typeparam>
+            <typeparam name="TKey"></typeparam>
+        </member>
+        <member name="P:BC.DDD.EntityFramework.BaseDBContextRepository`2.DatabaseFactory">
+            <summary>
+            数据工厂
+            </summary>
+        </member>
+        <member name="P:BC.DDD.EntityFramework.BaseDBContextRepository`2.DBContext">
+            <summary>
+            数据库对象
+            </summary>
+        </member>
+        <member name="P:BC.DDD.EntityFramework.BaseDBContextRepository`2.DbSet">
+            <summary>
+            数据集
+            </summary>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Single(`1)">
+            <summary>
+            取得一条
+            </summary>
+            <param name="Id"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.SingleAsNoTracking(`1)">
+            <summary>
+            按Id取一条信息
+            </summary>
+            <param name="Id">信息Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Single(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            根据条件取一条数据
+            </summary>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.SingleAsNoTracking(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            按条件查询一条信息
+            </summary>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Add(`0)">
+            <summary>
+            加入一条
+            </summary>
+            <param name="EntityInfo">加入一条</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Remove(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            删除指定条件的信息
+            </summary>
+            <param name="Where"></param>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Remove(`1)">
+            <summary>
+            移除一条
+            </summary>
+            <param name="Id"></param>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Remove(`1[])">
+            <summary>
+            移除多条数据
+            </summary>
+            <param name="Ids">要移除的Id列表</param>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Remove(`0)">
+            <summary>
+            删除信息
+            </summary>
+            <param name="RemoveInfo">要删除的信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Edit(`0)">
+            <summary>
+            编辑数据
+            </summary>
+            <param name="EditInfo">要编辑的信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.All">
+            <summary>
+            返回全部信息
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.AllAsNoTracking">
+            <summary>
+            返回全部信息（无跟踪功能）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Find(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            按条件返回IQueryable
+            </summary>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.FindAsNoTracking(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            按条件查询并返回无跟踪功能的对象
+            </summary>
+            <param name="Where">查询条件</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Specification(BC.DDD.Specification.ISpecification{`0})">
+            <summary>
+            按规约返回IQueryable
+            </summary>
+            <param name="Specification">规约</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.IsExist(System.Linq.Expressions.Expression{System.Func{`0,System.Boolean}})">
+            <summary>
+            是否存在
+            </summary>
+            <param name="Where"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BCDBContext.#ctor(System.String)">
+            <summary>
+            向基类传递链接字符串
+            </summary>
+            <param name="nameOrConnectionString"></param>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BCDBContext.SaveChanges">
+            <summary>
+            保存更改
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BCDBContext.ApplyBCSpecial">
+            <summary>
+            应用本框架的特性
+            </summary>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BCDBContext.CancelDeleteForSoftDelete(System.Data.Entity.Infrastructure.DbEntityEntry)">
+            <summary>
+            配置软删除
+            </summary>
+            <param name="EntityInfo"></param>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.BCDBContext.OnModelCreating(System.Data.Entity.DbModelBuilder)">
+            <summary>
+            当上下文模型创建时
+            </summary>
+            <param name="modelBuilder"></param>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.UnitOfWork.#ctor(BC.DDD.EntityFramework.IDbContextFactory)">
+            <summary>
+            实例化
+            </summary>
+            <param name="DatabaseFactory"></param>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.UnitOfWork.Commit">
+            <summary>
+            签入修改
+            </summary>
+        </member>
+        <member name="M:BC.DDD.EntityFramework.UnitOfWork.Dispose">
+            <summary>
+            释放资源
+            </summary>
+        </member>
+        <member name="P:BC.DDD.EntityFramework.UnitOfWork.DataContext">
+            <summary>
+            数据上下文引用
+            </summary>
+        </member>
+        <member name="F:BC.DDD.EntityFramework.UnitOfWork._DatabaseFactory">
+            <summary>
+            数据库工厂
+            </summary>
+        </member>
+    </members>
+</doc>

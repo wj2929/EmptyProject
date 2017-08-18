@@ -1,0 +1,219 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ include file="$(SolutionDir)libs\T4\Reference.ttinclude"  #>
+<#@include file="$(SolutionDir)libs\T4\MultipleOutputHelper.ttinclude"#>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EntityFramework.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.DDD.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.Core.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Store.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Domain.dll" #>
+<#@ import namespace="EmptyProject.Store.Models" #>
+<#@ import namespace="EmptyProject.Domain" #>
+<#var list=System.Reflection.Assembly.LoadFrom(((typeof(EmptyProject.Domain.Test)).Assembly).CodeBase).GetTypes().Where(t => typeof(BC.DDD.Domain.IDomain).IsAssignableFrom(t)).Select(t=>new KeyValuePair<string,string>(t.Name,t.GetInterface("IEntity`1").GenericTypeArguments[0].Name)).ToList().ToList();#>
+<#
+	var manager = Manager.Create(Host, GenerationEnvironment);  
+	foreach (var item in list)
+    {
+		string idType=item.Value=="String"?"string":item.Value;
+		var className = item.Key;
+        // 定义输出文件
+		string outputFileName = className+"DomainService.cs";
+		string outputFilePath = Path.Combine(Directory.GetParent(Path.GetDirectoryName(Host.TemplateFile)).FullName,outputFileName);
+		if(File.Exists(outputFilePath))continue;
+		manager.StartNewFile(outputFileName);
+       #>
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using System.Linq.Expressions;
+using BC.Core;
+using BC.DDD;
+using BC.DDD.Specification;
+using EmptyProject.Domain;
+using EmptyProject.Store.Interface;
+using EmptyProject.DomainService.Interface;
+using EmptyProject.Domain.QueryObject;
+
+namespace EmptyProject.DomainService
+{
+	internal class <#=item.Key#>DomainService : BaseDomainService, I<#=item.Key#>DomainService
+	{ 
+		public <#= className #>DomainService(I<#= className #>Store <#= className #>Store,
+			IUnitOfWork UnitOfWork)
+			: base(UnitOfWork)
+		{
+			this.<#= className #>Store = <#= className #>Store;
+		}
+		private readonly I<#= className #>Store <#= className #>Store;
+
+		#region AutoCode
+		/// <summary>
+		/// 添加一条信息
+		/// </summary>		
+		public <#= className #> Add<#= className #>(<#= className #> AddInfo)
+		{
+			if (AddInfo == null)
+				throw new ArgumentNullException("AddInfo");
+
+			AddInfo = this.<#= className #>Store.Add(AddInfo);
+			this.SaveChanage();
+			return AddInfo;
+		}
+
+		/// <summary>
+		/// 添加多条信息
+		/// </summary>		
+		public IList<<#= className #>> Add<#= className #>s(IList<<#= className #>> Infos)
+		{
+            Infos.ForEach(t => 
+            {
+                this.<#= className #>Store.Add(t);
+            });
+			this.SaveChanage();
+			return Infos;
+		}
+
+		/// <summary>
+		/// 编辑一条信息
+		/// </summary>		
+		public void Edit<#= className #>(<#= className #> Info)
+		{
+			this.<#= className #>Store.Edit(Info);
+			this.SaveChanage();
+		}
+
+		/// <summary>
+		/// 读取一条数据，如数据不存在，返回null
+		/// </summary>		
+		public <#= className #> Single(<#=idType#> Id)
+		{
+			return this.<#= className #>Store.Single(Id);
+		}
+
+		/// <summary>
+		/// 删除一条信息
+		/// </summary>		
+		public void Remove(<#=idType#> Id)
+		{
+			this.<#= className #>Store.Remove(Id);
+			this.SaveChanage();
+		}
+
+		/// <summary>
+		/// 删除多条信息
+		/// </summary>		
+		public void Removes(<#=idType#>[] Ids)
+		{
+			if (Ids.Length > 0)
+			{
+				this.<#= className #>Store.Remove(Ids);
+				this.SaveChanage();
+			}
+		}
+
+		/// <summary>
+		/// 删除多条信息
+		/// </summary>		
+		public void Removes(<#= className #>Criteria <#= className #>Criteria)
+		{
+			this.<#= className #>Store.Remove(<#= className #>Criteria.Query);
+			this.SaveChanage();
+		}
+
+
+		/// <summary>
+		/// 获得所有信息
+		/// </summary>		
+		public IList<<#= className #>> All()
+		{
+			return this.<#= className #>Store.All().ToList();
+		}
+
+		/// <summary>
+		/// 获取分页数据
+		/// </summary>
+		/// <param name="<#= className #>Criteria"></param>
+		/// <param name="PageSize"></param>
+		/// <param name="PageNum"></param>
+		/// <returns></returns>
+		public ReturnPaging<<#= className #>> Get<#= className #>Paging(<#= className #>Criteria <#= className #>Criteria, int PageNum = 1, int PageSize = 20)
+		{
+			var q = GetQueryable(<#= className #>Criteria);
+
+			ReturnPaging<<#= className #>> returnPaging = new ReturnPaging<<#= className #>>();
+			Module_Page _Pages = new Module_Page();
+			_Pages.PageNum = PageNum;
+			_Pages.AllCount = q.Count();
+			_Pages.PageSize = PageSize;
+			_Pages.Compute();
+			returnPaging.Module_Page = _Pages;
+			returnPaging.PageListInfos = q.OrderByDescending(c => c.CreateDate).Skip(_Pages.First).Take(_Pages.Max).ToList();
+			return returnPaging;
+		}
+
+		/// <summary>
+		/// 统计数量
+		/// </summary>
+		/// <param name="<#= className #>Criteria"></param>
+		/// <returns></returns>
+		public int Count(<#= className #>Criteria <#= className #>Criteria)
+		{
+			return GetQueryable(<#= className #>Criteria).Count();
+		}
+
+		/// <summary>
+		/// 获取列表
+		/// </summary>
+		/// <param name="<#= className #>Criteria"></param>
+		/// <param name="PageSize"></param>
+		/// <param name="PageNum"></param>
+		/// <returns></returns>
+		public IList<<#= className #>> GetList(<#= className #>Criteria <#= className #>Criteria, int PageNum = 1, int PageSize = int.MaxValue)
+		{
+			PageNum = PageNum == 0 ? 1 : PageNum;
+            if (PageNum == 1 && PageSize == int.MaxValue)
+                return GetQueryable(<#= className #>Criteria).OrderByDescending(c => c.CreateDate).ToList();
+            else
+				return GetQueryable(<#= className #>Criteria).OrderByDescending(c => c.CreateDate).Skip((PageNum - 1) * PageSize).Take(PageSize).ToList();
+		}
+		/// <summary>
+		/// 检查Id是否存在
+		/// </summary>
+		/// <param name="Id"></param>
+		/// <returns></returns>
+		public bool IsExist(<#=idType#> Id)
+		{
+			return this.<#= className #>Store.IsExist(t => t.Id == Id);
+		}
+
+		/// <summary>
+		/// 检查查询表达式是否存在记录
+		/// </summary>
+		/// <param name="Id"></param>
+		/// <returns></returns>
+		public bool IsExist(<#= className #>Criteria <#= className #>Criteria)
+		{
+			return Count(<#= className #>Criteria) > 0;
+		}
+
+        /// <summary>
+        /// 数据库查询表达式
+        /// </summary>
+        /// <returns></returns>
+        IQueryable<<#= className #>> GetQueryable(<#= className #>Criteria <#= className #>Criteria)
+        {
+            return this.<#= className #>Store.Find(<#= className #>Criteria.Query);
+        }
+
+		#endregion
+	}
+}
+<#
+	// 结束输出文件
+	manager.EndBlock();
+    }
+    // 执行编译
+    manager.Process(true); 
+#>

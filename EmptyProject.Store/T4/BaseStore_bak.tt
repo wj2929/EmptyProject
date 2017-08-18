@@ -1,0 +1,32 @@
+﻿<#@ template debug="false" hostspecific="false" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EntityFramework.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.DDD.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.Core.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Store.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Domain.dll" #>
+<#@ import namespace="EmptyProject.Store.Models" #>
+<#@ import namespace="EmptyProject.Domain" #>
+<#var list=System.Reflection.Assembly.LoadFrom(((typeof(EmptyProject.Domain.Test)).Assembly).CodeBase).GetTypes().Where(t => typeof(BC.DDD.Domain.IDomain).IsAssignableFrom(t)).Select(t=>new KeyValuePair<string,string>(t.Name,t.GetInterface("IEntity`1").GenericTypeArguments[0].Name)).ToList().ToList();#>
+using System;
+using EmptyProject.Domain;
+using EmptyProject.Store.Interface;
+using BC.DDD.EntityFramework;
+using BC.DDD;
+namespace EmptyProject.Store
+{
+<#
+foreach (var item in list)
+    {   
+		string idType=item.Value=="String"?"string":item.Value;
+#>
+    internal partial class <#=item.Key#>Store : BaseDBContextRepository<<#=item.Key#>, <#=idType#>>, I<#=item.Key#>Store
+    {
+        public <#=item.Key#>Store(IDbContextFactory DatabaseFactory) : base(DatabaseFactory) { }
+    }
+<#}#>
+}

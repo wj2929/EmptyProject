@@ -1,0 +1,58 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.ServiceBus.MassTransit</name>
+    </assembly>
+    <members>
+        <member name="M:BC.ServiceBus.MassTransit.ServiceBus.Publish(System.Object,System.Threading.CancellationToken)">
+            <summary>
+            发布信息
+            </summary>
+            <typeparam name="IMessage">信息类型</typeparam>
+            <param name="Message">信息</param>
+            <param name="cancellationToken">取消类型</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.ServiceBus.MassTransit.ServiceBus.Publish``1(``0,System.Threading.CancellationToken)">
+            <summary>
+            发布信息
+            </summary>
+            <param name="Message">信息</param>
+            <param name="cancellationToken">取消类型</param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.ServiceBus.MassTransit.ServiceBusConfig.MQServerAddress">
+            <summary>
+            信息队列服务器地址
+            </summary>
+        </member>
+        <member name="P:BC.ServiceBus.MassTransit.ServiceBusConfig.MQServerUserName">
+            <summary>
+            信息队列服务器访问用户名
+            </summary>
+        </member>
+        <member name="P:BC.ServiceBus.MassTransit.ServiceBusConfig.MQServerPassword">
+            <summary>
+            信息队列服务器访问密码
+            </summary>
+        </member>
+        <member name="P:BC.ServiceBus.MassTransit.ServiceBusConfig.MQServerQueueName">
+            <summary>
+            信息队列服务器队列名称
+            </summary>
+        </member>
+        <member name="M:BC.ServiceBus.MassTransit.ServiceBusConfig.FromConfig(System.String)">
+            <summary>
+            从配置文件构造对象
+            </summary>
+            <param name="Config"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.ServiceBus.MassTransit.ServiceBusConfig.ToConfig">
+            <summary>
+            转换为配置文件
+            </summary>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

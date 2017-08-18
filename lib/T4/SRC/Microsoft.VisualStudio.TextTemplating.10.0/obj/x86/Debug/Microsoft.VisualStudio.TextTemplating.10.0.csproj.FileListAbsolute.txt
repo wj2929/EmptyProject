@@ -1,2 +1,0 @@
-C:\Users\lin\Desktop\T4DLL\SRC\Microsoft.VisualStudio.TextTemplating.10.0\obj\x86\Debug\ResolveAssemblyReference.cache
-E:\编程资料\文档资料\2011\杂乱，待整理\T4\T4DLL\T4DLL\SRC\Microsoft.VisualStudio.TextTemplating.10.0\obj\x86\Debug\ResolveAssemblyReference.cache

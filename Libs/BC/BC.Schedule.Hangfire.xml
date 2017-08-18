@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.Schedule.Hangfire</name>
+    </assembly>
+    <members>
+        <member name="M:BC.Schedule.Hangfire.RecurringExtensions.BulidAllJob(Hangfire.IGlobalConfiguration)">
+            <summary>
+            绑定所有任务
+            </summary>
+            <param name="GlobalConfiguration"></param>
+        </member>
+    </members>
+</doc>

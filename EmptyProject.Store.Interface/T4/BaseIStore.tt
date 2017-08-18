@@ -1,0 +1,39 @@
+﻿<#@ template debug="false" language="C#" hostspecific="True"#>
+<#@ output extension=".cs" #>
+<#@ include file="$(SolutionDir)libs\T4\Reference.ttinclude"  #>
+<#@include file="$(SolutionDir)libs\T4\MultipleOutputHelper.ttinclude"#>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EntityFramework.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.DDD.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.Core.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Store.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Domain.dll" #>
+<#@ import namespace="EmptyProject.Store.Models" #>
+<#@ import namespace="EmptyProject.Domain" #>
+<#var list=System.Reflection.Assembly.LoadFrom(((typeof(EmptyProject.Domain.Test)).Assembly).CodeBase).GetTypes().Where(t => typeof(BC.DDD.Domain.IDomain).IsAssignableFrom(t)).Select(t=>new KeyValuePair<string,string>(t.Name,t.GetInterface("IEntity`1").GenericTypeArguments[0].Name)).ToList().ToList();#>
+<#
+	var manager = Manager.Create(Host, GenerationEnvironment);  
+	foreach (var item in list)
+    {
+		string idType=item.Value=="String"?"string":item.Value;
+		var className = item.Key;
+        // 定义输出文件
+		string outputFileName = "I"+className+"Store.cs";
+		if(File.Exists(Path.Combine(Directory.GetParent(Path.GetDirectoryName(Host.TemplateFile)).FullName,outputFileName)))continue;
+		manager.StartNewFile(outputFileName);
+       #>
+using System;
+using EmptyProject.Domain;
+using BC.DDD;
+namespace EmptyProject.Store.Interface
+{
+	public partial interface I<#=item.Key#>Store : IRepository<<#=item.Key#>, <#=idType#>>
+	{ 
+	}
+}
+<#
+	// 结束输出文件
+	manager.EndBlock();
+    }
+    // 执行编译
+    manager.Process(true); 
+#>

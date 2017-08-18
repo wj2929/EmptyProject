@@ -1,0 +1,12 @@
+﻿[
+    //{
+   //   "job-name": "选课计划结束时按学生意愿自动选课",
+   //  "job-type": "SC.HangfireService.Schedule.SCPlanEndProcessingRecurringJob, SC.HangfireService.Schedule",
+   //     "cron-expression": "*/1 * * * *"
+   //},
+   //{
+   //     "job-name": "选课计划自动开始",
+   //     "job-type": "SC.HangfireService.Schedule.SCPlanStartProcessingRecurringJob, SC.HangfireService.Schedule",
+   //     "cron-expression": "*/1 * * * *"
+   // }
+]

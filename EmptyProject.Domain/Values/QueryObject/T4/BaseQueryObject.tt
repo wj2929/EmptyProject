@@ -1,0 +1,62 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ include file="$(SolutionDir)libs\T4\Reference.ttinclude"  #>
+<#@include file="$(SolutionDir)libs\T4\MultipleOutputHelper.ttinclude"#>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EntityFramework.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.DDD.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.Core.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Store.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Domain.dll" #>
+<#@ import namespace="EmptyProject.Store.Models" #>
+<#@ import namespace="EmptyProject.Domain" #>
+<#var list=System.Reflection.Assembly.LoadFrom(((typeof(EmptyProject.Domain.Test)).Assembly).CodeBase).GetTypes().Where(t => typeof(BC.DDD.Domain.IDomain).IsAssignableFrom(t)).Select(t=>new KeyValuePair<string,string>(t.Name,t.GetInterface("IEntity`1").GenericTypeArguments[0].Name)).ToList().ToList();#>
+<#
+	var manager = Manager.Create(Host, GenerationEnvironment);  
+	foreach (var item in list)
+    {
+		string idType=item.Value=="String"?"string":item.Value;
+		var className = item.Key;
+        // 定义输出文件
+		string outputFileName = className+"Criteria.cs";
+		string outputFilePath = Path.Combine(Directory.GetParent(Path.GetDirectoryName(Host.TemplateFile)).FullName,outputFileName);
+		if(File.Exists(outputFilePath))continue;
+		manager.StartNewFile(outputFileName);
+       #>
+using BC.DDD.Specification;
+using System;
+using System.Linq.Expressions;
+using System.Linq;
+
+namespace EmptyProject.Domain.QueryObject
+{
+	public class <#=item.Key#>Criteria : IQueryCriteria<<#=item.Key#>>
+	{ 
+        /// <summary>
+        /// 查询对象
+        /// </summary>
+        public Expression<Func<<#=item.Key#>, bool>> Query
+        {
+            get
+            {
+                ISpecification<<#=item.Key#>> Specification = new Specification<<#=item.Key#>>(t => 1 == 1);
+
+                if (Ids != null && Ids.Length > 0 && !Ids[0].IsEmpty())
+                    Specification = Specification.And(t => Ids.Contains(t.Id));
+
+                return Specification.Expressions;
+            }
+        }
+		/// <summary>
+		/// Ids
+		/// </summary>
+		public <#=idType#>[] Ids { get; set; }
+
+	}
+}
+<#
+	// 结束输出文件
+	manager.EndBlock();
+    }
+    // 执行编译
+    manager.Process(true); 
+#>

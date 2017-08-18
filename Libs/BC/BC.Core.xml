@@ -1,0 +1,2019 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.Core</name>
+    </assembly>
+    <members>
+        <member name="P:BC.Core.LocalConfigurationAccessHelper`1.ConfigPath">
+            <summary>
+            配置文件路径
+            </summary>
+        </member>
+        <member name="P:BC.Core.LocalConfigurationAccessHelper`1.ConfigName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="M:BC.Core.LocalConfigurationAccessHelper`1.Save">
+            <summary>
+            保存配置文件
+            </summary>
+        </member>
+        <member name="M:BC.Core.LocalConfigurationAccessHelper`1.Replace(System.String)">
+            <summary>
+            替换配置文件
+            </summary>
+        </member>
+        <member name="P:BC.Core.LocalConfigurationAccessHelper`1.ConfigEntity">
+            <summary>
+            配置对象实体
+            </summary>
+        </member>
+        <member name="M:BC.Core.LocalConfigurationAccessHelper`1.Load">
+            <summary>
+            加载配置文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.LocalConfigurationAccessHelper`1.Load(System.String)">
+            <summary>
+            加载配置文件
+            </summary>
+            <param name="Config"></param>
+        </member>
+        <member name="M:BC.Core.CollectionExtensions.ToConfig(System.Collections.Generic.IDictionary{System.String,System.String},System.String)">
+            <summary>
+            转换为配置文件
+            </summary>
+            <param name="InputDic">字典</param>
+            <param name="ConfigName">
+            转换的配置文件根标签
+            如果为空则不包含根标签
+            默认为空
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.CollectionExtensions.Random``1(System.Collections.Generic.ICollection{``0})">
+            <summary>
+            从集合中随机返回一条信息
+            </summary>
+            <typeparam name="T">集合中的对象数据类型</typeparam>
+            <param name="InputCollection">从哪个集合返回随机数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.CollectionExtensions.ForEach``1(System.Collections.Generic.IEnumerable{``0},System.Action{``0})">
+            <summary>
+            IEnumerable的循环扩展
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="items"></param>
+            <param name="action"></param>
+        </member>
+        <member name="M:BC.Core.CollectionExtensions.ToConcurrentBag``1(System.Collections.Generic.IEnumerable{``0})">
+            <summary>
+            将IEnumerable转换为ConcurrentBag
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="items"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.LocateServerPath(System.String)">
+            <summary>
+            转换为本地服务器路径
+            </summary>
+            <param name="RelativePath">待转换的路径相对路径</param>
+            <returns>返回绝对路径</returns>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.DirectoryExists(System.String)">
+            <summary>
+            目录是否存在
+            </summary>
+            <param name="DirectoryPath">目录的路径（绝对路径）</param>
+            <returns>结果</returns>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.CreateDirectory(System.String)">
+            <summary>
+            创建目录
+            </summary>
+            <param name="DirectoryPath">待创建目录的路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.RemoveDirectory(System.String)">
+            <summary>
+            移除目录
+            </summary>
+            <param name="DirectoryPath">待移除目录的路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.MoveDirectory(System.String,System.String)">
+            <summary>
+            移动目录
+            </summary>
+            <param name="Source">原路径</param>
+            <param name="Target">目标路径</param>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.CopyDirectory(System.String,System.String,System.Boolean)">
+            <summary>
+            复制目录
+            </summary>
+            <param name="Source">源目录</param>
+            <param name="Target">目标目录</param>
+            <param name="OverWrite">文件存在时是否覆盖（默认为true）</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.CopyFile(System.String,System.String,System.Boolean)">
+            <summary>
+            复制文件
+            </summary>
+            <param name="Source">来源路径</param>
+            <param name="Target">目标路径</param>
+            <param name="OverWrite">文件存在时是否覆盖（默认为覆盖）</param>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.ReadTextFile(System.String)">
+            <summary>
+            读取文本文件
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.WriteTextFile(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            写入文件
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+            <param name="Content">文件内容</param>
+            <param name="encoding">文件编码</param>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.WriteTextFile(System.String,System.String)">
+            <summary>
+            写入文件（UTF8）
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+            <param name="Content">文件内容</param>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.RemoveFile(System.String)">
+            <summary>
+            移除文件
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.FileExists(System.String)">
+            <summary>
+            文件是否存在
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.GetFileStream(System.String)">
+            <summary>
+            获取文件Stream
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.GetExtensionName(System.String)">
+            <summary>
+            获得文件扩展名
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.GetFileName(System.String)">
+            <summary>
+            获取路径中的文件名信息
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DefaultIOAccess.GetDirectoryName(System.String)">
+            <summary>
+            获取路径中的目录名信息
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IIOAccess.LocateServerPath(System.String)">
+            <summary>
+            转换为本地服务器路径
+            </summary>
+            <param name="RelativePath">待转换的路径相对路径</param>
+            <returns>返回绝对路径</returns>
+        </member>
+        <member name="M:BC.Core.IIOAccess.DirectoryExists(System.String)">
+            <summary>
+            目录是否存在
+            </summary>
+            <param name="DirectoryPath">目录的路径（绝对路径）</param>
+            <returns>结果</returns>
+        </member>
+        <member name="M:BC.Core.IIOAccess.CreateDirectory(System.String)">
+            <summary>
+            创建目录
+            </summary>
+            <param name="DirectoryPath">待创建目录的路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.IIOAccess.RemoveDirectory(System.String)">
+            <summary>
+            移除目录
+            </summary>
+            <param name="DirectoryPath">待移除目录的路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.IIOAccess.MoveDirectory(System.String,System.String)">
+            <summary>
+            移动目录
+            </summary>
+            <param name="Source">原路径</param>
+            <param name="Target">目标路径</param>
+        </member>
+        <member name="M:BC.Core.IIOAccess.CopyDirectory(System.String,System.String,System.Boolean)">
+            <summary>
+            复制目录
+            </summary>
+            <param name="Source">源目录</param>
+            <param name="Target">目标目录</param>
+            <param name="OverWrite">文件存在时是否覆盖（默认为true）</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IIOAccess.CopyFile(System.String,System.String,System.Boolean)">
+            <summary>
+            复制文件
+            </summary>
+            <param name="Source">来源路径</param>
+            <param name="Target">目标路径</param>
+            <param name="OverWrite">文件存在时是否覆盖（默认为覆盖）</param>
+        </member>
+        <member name="M:BC.Core.IIOAccess.ReadTextFile(System.String)">
+            <summary>
+            读取文本文件
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IIOAccess.WriteTextFile(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            写入文件
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+            <param name="Content">文件内容</param>
+            <param name="encoding">编码</param>
+        </member>
+        <member name="M:BC.Core.IIOAccess.WriteTextFile(System.String,System.String)">
+            <summary>
+            写入文件（UTF8）
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+            <param name="Content">文件内容</param>
+        </member>
+        <member name="M:BC.Core.IIOAccess.RemoveFile(System.String)">
+            <summary>
+            移除文件
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.IIOAccess.FileExists(System.String)">
+            <summary>
+            文件是否存在
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.IIOAccess.GetFileStream(System.String)">
+            <summary>
+            获取文件Stream
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IIOAccess.GetExtensionName(System.String)">
+            <summary>
+            获得文件扩展名
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IIOAccess.GetFileName(System.String)">
+            <summary>
+            获取路径中的文件名信息
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IIOAccess.GetDirectoryName(System.String)">
+            <summary>
+            获取路径中的目录名信息
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="F:BC.Core.IOHelper.IOAccess">
+            <summary>
+            IO访问助手
+            </summary>
+        </member>
+        <member name="M:BC.Core.IOHelper.LocateServerPath(System.String)">
+            <summary>
+            转换为本地服务器路径
+            </summary>
+            <param name="path"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IOHelper.DirectoryExists(System.String)">
+            <summary>
+            目录是否存在
+            </summary>
+            <param name="DirectoryPath">目录的路径（绝对路径）</param>
+            <returns>结果</returns>
+        </member>
+        <member name="M:BC.Core.IOHelper.CreateDirectory(System.String)">
+            <summary>
+            创建目录
+            </summary>
+            <param name="DirectoryPath">待创建目录的路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.IOHelper.RemoveDirectory(System.String)">
+            <summary>
+            移除目录
+            </summary>
+            <param name="DirectoryPath">待移除目录的路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.IOHelper.MoveDirectory(System.String,System.String)">
+            <summary>
+            移动目录
+            </summary>
+            <param name="Source">原路径</param>
+            <param name="Target">目标路径</param>
+        </member>
+        <member name="M:BC.Core.IOHelper.CopyDirectory(System.String,System.String,System.Boolean)">
+            <summary>
+            复制目录
+            </summary>
+            <param name="Source">源目录</param>
+            <param name="Target">目标目录</param>
+            <param name="OverWrite">文件存在时是否覆盖（默认为true）</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IOHelper.ReadTextFile(System.String)">
+            <summary>
+            读取文本文件
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IOHelper.WriteTextFile(System.String,System.String,System.Text.Encoding)">
+            <summary>
+            写入文件
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+            <param name="Content">文件内容</param>
+            <param name="encoding">编码</param>
+        </member>
+        <member name="M:BC.Core.IOHelper.WriteTextFile(System.String,System.String)">
+            <summary>
+            写入文件（UTF8）
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+            <param name="Content">文件内容</param>
+        </member>
+        <member name="M:BC.Core.IOHelper.RemoveFile(System.String)">
+            <summary>
+            移除文件
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.IOHelper.FileExists(System.String)">
+            <summary>
+            文件是否存在
+            </summary>
+            <param name="FilePath">文件路径（绝对路径）</param>
+        </member>
+        <member name="M:BC.Core.IOHelper.GetFileStream(System.String)">
+            <summary>
+            获取文件Stream
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IOHelper.GetExtensionName(System.String)">
+            <summary>
+            获得文件扩展名
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IOHelper.GetFileName(System.String)">
+            <summary>
+            获取路径中的文件名信息
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IOHelper.GetDirectoryName(System.String)">
+            <summary>
+            获取路径中的目录名信息
+            </summary>
+            <param name="FilePath">文件路径</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.BaseReturnInfo.Success(System.String,System.Object[])">
+            <summary>
+            成功信息
+            </summary>
+            <param name="Message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.BaseReturnInfo.Success(System.String)">
+            <summary>
+            成功信息
+            </summary>
+            <param name="Message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.BaseReturnInfo.Error(System.String,System.Object[])">
+            <summary>
+            错误信息
+            </summary>
+            <param name="Message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.BaseReturnInfo.Error(System.String)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="Message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.BaseReturnInfo.CreatedFromConfig(System.String)">
+            <summary>
+            从配置文件实例化
+            </summary>
+            <param name="Config"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Core.BaseReturnInfo.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseReturnInfo.Message">
+            <summary>
+            验证返回的信息
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseReturnInfo.Data">
+            <summary>
+            返回的数据
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseReturnInfo.DataObject">
+            <summary>
+            相关对象
+            </summary>
+        </member>
+        <member name="M:BC.Core.BaseReturnInfo.ToConfig">
+            <summary>
+            转换为配置文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.BaseReturnInfo.FromConfig(System.String)">
+            <summary>
+            从配置文件实例化对象
+            </summary>
+            <param name="Config"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BC.Core.ConfigExtension">
+            <summary>
+            帮助文件操作助手
+            </summary>
+        </member>
+        <member name="M:BC.Core.ConfigExtension.GetTags(System.String,System.String,System.String,System.Boolean)">
+            <summary>
+            返回被指定字符包围的Tag数组
+            </summary>
+            <param name="InputString">要搜索的字符串</param>
+            <param name="StartStr"></param>
+            <param name="EndStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ConfigExtension.GetTags(System.String,System.String,System.String)">
+            <summary>
+            返回指定标签包围的字符串数组
+            </summary>
+            <param name="InputString"></param>
+            <param name="StartStr"></param>
+            <param name="EndStr"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ConfigExtension.GetTags(System.String,System.String)">
+            <summary>
+            返回指定标签的字符串数组
+            </summary>
+            <param name="InputString">输入字符串</param>
+            <param name="TagName">标签名</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ConfigExtension.GetTag(System.String,System.String)">
+            <summary>
+            返回指定标签内容（Xml格式）
+            </summary>
+            <param name="InputString">输入字符串</param>
+            <param name="TagName">标签名</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ConfigExtension.GetTag(System.String,System.String,System.String)">
+            <summary>
+            返回指定标签包围的内容
+            </summary>
+            <param name="InputString">输入字符串</param>
+            <param name="StartTag">起始标签</param>
+            <param name="EndTag">结束标签</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ShortDate.#ctor(System.Int32,System.Int32,System.Int32)">
+            <summary>
+            初始化短日期
+            </summary>
+            <param name="Year">年</param>
+            <param name="Month">月</param>
+            <param name="Day">日</param>
+        </member>
+        <member name="M:BC.Core.ShortDate.#ctor(System.DateTime)">
+            <summary>
+            根据DateTime初始化短日期
+            </summary>
+            <param name="dt">日期</param>
+        </member>
+        <member name="M:BC.Core.ShortDate.Now">
+            <summary>
+            创建今天的短日期
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Core.ShortDate.Year">
+            <summary>
+            年
+            </summary>
+        </member>
+        <member name="P:BC.Core.ShortDate.Month">
+            <summary>
+            月
+            </summary>
+        </member>
+        <member name="P:BC.Core.ShortDate.Day">
+            <summary>
+            日
+            </summary>
+        </member>
+        <member name="P:BC.Core.ShortDate.Num">
+            <summary>
+            当年度第几天
+            </summary>
+        </member>
+        <member name="M:BC.Core.ShortDateRange.Week(System.DateTime)">
+            <summary>
+            获取指定日期所在周的起始和结束短日期
+            </summary>
+            <param name="dt">参照日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ShortDateRange.Month(System.DateTime)">
+            <summary>
+            获取指定日期所在月的起始和结束短日期
+            </summary>
+            <param name="dt">参照日期</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ShortDateRange.WeekOfYear(System.Int32,System.Int32)">
+            <summary>
+            获取某一年的特定周起始和结束日期
+            </summary>
+            <param name="Year">年份</param>
+            <param name="Num">周数</param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Core.ShortDateRange.Start">
+            <summary>
+            开始日期
+            </summary>
+        </member>
+        <member name="P:BC.Core.ShortDateRange.End">
+            <summary>
+            结束日期
+            </summary>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.GetTimeSpan(System.DateTime,System.DateTime,BC.Core.TimeType)">
+            <summary>
+            返回两个时间的间距，用秒来表示
+            </summary>
+            <param name="dt1">当前时间</param>
+            <param name="dt2">对比时间</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.IsOnTime(System.DateTime,System.DateTime,System.Int32)">
+            <summary>
+            是否为指定时间
+            </summary>
+            <param name="InputDateTime">参照日期</param>
+            <param name="TargetDateTime">比较目标</param>
+            <param name="maxToleranceInSecs">容差（默认为1秒）</param>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.IsOnTime(System.DateTime,System.Int32)">
+            <summary>
+            是否为制定时间（当前日期作为参照日期）
+            </summary>
+            <param name="TargetDateTime">比较目标</param>
+            <param name="ToleratedErroInSecs">容差（默认为1秒）</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.ToDay(System.DateTime)">
+            <summary>
+            是否为今天（不精确判断）
+            </summary>
+            <param name="InputDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.ThisYear(System.DateTime)">
+            <summary>
+            是否为今年（不精确判断）
+            </summary>
+            <param name="InputDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.ThisMonth(System.DateTime)">
+            <summary>
+            是否为本月（不精确判断）
+            </summary>
+            <param name="InputDate"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.GetDateString(System.DateTime)">
+            <summary>
+            返回日期的字符串拼接形式yyyyMMdd
+            </summary>
+            <param name="dt1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.GetDateString">
+            <summary>
+            返回当前日期的字符串拼接形式yyyyMMdd
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.GetDateTimeString(System.DateTime)">
+            <summary>
+            返回指定时间日期的完整拼接字符串yyyyMMddhhmmss
+            </summary>
+            <param name="dt1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.GetDateTimeString">
+            <summary>
+            返回当前日期的完整拼接字符串yyyyMMddhhmmss
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.GetTimeString(System.DateTime)">
+            <summary>
+            返回指定时间的完整拼接字符串hhmmss
+            </summary>
+            <param name="dt1"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.GetTimeString">
+            <summary>
+            返回当前时间的完整拼接字符串hhmmss
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.DateTimeHelper.ToShortDate(System.DateTime)">
+            <summary>
+            将DateTime换为短日期
+            </summary>
+            <param name="dt"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BC.Core.IConfigAccessHelper`1">
+            <summary>
+            配置信息（聚合根）仓储接口
+            </summary>
+            <typeparam name="TValue"></typeparam>
+        </member>
+        <member name="M:BC.Core.IConfigAccessHelper`1.Save">
+            <summary>
+            保存配置文件
+            </summary>
+        </member>
+        <member name="M:BC.Core.IConfigAccessHelper`1.Load">
+            <summary>
+            读取配置文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IConfigAccessHelper`1.Replace(System.String)">
+            <summary>
+            替换配置文件
+            </summary>
+        </member>
+        <member name="P:BC.Core.IConfigAccessHelper`1.ConfigEntity">
+            <summary>
+            配置文件实体
+            </summary>
+        </member>
+        <member name="P:BC.Core.IConfigAccessHelper`1.ConfigName">
+            <summary>
+            配置文件名称
+            </summary>
+        </member>
+        <member name="T:BC.Core.IConfigBase`1">
+            <summary>
+            配置文件基础接口
+            用来序列化和反序列化配置对象
+            </summary>
+            <typeparam name="TVal">配置实体</typeparam>
+        </member>
+        <member name="M:BC.Core.IConfigBase`1.ToConfig">
+            <summary>
+            将配置实体保存为配置文件
+            </summary>
+            <returns>配置文件</returns>
+        </member>
+        <member name="M:BC.Core.IConfigBase`1.FromConfig(System.String)">
+            <summary>
+            从配置文件构建配置实体
+            </summary>
+            <param name="Config">配置文件</param>
+            <returns>配置实体</returns>
+        </member>
+        <member name="P:BC.Core.BaseCheckTreeInfo.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseCheckTreeInfo.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseCheckTreeInfo.Checked">
+            <summary>
+            是否选中
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseCheckTreeInfo.Static">
+            <summary>
+            静态文本
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseCheckTreeInfo.Children">
+            <summary>
+            子节点列表
+            </summary>
+        </member>
+        <member name="M:BC.Core.BatchProgressInfo.Success(System.String)">
+            <summary>
+            成功信息
+            </summary>
+            <param name="Message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.BatchProgressInfo.Error(System.String)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="Message"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.BatchProgressInfo.CreatedFromConfig(System.String)">
+            <summary>
+            从配置文件实例化
+            </summary>
+            <param name="Config"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Core.BatchProgressInfo.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:BC.Core.BatchProgressInfo.Message">
+            <summary>
+            验证返回的信息
+            </summary>
+        </member>
+        <member name="P:BC.Core.BatchProgressInfo.Name">
+            <summary>
+            批次名称
+            </summary>
+        </member>
+        <member name="P:BC.Core.BatchProgressInfo.AllCount">
+            <summary>
+            所有批次内信息数量的累加
+            </summary>
+        </member>
+        <member name="P:BC.Core.BatchProgressInfo.BatchCount">
+            <summary>
+            批次数量
+            </summary>
+        </member>
+        <member name="P:BC.Core.BatchProgressInfo.CurrentBatch">
+            <summary>
+            当前批次
+            </summary>
+        </member>
+        <member name="P:BC.Core.BatchProgressInfo.LastBatch">
+            <summary>
+            是否为最后一批
+            </summary>
+        </member>
+        <member name="M:BC.Core.BatchProgressInfo.FromConfig(System.String)">
+            <summary>
+            从配置文件初始化对象
+            </summary>
+            <param name="Config"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.BatchProgressInfo.ToConfig">
+            <summary>
+            转换为配置文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Core.ReflectionPathInfo.Key">
+            <summary>
+            键
+            </summary>
+        </member>
+        <member name="P:BC.Core.ReflectionPathInfo.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:BC.Core.ReflectionPathInfo.FullPath">
+            <summary>
+            完整路径
+            </summary>
+        </member>
+        <member name="P:BC.Core.ReflectionPathInfo.AssemblyPath">
+            <summary>
+            反射信息
+            </summary>
+        </member>
+        <member name="M:BC.Core.ReflectionPathInfo.ToConfig">
+            <summary>
+            转换为配置文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ReflectionPathInfo.FromConfig(System.String)">
+            <summary>
+            从配置文件构造对象
+            </summary>
+            <param name="Config"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Core.ReturnPaging`1.Module_Page">
+            <summary>
+            条目
+            </summary>
+        </member>
+        <member name="P:BC.Core.ReturnPaging`1.PageListInfos">
+            <summary>
+            分页数据
+            </summary>
+        </member>
+        <member name="T:BC.Core.Models.SelectItemGroupModel">
+            <summary>
+            对选项分组的描述对象
+            </summary>
+        </member>
+        <member name="P:BC.Core.Models.SelectItemGroupModel.Key">
+            <summary>
+            Key
+            </summary>
+        </member>
+        <member name="P:BC.Core.Models.SelectItemGroupModel.Name">
+            <summary>
+            名称
+            </summary>
+        </member>
+        <member name="P:BC.Core.Models.SelectItemGroupModel.Items">
+            <summary>
+            分组所属对象
+            </summary>
+        </member>
+        <member name="T:BC.Core.Models.SelectItemModel">
+            <summary>
+            对选项的描述对象
+            </summary>
+        </member>
+        <member name="P:BC.Core.Models.SelectItemModel.Text">
+            <summary>
+            显示内容
+            </summary>
+        </member>
+        <member name="P:BC.Core.Models.SelectItemModel.Value">
+            <summary>
+            值
+            </summary>
+        </member>
+        <member name="P:BC.Core.Models.SelectItemModel.Selected">
+            <summary>
+            是否被选中
+            </summary>
+        </member>
+        <member name="P:BC.Core.HttpParameterCollection.Instance">
+            <summary>
+            默认实例
+            </summary>
+        </member>
+        <member name="P:BC.Core.HttpParameterCollection.Dic">
+            <summary>
+            参数字典
+            </summary>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Add(System.String,System.String)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Add(System.String,System.Guid)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Add(System.String,System.DateTime)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Add(System.String,System.Decimal)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Add(System.String,System.Int32)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Add(System.String,System.Byte)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Add``1(System.String,BC.Core.IConfigBase{``0})">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Add(System.String,System.Boolean)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Remove(System.String)">
+            <summary>
+            移除一个参数
+            </summary>
+            <param name="Key">键</param>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.Clear">
+            <summary>
+            将所有参数清空
+            </summary>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.ToDictionary">
+            <summary>
+            转换为字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.ToString">
+            <summary>
+            拼接参数
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.HttpParameterCollection.ToJsonString">
+            <summary>
+            转换为JSON数据
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Add(System.String,System.String)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Add(System.String,System.Guid)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Add(System.String,System.DateTime)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Add(System.String,System.Decimal)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Add(System.String,System.Int32)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Add(System.String,System.Byte)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Add``1(System.String,BC.Core.IConfigBase{``0})">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Add(System.String,System.Boolean)">
+            <summary>
+            加入参数
+            </summary>
+            <param name="Key">键</param>
+            <param name="Value">值</param>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Remove(System.String)">
+            <summary>
+            移除一个参数
+            </summary>
+            <param name="Key">键</param>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.Clear">
+            <summary>
+            将所有参数清空
+            </summary>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.ToString">
+            <summary>
+            转换为字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.ToJsonString">
+            <summary>
+            转换为Json字符串
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.IHttpParameterCollection.ToDictionary">
+            <summary>
+            转换为字典
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:BC.Core.ISecurityCommunication">
+            <summary>
+            安全通信
+            </summary>
+        </member>
+        <member name="P:BC.Core.ISecurityCommunication.Signature">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:BC.Core.ISecurityCommunication.CipherText">
+            <summary>
+            密文
+            </summary>
+        </member>
+        <member name="P:BC.Core.ISecurityCommunication.PlainText">
+            <summary>
+            明文
+            </summary>
+        </member>
+        <member name="M:BC.Core.ISecurityCommunication.Encrypt(System.String)">
+            <summary>
+            加密
+            </summary>
+        </member>
+        <member name="M:BC.Core.ISecurityCommunication.Check(System.String,System.String)">
+            <summary>
+            数据校验
+            </summary>
+            <param name="CipherText">密文</param>
+            <param name="Signature">签名</param>
+        </member>
+        <member name="M:BC.Core.ISecurityCommunication.Communication(System.String,System.String,System.String)">
+            <summary>
+            安全通信
+            </summary>
+            <param name="PlainText">明文</param>
+            <param name="TargetUrl">目标地址</param>
+            <param name="Method">
+            [模式]；
+            可选值：POST、GET；
+            默认为：POST。
+            </param>
+        </member>
+        <member name="M:BC.Core.BaseSecurityCommunication.#ctor(System.String,System.Security.Cryptography.SecretKeyModes,System.Security.Cryptography.SecretKeyLifeCycles)">
+            <summary>
+            实例化
+            </summary>
+            <param name="TextTransferEngine">文本传送引擎</param>
+            <param name="PrivateKey">私钥</param>
+            <param name="SecretKeyMode">密匙模式</param>
+            <param name="SecretKeyLifeCycle">密匙生命周期</param>
+        </member>
+        <member name="P:BC.Core.BaseSecurityCommunication.SecretKey">
+            <summary>
+            通信密匙
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseSecurityCommunication.Signature">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseSecurityCommunication.CipherText">
+            <summary>
+            密文
+            </summary>
+        </member>
+        <member name="P:BC.Core.BaseSecurityCommunication.PlainText">
+            <summary>
+            明文
+            </summary>
+        </member>
+        <member name="M:BC.Core.BaseSecurityCommunication.Encrypt(System.String)">
+            <summary>
+            加密
+            </summary>
+        </member>
+        <member name="M:BC.Core.BaseSecurityCommunication.Check(System.String,System.String)">
+            <summary>
+            数据校验
+            </summary>
+            <param name="CipherText">密文</param>
+            <param name="Signature">签名</param>
+        </member>
+        <member name="M:BC.Core.SecurityCommunication.#ctor(System.String,System.Security.Cryptography.SecretKeyModes,System.Security.Cryptography.SecretKeyLifeCycles)">
+            <summary>
+            实例化
+            </summary>
+            <param name="TextTransferEngine">文本传送引擎</param>
+            <param name="PrivateKey">私钥</param>
+            <param name="SecretKeyMode">密匙模式</param>
+            <param name="SecretKeyLifeCycle">密匙生命周期</param>
+        </member>
+        <member name="M:BC.Core.SecurityCommunication.#ctor(BC.Core.ITextTransferEngine,System.String,System.Security.Cryptography.SecretKeyModes,System.Security.Cryptography.SecretKeyLifeCycles)">
+            <summary>
+            实例化
+            </summary>
+            <param name="TextTransferEngine">文本传送引擎</param>
+            <param name="PrivateKey">私钥</param>
+            <param name="SecretKeyMode">密匙模式</param>
+            <param name="SecretKeyLifeCycle">密匙生命周期</param>
+        </member>
+        <member name="F:BC.Core.SecurityCommunication.TextTransferEngine">
+            <summary>
+            文本传输引擎
+            </summary>
+        </member>
+        <member name="M:BC.Core.SecurityCommunication.Communication(System.String,System.String,System.String)">
+            <summary>
+            安全通信
+            </summary>
+            <param name="PlainText">明文</param>
+            <param name="TargetUrl">目标地址</param>
+            <param name="Method">
+            [模式]；
+            可选值：POST、GET；
+            默认为：POST。
+            </param>
+        </member>
+        <member name="P:BC.Core.ISecurityFileTransfer.Signature">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:BC.Core.ISecurityFileTransfer.CipherText">
+            <summary>
+            密文
+            </summary>
+        </member>
+        <member name="P:BC.Core.ISecurityFileTransfer.PlainText">
+            <summary>
+            明文
+            </summary>
+        </member>
+        <member name="M:BC.Core.ISecurityFileTransfer.Encrypt(System.String)">
+            <summary>
+            加密
+            </summary>
+        </member>
+        <member name="M:BC.Core.ISecurityFileTransfer.Check(System.String,System.String)">
+            <summary>
+            数据校验
+            </summary>
+            <param name="CipherText">密文</param>
+            <param name="Signature">签名</param>
+        </member>
+        <member name="M:BC.Core.ISecurityFileTransfer.Communication(System.String,System.String,System.IO.Stream,System.String)">
+            <summary>
+            安全文件传送
+            </summary>
+            <param name="PlainText">明文参数</param>
+            <param name="TargetUrl">目标地址</param>
+            <param name="InputStream">要传送的文件流</param>
+            <param name="Method">
+            [模式]；
+            可选值：POST、GET；
+            默认为：POST。
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.SecurityFileTransfer.#ctor(System.String,System.Security.Cryptography.SecretKeyModes,System.Security.Cryptography.SecretKeyLifeCycles)">
+            <summary>
+            实例化
+            </summary>
+            <param name="TextTransferEngine">文本传送引擎</param>
+            <param name="PrivateKey">私钥</param>
+            <param name="SecretKeyMode">密匙模式</param>
+            <param name="SecretKeyLifeCycle">密匙生命周期</param>
+        </member>
+        <member name="F:BC.Core.SecurityFileTransfer.SynchronizationFileTransfer">
+            <summary>
+            同步文件传送引擎
+            </summary>
+        </member>
+        <member name="M:BC.Core.SecurityFileTransfer.Communication(System.String,System.String,System.IO.Stream,System.String)">
+            <summary>
+            安全文件传送
+            </summary>
+            <param name="PlainText">明文参数</param>
+            <param name="TargetUrl">目标地址</param>
+            <param name="InputStream">要传送的文件流</param>
+            <param name="Method">
+            [模式]；
+            可选值：POST、GET；
+            默认为：POST。
+            </param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ISynchronizationFileTransfer.Transfer(System.String,System.IO.Stream)">
+            <summary>
+            传送
+            </summary>
+            <param name="Url">接收地址</param>
+            <param name="TransferStream">文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ISynchronizationFileTransfer.Transfer(System.String,BC.Core.IHttpParameterCollection,System.IO.Stream)">
+            <summary>
+            传送
+            </summary>
+            <param name="Url">接收地址</param>
+            <param name="Encoding">参数编码</param>
+            <param name="TransferStream">文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ISynchronizationFileTransfer.Transfer(System.String,BC.Core.IHttpParameterCollection,System.Text.Encoding,System.IO.Stream)">
+            <summary>
+            传送
+            </summary>
+            <param name="Url">接收地址</param>
+            <param name="Parameters">参数</param>
+            <param name="Encoding">参数编码</param>
+            <param name="TransferStream">文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.SynchronizationFileTransfer.Transfer(System.String,System.IO.Stream)">
+            <summary>
+            传送
+            </summary>
+            <param name="Url">接收地址</param>
+            <param name="TransferStream">文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.SynchronizationFileTransfer.Transfer(System.String,BC.Core.IHttpParameterCollection,System.IO.Stream)">
+            <summary>
+            传送
+            </summary>
+            <param name="Url">接收地址</param>
+            <param name="TransferStream">文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.SynchronizationFileTransfer.Transfer(System.String,BC.Core.IHttpParameterCollection,System.Text.Encoding,System.IO.Stream)">
+            <summary>
+            传送
+            </summary>
+            <param name="Url">接收地址</param>
+            <param name="Parameters">参数</param>
+            <param name="TransferStream">文件流</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ITextTransferEngine.Send(System.String,System.String)">
+            <summary>
+            发送数据
+            </summary>
+            <param name="Url">目标地址</param>
+            <param name="MethodType">协议类型</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:BC.Core.ITextTransferEngine.Send(System.String,BC.Core.IHttpParameterCollection,System.String)">
+            <summary>
+            发送数据
+            </summary>
+            <param name="Url">目标地址</param>
+            <param name="Parameters">参数集合</param>
+            <param name="MethodType">协议类型</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:BC.Core.ITextTransferEngine.Send(System.String,BC.Core.IHttpParameterCollection,System.Text.Encoding,System.String)">
+            <summary>
+            发送数据
+            </summary>
+            <param name="Url">目标地址</param>
+            <param name="Parameters">参数集合</param>
+            <param name="Encoding">编码</param>
+            <param name="MethodType">协议类型</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:BC.Core.TextTransferEngine.Send(System.String,System.String)">
+            <summary>
+            发送数据
+            </summary>
+            <param name="Url">目标地址</param>
+            <param name="MethodType">协议类型</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:BC.Core.TextTransferEngine.Send(System.String,BC.Core.IHttpParameterCollection,System.String)">
+            <summary>
+            发送数据
+            </summary>
+            <param name="Url">目标地址</param>
+            <param name="Parameters">参数集合</param>
+            <param name="MethodType">协议类型</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="M:BC.Core.TextTransferEngine.Send(System.String,BC.Core.IHttpParameterCollection,System.Text.Encoding,System.String)">
+            <summary>
+            发送数据
+            </summary>
+            <param name="Url">目标地址</param>
+            <param name="Parameters">参数集合</param>
+            <param name="Encoding">编码</param>
+            <param name="MethodType">协议类型</param>
+            <returns>返回值</returns>
+        </member>
+        <member name="T:BC.Core.ISmallClassBuilder">
+            <summary>
+            用于缓存接口与实现类的关联
+            </summary>
+        </member>
+        <member name="M:BC.Core.ISmallClassBuilder.Get``1(System.String,System.String)">
+            <summary>
+            从缓存中取得对象的委托
+            </summary>
+            <typeparam name="TInterface">接口泛型</typeparam>
+            <param name="AssemblyPath">Assembly</param>
+            <param name="FullPath">完整命名空间</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.ISmallClassBuilder.Remove(System.String)">
+            <summary>
+            从缓存中移除指定对象
+            </summary>
+            <param name="FullPath">完整命名空间</param>
+        </member>
+        <member name="T:BC.Core.AccessMode">
+            <summary>
+            AccessMode 访问锁定资源的方式。
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.PageCount">
+            <summary>
+            页数
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.PageNum">
+            <summary>
+            当前页码
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.PageSize">
+            <summary>
+            每页几条
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.AllCount">
+            <summary>
+            数据总数
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.LastPageCount">
+            <summary>
+            最后一页显示几条
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.PageName">
+            <summary>
+            页面文件名
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.Max">
+            <summary>
+            取几条
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.First">
+            <summary>
+            从第几条开始取
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.End">
+            <summary>
+            读取几条的总数
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.NextPageNum">
+            <summary>
+            下一页页码
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.PrevPageNum">
+            <summary>
+            上一页
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.PageListMaxNumber">
+            <summary>
+            页码列表中最大显示几项
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.PageListFirstNum">
+            <summary>
+            页码列表中的起始号码
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.PageListEndNum">
+            <summary>
+            页码列表中的结束号码
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.NextPageUrl">
+            <summary>
+            下一页地址
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.PrevPageUrl">
+            <summary>
+            上一页地址
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.FirstPageUrl">
+            <summary>
+            首页地址
+            </summary>
+        </member>
+        <member name="P:BC.Core.Module_Page.EndPageUrl">
+            <summary>
+            尾页地址
+            </summary>
+        </member>
+        <member name="M:BC.Core.Module_Page.Compute">
+            <summary>
+            计算分页信息
+            </summary>
+        </member>
+        <member name="M:BC.Core.Module_Page.GetPageUrl(System.Int32)">
+            <summary>
+            生成页面地址
+            </summary>
+            <param name="num">页码</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.Module_Page.ComputePageList">
+            <summary>
+            计算页码列表项
+            </summary>
+        </member>
+        <member name="P:BC.Core.SendEmail.ConfigAccessHelper">
+            <summary>
+            配置文件访问助手
+            </summary>
+        </member>
+        <member name="F:BC.Core.SmtpConfig.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="P:BC.Core.SmtpConfig.Address">
+            <summary>
+            发送地址
+            </summary>
+        </member>
+        <member name="P:BC.Core.SmtpConfig.Host">
+            <summary>
+            服务器地址
+            </summary>
+        </member>
+        <member name="P:BC.Core.SmtpConfig.Post">
+            <summary>
+            端口
+            </summary>
+        </member>
+        <member name="P:BC.Core.SmtpConfig.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:BC.Core.SmtpConfig.Password">
+            <summary>
+            密码
+            </summary>
+        </member>
+        <member name="M:BC.Core.SmtpConfig.ToConfig">
+            <summary>
+            转换为配置文件
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.SmtpConfig.FromConfig(System.String)">
+            <summary>
+            从配置文件实例化
+            </summary>
+            <param name="Config"></param>
+            <returns></returns>
+        </member>
+        <member name="T:BC.Core.SmallClassBuilder">
+            <summary>
+            用于缓存接口与实现类的关联
+            </summary>
+        </member>
+        <member name="P:BC.Core.SmallClassBuilder.LockerHelper">
+            <summary>
+            线程锁
+            </summary>
+        </member>
+        <member name="P:BC.Core.SmallClassBuilder.Dic">
+            <summary>
+            字典
+            </summary>
+        </member>
+        <member name="M:BC.Core.SmallClassBuilder.Get``1(System.String,System.String)">
+            <summary>
+            从缓存中取得对象的委托
+            </summary>
+            <typeparam name="TInterface">接口泛型</typeparam>
+            <param name="AssemblyPath">Assembly</param>
+            <param name="FullPath">完整命名空间</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.SmallClassBuilder.Remove(System.String)">
+            <summary>
+            移除指定缓存
+            </summary>
+            <param name="FullPath">完整命名空间</param>
+        </member>
+        <member name="M:BC.Core.SmallClassBuilder.Compile``1(System.String,System.String)">
+            <summary>
+            编译
+            </summary>
+            <typeparam name="TInterface">类型</typeparam>
+            <param name="AssemblyPath"></param>
+            <param name="FullPath"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.SearchGuidList(System.Collections.Generic.IList{System.Guid},System.String)">
+            <summary>
+            搜索Guid列表
+            </summary>
+            <param name="Ids"></param>
+            <param name="SearchChar"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.MatchString(System.String,System.String,System.String)">
+            <summary>
+            在字符串中匹配
+            </summary>
+            <param name="TargetString">被匹配的字符串</param>
+            <param name="Keyword">匹配关键字</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.GetSearchString(System.String,System.String)">
+            <summary>
+            返回被指定字符包裹的字符串
+            </summary>
+            <param name="InputString">要格式化的字符串</param>
+            <param name="SearchChar">分隔符</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.GetCleanString(System.String,System.String)">
+            <summary>
+            清理被自定字符包裹的字符串
+            </summary>
+            <param name="InputString">要格式化的字符串</param>
+            <param name="CleanChar">要清理的字符</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.CnLength(System.String)">
+            <summary>
+            返回字符串的字节长度
+            </summary>
+            <param name="str">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.SplitToGuidList(System.String,System.String)">
+            <summary>
+            拆分一个字符串到Guid列表
+            </summary>
+            <param name="InputString">待拆分的字符串</param>
+            <param name="Separator">分隔符（可选，默认为","）</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.SplitToGuidArray(System.String,System.String)">
+            <summary>
+            拆分一个字符串到Guid数组
+            </summary>
+            <param name="InputString">待拆分的字符串</param>
+            <param name="Separato">分隔符（可选，默认为“，”）</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.SplitToIntList(System.String,System.String)">
+            <summary>
+            拆分一个字符串到int数组
+            </summary>
+            <param name="InputString"></param>
+            <param name="Separator"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.SplitToIntArray(System.String,System.String)">
+            <summary>
+            拆分一个字符串到Int数组
+            </summary>
+            <param name="InputString">要拆分的字符串</param>
+            <param name="Separator">分隔符</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.EndChar(System.String,System.Char)">
+            <summary>
+            设置结尾字符
+            </summary>
+            <param name="InputString">要设置的字符串</param>
+            <param name="AddString">结尾字符为</param>
+            <returns>
+            返回处理结果，如果结尾已包括该字符则直接返回，否则附加。
+            </returns>
+        </member>
+        <member name="M:System.StringExtensions.ToHtmlFormat(System.String)">
+            <summary>
+            将纯文本转换为带Html格式的字符串
+            </summary>
+            <param name="InputString"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.StartChar(System.String,System.Char)">
+            <summary>
+            设置起始字符
+            </summary>
+            <param name="InputString">要设置的字符串</param>
+            <param name="AddChar">起始字符为</param>
+            <returns>
+            返回处理结果，如果开始位置已包括该字符则直接返回，否则附加。
+            </returns>
+        </member>
+        <member name="M:System.StringExtensions.GetStartPYChar(System.String)">
+            <summary>
+            截取字符串第一个字符的拼音缩写
+            </summary>
+            <param name="str"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.StringExtensions.GetPYString(System.String)">
+            〈summary〉
+            汉字转拼音缩写
+            〈/summary〉
+            〈param name="str"〉要转换的汉字字符串〈/param〉
+            〈returns〉拼音缩写〈/returns〉
+        </member>
+        <member name="M:System.StringExtensions.GetPYChar(System.String)">
+            〈summary〉
+            转换单个拼音生母
+            〈/summary〉
+            〈param name="c"〉要转换的单个汉字〈/param〉
+            〈returns〉拼音声母〈/returns〉
+        </member>
+        <member name="M:System.StringExtensions.IsEqualIgnoreCase(System.String,System.String)">
+            <summary>
+            判断两个字符串是否相等（忽略大小写）
+            </summary>
+            <param name="str1">字符串A</param>
+            <param name="str2">字符串B</param>
+            <returns></returns>
+        </member>
+        <member name="T:System.Security.Cryptography.AESHelper">
+            <summary>
+            AES加密助手
+            </summary>
+        </member>
+        <member name="P:System.Security.Cryptography.AESHelper.PublicKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="M:System.Security.Cryptography.AESHelper.AESDecrypt(System.String,System.String)">
+            <summary>
+            AES解密函数
+            </summary>
+            <param name="pToDencrypt">要解密的字符串</param>
+            <param name="skey">私钥(最高32字节,对应256位AES)，为空则使用公钥</param>
+            <returns>解密后的结果</returns>
+        </member>
+        <member name="M:System.Security.Cryptography.AESHelper.AESEncrypt(System.String,System.String)">
+            <summary>
+            AES加密函数
+            </summary>
+            <param name="pToEncrypt">要加密的字符串</param>
+            <param name="skey">私钥(最高32字节,对应256位AES)，为空则使用公钥</param>
+            <returns>加密结果</returns>
+        </member>
+        <member name="M:System.Security.Cryptography.SecretKeyInfo.#ctor(System.String,System.Security.Cryptography.SecretKeyModes,System.Security.Cryptography.SecretKeyLifeCycles)">
+            <summary>
+            创建密钥
+            </summary>
+            <param name="PrivateKey">私钥</param>
+            <param name="SecretKeyMode">加密模式</param>
+            <param name="SecretKeyLifeCycle">生命密钥周期</param>
+        </member>
+        <member name="F:System.Security.Cryptography.SecretKeyInfo.PublicKey">
+            <summary>
+            公钥
+            </summary>
+        </member>
+        <member name="P:System.Security.Cryptography.SecretKeyInfo.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="P:System.Security.Cryptography.SecretKeyInfo.TimeStamp">
+            <summary>
+            时间戳
+            </summary>
+        </member>
+        <member name="P:System.Security.Cryptography.SecretKeyInfo.SecretKeyMode">
+            <summary>
+            加密模式
+            </summary>
+        </member>
+        <member name="P:System.Security.Cryptography.SecretKeyInfo.SecretKeyLifeCycle">
+            <summary>
+            密钥生命周期
+            </summary>
+        </member>
+        <member name="M:System.Security.Cryptography.SecretKeyInfo.ToString">
+            <summary>
+            生成密钥
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="T:System.Security.Cryptography.SecretKeyModes">
+            <summary>
+            加密模式
+            </summary>
+        </member>
+        <member name="T:System.Security.Cryptography.SecretKeyLifeCycles">
+            <summary>
+            密钥生命周期
+            </summary>
+        </member>
+        <member name="M:System.Security.Cryptography.SignatureHelper.SHA1(System.String,System.String)">
+            <summary>
+            SHA1签名
+            </summary>
+            <param name="InputStr">待签名的字符串</param>
+            <param name="CustomNoise">自定义签名混淆码，为空则使用公共混淆吗</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Security.Cryptography.SignatureHelper.SHA1Verify(System.String,System.String,System.String)">
+            <summary>
+            校验SHA1签名
+            </summary>
+            <param name="Signature">签名</param>
+            <param name="PlainText">明文</param>
+            <param name="CustomNoise">自定义签名混淆码，为空则使用公共混淆吗</param>
+            <returns>
+            签名和明文任意一项为空时返回false，否则返回对比结果。
+            </returns>
+        </member>
+        <member name="M:System.Validation.IsEmpty(System.String)">
+            <summary>
+            字符串是否为空
+            </summary>
+            <param name="InputString">被检测的字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.IsEmpty(System.Collections.Generic.IList{System.String})">
+            <summary>
+            检测一组字符串中是否存在空的字符串
+            </summary>
+            <param name="InputStrings">被检测的字符串组</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.IsEmpty(System.String[])">
+            <summary>
+            检测一组字符串中是否存在空的字符串
+            </summary>
+            <param name="InputStrings">被检测的字符串组</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.IsEmpty(System.Guid)">
+            <summary>
+            判断Guid是否为空
+            </summary>
+            <param name="InputGuid">待判断的Guid</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.IsEmpty(System.Collections.Generic.IList{System.Guid})">
+            <summary>
+            判断一组Guid中是否存在空值
+            </summary>
+            <param name="InputGuids">待验证的Guid</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.GuidByString(System.String)">
+            <summary>
+            从字符串转换Guid
+            </summary>
+            <param name="InputString">待转换的字符串</param>
+            <returns>如果转换失败则返回Guid.Empty</returns>
+        </member>
+        <member name="M:System.Validation.GuidByString(System.Collections.Generic.IList{System.String})">
+            <summary>
+            将一组字符串转换为Guid
+            </summary>
+            <param name="InputStrings">待转换为Guid的字符串列表</param>
+            <returns>转换失败的直接抛弃</returns>
+        </member>
+        <member name="M:System.Validation.GuidByString(System.String[])">
+            <summary>
+            将字符串数组转换为Guid数组
+            </summary>
+            <param name="InputStrings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.IsGuid(System.String)">
+            <summary>
+            字符串是否能转换为Guid
+            </summary>
+            <param name="InputString">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.IntByString(System.String)">
+            <summary>
+            从字符串转换Int
+            </summary>
+            <param name="InputString">待转换的字符串</param>
+            <returns>如果转换失败则返回0</returns>
+        </member>
+        <member name="M:System.Validation.IntByString(System.Collections.Generic.IList{System.String})">
+            <summary>
+            将一组字符串转换为Int
+            </summary>
+            <param name="InputStrings">待转换为Int的字符串列表</param>
+            <returns>转换失败的直接抛弃</returns>
+        </member>
+        <member name="M:System.Validation.IntByString(System.String[])">
+            <summary>
+            将一组字符串转换为int数组
+            </summary>
+            <param name="InputStrings"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.IsInt(System.String)">
+            <summary>
+            字符串是否能转换为Int
+            </summary>
+            <param name="InputString">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.DecimalByString(System.String)">
+            <summary>
+            从字符串转换Decimal
+            </summary>
+            <param name="InputString">待转换的字符串</param>
+            <returns>如果转换失败则返回0</returns>
+        </member>
+        <member name="M:System.Validation.DecimalByString(System.Collections.Generic.IList{System.String})">
+            <summary>
+            将一组字符串转换为Decimal
+            </summary>
+            <param name="InputStrings">待转换为Decimal的字符串列表</param>
+            <returns>转换失败的直接抛弃</returns>
+        </member>
+        <member name="M:System.Validation.IsDecimal(System.String)">
+            <summary>
+            字符串是否能转换为Decimal
+            </summary>
+            <param name="InputString">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.ByteByString(System.String)">
+            <summary>
+            从字符串转换Byte
+            </summary>
+            <param name="InputString">待转换的字符串</param>
+            <returns>如果转换失败则返回0</returns>
+        </member>
+        <member name="M:System.Validation.IsByte(System.String)">
+            <summary>
+            字符串是否能转换为Byte
+            </summary>
+            <param name="InputString">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.BoolByString(System.String)">
+            <summary>
+            从字符串转换Bool
+            </summary>
+            <param name="InputString">待转换的字符串</param>
+            <returns>如果转换失败则返回0</returns>
+        </member>
+        <member name="M:System.Validation.IsBool(System.String)">
+            <summary>
+            字符串是否能转换为Bool
+            </summary>
+            <param name="InputString">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.DateTimeByString(System.String)">
+            <summary>
+            将字符串转换为日期
+            </summary>
+            <param name="InputString">待转换的字符串</param>
+            <returns>如果转换失败返回DateTime.Now</returns>
+        </member>
+        <member name="M:System.Validation.IsDateTime(System.String)">
+            <summary>
+            字符串是否能转换为DateTime
+            </summary>
+            <param name="InputString">待检测的字符串</param>
+            <returns>如果为空返回false</returns>
+        </member>
+        <member name="M:System.Validation.LongByString(System.String)">
+            <summary>
+            从字符串转换long
+            </summary>
+            <param name="InputString">待转换的字符串</param>
+            <returns>如果转换失败则返回0</returns>
+        </member>
+        <member name="M:System.Validation.longByString(System.Collections.Generic.IList{System.String})">
+            <summary>
+            将一组字符串转换为long
+            </summary>
+            <param name="InputStrings">待转换为long的字符串列表</param>
+            <returns>转换失败的直接抛弃</returns>
+        </member>
+        <member name="M:System.Validation.IsLong(System.String)">
+            <summary>
+            字符串是否能转换为long
+            </summary>
+            <param name="InputString">字符串</param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Validation.IsMobilePhone(System.String)">
+            <summary>
+            验证是否为手机号
+            </summary>
+            <param name="telNum">需要验证的手机号</param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

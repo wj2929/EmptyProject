@@ -1,0 +1,129 @@
+﻿<#@ template debug="false" hostspecific="True" language="C#" #>
+<#@ output extension=".cs" #>
+<#@ include file="$(SolutionDir)libs\T4\Reference.ttinclude"  #>
+<#@include file="$(SolutionDir)libs\T4\MultipleOutputHelper.ttinclude"#>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EntityFramework.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.DDD.dll" #>
+<#@ assembly name="$(SolutionDir)Libs\BC\BC.Core.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Store.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Domain.dll" #>
+<#@ import namespace="EmptyProject.Store.Models" #>
+<#@ import namespace="EmptyProject.Domain" #>
+<#var list=System.Reflection.Assembly.LoadFrom(((typeof(EmptyProject.Domain.Test)).Assembly).CodeBase).GetTypes().Where(t => typeof(BC.DDD.Domain.IDomain).IsAssignableFrom(t)).Select(t=>new KeyValuePair<string,string>(t.Name,t.GetInterface("IEntity`1").GenericTypeArguments[0].Name)).ToList().ToList();#>
+<#
+	var manager = Manager.Create(Host, GenerationEnvironment);  
+	foreach (var item in list)
+    {
+		string idType=item.Value=="String"?"string":item.Value;
+		var className = item.Key;
+        // 定义输出文件
+		string outputFileName = "I" + className+"DomainService.cs";
+		string outputFilePath = Path.Combine(Directory.GetParent(Path.GetDirectoryName(Host.TemplateFile)).FullName,outputFileName);
+		if(File.Exists(outputFilePath))continue;
+		manager.StartNewFile(outputFileName);
+       #>
+using System;
+using System.Collections.Generic;
+using System.IO;
+using System.Linq;
+using System.Text;
+using EmptyProject.Domain;
+using BC.Core;
+using BC.DDD;
+using EmptyProject.Domain.QueryObject;
+
+namespace EmptyProject.DomainService.Interface
+{
+	public interface I<#=item.Key#>DomainService
+	{ 
+
+		#region AutoCode
+		/// <summary>
+		/// 添加一条信息
+		/// </summary>		
+		<#= className #> Add<#= className #>(<#= className #> Info);
+
+		/// <summary>
+		/// 添加多条信息
+		/// </summary>		
+		IList<<#= className #>> Add<#= className #>s(IList<<#= className #>> Info);
+
+		/// <summary>
+		/// 编辑一条信息
+		/// </summary>		
+		void Edit<#= className #>(<#= className #> Info);
+		
+		/// <summary>
+		/// 读取一条数据，如数据不存在，返回null
+		/// </summary>		
+		<#= className #> Single(<#=idType#> Id);
+
+		/// <summary>
+		/// 删除一条信息
+		/// </summary>		
+		void Remove(<#=idType#> Id);
+
+		/// <summary>
+		/// 删除多条信息
+		/// </summary>		
+		void Removes(<#=idType#>[] Ids);
+
+		/// <summary>
+		/// 删除多条信息
+		/// </summary>		
+		void Removes(<#= className #>Criteria <#= className #>Criteria);
+
+		/// <summary>
+		/// 获得所有信息
+		/// </summary>		
+		IList<<#= className #>> All();
+
+		/// <summary>
+		/// 检查Id是否存在
+		/// </summary>
+		/// <param name="Id"></param>
+		/// <returns></returns>
+		bool IsExist(<#=idType#> Id);
+
+		/// <summary>
+		/// 检查查询表达式是否存在记录
+		/// </summary>
+		/// <param name="Id"></param>
+		/// <returns></returns>
+		bool IsExist(<#= className #>Criteria <#= className #>Criteria);
+
+		/// <summary>
+		/// 获取分页数据
+		/// </summary>
+		/// <param name="<#= className #>Criteria"></param>
+		/// <param name="PageNum"></param>
+		/// <param name="PageSize"></param>
+		/// <returns></returns>
+		ReturnPaging<<#= className #>> Get<#= className #>Paging(<#= className #>Criteria <#= className #>Criteria, int PageNum = 1, int PageSize = 20);
+        
+		/// <summary>
+		/// 统计数量
+		/// </summary>
+		/// <param name="WasteCertificateCriteria"></param>
+		/// <returns></returns>
+		int Count(<#= className #>Criteria <#= className #>Criteria);        
+
+		/// <summary>
+		/// 获取列表
+		/// </summary>
+		/// <param name="<#= className #>Criteria"></param>
+		/// <param name="PageNum"></param>
+		/// <param name="PageSize"></param>
+		/// <returns></returns>
+		IList<<#= className #>> GetList(<#= className #>Criteria <#= className #>Criteria, int PageNum = 1, int PageSize = int.MaxValue);
+		#endregion
+
+	}
+}
+<#
+	// 结束输出文件
+	manager.EndBlock();
+    }
+    // 执行编译
+    manager.Process(true); 
+#>
