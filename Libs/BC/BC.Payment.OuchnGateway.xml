@@ -1,0 +1,600 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.Payment.OuchnGateway</name>
+    </assembly>
+    <members>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.GeneratePaymentUrl(System.String,System.String)">
+            <summary>
+            生成支付链接
+            </summary>
+            <param name="StudentId">学生Id</param>
+            <param name="IDNumber">身份证Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.AddStudent(BC.Payment.OuchnGateway.Models.AddStudentRequestBodyModel)">
+            <summary>
+            添加学生信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.EditStudent(BC.Payment.OuchnGateway.Models.EditStudentRequestBodyModel)">
+            <summary>
+            编辑学生信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.RemoveStudent(System.String)">
+            <summary>
+            编辑学生信息
+            </summary>
+            <param name="StudentId">要删除学生的学号</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.AddCourse(BC.Payment.OuchnGateway.Models.SetCourseRequestBodyModel)">
+            <summary>
+            添加课程信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.EditCourse(BC.Payment.OuchnGateway.Models.SetCourseRequestBodyModel)">
+            <summary>
+            编辑课程信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.RemoveCourse(BC.Payment.OuchnGateway.Models.RemoveCourseRequestBodyModel)">
+            <summary>
+            删除课程信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.AddSelectCourse(BC.Payment.OuchnGateway.Models.SetSelectCourseRequestBodyModel)">
+            <summary>
+            添加选课信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.EditSelectCourse(BC.Payment.OuchnGateway.Models.SetSelectCourseRequestBodyModel)">
+            <summary>
+            编辑选课信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.RemoveSelectCourse(BC.Payment.OuchnGateway.Models.RemoveStudentSelectCourseRequestBodyModel)">
+            <summary>
+            移除选课信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.CreateCharge(BC.Payment.OuchnGateway.Models.CreateChargeRequestBodyModel)">
+            <summary>
+            创建缴费订单
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.IOuchnGatewayService.QueryCharge(BC.Payment.OuchnGateway.Models.QueryChargeRequestBodyModel)">
+            <summary>
+            查询缴费订单
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.SetCourseModel.CourseID">
+            <summary>
+            课程Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.SetCourseModel.CourseName">
+            <summary>
+            课程名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.SetCourseModel.CourseTypeID">
+            <summary>
+            课程类型编号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.SetCourseModel.CourseTypeName">
+            <summary>
+            课程类型名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.SetCourseModel.CreditPoint">
+            <summary>
+            课程学分
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.RemoveStudentSelectCourseModel.StudentID">
+            <summary>
+            学生Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.RemoveStudentSelectCourseRequestBodyModel.ChargeYear">
+            <summary>
+            缴费年度
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.RemoveStudentSelectCourseRequestBodyModel.ChargeTerm">
+            <summary>
+            缴费学期
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.RemoveStudentSelectCourseRequestBodyModel.StudentCourse">
+            <summary>
+            学生选课信息
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.SetSelectCourseRequestBodyModel.ChargeYear">
+            <summary>
+            缴费年度
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.SetSelectCourseRequestBodyModel.ChargeTerm">
+            <summary>
+            缴费学期
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.SetSelectCourseRequestBodyModel.StudentCourse">
+            <summary>
+            学生选课信息
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.StudentID">
+            <summary>
+            学生Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.StudentName">
+            <summary>
+            学生姓名
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.IdentificationNumber">
+            <summary>
+            身份证号码
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.ClassID">
+            <summary>
+            班级Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.ClassName">
+            <summary>
+            班级名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.MajorID">
+            <summary>
+            专业Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.MajorName">
+            <summary>
+            专业名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.EducationLevelID">
+            <summary>
+            专业层次Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.EducationLevelName">
+            <summary>
+            专业层次名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentModel.RegulationID">
+            <summary>
+            专业规则号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentRequestBodyModel.EnrollmentYear">
+            <summary>
+            入学年度
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentRequestBodyModel.EnrollmentTerm">
+            <summary>
+            入学学期
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentRequestBodyModel.DeptID">
+            <summary>
+            教学点Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentRequestBodyModel.DeptName">
+            <summary>
+            教学点名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentRequestBodyModel.Student">
+            <summary>
+            学生信息
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.AddStudentRequestBodyModel.EndFlag">
+            <summary>
+            是否结束
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeModel.TxSN">
+            <summary>
+            缴费关系流水号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeModel.StudentID">
+            <summary>
+            学号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeModel.Quantity">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeModel.DiscountQuantity">
+            <summary>
+            优惠数量
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeModel.DiscountAmount">
+            <summary>
+            优惠金额
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeModel.WithoutChargeFlag">
+            <summary>
+            全额优惠
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeRequestBodyModel.ChargeYear">
+            <summary>
+            缴费年度
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeRequestBodyModel.ChargeTerm">
+            <summary>
+            缴费学期
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeRequestBodyModel.ChargeItemNo">
+            <summary>
+            缴费项目编号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.CreateChargeRequestBodyModel.Charge">
+            <summary>
+            缴费项
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.StudentID">
+            <summary>
+            学生Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.StudentName">
+            <summary>
+            学生姓名
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.IdentificationNumber">
+            <summary>
+            身份证号码
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.EnrollmentYear">
+            <summary>
+            入学年度
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.EnrollmentTerm">
+            <summary>
+            入学学期
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.DeptID">
+            <summary>
+            教学点Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.DeptName">
+            <summary>
+            教学点名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.ClassID">
+            <summary>
+            班级Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.ClassName">
+            <summary>
+            班级名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.MajorID">
+            <summary>
+            专业Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.MajorName">
+            <summary>
+            专业名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.EducationLevelID">
+            <summary>
+            专业层次Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.EducationLevelName">
+            <summary>
+            专业层次名称
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentModel.RegulationID">
+            <summary>
+            专业规则号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.EditStudentRequestBodyModel.Student">
+            <summary>
+            学生信息
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.PaymentRequestModel`1.Head">
+            <summary>
+            交易编码
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.PaymentRequestModel`1.Body">
+            <summary>
+            内容
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.PaymentResponseHead.Code">
+            <summary>
+            响应码
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.PaymentResponseHead.Message">
+            <summary>
+            响应消息
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.PaymentResponseModel.Head">
+            <summary>
+            响应信息
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeRequestBodyModel.ChargeYear">
+            <summary>
+            缴费年度
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeRequestBodyModel.ChargeTerm">
+            <summary>
+            缴费学期
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeRequestBodyModel.TxSN">
+            <summary>
+            缴费关系流水号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeRequestBodyModel.StudentID">
+            <summary>
+            学号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.ChargeYear">
+            <summary>
+            缴费年度
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.ChargeTerm">
+            <summary>
+            缴费学期
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.TxSN">
+            <summary>
+            缴费关系流水号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.StudentID">
+            <summary>
+            学生Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.ChargeItemNo">
+            <summary>
+            缴费项目编号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.Quantity">
+            <summary>
+            数量
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.DiscountQuantity">
+            <summary>
+            优惠数量
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.DiscountAmount">
+            <summary>
+            优惠金额
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.WithoutChargeFlag">
+            <summary>
+            全额优惠
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.Amount">
+            <summary>
+            支付金额（分）
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.Status">
+            <summary>
+            支付状态
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseBodyModel.BankNotificationTime">
+            <summary>
+            银行通知时间
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseModel.Head">
+            <summary>
+            响应信息
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.QueryChargeResponseModel.Body">
+            <summary>
+            正文
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.RemoveStudentModel.StudentID">
+            <summary>
+            学生Id
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.StudentSelectCourseModel.StudentID">
+            <summary>
+            学号
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.Models.StudentSelectCourseModel.Course">
+            <summary>
+            选课列表
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.OuchnGatewayConfig.KeyPath">
+            <summary>
+            证书存储路径
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.OuchnGatewayConfig.KeyPassword">
+            <summary>
+            证书密码
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.OuchnGatewayConfig.APIUrl">
+            <summary>
+            API地址
+            </summary>
+        </member>
+        <member name="P:BC.Payment.OuchnGateway.OuchnGatewayConfig.PaymentUrl">
+            <summary>
+            支付接口
+            </summary>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.GeneratePaymentUrl(System.String,System.String)">
+            <summary>
+            生成支付链接
+            </summary>
+            <param name="StudentId">学生Id</param>
+            <param name="IDNumber">身份证Id</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.AddStudent(BC.Payment.OuchnGateway.Models.AddStudentRequestBodyModel)">
+            <summary>
+            添加学生信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.EditStudent(BC.Payment.OuchnGateway.Models.EditStudentRequestBodyModel)">
+            <summary>
+            编辑学生信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.RemoveStudent(System.String)">
+            <summary>
+            编辑学生信息
+            </summary>
+            <param name="StudentId">要删除学生的学号</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.AddCourse(BC.Payment.OuchnGateway.Models.SetCourseRequestBodyModel)">
+            <summary>
+            添加课程信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.EditCourse(BC.Payment.OuchnGateway.Models.SetCourseRequestBodyModel)">
+            <summary>
+            编辑课程信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.RemoveCourse(BC.Payment.OuchnGateway.Models.RemoveCourseRequestBodyModel)">
+            <summary>
+            删除课程信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.AddSelectCourse(BC.Payment.OuchnGateway.Models.SetSelectCourseRequestBodyModel)">
+            <summary>
+            添加选课信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.EditSelectCourse(BC.Payment.OuchnGateway.Models.SetSelectCourseRequestBodyModel)">
+            <summary>
+            编辑选课信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.RemoveSelectCourse(BC.Payment.OuchnGateway.Models.RemoveStudentSelectCourseRequestBodyModel)">
+            <summary>
+            移除选课信息
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.CreateCharge(BC.Payment.OuchnGateway.Models.CreateChargeRequestBodyModel)">
+            <summary>
+            创建缴费订单
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.QueryCharge(BC.Payment.OuchnGateway.Models.QueryChargeRequestBodyModel)">
+            <summary>
+            查询缴费订单
+            </summary>
+            <param name="SendModel">要推送的数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Payment.OuchnGateway.OuchnGatewayService.PostRequest(System.String)">
+            <summary>
+            发送Post请求API
+            </summary>
+            <param name="Data"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

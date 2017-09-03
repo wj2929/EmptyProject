@@ -1,0 +1,10 @@
+ul.tree {
+  padding: 0;
+  margin: auto;
+}
+ul.tree li {
+  list-style: none;
+}
+ul.tree li .input-group {
+  margin-bottom: 8px;
+}

@@ -1,0 +1,246 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>BC.Web</name>
+    </assembly>
+    <members>
+        <member name="P:BC.Web.BaseEncryptServerHandler.CipherText">
+            <summary>
+            密文
+            </summary>
+        </member>
+        <member name="P:BC.Web.BaseEncryptServerHandler.PlainText">
+            <summary>
+            明文
+            </summary>
+        </member>
+        <member name="P:BC.Web.BaseEncryptServerHandler.Signature">
+            <summary>
+            签名
+            </summary>
+        </member>
+        <member name="P:BC.Web.BaseEncryptServerHandler.PrivateKey">
+            <summary>
+            私钥
+            </summary>
+        </member>
+        <member name="M:BC.Web.BaseEncryptServerHandler.Validate">
+            <summary>
+            验证
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Web.BaseServerHandler.#ctor">
+            <summary>
+            构造函数
+            </summary>
+        </member>
+        <member name="P:BC.Web.BaseServerHandler.Action">
+            <summary>
+            行为
+            </summary>
+        </member>
+        <member name="P:BC.Web.BaseServerHandler.InteractiveHelper">
+            <summary>
+            交互助手
+            </summary>
+        </member>
+        <member name="P:BC.Web.BaseServerHandler.Authorization">
+            <summary>
+            授权
+            </summary>
+        </member>
+        <member name="P:BC.Web.BaseServerHandler.HttpContext">
+            <summary>
+            上下文
+            </summary>
+        </member>
+        <member name="M:BC.Web.BaseServerHandler.ProcessRequest(System.Web.HttpContext)">
+            <summary>
+            入口
+            </summary>
+            <param name="context">上下文</param>
+        </member>
+        <member name="M:BC.Web.BaseServerHandler.Validate">
+            <summary>
+            验证
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Web.BaseServerHandler.Process">
+            <summary>
+            处理程序
+            </summary>
+        </member>
+        <member name="M:BC.Web.BaseServerHandler.Assigning">
+            <summary>
+            分配处理程序
+            </summary>
+        </member>
+        <member name="M:BC.Web.BaseServerHandler.Request(System.String)">
+            <summary>
+            访问Request
+            </summary>
+            <param name="Name">名称</param>
+            <returns>如果对象不存在返回String.Empty</returns>
+        </member>
+        <member name="M:BC.Web.BaseServerHandler.End">
+            <summary>
+            终止处理程序
+            </summary>
+        </member>
+        <member name="M:BC.Web.BaseServerHandler.SendBack(System.String)">
+            <summary>
+            发回处理结果并终止处理程序
+            </summary>
+            <param name="BackMessage">要发回的信息</param>
+        </member>
+        <member name="M:BC.Web.BaseServerHandler.SendJson(System.String)">
+            <summary>
+            发送JSON信息并终止处理程序
+            </summary>
+            <param name="JsonMessage"></param>
+        </member>
+        <member name="P:BC.Web.IAuthorization.IsAuthenticated">
+            <summary>
+            授权状态
+            </summary>
+        </member>
+        <member name="P:BC.Web.IAuthorization.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="P:BC.Web.Authorization.IsAuthenticated">
+            <summary>
+            授权状态
+            </summary>
+        </member>
+        <member name="P:BC.Web.Authorization.UserName">
+            <summary>
+            用户名
+            </summary>
+        </member>
+        <member name="M:BC.Web.IInteractiveHelper.Parameter(System.String)">
+            <summary>
+            参数
+            </summary>
+            <param name="Key"></param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Web.IInteractiveHelper.IP">
+            <summary>
+            IP
+            </summary>
+        </member>
+        <member name="M:BC.Web.IInteractiveHelper.Write(System.String)">
+            <summary>
+            写入
+            </summary>
+            <param name="Content"></param>
+        </member>
+        <member name="M:BC.Web.IInteractiveHelper.WriteJSON(System.String)">
+            <summary>
+            写入JSON
+            </summary>
+            <param name="JSONContent"></param>
+        </member>
+        <member name="M:BC.Web.IInteractiveHelper.End">
+            <summary>
+            终止
+            </summary>
+        </member>
+        <member name="P:BC.Web.IInteractiveHelper.Authorization">
+            <summary>
+            授权
+            </summary>
+        </member>
+        <member name="M:BC.Web.IInteractiveHelper.UrlDecode(System.String)">
+            <summary>
+            Url解码
+            </summary>
+            <param name="Content">要解码的内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Web.IInteractiveHelper.UrlEncode(System.String)">
+            <summary>
+            Url编码
+            </summary>
+            <param name="Content">要编码的内容</param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Web.InteractiveHelper.Current">
+            <summary>
+            当前实例
+            </summary>
+        </member>
+        <member name="M:BC.Web.InteractiveHelper.#ctor(System.Web.HttpContextBase)">
+            <summary>
+            构造函数
+            </summary>
+            <param name="context"></param>
+        </member>
+        <member name="M:BC.Web.InteractiveHelper.UrlDecode(System.String)">
+            <summary>
+            Url解码
+            </summary>
+            <param name="Content">要解码内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Web.InteractiveHelper.UrlEncode(System.String)">
+            <summary>
+            Url编码
+            </summary>
+            <param name="Content">要编码的内容</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Web.InteractiveHelper.Parameter(System.String)">
+            <summary>
+            参数
+            </summary>
+            <param name="Key"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Web.InteractiveHelper.Write(System.String)">
+            <summary>
+            写入
+            </summary>
+            <param name="Content"></param>
+        </member>
+        <member name="M:BC.Web.InteractiveHelper.WriteJSON(System.String)">
+            <summary>
+            写入JSON
+            </summary>
+            <param name="JSONContent"></param>
+        </member>
+        <member name="P:BC.Web.InteractiveHelper.IP">
+            <summary>
+            IP地址
+            </summary>
+        </member>
+        <member name="M:BC.Web.InteractiveHelper.End">
+            <summary>
+            终止
+            </summary>
+        </member>
+        <member name="P:BC.Web.InteractiveHelper.Authorization">
+            <summary>
+            授权
+            </summary>
+        </member>
+        <member name="M:BC.Web.InteractiveHelper.IsIp(System.String)">
+            <summary>
+            判断字符串是否为IP
+            </summary>
+            <param name="InputString">输入字符串</param>
+            <returns>返回是否为IP</returns>
+        </member>
+        <member name="M:BC.Web.Utility.EncodeUrl(System.String)">
+            <summary>
+            将一个Url地址编码
+            </summary>
+            <param name="url"></param>
+            <returns></returns>
+        </member>
+    </members>
+</doc>

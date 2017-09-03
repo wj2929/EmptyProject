@@ -26,6 +26,13 @@
             数据集
             </summary>
         </member>
+        <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.BulkInsert(System.Collections.Generic.IEnumerable{`0})">
+            <summary>
+            批量插入数据
+            此方法无法应用上下文
+            </summary>
+            <param name="Entitys">要插入数据的对象</param>
+        </member>
         <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Single(`1)">
             <summary>
             取得一条
@@ -136,6 +143,12 @@
         <member name="M:BC.DDD.EntityFramework.BaseDBContextRepository`2.Dispose">
             <summary>
             释放资源
+            </summary>
+        </member>
+        <member name="P:BC.DDD.EntityFramework.BCDBContext.SuppressAutoSetTenantId">
+            <summary>
+            是否支持自动设置租户Id
+            默认值：false
             </summary>
         </member>
         <member name="M:BC.DDD.EntityFramework.BCDBContext.#ctor(System.String)">

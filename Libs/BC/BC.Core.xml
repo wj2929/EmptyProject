@@ -4,6 +4,55 @@
         <name>BC.Core</name>
     </assembly>
     <members>
+        <member name="F:BC.Core.BaseStateCode.StateCode_SUCCESS">
+            <summary>
+            成功
+            </summary>
+        </member>
+        <member name="F:BC.Core.BaseStateCode.StateCode_ERROR">
+            <summary>
+            失败（因未知原因）
+            </summary>
+        </member>
+        <member name="F:BC.Core.BaseStateCode.StateCode_1002">
+            <summary>
+            一般系统保护性错误
+            </summary>
+        </member>
+        <member name="F:BC.Core.BaseStateCode.StateCode_1004">
+            <summary>
+            对象为空
+            </summary>
+        </member>
+        <member name="F:BC.Core.BaseStateCode.StateCode_1008">
+            <summary>
+            数据格式不正确
+            </summary>
+        </member>
+        <member name="F:BC.Core.BaseStateCode.StateCode_2001">
+            <summary>
+            服务器端模型验证失败
+            调用RESTAPI时模型验证失败时返回
+            </summary>
+        </member>
+        <member name="F:BC.Core.BaseStateCode.StateCode_2002">
+            <summary>
+            要修改的信息不存在
+            调用Put方法更新信息时被更新的信息不存在
+            </summary>
+        </member>
+        <member name="F:BC.Core.BaseStateCode.StateCode_2003">
+            <summary>
+            信息删除失败
+            调用Delete方法删除信息出现错误时
+            </summary>
+        </member>
+        <member name="F:BC.Core.BaseStateCode.StateCode_2004">
+            <summary>
+            信息未添加，该信息已存在。
+            RESTAPI 的Post操作时返回
+            </summary>
+        </member>
         <member name="P:BC.Core.LocalConfigurationAccessHelper`1.ConfigPath">
             <summary>
             配置文件路径
@@ -409,6 +458,79 @@
             </summary>
             <param name="FilePath">文件路径</param>
             <returns></returns>
+        </member>
+        <member name="M:BC.Core.APIReturnInfo`1.Success(`0)">
+            <summary>
+            成功信息并返回相关对象
+            </summary>
+            <param name="Data"></param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.APIReturnInfo`1.Success">
+            <summary>
+            成功信息（默认信息）
+            </summary>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.APIReturnInfo`1.Success(System.String,System.Object[])">
+            <summary>
+            成功信息
+            </summary>
+            <param name="Message">成功信息</param>
+            <param name="args">信息中的参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.APIReturnInfo`1.Success(System.String)">
+            <summary>
+            成功信息
+            </summary>
+            <param name="Message">成功信息</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.APIReturnInfo`1.Error(System.String,System.Int32,System.Object[])">
+            <summary>
+            错误信息
+            </summary>
+            <param name="Message">错误信息</param>
+            <param name="StateCode">错误代码</param>
+            <param name="args">信息参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.APIReturnInfo`1.Error(System.String,System.Object[])">
+            <summary>
+            错误信息
+            </summary>
+            <param name="Message">错误信息</param>
+            <param name="args">信息参数</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.APIReturnInfo`1.Error(System.String,System.Int32)">
+            <summary>
+            错误信息
+            </summary>
+            <param name="Message">错误信息</param>
+            <param name="StateCode">错误代码</param>
+            <returns></returns>
+        </member>
+        <member name="P:BC.Core.APIReturnInfo`1.StateCode">
+            <summary>
+            状态代码
+            </summary>
+        </member>
+        <member name="P:BC.Core.APIReturnInfo`1.State">
+            <summary>
+            状态
+            </summary>
+        </member>
+        <member name="P:BC.Core.APIReturnInfo`1.Message">
+            <summary>
+            验证返回的信息
+            </summary>
+        </member>
+        <member name="P:BC.Core.APIReturnInfo`1.Data">
+            <summary>
+            相关对象
+            </summary>
         </member>
         <member name="M:BC.Core.BaseReturnInfo.Success(System.String,System.Object[])">
             <summary>
@@ -1612,6 +1734,36 @@
             <param name="FullPath"></param>
             <returns></returns>
         </member>
+        <member name="T:BC.Core.XmlHelper">
+            <summary>
+            XML助手
+            </summary>
+        </member>
+        <member name="M:BC.Core.XmlHelper.ToXML``1(``0,System.Text.Encoding)">
+            <summary>
+            将对象序列化为XML文本
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="data">对象数据</param>
+            <param name="encding">序列化后的编码</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.XmlHelper.ToXML``1(``0)">
+            <summary>
+            将对象序列化为XML文本（UTF8）
+            </summary>
+            <typeparam name="T">对象类型</typeparam>
+            <param name="data">对象数据</param>
+            <returns></returns>
+        </member>
+        <member name="M:BC.Core.XmlHelper.FromXML``1(System.String)">
+            <summary>
+            从XML文本中反序列化
+            </summary>
+            <typeparam name="T"></typeparam>
+            <param name="xml"></param>
+            <returns></returns>
+        </member>
         <member name="M:System.StringExtensions.SearchGuidList(System.Collections.Generic.IList{System.Guid},System.String)">
             <summary>
             搜索Guid列表
@@ -1814,12 +1966,13 @@
             密钥生命周期
             </summary>
         </member>
-        <member name="M:System.Security.Cryptography.SignatureHelper.SHA1(System.String,System.String)">
+        <member name="M:System.Security.Cryptography.SignatureHelper.SHA1(System.String,System.String,System.Boolean)">
             <summary>
             SHA1签名
             </summary>
             <param name="InputStr">待签名的字符串</param>
             <param name="CustomNoise">自定义签名混淆码，为空则使用公共混淆吗</param>
+            <param name="AllowNoise">是否使用混淆码</param>
             <returns></returns>
         </member>
         <member name="M:System.Security.Cryptography.SignatureHelper.SHA1Verify(System.String,System.String,System.String)">
@@ -1832,6 +1985,22 @@
             <returns>
             签名和明文任意一项为空时返回false，否则返回对比结果。
             </returns>
+        </member>
+        <member name="M:System.Security.Cryptography.SignatureHelper.SHA1WithRSA(System.String,System.String,System.String)">
+            <summary>
+            基于RSA密钥的SHA1签名
+            </summary>
+            <param name="InputStr"></param>
+            <param name="PublicKeyPath"></param>
+            <param name="PublicKeyPassword"></param>
+            <returns></returns>
+        </member>
+        <member name="M:System.Security.Cryptography.SignatureHelper.bytesToHexStr(System.Byte[])">
+            <summary>
+            将签名结果转化为16进制字符串
+            </summary>
+            <param name="bcd">签名结果的byte数字</param>
+            <returns>16进制字符串</returns>
         </member>
         <member name="M:System.Validation.IsEmpty(System.String)">
             <summary>
