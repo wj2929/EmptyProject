@@ -1,0 +1,49 @@
+﻿
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+{
+  "components": [
+    {
+      "type": "BC.DDD.EntityFramework.UnitOfWork,BC.DDD.EntityFramework",
+      "services": [ { "type": "BC.DDD.IUnitOfWork,BC.DDD" } ],
+      "instanceScope": "instanceperlifetimescope"
+    },
+    {
+      "type": "EmptyProject.Store.Models.DatabaseFactory,EmptyProject.Store",
+      "services": [ { "type": "BC.DDD.EntityFramework.IDbContextFactory,BC.DDD.EntityFramework" } ],
+      "instanceScope": "instanceperlifetimescope"
+    },
+    {
+      "type": "BC.AutoMapper.AutoMapperObjectMapper,BC.AutoMapper",
+      "services": [ { "type": "BC.DDD.ObjectMapper.IObjectMapper,BC.DDD" } ],
+      "instanceScope": "instanceperlifetimescope"
+    },
+	{ "type": "EmptyProject.HangfireService.Schedule.TestEndProcessingRecurringJob, EmptyProject.HangfireService.Schedule" },
+	{ "type": "EmptyProject.HangfireService.Schedule.TestStartProcessingRecurringJob, EmptyProject.HangfireService.Schedule" },
+	//Store 开始
+
+    { "type": "EmptyProject.Store.TestStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.ITestStore,EmptyProject.Store.Interface" } ] },
+
+	//Store 结束
+	//Service 开始
+
+    { "type": "EmptyProject.DomainService.TestDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.ITestDomainService,EmptyProject.DomainService.Interface" } ] },
+
+	//Service 结束
+	]
+}

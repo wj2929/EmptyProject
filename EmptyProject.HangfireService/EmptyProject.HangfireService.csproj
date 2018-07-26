@@ -298,6 +298,11 @@
       <Generator>TextTemplatingFileGenerator</Generator>
       <LastGenOutput>Autofac.json</LastGenOutput>
     </Content>
+    <None Include="T4\Autofac.json">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>Autofac.tt</DependentUpon>
+    </None>
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />

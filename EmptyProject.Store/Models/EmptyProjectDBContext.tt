@@ -1,11 +1,11 @@
 ﻿<#@ template debug="false" hostspecific="false" language="C#" #>
 <#@ include file="$(SolutionDir)libs\T4\Reference.ttinclude"  #>
 <#@ output extension=".txt" #>
-<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EntityFramework.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Service\bin\EntityFramework.dll" #>
 <#@ assembly name="$(SolutionDir)Libs\BC\BC.DDD.dll" #>
 <#@ assembly name="$(SolutionDir)Libs\BC\BC.Core.dll" #>
-<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Store.dll" #>
-<#@ assembly name="$(SolutionDir)EmptyProject.Web\bin\EmptyProject.Domain.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Service\bin\EmptyProject.Store.dll" #>
+<#@ assembly name="$(SolutionDir)EmptyProject.Service\bin\EmptyProject.Domain.dll" #>
 <#@ import namespace="EmptyProject.Store.Models" #>
 <#@ import namespace="EmptyProject.Domain" #>
 <#var list=System.Reflection.Assembly.LoadFrom(((typeof(EmptyProject.Domain.Test)).Assembly).CodeBase).GetTypes().Where(t => typeof(BC.DDD.Domain.IDomain).IsAssignableFrom(t)).Select(t=>new KeyValuePair<string,string>(t.Name,t.GetInterface("IEntity`1").GenericTypeArguments[0].Name)).ToList().ToList();#>
