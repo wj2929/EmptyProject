@@ -1,0 +1,45 @@
+﻿@model BC.Core.ReturnPaging<EmptyProject.Domain.DataInfo>
+@{
+    Layout = null;
+}
+<table class="module_table">
+    <thead>
+        <tr>
+            <th class="left" width="15%">姓名</th>
+            <th class="left" width="15%">性别</th>
+            <th class="left" width="8%">手机</th>
+            <th width="8%">报名项目</th>
+            <th width="8%">联系地址</th>
+            <th width="8%">邮箱</th>
+            <th width="15%">单位/职务</th>
+            <th width="15%">住宿</th>
+            <th nowrap style="width:15%">管理</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.PageListInfos.Count > 0)
+        {
+            foreach (var Item in Model.PageListInfos)
+            {
+                <tr id="@Item.Id">
+                    <td>@Item.GetExtendedAttributeValue("XM")</td>
+                    <td>@Item.GetExtendedAttributeValue("XB")</td>
+                    <td>@Item.GetExtendedAttributeValue("SJ")</td>
+                    <td>@Item.GetExtendedAttributeValue("BMXM")</td>
+                    <td>@Item.GetExtendedAttributeValue("LXDZ")</td>
+                    <td>@Item.GetExtendedAttributeValue("YX")</td>
+                    <td>@Item.GetExtendedAttributeValue("DWZW")</td>
+                    <td>@Item.GetExtendedAttributeValue("ZS")</td>
+                    <td><a href="javascript:" title="删除" class="Remove del">删除</a></td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th colspan=9>暂无记录！</th>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Partial("_Paging", Model.Module_Page)

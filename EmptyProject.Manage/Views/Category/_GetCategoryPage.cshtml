@@ -1,0 +1,118 @@
+﻿@model System.String
+@{
+    Layout = null;
+    string CategoryTypeKey = Model;
+}
+<script language=javascript>
+    var parentNodeId = "root";
+    $(function () {
+        LoadCategoryList();
+
+        $("#tree").dynatree({
+            autoFocus: false,
+            initAjax: {
+                url: "@Url.Action("GetCategoryData",new {CategoryTypeKey=CategoryTypeKey})"
+            },
+            onActivate: function (node) {
+                parentNodeId = node.data.key;
+                LoadCategoryList();
+            },
+            onDeactivate: function (node) {
+            },
+			onLazyRead: function(node){
+				node.appendAjax({
+					url: "@Url.Action("GetCategoryData",new {CategoryTypeKey=CategoryTypeKey})" + "&ParentId=" + node.data.key,
+					// We don't want the next line in production code:
+					debugLazyDelay: 750
+				});
+			}
+        });
+
+        $("#Category .addCategory").click(function(){
+            if($("#CategoryType>.curr").length > 0){
+                webLay("新建" + $("#CategoryType>.curr").find("span a").html() + "分类", '@Url.Action(CategoryTypeKey + "CategoryCreate")' + "?ParentId=" + (parentNodeId == "root" ? "" : parentNodeId), "600");
+            }else{
+                msgLay("错误信息", "请先选择分类类型");
+            }
+            return false;
+        });
+
+        
+        $("#Category .module_control .left .btn_delete").click(function(){
+            var Ids = GetAllChecked("Category");
+            if (Ids != "") {
+                yonLay("批量删除", "确认删除吗？", function (flag) {
+                    if (flag) {
+                        addDo("正在处理，请稍后……");
+                        $.post('@Url.Action("DeleteCategorys")', { Ids: Ids }, function (data) {
+                            ReLoad("Category");
+                        });
+                    }
+                });
+            }else{
+                msgLay("错误信息", "请选择至少一项分类记录");
+            }
+            return false;    
+        });
+    });
+
+    function EditCategory(Id){
+        webLay("编辑" + $("#CategoryType>.curr").find("span a").html() + "分类", '@Url.Action(CategoryTypeKey + "CategoryEdit")' + "?Id=" + Id, "600");
+    }
+
+    function DeleteCategory(Id){
+        yonLay("删除", "确认删除吗？", function (flag) {
+            if (flag) {
+                addDo("正在处理，请稍后……");
+                $.post('@Url.Action("DeleteCategory")', { Id: Id }, function (data) {
+                    RefreshCategory();
+                });
+            }
+        });
+    }
+
+    function RefreshCategory(){
+        var node = $("#tree").dynatree("getActiveNode");
+		if( node && node.isLazy() ){
+			node.reloadChildren(function(node, isOk){
+            LoadCategoryList();
+			});
+		}else{
+            LoadCategoryPage("@CategoryTypeKey");
+        }
+    }
+
+    function LoadCategoryList(){
+        $("#Category tbody").showSmallLoading();
+        $.post('@Url.Action("GetCategoryList",new {CategoryTypeKey=CategoryTypeKey})',{ParentId:parentNodeId == "root" ? "" : parentNodeId},function(data){
+            $("#Category tbody").html(data);
+        });
+    }
+</script>
+<div>
+<div id="tree" style="float:left;width:30%"></div>
+<div style="float:right;width:69%">
+    <div class="module_control">
+        <ul class="left">
+            <li><a class="btn_warning btn_delete" title="批量删除" href="javascript:">批量删除</a></li>
+        </ul>        
+        <ul class="right">
+            <li><a class="btn_set btn_add addCategory" title="新建分类" target="_blank" href="#">新建分类</a></li>
+        </ul>
+    </div>
+    <div class="module_content">
+        <table class="module_table">
+            <thead>
+                <tr>
+                <th width="10%"><input type="checkbox" onclick="SelectAllCheckBox('ckAll','module_table');" name="ckAll" class="form_checkbox" id="ckAll"></th>
+                <th class="text_left" nowrap style="width:120px">名称</th>
+                <th width="40px">排序</th>
+                <th >扩展信息</th>
+                <th width="20%">管理</th>
+                </tr>
+            </thead>
+            <tbody id="asyncZone"></tbody>
+        </table>
+    </div>
+</div>
+</div>

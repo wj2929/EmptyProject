@@ -1,0 +1,8 @@
+﻿@{
+    ViewBag.Title = "ShowMsg";
+    Layout = null;
+}
+<script type="text/javascript">
+    window.top.msgLay("提示", "@Html.Raw(ViewBag.Message)");
+    setTimeout("window.top.closeLay(1)", 100);
+</script>

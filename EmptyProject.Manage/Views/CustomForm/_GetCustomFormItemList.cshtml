@@ -1,0 +1,51 @@
+﻿@model IList<EmptyProject.Domain.CustomFormItem>
+@{
+    Layout = null;
+}
+<table class="module_table">
+    <thead>
+        <tr>
+            <th class="left" width="15%">名称</th>
+            <th class="left" width="15%">Key</th>
+            <th class="left" width="8%">类型</th>
+            <th width="8%">是否多选</th>
+            <th width="8%">启用</th>
+            @*<th width="8%">排序</th>*@
+            <th width="8%">必填</th>
+            <th width="15%">操作</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            foreach (var Item in Model)
+            {
+        <tr id="@Item.Id">
+            <td>@Item.Name</td>
+            <td>@Item.Key</td>
+            <td>@Item.FormItemType.ToString()</td>
+            <td align="center">
+                @if(Item.FormItemType == EmptyProject.Domain.FormItemType.列表框){ 
+                    @Html.TrueOrFalseImage(Item.MoreSelect)
+                }
+                else
+                {
+                    <span>--</span>
+                }
+            </td>
+            <td align="center">@Html.TrueOrFalseImage(Item.Enabled)</td>
+            <td align="center">@Html.TrueOrFalseImage(Item.ValidationConfig.IsMust)</td>
+            <td nowrap class="link">
+                <a href="javascript:" class="Remove">删除</a>| <a href="javascript:" class="EditOn">编辑</a>
+            </td>
+        </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th colspan=7>暂无自定义表单！</th>
+            </tr>
+        }
+    </tbody>
+</table>

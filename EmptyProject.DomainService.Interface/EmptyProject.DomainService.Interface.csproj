@@ -48,6 +48,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAttachmentDomainService.cs" />
+    <Compile Include="ICategoryDomainService.cs" />
+    <Compile Include="ICategoryTypeDomainService.cs" />
+    <Compile Include="ICustomFormDomainService.cs" />
+    <Compile Include="ICustomFormItemDomainService.cs" />
+    <Compile Include="IDataInfoDomainService.cs" />
     <Compile Include="ITestDomainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

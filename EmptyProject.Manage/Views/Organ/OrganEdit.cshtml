@@ -1,0 +1,166 @@
+﻿@model EmptyProject.Manage.Models.EditOrganModel
+
+@{
+    ViewBag.Title = "CustomFormCreate";
+    Layout = "~/Views/Shared/PopupForm.cshtml";
+}
+<script src="@Url.Content("~/Scripts/xheditor/xheditor-1.1.13-zh-cn.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ValidateExpand.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ajaxfileupload.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/css/jquery.autocomplete.css")" />
+<script src="@Url.Content("~/Scripts/jquery.livequery.js")" type="text/javascript"></script>
+<style> 
+ul.module_form li dl.LogoList dd{width:90px;height:120px;float:left; display:inline;padding:1px;margin: 5px;position:relative;background-color:#FFFFFF;}
+ul.module_form li dl.LogoList dd span,ul.module_form li dl.LogoList dd em{display:none}
+ul.module_form li dl.LogoList dd.curr,ul.module_form li dl.LogoList dd:hover {margin:3px;border:2px solid #FF8000;}
+ul.module_form li dl.LogoList dd.curr span{display:block;width:15px;height:15px;background:url("/images/right.gif") no-repeat;position:absolute;right:1px;bottom:1px;}
+ul.module_form li dl.LogoList dd:hover em{display:block;width:15px;height:15px;background:url("/images/delete.gif") no-repeat;position:absolute;left:1px;bottom:1px;}
+ul.module_form li dl.LogoList dd .pic{height: 120px;width: 90px;cursor:pointer}
+ul.module_form li dl.LogoList label{ text-align: left;width:auto;padding: 0px;}
+
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    @Html.HiddenFor(model => model.EditId)
+    <div id="layOver" class="module_layover">
+        <div class="module-c">
+            <ul class="module_form">
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.Name)
+                        @Html.TextBoxFor(model => model.Name, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.Name)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.Logo)
+                        @Html.EditorFor(model => model.Logo, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.Logo)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.LinkMan)
+                        @Html.TextBoxFor(model => model.LinkMan, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.LinkMan)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.Phone)
+                        @Html.TextBoxFor(model => model.Phone, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.Phone)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.Address)
+                        @Html.TextBoxFor(model => model.Address, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.Address)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.Email)
+                        @Html.TextBoxFor(model => model.Email, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.Email)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.HeadPicUrl)
+                        @Html.TextBoxFor(model => model.HeadPicUrl, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.HeadPicUrl)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.QRCodeUrl)
+                        @Html.TextBoxFor(model => model.QRCodeUrl, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.QRCodeUrl)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.WebPageUrl)
+                        @Html.TextBoxFor(model => model.WebPageUrl, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.WebPageUrl)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.Other)
+                        @Html.TextBoxFor(model => model.Other, new { @class = "form_text" })
+                    </span>@Html.ValidationMessageFor(model => model.Other)
+                </li>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.CustomFormKeycode)
+                        @Html.EditorFor(model => model.CustomFormKeycode)
+                    </span>@Html.ValidationMessageFor(model => model.CustomFormKeycode)
+                </li>
+                <div id="DivExtendedAttributeList"></div>
+                <li>
+                    <span class="f_con">
+                        @Html.LabelFor(model => model.Description)
+                        @Html.TextAreaFor(model => model.Description, new { rows = "20", cols = "80", style = "width: 600px" })
+                    </span>@Html.ValidationMessageFor(model => model.Description)
+                </li>
+
+            </ul>
+        </div>
+        <div class="module-f"><input type="submit" value='提交' class='form_button button_add' /></div>
+    </div>
+}
+<script language=javascript>
+    $("#Description").xheditor(true, {
+        tools: "simple"
+    });
+    $(function () {
+        CustomFormKeycodeChange($("#CustomFormKeycode").val());
+
+        $("#CustomFormKeycode").change(function () {
+            CustomFormKeycodeChange($(this).val());
+        });
+
+        $(".BgPictureList dd").live("click", function () {
+            if ($(".BgPictureList .curr").attr("id") != $(this).attr("id")) {
+                //取消之前设置的默认附件
+                $.post('@Url.Action("CancelDefault","Attachment")', { Id: $(".BgPictureList .curr").attr("id") }, function () { });
+                $(".BgPictureList dd").removeClass("curr");
+                $(this).addClass("curr");
+                //设置新默认附件
+                $.post('@Url.Action("SetDefault","Attachment")', { Id: $(this).attr("id") }, function () { });
+            }
+        });
+
+        $(".BgPictureList dd em").live("click", function () {
+            var Id = $(this).parent().attr("id");
+            var _this = $(this);
+            yonLay("删除", "确认删除吗？", function (flag) {
+                if (flag) {
+                    addDo("正在处理，请稍后……");
+                    $.post('@Url.Action("DeleteAttachment", "Attachment")', { Id: Id }, function (data) {
+                        _this.parent().remove();
+                        if ($(".BgPictureList dd").length != 0 && $(".BgPictureList .curr").length == 0) {
+                            //自动设置第一项为默认附件
+                            $(".BgPictureList dd").eq(0).addClass("curr");
+                            $.post('@Url.Action("SetDefault","Attachment")', { Id: $(".BgPictureList dd").eq(0).attr("id") }, function () { });
+                        }
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+    function formatItem(row) {
+        return row[1];//row[0] + " (<strong>id: " + row[1] + "</strong>)";
+    }
+    function formatResult(row) {
+        return row[0].replace(/(<.+?>)/gi, '');
+    }
+
+    function CustomFormKeycodeChange(CustomFormKeycode) {
+        if (CustomFormKeycode != "") {
+            $.post('@Url.Action("GetExtendedAttributes")', { Id: '@Model.EditId', CustomFormKeycode: CustomFormKeycode }, function (data) {
+                $("#DivExtendedAttributeList").html(data);
+            });
+        }
+    }
+</script>

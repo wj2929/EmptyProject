@@ -1,0 +1,10 @@
+﻿@model IList<EmptyProject.Domain.CustomForm>
+@{
+    Layout = null;
+}
+@foreach (var item in Model.OrderBy(g => g.CreateDate).ToList())
+{
+    <li id="@item.Id" class="ContentItem">
+        <span><a href="javascript:" title="@item.Key">@item.Name</a></span>
+    </li>
+}

@@ -1,0 +1,8 @@
+﻿/*#errorA {width:300px;height:170px;line-height:230%;font-size:14px;position:absolute;top:50%;left:50%;margin:-140px auto auto -265px;background:url(../images/error/bg_error_page.jpg) no-repeat;padding:110px 0 0 230px;}*/
+#errorA {width:300px;height:170px;line-height:230%;font-size:14px;background:url(../images/error/bg_error_page.jpg) no-repeat;padding:110px 0 0 230px;}
+#errorA h1,#errorB h1 {display:none;}
+#errorA h5 {font-size:14px;}
+#errorA p em {font-style:normal;color:#FF6600;margin:0 5px;}
+#errorA p a {margin:0 5px;}
+#errorB {padding:20px;}
+#errorB p {width:160px;height:30px;line-height:30px;background:url(../images/error/bg_error_page.gif) no-repeat;padding-left:40px;font-size:12px;}

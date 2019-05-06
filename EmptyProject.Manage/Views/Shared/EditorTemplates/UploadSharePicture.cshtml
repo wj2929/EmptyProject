@@ -1,0 +1,37 @@
+﻿@model string
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Domain;
+@using EmptyProject.Manage.Code;
+<input type="file" id="UploadSharePicture" name="UploadSharePicture" onkeydown="event.returnValue = false;" onchange="    javascript: return ajaxFileUploadSharePicture(1);" />
+<dl class="SharePictureList" style="width:650px">
+    <input type="hidden" name="SharePicture" id="SharePicture" value="@Model" />
+    @if (!string.IsNullOrEmpty(Model))
+    {
+        <dd class="curr"><img class="pic" src="@Model" /></dd>
+    }
+</dl>
+<script language=javascript>
+    //ajax上传附件
+    function ajaxFileUploadSharePicture(btnid) {
+        $("#loading").ajaxStart(function () {
+            $(this).show();
+        }).ajaxComplete(function () {
+            $(this).hide();
+        });
+        $.ajaxFileUpload
+		(
+			{
+			    url: '/Upload_Ajax.aspx',
+			    secureuri: false,
+			    fileElementId: 'UploadSharePicture',
+			    attachmentType: "UploadPic",
+			    dataType: 'json',
+			    success: function (data, status) {
+			        if (data.error == "") {
+			            $(".SharePictureList").html("").append('<input type="hidden" name="SharePicture" id="SharePicture" value="' + data.msg.Url + '" /><dd><img class="pic" src="' + data.msg.Url + '" /></dd> ')
+                    }
+			    }
+			}
+		)
+        }
+</script>

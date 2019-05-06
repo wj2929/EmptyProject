@@ -1,0 +1,14 @@
+﻿@model List<Guid>
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Manage.Code;
+@using EmptyProject.Manage.Models;
+@{
+    ICategoryService CategoryService = GlobalController.IoC.Resolve<EmptyProject.DomainService.Interface.ICategoryService>();
+    var MainProvinceCityCategorySelectList = CategoryService.GetRootCategorys("ProvinceCity").Select(c => new SelectListItem
+        {
+            Value = c.Id.ToString(),
+            Text = c.Name,
+            Selected = Model.Contains(c.Id)
+        }).ToList();
+}
+@Html.DropDownListFor(model => model, MainProvinceCityCategorySelectList, new { multiple = "multiple" })

@@ -1,0 +1,13 @@
+﻿@model EmptyProject.Manage.Models.ManageMenuModel
+<li>
+    <a target="centerFrame" href="@Model.Url">@Model.Title</a>
+    @if (Model.SubMenus.Count > 0)
+    {
+    <ul class='menu-c'>
+        @foreach (var item in Model.SubMenus)
+        {
+            @Html.Partial("_SubMenu", item)
+        }
+    </ul>
+    }
+</li>

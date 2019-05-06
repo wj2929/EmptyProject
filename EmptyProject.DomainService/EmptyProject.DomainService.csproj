@@ -64,6 +64,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AttachmentDomainService.cs" />
+    <Compile Include="CategoryDomainService.cs" />
+    <Compile Include="CategoryTypeDomainService.cs" />
+    <Compile Include="CustomFormDomainService.cs" />
+    <Compile Include="CustomFormItemDomainService.cs" />
+    <Compile Include="DataInfoDomainService.cs" />
     <Compile Include="EFExtends\IOrderByExpression.cs" />
     <Compile Include="EFExtends\OrderByExpression.cs" />
     <Compile Include="EFExtends\QueryableExtends.cs" />

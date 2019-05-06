@@ -1,0 +1,10 @@
+﻿@model BC.Core.Module_Page
+<div class="page_num_mini">
+    <ul class="link">
+        <li class="first"><a href='javascript:GoPage(1);' title="第一页">第一页</a></li>
+        <li class="prev"><a href='javascript:GoPage(@Model.PrevPageNum);' title="上一页">上一页</a></li>
+        <li class="next"><a href='javascript:GoPage(@Model.NextPageNum);' title="下一页">下一页</a></li>
+        <li class="last"><a href='javascript:GoPage(@Model.PageCount);' title="最后一页">最后一页</a></li>
+    </ul>
+    <em class="info"><span class="kw">@Model.AllCount</span>条数据，共<span class="kw">@Model.PageCount</span>页，当前第<span class="kw">@Model.PageNum</span>页</em>
+</div>

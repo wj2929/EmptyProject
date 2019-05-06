@@ -1,0 +1,70 @@
+﻿@model Guid
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Domain;
+@using EmptyProject.Manage.Code;
+@{
+    IAttachmentDomainService AttachmentService = GlobalController.IoC.Resolve<IAttachmentDomainService>();
+    Attachment Info = AttachmentService.Single(Model);
+ }
+
+<input type="file" id="fileToUploadVideo" name="fileToUploadVideo" onkeydown="event.returnValue=false;" onchange="javascript:return ajaxFileUploadVideo(1);"/>
+<dl class="PicListVideo" style="width:650px">
+@if (Info!=null)
+{
+    <dd class="curr" id="@Info.Id">
+        <th>视频课程</th>
+            <object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="300" height="300">
+
+            <param name="movie" value="/upfile/player.swf?file=@Info.Url">
+            <param name="quality" value="high">
+            <param name="allowFullScreen" value="true" />
+            <embed src="/upfile/player.swf?file=@Info.Url" allowFullScreen="true" quality="high" width="300" height="300"></embed>
+            </object>
+        <input type="hidden" name="VideoId" value="@Info.Id" />
+    </dd>
+    <dd><th>视频地址</th>@Info.Url</dd>
+}
+    
+</dl>
+<script language=javascript>
+    //ajax上传附件
+    function ajaxFileUploadVideo(btnid) {
+        $("#loading").ajaxStart(function () {
+            $(this).show();
+        }).ajaxComplete(function () {
+            $(this).hide();
+        });
+        $.ajaxFileUpload
+		(
+			{
+			    url: '/Upload_Ajax.aspx',
+			    secureuri: false,
+			    fileElementId: 'fileToUploadVideo',
+                attachmentType:"AttachmentVideo",
+			    dataType: 'json',
+			    success: function (data, status) {
+			        if (data.error == "") {
+			            $(".PicListVideo").html('<dd id="' + data.msg.Id + '">' +
+                            '<th>显示试听</th>' +
+                            '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="300" height="300">' +
+                            '<param name="movie" value="/upfile/player.swf?file="' + data.msg.Url + '">' +
+                            '<param name="quality" value="high">' +
+                            '<param name="allowFullScreen" value="true" />' +
+                            '<embed src="/upfile/player.swf?file="' + data.msg.Url + '" allowFullScreen="true" quality="high" width="300" height="300"></embed>' +
+                            '</object>' +
+                            '<input type="hidden" name="VideoId" value="' + data.msg.Id + '" />' +
+                            '</dd>' +
+                            '<dd><th>视频地址</th>' + data.msg.Url + '</dd>')
+
+			            if ($(".PicListVideo dd").length == 1) {
+			                //当前如仅有一个附件上传，设置为默认附件
+			                $.post('@Url.Action("SetDefault","Attachment")', { Id: data.msg.Id }, function () {
+			                    $(".PicListVideo dd").addClass("curr");
+			                });
+			            }
+			        }
+			    }
+			}
+		)
+    }
+</script>

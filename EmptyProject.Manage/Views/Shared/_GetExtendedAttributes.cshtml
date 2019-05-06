@@ -1,0 +1,73 @@
+﻿@model IList<EmptyProject.Manage.Models.ExtendedAttributeModel>
+@{    
+    System.Text.StringBuilder sb = new System.Text.StringBuilder();
+    }
+@foreach (var Item in Model)
+{
+    Dictionary<string, string> Rules = new Dictionary<string, string>();
+    Dictionary<string, string> Messages = new Dictionary<string, string>();
+    
+    string Name = "DicExtendedAttributes_" + Item.CustomFormItem.Key.Trim();
+    string ClassName = "";
+    
+    if (Item.CustomFormItem.ValidationConfig.IsMust)
+    {
+        Rules.Add("required", "true");
+        Messages.Add("required", string.Format("必须填写{0}", Item.CustomFormItem.Name));
+        //ClassName += "{required:true,messages:{required:'必须填写" + Item.Name + "'}}";
+    }
+    if (Item.CustomFormItem.ValidationConfig.AllowExtensionValidation)
+    {
+        Rules.Add("regularexpression", HttpUtility.UrlEncode(Item.CustomFormItem.ValidationConfig.RegularExpressionValidator));
+        Messages.Add("regularexpression", Item.CustomFormItem.ValidationConfig.ErrorMessage);
+        //ClassName += " {regularexpression:'" + Item.CustomFormItem.ValidationConfig_RegularExpressionValidator + "',messages:{regularexpression:'" + Item.CustomFormItem.ValidationConfig_ErrorMessage + "'}}";
+    }
+    if (Rules.Count > 0)
+    {
+        ClassName += " {";
+        foreach (var RuleItem in Rules)
+        {
+            ClassName += string.Format("{0}:{1},", RuleItem.Key, RuleItem.Key == "required" ? RuleItem.Value : string.Format("'{0}'", RuleItem.Value));
+        }
+        ClassName += "messages:{";
+        foreach (var MessageItem in Messages)
+        {
+            ClassName += string.Format("{0}:'{1}',", MessageItem.Key, MessageItem.Value);
+        }
+        ClassName = ClassName.TrimEnd(',');
+        ClassName += "}}";
+    }
+    <li class="ExtendedAttribute">
+        <span class="f_con">@Html.Label(Name, Item.CustomFormItem.Name) 
+        @if (Item.CustomFormItem.FormItemType == EmptyProject.Domain.FormItemType.单行文本框)
+        {
+            ClassName += " form_text";
+            @Html.TextBox(Name, string.IsNullOrEmpty(Item.ExtendedAttribute.Value) ? Item.CustomFormItem.OptionText : Item.ExtendedAttribute.Value, new { @class = @ClassName })
+        }
+        else if (Item.CustomFormItem.FormItemType == EmptyProject.Domain.FormItemType.多行文本框)
+        {
+            ClassName += " form_textarea";
+            @Html.TextArea(Name, string.IsNullOrEmpty(Item.ExtendedAttribute.Value) ? Item.CustomFormItem.OptionText : Item.ExtendedAttribute.Value, new { @class = @ClassName, rows = "6", cols = "80" })
+        }
+        else if (Item.CustomFormItem.FormItemType == EmptyProject.Domain.FormItemType.列表框)
+        {
+            ClassName += " ";
+            IList<SelectListItem> SelectListItems = (Item.CustomFormItem.OptionText ?? string.Empty).Split(',').Select(o => new SelectListItem 
+            {
+                Text = o,
+                Value = o,
+                Selected = o == Item.ExtendedAttribute.Value 
+            }).ToList();
+            if (Item.CustomFormItem.MoreSelect)
+            {
+            @Html.DropDownList(Name, SelectListItems, new { @class = @ClassName, multiple = "multiple" })
+            }
+            else 
+            { 
+            @Html.DropDownList(Name, SelectListItems, new { @class = @ClassName })
+            }
+        }
+        </span>
+        <span data-valmsg-replace="true" data-valmsg-for="@Name" class="field-validation-valid"></span>
+    </li> 
+}

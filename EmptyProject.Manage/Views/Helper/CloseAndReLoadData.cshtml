@@ -1,0 +1,14 @@
+﻿@{
+    ViewBag.Title = "CloseAndReLoadData";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<script type="text/javascript">
+    var parentWindow = GetIframe(-1);
+    if (parentWindow != null && parentWindow.ReLoad != null)
+        parentWindow.ReLoad("@ViewBag.LoadType");
+    else {
+        if(window.top.frames["centerFrame"].ReLoad != null)
+            window.top.frames["centerFrame"].ReLoad("@ViewBag.LoadType");
+    }
+    closeLay();
+</script>

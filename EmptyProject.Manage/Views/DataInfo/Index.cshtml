@@ -1,0 +1,117 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery-ui.custom.js")" type="text/javascript"></script>
+
+<script language=javascript>
+    $(function () {
+        LoadCustomForm();
+
+        $("#CustomForm .ContentItem").live("click", function () {
+            LoadDataInfo($(this).attr("id"));
+        });
+
+        $("#CustomForm .edit").live("click", function () {
+            webLay("编辑类目", '@Url.Action("CustomFormEdit")' + "?Id=" + $(this).parent().parent().attr("id"), "600");
+            return false;
+        });
+
+        $("#CustomForm .del").live("click", function () {
+            var Id = $(this).parent().parent().attr("id");
+            yonLay("删除", "确认删除吗？", function (flag) {
+                if (flag) {
+                    addDo("正在处理，请稍后……");
+                    $.post('@Url.Action("DeleteCustomForm")', { Id: Id }, function (data) {
+                        ReLoad("CustomForm");
+                    });
+                }
+            });
+        });
+
+        $("#CustomForm .add").live("click", function () {
+            webLay("新建类目", '@Url.Action("CustomFormCreate")', "600");
+            return false;
+        });
+
+        $(".module_control .btn_add").live("click", function () {
+            if ($("#CustomForm .curr").length > 0) {
+                webLay("新建信息", '@Url.Action("DataInfoCreate")' + "?CustomForm_Id=" + $("#CustomForm .curr").attr("id"), "700");
+                return false;
+            }
+            else {
+                msgLay("错误信息", "请先选择类目");
+            }
+        });
+
+        $("#DataInfo .Remove").live("click", function () {
+            var Id = $(this).parent().parent().attr("id");
+            yonLay("删除", "确认删除吗？", function (flag) {
+                if (flag) {
+                    addDo("正在处理，请稍后……");
+                    $.post('@Url.Action("DeleteDataInfo")', { Id: Id }, function (data) {
+                        ReLoad("DataInfo");
+                    });
+                }
+            });
+        });
+
+        $("#DataInfo .EditOn").live("click", function () {
+            webLay("编辑信息", '@Url.Action("DataInfoEdit")' + "?Id=" + $(this).parent().parent().attr("id"), "700");
+            return false;
+        });
+
+    });
+
+    function LoadCustomForm() {
+        $("#CustomForm").showLoading();
+        $.post('@Url.Action("GetCustomFormList")', {}, function (data) {
+            $("#CustomForm").html(data);
+            if ($("#CustomForm .ContentItem").length > 0) {
+                var defaultCustomFormId = $("#CustomForm .ContentItem").eq(0).attr("id");
+                LoadDataInfo(defaultCustomFormId);
+            }
+        });
+    }
+
+    function LoadDataInfo(CustomFormId) {
+        $("#CustomForm .ContentItem").removeClass("curr");
+        $("#CustomForm .ContentItem[id='" + CustomFormId + "']").addClass("curr");
+        $("#DataInfo").showLoading();
+        $.post('@Url.Action("GetDataInfoList")', { CustomForm_Id: CustomFormId }, function (data) {
+            $("#DataInfo").html(data);
+        });
+    }
+
+    function ReLoad(loadType) {
+        if (loadType == "CustomForm") {
+            LoadCustomForm();
+        } else if (loadType == "DataInfo") {
+            LoadDataInfo($("#CustomForm .curr").attr("id"));
+        }
+    }
+
+    function GoPage(page) {
+        ReLoad("DataInfo");
+    }
+
+</script>
+<div id="iframeContent">
+    <div class="center-t">
+        <h2 class="t_name">选择类目</h2>
+    </div>
+     <div class="center-c">
+        <div class="module_mod">
+            <h3 class="module-t" id="CustomFormZoneTitle">类目</h3>
+            <ul id="CustomForm" class="module_content module_modlist"></ul>
+            <h3 class="module-t" id="DataInfoZoneTitle">信息</h3>
+            <div class="module_control">
+                <ul class="right" style="display:none">
+                    <li><a class="btn_set btn_add" title="新建信息" target="_blank" href="javascript:">新建信息</a></li>
+                </ul>
+            </div>
+            <div id="DataInfo" class="module_content">
+            </div>
+        </div>
+    </div>
+</div>

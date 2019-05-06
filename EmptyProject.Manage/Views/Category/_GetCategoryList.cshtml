@@ -1,0 +1,27 @@
+﻿@model IList<EmptyProject.Domain.Category>
+@{
+    Layout = null;
+}
+@foreach (var Item in Model)
+{
+<tr id="@Item.Id">
+    <td class="center">
+        <input id="IDS" class="form_checkbox" type="checkbox" value="@Item.Id" name="IDS">
+    </td>
+    <td class="center" nowrap style="width:120px">@Item.Name</td>
+    <td class="center">@Item.OrderBy</td>
+    <td class="text_left">@Item.GetExtendedHtml()</td>
+    <td class="link" nowrap=""><a href="javascript:" title="编辑" class="EditOn edit">编辑</a>|<a href="javascript:" title="删除" class="Remove del">删除</a></td>
+</tr>
+}
+
+<script language=javascript>
+    $(function () {
+        $("#Category .edit").click(function () {
+            EditCategory($(this).parent().parent().attr("id"));
+        });
+        $("#Category .del").click(function () {
+            DeleteCategory($(this).parent().parent().attr("id"));
+        });
+    });
+</script>

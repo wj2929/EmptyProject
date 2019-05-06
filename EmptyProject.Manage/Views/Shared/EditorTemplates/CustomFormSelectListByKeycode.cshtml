@@ -1,0 +1,16 @@
+﻿@model string
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Manage.Code;
+@{
+    ICustomFormDomainService CustomFormService = GlobalController.IoC.Resolve<ICustomFormDomainService>();
+    IList<SelectListItem> CustomFormSelectListItems = CustomFormService.All().OrderBy(g => g.CreateDate).Select(g => new SelectListItem{
+        Text = g.Name,
+        Value = g.Key,
+        Selected = g.Key == Model
+    }).ToList();
+    CustomFormSelectListItems.Insert(0, new SelectListItem { 
+        Text = "请选择",
+        Value = ""
+    });
+    }
+@Html.DropDownListFor(model => model,CustomFormSelectListItems)

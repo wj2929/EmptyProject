@@ -1,0 +1,18 @@
+/*弹出层代码开始//////////////////////////////////////////////////*/
+#LayBox {font-size:12px;z-index:9900;}
+.LayCover {width:100%;height:100%;_height:expression(document.body.scrollHeight > document.body.offsetHeight ? document.body.scrollHeight : document.body.offsetHeight + 'px');position:fixed;top:0;left:0;z-index:9901;background:#000000;filter:alpha(opacity=50);-moz-opacity:0.5;opacity:0.5;}
+.LayMain {position:fixed;top:50px;left:50%;z-index:9910;overflow:hidden;box-shadow:0 0 10px #555555;border-radius:3px;border:1px solid #6A6A6A;}
+.LayMain * {padding:0;margin:0;list-style:none;}
+.LayMain a {text-decoration:none;color:#226AB1;}
+.LayMain a:hover {color:#CC0000;}
+.LayMain .LayMain-t {height:35px;line-height:35px;padding:5px 10px;background:#F4F4F4 url(/images/Msgbox/bg_showWin_t.jpg) repeat-x;border-bottom:1px solid #DCDCDC;text-align:center;position:relative;}
+.LayMain .LayMain-t h2 {font-size:15px;padding:0;display:inline;}
+.LayMain .LayMain-t a.close {width:16px;height:16px;line-height:16px;padding:4px;font-size:18px;font-family:Verdana;color:#999999;position:absolute;right:10px;top:10px;}
+.LayMain .LayMain-t a.close:hover {color:#333333;}
+.LayMain .LayMain-m {padding:10px;background:#FFFFFF;}
+.LayMain .LayMain-m .m_c {overflow-x:hidden;overflow-y:auto;}
+.LayMain .LayMain-m .msg_c {padding:10px;}
+.LayMain .LayMain-m .msg_f {height:30px;line-height:30px;padding:5px 10px;text-align:center;}
+.LayMain .LayMain-m .msg_f input.form_button,.LayMain .LayMain-m .msg_f input.form_reset {height:30px;line-height:30px;padding:0 19px;border:1px solid #006AAA;background:#0085D5 url(/images/msgbox/showLay_overlay_img.jpg) no-repeat center;margin:0 5px;font-size:14px;font-weight:bold;color:#FFFFFF;text-align:center;cursor:pointer;}
+.LayMain .LayMainFrame {width:100%;}
+/*弹出层代码结束//////////////////////////////////////////////////*/

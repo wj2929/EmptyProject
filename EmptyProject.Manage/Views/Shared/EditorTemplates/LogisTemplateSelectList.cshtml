@@ -1,0 +1,17 @@
+﻿@model Guid
+@using EmptyProject.Manage.Code
+@using EmptyProject.DomainService.Interface
+@{
+    IList<SelectListItem> SelectListItems = GlobalController.IoC.Resolve<ILogisTemplateService>().All().Select(c => new SelectListItem
+    {
+        Text = c.Name,
+        Value = c.Id.ToString(),
+        Selected = c.Id == (Model == null ? Guid.Empty : Model)
+    }).ToList();
+    SelectListItems.Insert(0, new SelectListItem 
+    {
+        Text = "请选择" ,
+        Value = ""
+    });
+    }
+@Html.DropDownListFor(model => model, SelectListItems)

@@ -1,0 +1,11 @@
+﻿@model String
+@using EmptyProject.Manage.Code
+@{
+    IList<SelectListItem> ExecutesSelectListItems = GlobalController.TaskSchedulingConfig.ConfigEntity.Executes.Select(t => new SelectListItem
+    {
+        Text = t.Value.Name,
+        Value = t.Key,
+        Selected = t.Key == Model
+    }).ToList();
+    }
+@Html.DropDownListFor(model => model, ExecutesSelectListItems)

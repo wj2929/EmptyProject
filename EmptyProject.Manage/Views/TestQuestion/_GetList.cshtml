@@ -1,0 +1,36 @@
+﻿@model  BC.Core.ReturnPaging<EmptyProject.Domain.TestQuestion>
+<table class="module_table">
+    <thead>
+        <tr>
+            <th width="5%"><input type="checkbox" onclick="SelectAllCheckBox('ckAll','module_table');" name="ckAll" class="form_checkbox" id="ckAll"></th>
+            <th class="text_left" style="width:400px">名称</th>
+            <th class="text_left">题型</th>
+            <th nowrap style="width:15%">管理</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.PageListInfos.Count > 0)
+        {
+            foreach (var Item in Model.PageListInfos)
+            {
+        <tr id="@Item.Id">
+            <td class="center"><input id="IDS" class="form_checkbox" type="checkbox" value="@Item.Id" name="IDS"></td>
+            <td class="time">@Item.Title</td>
+            <td class="time">@((EmptyProject.Domain.QuestionType)Item.Type)</td>
+            <td class="link" nowrap="">
+                <a href="javascript:" title="加入试卷" class="EditOn JoinTestPaper">加入试卷</a>|
+                <a href="javascript:" title="编辑" class="EditOn edit">编辑</a>|
+                <a href="javascript:" title="删除" class="Remove del">删除</a>
+            </td>
+        </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th colspan=4>暂无记录！</th>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Partial("_Paging", Model.Module_Page)

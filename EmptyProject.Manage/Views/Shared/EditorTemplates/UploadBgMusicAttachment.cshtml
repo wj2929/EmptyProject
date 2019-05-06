@@ -1,0 +1,56 @@
+﻿@model string
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Domain;
+@using EmptyProject.Manage.Code;
+<input type="file" id="UploadBgMusic" name="UploadBgMusic" onkeydown="event.returnValue = false;" onchange="    javascript: return ajaxFileUploadBgMusic(1);"/>
+<dl class="BgMusic" style="width:650px">
+<input type="hidden" name="BgMusicUrl" id="BgMusicUrl" value="@Model" />
+@if (!string.IsNullOrEmpty(Model))
+{
+    <dd><th>地址</th>@Model</dd>
+}
+</dl>
+<script language=javascript>
+    //ajax上传附件
+    function ajaxFileUploadBgMusic(btnid) {
+        $("#loading").ajaxStart(function () {
+            $(this).show();
+        }).ajaxComplete(function () {
+            $(this).hide();
+        });
+        $.ajaxFileUpload
+		(
+			{
+			    url: '/Upload_Ajax.aspx',
+			    secureuri: false,
+			    fileElementId: 'UploadBgMusic',
+			    attachmentType: "AttachmentAudio",
+			    dataType: 'json',
+			    success: function (data, status) {
+			        if (data.error == "") {
+
+			            $(".BgMusic").html('<dd id="' + data.msg.Id + '" style="display:none">' +
+                            '<th>显示试听</th>'+
+                            '<object classid="clsid:D27CDB6E-AE6D-11cf-96B8-444553540000" width="300" height="300">'+
+                            '<param name="movie" value="/upfile/player.swf?file="'+data.msg.Url+'">'+
+                            '<param name="quality" value="high">'+
+                            '<param name="allowFullScreen" value="true" />'+
+                            '<embed src="/upfile/player.swf?file="'+data.msg.Url+'" allowFullScreen="true" quality="high" width="300" height="300"></embed>'+
+                            '</object>'+
+                            '<input type="hidden" name="TestVideoId" value="' + data.msg.Id + '" />' +
+                            '</dd>'+
+                            '<dd><th>地址</th>' + data.msg.Url + '</dd><input type="hidden" name="BgMusicUrl" id="BgMusicUrl" value="'+data.msg.Url+'" />')
+			            if ($(".BgMusic dd").length == 1) {
+			                //当前如仅有一个附件上传，设置为默认附件
+			                $.post('@Url.Action("SetDefault","Attachment")', { Id: data.msg.Id }, function () {
+			                    $(".BgMusic dd").addClass("curr");
+			                });
+			            }
+			        }
+			    }
+			}
+		)
+    }
+</script>
+
+

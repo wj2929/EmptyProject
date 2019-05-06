@@ -1,0 +1,18 @@
+﻿@model Int32
+@{
+    IList<SelectListItem> lst = new List<SelectListItem>();
+    lst.Add(new SelectListItem
+    {
+        Text = "不推荐",
+        Value = "0",
+        Selected = 0 == Model
+    });
+    lst.Add(new SelectListItem
+    {
+        Text = "推荐",
+        Value = "1",
+        Selected = 1 == Model
+    });
+        
+}
+@Html.DropDownListFor(model => model.ToString(), lst)

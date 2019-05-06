@@ -47,9 +47,31 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Attachment.cs" />
+    <Compile Include="Category.cs" />
+    <Compile Include="CategoryType.cs" />
+    <Compile Include="CustomForm.cs" />
+    <Compile Include="CustomFormItem.cs" />
+    <Compile Include="CustomValidation.cs" />
+    <Compile Include="DataInfo.cs" />
+    <Compile Include="ExtendedAttribute.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="Values\Category\AreaGroupCategoryExtended.cs" />
+    <Compile Include="Values\Category\ProvinceCityCategoryExtended.cs" />
+    <Compile Include="Values\Configs\CategoryConfig.cs" />
+    <Compile Include="Values\Configs\CategoryTypeConfig.cs" />
     <Compile Include="Values\Configs\ExtendedDataConfig.cs" />
+    <Compile Include="Values\Configs\GlobalConfig.cs" />
+    <Compile Include="Values\Configs\PageCategoryConfig.cs" />
+    <Compile Include="Values\Configs\RegularExpressionValidatorConfig.cs" />
+    <Compile Include="Values\Configs\UploadConfig.cs" />
+    <Compile Include="Values\QueryObject\AttachmentCriteria.cs" />
+    <Compile Include="Values\QueryObject\CategoryCriteria.cs" />
+    <Compile Include="Values\QueryObject\CategoryTypeCriteria.cs" />
+    <Compile Include="Values\QueryObject\CustomFormCriteria.cs" />
+    <Compile Include="Values\QueryObject\CustomFormItemCriteria.cs" />
+    <Compile Include="Values\QueryObject\DataInfoCriteria.cs" />
     <Compile Include="Values\QueryObject\TestCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -60,6 +82,12 @@
   </ItemGroup>
   <ItemGroup>
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\EmptyProject.Core\EmptyProject.Core.csproj">
+      <Project>{205006a1-e039-487f-9313-faaa717ed2f7}</Project>
+      <Name>EmptyProject.Core</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

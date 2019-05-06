@@ -1,0 +1,10 @@
+﻿@model IList<EmptyProject.Domain.Category>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <li id="@item.Id"  class="ContentItem">
+        <span><a href="javascript:" title="@item.Name" class="ChangeCategoryType">@item.Name</a></span>
+    </li>
+}

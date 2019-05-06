@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IAttachmentStore.cs" />
+    <Compile Include="ICategoryStore.cs" />
+    <Compile Include="ICategoryTypeStore.cs" />
+    <Compile Include="ICustomFormItemStore.cs" />
+    <Compile Include="ICustomFormStore.cs" />
+    <Compile Include="IDataInfoStore.cs" />
     <Compile Include="ITestStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

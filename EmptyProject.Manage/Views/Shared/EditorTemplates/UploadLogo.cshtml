@@ -1,0 +1,37 @@
+﻿@model string
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Domain;
+@using EmptyProject.Manage.Code;
+<input type="file" id="UploadLogo" name="UploadLogo" onkeydown="event.returnValue = false;" onchange="    javascript: return ajaxFileUploadLogo(1);" />
+<dl class="LogoList" style="width:650px">
+    <input type="hidden" name="Logo" id="Logo" value="@Model" />
+    @if (!string.IsNullOrEmpty(Model))
+    {
+        <dd class="curr"><img class="pic" src="@Model" /></dd>
+    }
+</dl>
+<script language=javascript>
+    //ajax上传附件
+    function ajaxFileUploadLogo(btnid) {
+        $("#loading").ajaxStart(function () {
+            $(this).show();
+        }).ajaxComplete(function () {
+            $(this).hide();
+        });
+        $.ajaxFileUpload
+		(
+			{
+			    url: '/Upload_Ajax.aspx',
+			    secureuri: false,
+			    fileElementId: 'UploadLogo',
+			    attachmentType: "UploadPic",
+			    dataType: 'json',
+			    success: function (data, status) {
+			        if (data.error == "") {
+			            $(".LogoList").html("").append('<input type="hidden" name="Logo" id="Logo" value="' + data.msg.Url + '" /><dd><img class="pic" src="' + data.msg.Url + '" /></dd> ')
+                    }
+			    }
+			}
+		)
+        }
+</script>

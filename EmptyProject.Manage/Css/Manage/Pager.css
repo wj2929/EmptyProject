@@ -1,0 +1,29 @@
+﻿#pager div.pages {
+display:block;
+border:none;
+text-transform:uppercase;
+font-size:12px;
+margin:10px 0 0px;
+padding:0;
+}
+
+#pager div.pages span {
+list-style:none;
+text-decoration:none;
+margin:0 5px 0 0;
+padding:5px;
+}
+
+#pager div.pages :hover {
+    color:#FF6600;
+}
+
+#pager div.pages .pgEmpty {
+color:#cccccc;
+}
+
+#pager div.pages  .pgCurrent {
+color:#000;
+font-weight:700;
+background-color:#ccc;
+}

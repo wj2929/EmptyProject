@@ -1,0 +1,90 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery-ui.custom.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.cookie.js")" type="text/javascript"></script>
+<link href="@Url.Content("~/Scripts/dynatree/skin-vista/ui.dynatree.css")" rel="stylesheet" type="text/css">
+<script src="@Url.Content("~/Scripts/dynatree/jquery.dynatree.js")" type="text/javascript"></script>
+<script language=javascript>
+    $(function () {
+        LoadCategoryTypeList();
+
+        $("#AddCategoryType").live("click", function () {
+            webLay("新建分类类型", '@Url.Action("CategoryTypeCreate")', "600");
+        });
+
+        $("#CategoryType .edit").live("click", function () {
+            webLay("编辑分类类型", '@Url.Action("CategoryTypeEdit")' + "?Id=" + $(this).parent().parent().attr("id"), "600");
+        });
+
+        $("#CategoryType .del").live("click", function () {
+            var Id = $(this).parent().parent().attr("id");
+            yonLay("删除", "确认删除吗？", function (flag) {
+                if (flag) {
+                    addDo("正在处理，请稍后……");
+                    $.post('@Url.Action("DeleteCategoryType")', { Id: Id }, function (data) {
+                        LoadCategoryTypeList();
+                    });
+                }
+            });
+        });
+
+        $("#CategoryType .restore").live("click", function () {
+            var key = $(this).parent().parent().attr("key");
+            yonLay("恢复默认设置", "恢复默认设置将重置该分类下所有数据，确定？", function (flag) {
+                if (flag) {
+                    addDo("正在重置该分类下所有数据，请勿关闭窗口……",false);
+                    $.post("/Category/Restore" + key + "Data", {}, function (data) {
+                        removeDo(500);
+                        LoadCategoryPage(key);
+                    });
+                }
+            });
+        });
+
+        $("#CategoryType .ChangeCategoryType").live("click", function () {
+            LoadCategoryPage($(this).parent().parent().attr("key"));
+        });
+    });
+    function LoadCategoryTypeList() {
+        $("#CategoryType").showLoading();
+        $.post('@Url.Action("GetCategoryTypeList")', {}, function (data) {
+            $("#CategoryType").html(data);
+            if ($("#CategoryType .ContentItem").length > 0) {
+                var DefaultCategoryTypeKeycode = $("#CategoryType .ContentItem").eq(0).attr("key");
+                LoadCategoryPage(DefaultCategoryTypeKeycode);
+            }
+        });
+    }
+
+    function LoadCategoryPage(CategoryTypeKey) {
+        $("#CategoryType li").removeClass("curr");
+        $("#CategoryType li[key='" + CategoryTypeKey + "']").addClass("curr");
+        $("#Category").showLoading();
+        $.post('@Url.Action("GetCategoryPage")', { CategoryTypeKey: CategoryTypeKey }, function (data) {
+            $("#Category").html(data);
+        });
+    }
+
+    function ReLoad(loadType) {
+        if (loadType == "CategoryType") {
+            LoadCategoryTypeList();
+        } else if (loadType == "Category") {
+            RefreshCategory();
+        }
+    }
+</script>
+<div id="iframeContent">
+    <div class="center-t">
+        <h2 class="t_name">分类管理</h2>
+    </div>
+     <div class="center-c">
+        <div class="module_mod">
+            <h3 class="module-t" id="CategoryTypeZoneTitle">分类类型管理</h3>
+            <ul id="CategoryType" class="module_content module_modlist"></ul>
+            <h3 class="module-t" id="CategoryZoneTitle">分类</h3>
+            <ul id="Category" class="module_content"></ul>
+        </div>
+    </div>
+</div>

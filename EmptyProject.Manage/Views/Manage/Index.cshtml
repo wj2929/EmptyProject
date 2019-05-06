@@ -1,0 +1,105 @@
+﻿@model EmptyProject.Manage.Models.ManageModels
+@using EmptyProject.Manage.Code
+@{
+    ViewBag.Title = "管理系统";
+    Layout = "~/Views/Shared/Admin.cshtml";
+    var Authorized = HttpContext.Current.User.Identity.IsAuthenticated;
+    string UserName = "匿名";
+    if(Authorized){
+        UserName = HttpContext.Current.User.Identity.Name;
+    }
+}
+<script type="text/javascript" src="@Url.Content("~/Scripts/jsTree/jquery.tree.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jsTree/lib/sarissa.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Scripts/jsTree/plugins/jquery.tree.contextmenu.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Scripts/jsTree/plugins/jquery.tree.xml_flat.js")"></script> 
+<script type="text/javascript" src="@Url.Content("~/Scripts/json2.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/jquery.signalR-1.1.3.min.js")"></script>
+<script type="text/javascript" src="@Url.Content("~/signalr/hubs")"></script>
+<script type="text/javascript" src="@Url.Content("~/Scripts/SignalRTaskPlanMessageHub.js")"></script>
+
+<div id="head">
+	<h1 id="logo">管理系统</h1>
+  <div id="wel_manager">欢迎 @Model.UserName
+  登录<a href="@Url.Action("Logout", "Account")">安全退出</a></div>
+</div>
+<div id="nav">
+  <ul class="nav_sub">
+  @if (Model.Authorized)
+  {
+    <li>@*<a href="@Url.Action("Index", "TaskPlan")" target="centerFrame">计划任务</a>*@</li>
+    @*<li><a href="@Url.Action("Index", "GlobalConfig")" target="centerFrame">全局设置</a></li>*@
+    @*<li><a href="@Url.Action("Index", "Log")" target="centerFrame">日志管理</a></li>*@
+    <li>@*<a href="@GlobalController.GlobalConfig.ConfigEntity.WebUrl" target="_blank">进入前站</a>*@</li>
+  }
+  </ul>
+  <div class="side_col"><a href="#side">功能菜单</a></div>
+</div>
+<div id="main">
+ 
+  <div id="side">
+ 	 <div id="side_menu">
+     @if (!Model.Authorized)
+     {
+        <div class="menu">
+            <div class="menu-t"><h3>登陆系统</h3><em></em></div>
+            <ul class="menu-c">
+                <li><a href="@Url.Action("Login", "Account")" >登陆系统</a></li>
+            </ul>
+        </div>
+     }
+     else
+     {
+         foreach (var item in Model.MainMenus)
+         {
+            <div class="menu">
+                <div class="menu-t"><h3>@item.Title</h3><em></em></div>
+                @if (item.SubMenus.Count > 0)
+                {
+                    <ul class="menu-c">
+                    @foreach (var SubItem in item.SubMenus)
+                    {
+                        @Html.Partial("_SubMenu", SubItem)
+                    }
+                    </ul>
+                }
+            </div>
+         }
+     }
+    </div>
+  </div>
+  
+  <div id="center">
+      <iframe id="centerFrame" name="centerFrame" src="@Url.Action("Welcome", "Manage")" scrolling="no" allowtransparency="true" frameborder="0"></iframe>
+  </div>
+</div>
+
+@*<script language="javascript">
+    var SiteId = "@Model.CurrentSiteId";
+    var IsPageMaster = '@Model.PageMaster';
+    var GetNavUrl = '@Url.Action("GetNav", new { SiteId = @Model.CurrentSiteId })';
+</script>
+<script type="text/javascript">
+    function ReLoadNav() {
+        if (IsPageMaster != "True") {
+            return;
+        }
+
+        $.post(GetNavUrl, {}, function (data) {
+            $("#NavPages").remove();
+            $("#side_menu").prepend(data);
+
+            $("#NavPages>.menu-c li>a").prepend("<span class='icon'></span>");
+            $("#NavPages>.menu-c li:has(ul)>a").addClass("close");
+            $("#NavPages>.menu-c li:has(ul)>a>.icon").toggle(function () {
+                $(this).parent().removeClass("close");
+                $(this).parent().next().show();
+                SideHorCenterH(); //Main与Side高度自适应
+            }, function () {
+                $(this).parent().addClass("close");
+                $(this).parent().next().hide();
+                SideHorCenterH(); //Main与Side高度自适应
+            });
+        });
+    }
+</script>*@

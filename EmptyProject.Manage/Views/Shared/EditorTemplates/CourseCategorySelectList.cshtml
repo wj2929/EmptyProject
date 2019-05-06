@@ -1,0 +1,11 @@
+﻿@model Guid
+@using EmptyProject.Manage.Code;
+@{
+    IList<SelectListItem> SelectListItems = GlobalController.GetFlagCategorySelectListItems("Course").Select(c => new SelectListItem
+    {
+        Text = c.Text,
+        Value = c.Value,
+        Selected = c.Value == (Model == null ? Guid.Empty : Model).ToString()
+    }).ToList();
+ }
+@Html.DropDownListFor(model => model, SelectListItems)

@@ -1,0 +1,25 @@
+﻿@model EmptyProject.Manage.Models.AddBookCategoryModel
+
+@{
+    ViewBag.Title = "BookCategoryCreate";
+    Layout = "~/Views/Shared/PopupForm.cshtml";
+}
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+	<div id="layOver" class="module_layover">
+		<div class="module-c">
+			<ul class="module_form">
+				<li><span class="f_con">@Html.LabelFor(model => model.Name)
+						@Html.TextBoxFor(model => model.Name, new { @class = "form_text" })
+					</span>@Html.ValidationMessageFor(model => model.Name)</li>
+	@Html.HiddenFor(model => model.ParentId)
+	@Html.HiddenFor(model => model.Type)
+				<li><span class="f_con">@Html.LabelFor(model => model.Order)
+						@Html.TextBoxFor(model => model.Order, new { @class = "form_text" })
+					</span>@Html.ValidationMessageFor(model => model.Order)</li>
+			</ul>
+		</div>
+		<div class="module-f"><input type="submit" value='提交' class='form_button button_add' /></div>
+	</div>
+}
+

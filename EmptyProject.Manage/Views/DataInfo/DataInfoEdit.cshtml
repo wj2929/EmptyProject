@@ -1,0 +1,89 @@
+﻿
+@model EmptyProject.Manage.Models.EditCustomFormItemModel
+
+@{
+    ViewBag.Title = "CustomFormItemEdit";
+    Layout = "~/Views/Shared/PopupForm.cshtml";
+    IEnumerable<SelectListItem> FormTypeSelectListItems =
+        EmptyProject.Core.EnumHelper.GetEnumInfos(typeof(EmptyProject.Domain.FormItemType))
+            .Select(f => new SelectListItem
+            {
+                Text = f.Text,
+                Value = f.Value
+            });
+    var ExpressionValidatorLibrary = EmptyProject.Manage.Code.GlobalController.ExpressionValidatorConfig.ConfigEntity.Validators.Select(t => new SelectListItem()
+    {
+        Text = t.Key,
+        Value = t.Value
+    });            
+}
+<style>
+    select{
+      margin: 0;
+      vertical-align: middle;
+      font-size: 100%;
+      border: 1px solid #CCCCCC;
+      font-size: 12px;
+      padding: 3px;  
+      width: 307px;
+    }
+</style>
+@using (Html.BeginForm()) {
+    @Html.ValidationSummary(true)
+	<div id="layOver" class="module_layover">
+		<div class="module-c">
+			<ul class="module_form">
+	@Html.HiddenFor(model => model.EditId)
+				<li><span class="f_con">@Html.LabelFor(model => model.Name)
+						@Html.TextBoxFor(model => model.Name, new { @class = "form_text" })
+					</span>@Html.ValidationMessageFor(model => model.Name)@Html.LabelFor(model => model.Enabled) @Html.CheckBoxFor(model => model.Enabled)</li>
+	@Html.HiddenFor(model => model.CustomFormId)
+				@*<li><span class="f_con">@Html.LabelFor(model => model.Order)
+						@Html.TextBoxFor(model => model.Order, new { @class = "form_text" })
+					</span>@Html.ValidationMessageFor(model => model.Order)</li>*@
+				<li><span class="f_con">@Html.LabelFor(model => model.Description)
+						@Html.TextBoxFor(model => model.Description, new { @class = "form_text" })
+					</span>@Html.ValidationMessageFor(model => model.Description)</li>
+				<li><span class="f_con">@Html.LabelFor(model => model.FormType)
+						@Html.DropDownListFor(model => model.FormType,FormTypeSelectListItems)
+					</span>@Html.ValidationMessageFor(model => model.FormType)</li>
+				<li><span class="f_con">@Html.LabelFor(model => model.OptionText)
+						@Html.TextAreaFor(model => model.OptionText, new { rows = "6", cols = "80", @class = "form_textarea" })
+					</span>@Html.ValidationMessageFor(model => model.OptionText)</li>
+				<li><span class="f_con">
+                        @Html.LabelFor(model => model.MoreSelect)
+						@Html.CheckBoxFor(model => model.MoreSelect) 
+                        必填 @Html.CheckBoxFor(model => model.ValidationConfig_Required)
+                        启用扩展验证 @Html.CheckBoxFor(model => model.ValidationConfig_AllowExtensionValidation)
+					</span></li>
+				<li><span class="f_con">@Html.LabelFor(model => model.ValidationConfig_RegularExpressionValidator)
+						@Html.TextBoxFor(model => model.ValidationConfig_RegularExpressionValidator, new { @class = "form_text" })
+					</span>@Html.ValidationMessageFor(model => model.ValidationConfig_RegularExpressionValidator)</li>
+				<li><span class="f_con">@Html.LabelFor(model => model.ValidationConfig_ErrorMessage)
+						@Html.TextBoxFor(model => model.ValidationConfig_ErrorMessage, new { @class = "form_text" })
+					</span>@Html.ValidationMessageFor(model => model.ValidationConfig_ErrorMessage)</li>
+				<li><span class="f_con"><label>扩展验证库</label>@Html.DropDownList("ExpressionValidatorLibrary", ExpressionValidatorLibrary, "不使用")</span></li>
+			</ul>
+		</div>
+		<div class="module-f"><input type="submit" value='提交' class='form_button button_add' /></div>
+	</div>
+}
+<script type="text/javascript">
+    $("#ExpressionValidatorLibrary").change(function () {
+        $("#ValidationConfig_RegularExpressionValidator").val($(this).val());
+    });
+    $("#FormType").change(function () {
+        ChangeFormType($(this).val());
+    });
+    function ChangeFormType(value) {
+        if (value != "2") {
+            $("#MoreSelect").attr("disabled", "disabled");
+        } else {
+            $("#MoreSelect").removeAttr("disabled");
+        }
+
+    }
+    $(function () {
+        ChangeFormType($("#FormType").val());
+    });
+</script>

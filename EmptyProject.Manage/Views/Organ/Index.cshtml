@@ -1,0 +1,233 @@
+﻿@{
+    ViewBag.Title = "Index";
+    Layout = "~/Views/Shared/Admin.cshtml";
+}
+<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.select.js")" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/css/jquery.autocomplete.css")" />
+<style>
+    .desc
+    {
+        display: inline;
+        float: left;
+        overflow: hidden;
+        width: 310px;
+        word-wrap: break-word;    
+    }
+    .Organpic 
+    {
+    border: 1px solid #E9E9E9;
+    display: inline;
+    float: left;
+    margin-right: 10px;
+    }
+</style>
+
+<script language=javascript>
+    var CategoryId = "";
+    $(function () {
+        LoadOrgan();
+
+        $(".module_control .btn_add").click(function () {
+            webLay("新建机构", '@Url.Action("OrganCreate")', "max");
+            return false;
+        });
+
+        $("#Organ .edit").live("click", function () {
+            webLay("编辑机构", '@Url.Action("OrganEdit")' + "?Id=" + $(this).parent().parent().attr("id"), "max");
+            return false;
+        });
+
+        $("#Organ .comment").live("click", function () {
+            webLay("查看评论", '@Url.Action("OrganComment")' + "?Id=" + $(this).parent().parent().attr("id"), "max");
+            return false;
+        });
+
+        $("#Organ .del").live("click", function () {
+            var Id = $(this).parent().parent().attr("id");
+            yonLay("删除", "确认删除吗？", function (flag) {
+                if (flag) {
+                    addDo("正在处理，请稍后……");
+                    $.post('@Url.Action("DeleteOrgan")', { Id: Id }, function (data) {
+                        ReLoad("Organ");
+                    });
+                }
+            });
+        });
+
+        $("#Organ .JoinTestPaper").live("click", function () {
+            webLay("加入试卷", '@Url.Action("Join","TestPaperM")' + "?OrganId=" + $(this).parent().parent().attr("id"), "max");
+            return false;
+        });
+
+
+        $("#Organ .Recommend").live("click", function () {
+            var Id = $(this).parent().parent().attr("id");
+            yonLay("设置", "确认修改推荐吗？", function (flag) {
+                if (flag) {
+                    addDo("正在处理，请稍后……");
+                    $.post('@Url.Action("SetReComment")', { Id: Id }, function (data) {
+                        ReLoad("Organ");
+                    });
+                }
+            });
+        });
+
+        $("#SearchBut").click(function () {
+            LoadOrgan();
+        });
+
+        $("form").submit(function () {
+            LoadOrgan();
+            return false;
+        });
+
+        $(".batch_delete").click(function () {
+            var Ids = GetAllChecked("Organ");
+            if (Ids != "") {
+                yonLay("批量删除", "确认删除吗？", function (flag) {
+                    if (flag) {
+                        addDo("正在处理，请稍后……");
+                        $.post('@Url.Action("DeleteOrgans")', { Ids: Ids }, function (data) {
+                            ReLoad("Organ");
+                        });
+                    }
+                });
+            } else {
+                msgLay("错误信息", "请选择至少一项记录");
+            }
+            return false;
+        });
+
+        $(".batch_audit").click(function () {
+            var Ids = GetAllChecked("Organ");
+            if (Ids != "") {
+                yonLay("批量审核", "确认审核吗？", function (flag) {
+                    if (flag) {
+                        addDo("正在处理，请稍后……");
+                        $.post('@Url.Action("AuditOrgans")', { Ids: Ids }, function (data) {
+                            ReLoad("Organ");
+                        });
+                    }
+                });
+            } else {
+                msgLay("错误信息", "请选择至少一项记录");
+            }
+            return false;
+        });
+
+        $(".batch_release").click(function () {
+            var Ids = GetAllChecked("Organ");
+            if (Ids != "") {
+                yonLay("批量上架", "确认上架吗？", function (flag) {
+                    if (flag) {
+                        addDo("正在处理，请稍后……");
+                        $.post('@Url.Action("ReleaseOrgans")', { Ids: Ids }, function (data) {
+                            ReLoad("Organ");
+                        });
+                    }
+                });
+            } else {
+                msgLay("错误信息", "请选择至少一项记录");
+            }
+            return false;
+        });
+
+        $(".batch_not_release").click(function () {
+            var Ids = GetAllChecked("Organ");
+            if (Ids != "") {
+                yonLay("批量下架", "确认下架吗？", function (flag) {
+                    if (flag) {
+                        addDo("正在处理，请稍后……");
+                        $.post('@Url.Action("NotReleaseOrgans")', { Ids: Ids }, function (data) {
+                            ReLoad("Organ");
+                        });
+                    }
+                });
+            } else {
+                msgLay("错误信息", "请选择至少一项记录");
+            }
+            return false;
+        });
+
+        $('#Keyword').bind( "input.autocomplete", function(){
+            $(this).trigger('keydown.autocomplete');
+        });
+        $("#Keyword").autocomplete("@Url.Action("GetAutoCompleteOrganNames","Organ")", {
+            max: 12,    //列表里的条目数
+            minChars: 1,    //自动完成激活之前填入的最小字符
+            scrollHeight: 300,   //提示的高度，溢出显示滚动条
+            autoFill: false,    //自动填充
+		    width: 200,
+		    matchContains: true,
+		    formatItem: formatItem,
+		    formatResult: formatResult
+        });
+
+        $("#MainOrganCategory .ContentItem").live("click",function(){
+            CategoryId = $(this).attr("id");
+            LoadChildCategoryList(CategoryId);
+            LoadOrgan();
+        });
+        $("#ChildOrganCategory .ContentItem").live("click",function(){
+            CategoryId = $(this).attr("id");
+            $("#ChildOrganCategory li").removeClass("curr");
+            $("#ChildOrganCategory li[id='" + CategoryId + "']").addClass("curr");
+            LoadOrgan();
+        });
+    });
+
+	function formatItem(row) {
+		return row[0];
+	}
+	function formatResult(row) {
+		return row[0];
+	}
+
+
+    function LoadOrgan() {
+        var page = $("#Organ").attr("Page");
+        if (page == null) page = 1;
+        var name = $("#Keyword").val();
+        var _recommend = $("#srecommend").val();
+        $("#Organ").showLoading();
+        $.post('@Url.Action("GetList")', {CategoryId:CategoryId,Name:name,Recommend:_recommend, Page:page}, function (data) {
+            $("#Organ").html(data);
+        });
+    }
+    function ReLoad(loadType) {
+        if (loadType == "Organ") {
+            LoadOrgan();
+        }
+    }
+
+    function GoPage(page) {
+        $("#Organ").attr("Page", page);
+        ReLoad("Organ");
+    }
+</script>
+<div id="iframeContent">
+    <div class="center-t">
+        <h2 class="t_name">机构管理</h2>
+    </div>
+     <div class="center-c">
+        <div class="module_mod">
+            <div class="module_control">
+                <!--简单搜索开始-->
+                <div class="search_simple">
+                    <div class="s_form">
+                        <form>
+                            <input type="text" class="form_text" id="Keyword"><input type="button" title="搜索" value="搜索" id="SearchBut" class="form_button">
+                        </form>
+                    </div>
+                </div>
+                <ul class="right">
+                    <li><a class="btn_set btn_add" title="新建机构" target="_blank" href="javascript:">新建机构</a></li>
+                </ul>
+            </div>
+			<div id="Organ" class="module_content">
+                
+			</div>
+        </div>
+    </div>
+</div>

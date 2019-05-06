@@ -1,0 +1,14 @@
+﻿@model int
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Domain;
+@using EmptyProject.Manage.Code
+@using EmptyProject.BaseCommon
+@{
+    IList<SelectListItem> SelectListItems = EnumHelper.GetEnumInfos(typeof(EmptyProject.Domain.BaikeLevel)).Select(e => new SelectListItem 
+    {
+        Text = e.Text,
+        Value = e.Value,
+        Selected = e.Value == Model.ToString()
+    }).ToList();
+    }
+@Html.DropDownListFor(model => model, SelectListItems)

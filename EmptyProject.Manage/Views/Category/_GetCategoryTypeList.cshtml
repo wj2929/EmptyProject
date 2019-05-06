@@ -1,0 +1,22 @@
+﻿@model IList<EmptyProject.Domain.CategoryType>
+@{
+    Layout = null;
+}
+@foreach (var item in Model)
+{
+    <li id="@item.Id" key="@item.Keycode" class="ContentItem">
+        <span><a href="javascript:" title="@item.Keycode" class="ChangeCategoryType">@item.Name</a></span>
+        <em>
+            <a href="javascript:" title="编辑" class="EditOn edit" style="display:none">编辑</a>
+            @if (item.Keycode == "ProvinceCity" || item.Keycode == "AreaGroup")
+            {
+            <a href="javascript:" title="恢复默认设置" class="restore refresh" style="display:none">恢复默认设置</a>
+            }
+            else
+            {
+            <a href="javascript:" title="删除" class="Remove del" style="display:none">删除</a>
+            }
+        </em>
+    </li>
+}
+<li class="add"><a href="javascript:" id="AddCategoryType" title="新建分类类型">新建类型</a></li>

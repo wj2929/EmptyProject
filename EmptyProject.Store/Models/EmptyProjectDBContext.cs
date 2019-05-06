@@ -10,7 +10,6 @@ using BC.DDD;
 using BC.DDD.EntityFramework;
 using System.Data.Entity.Infrastructure;
 using EmptyProject.Domain;
-using System.Data.Entity.ModelConfiguration.Conventions;
 namespace EmptyProject.Store.Models
 {
     public class EmptyProjectDBContext : BCDBContext
@@ -22,10 +21,39 @@ namespace EmptyProject.Store.Models
         }
 
         /// <summary>
-        /// Class
+        /// Attachment
+        /// </summary>
+        public IDbSet<Attachment> Attachments { get; set; }
+
+        /// <summary>
+        /// Category
+        /// </summary>
+        public IDbSet<Category> Categories { get; set; }
+
+        /// <summary>
+        /// CategoryType
+        /// </summary>
+        public IDbSet<CategoryType> CategoryTypes { get; set; }
+
+        /// <summary>
+        /// CustomForm
+        /// </summary>
+        public IDbSet<CustomForm> CustomForms { get; set; }
+
+        /// <summary>
+        /// CustomFormItem
+        /// </summary>
+        public IDbSet<CustomFormItem> CustomFormItems { get; set; }
+
+        /// <summary>
+        /// DataInfo
+        /// </summary>
+        public IDbSet<DataInfo> DataInfoes { get; set; }
+
+        /// <summary>
+        /// Test
         /// </summary>
         public IDbSet<Test> Tests { get; set; }
-
 
         public EmptyProjectDBContext(string nameOrConnectionString)
             : base(nameOrConnectionString)
@@ -37,9 +65,6 @@ namespace EmptyProject.Store.Models
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {
             base.OnModelCreating(modelBuilder);
-
-            //modelBuilder.Conventions.Remove<ManyToManyCascadeDeleteConvention>();
-
             modelBuilder.Configurations.AddFromAssembly(typeof(EmptyProjectDBContext).Assembly);
         }
     }

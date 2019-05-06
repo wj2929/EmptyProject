@@ -1,0 +1,577 @@
+/* 下拉菜单 */
+.DropDownMenu {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  z-index: 1000;
+  float: left;
+  display: none;
+  min-width: 160px;
+  padding: 4px 0;
+  margin: 0;
+  list-style: none;
+  background-color: #ffffff;
+  border-color: #dddddd;
+  border-style: solid;
+  border-width: 1px;
+  -webkit-border-radius: 0 0 5px 5px;
+  -moz-border-radius: 0 0 5px 5px;
+  border-radius: 0 0 5px 5px;
+  -webkit-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -moz-box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+  -webkit-background-clip: padding-box;
+  -moz-background-clip: padding;
+  background-clip: padding-box;
+  *border-right-width: 2px;
+  *border-bottom-width: 2px;
+}
+.DropDownMenu li {
+  color: #000000;
+  margin: 0px;
+  padding: 5px 5px 5px 10px;
+}
+.DropDownMenu li:hover {
+  background-color: #eee;
+}
+.DropDownMenu li.Separate {
+  height: 1px;
+  margin: 8px 1px;
+  overflow: hidden;
+  background-color: #dddddd;
+  border-bottom: 1px solid #ffffff;
+  *width: 100%;
+  *margin: -5px 0 5px;
+  padding: 0px;
+}
+/* Button */
+.Button {
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+  /* 基本样式 */
+
+  line-height: 20px;
+  margin-bottom: 0;
+  padding: 2px 8px 2px 8px;
+  text-align: center;
+  vertical-align: middle;
+  text-decoration: none;
+  -webkit-border-radius: 4px;
+  -moz-border-radius: 4px;
+  border-radius: 4px;
+  background-repeat: repeat-x;
+  cursor: pointer;
+  /* 基本配色 */
+
+  color: #ffffff;
+  background-color: #666666;
+  background-image: -moz-linear-gradient(top, #666666, #333333);
+  background-image: -ms-linear-gradient(top, #666666, #333333);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#666666), to(#333333));
+  background-image: -webkit-linear-gradient(top, #666666, #333333);
+  background-image: -o-linear-gradient(top, #666666, #333333);
+  background-image: linear-gradient(top, #666666, #333333);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#333333', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#666666', endColorstr='#333333', gradientType=0);
+  border: 1px solid #333333;
+}
+.Button .Caret {
+  border-top-color: #fff;
+}
+.Button:hover {
+  color: #ffffff;
+  background-color: #595959;
+  background-image: -moz-linear-gradient(top, #595959, #262626);
+  background-image: -ms-linear-gradient(top, #595959, #262626);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#595959), to(#262626));
+  background-image: -webkit-linear-gradient(top, #595959, #262626);
+  background-image: -o-linear-gradient(top, #595959, #262626);
+  background-image: linear-gradient(top, #595959, #262626);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#595959', endColorstr='#262626', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#595959', endColorstr='#262626', gradientType=0);
+  border: 1px solid #262626;
+}
+.Button[disabled],
+.Button.Disabled {
+  cursor: not-allowed;
+  background-image: none;
+  background-color: #999999;
+  filter: none;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+}
+.Button.Inverse {
+  color: #000000;
+  background-color: #ffffff;
+  background-image: -moz-linear-gradient(top, #ffffff, #cccccc);
+  background-image: -ms-linear-gradient(top, #ffffff, #cccccc);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#cccccc));
+  background-image: -webkit-linear-gradient(top, #ffffff, #cccccc);
+  background-image: -o-linear-gradient(top, #ffffff, #cccccc);
+  background-image: linear-gradient(top, #ffffff, #cccccc);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#cccccc', gradientType=0);
+  border: 1px solid #cccccc;
+}
+.Button.Inverse:hover {
+  color: #ffffff;
+  background-color: #f2f2f2;
+  background-image: -moz-linear-gradient(top, #f2f2f2, #bfbfbf);
+  background-image: -ms-linear-gradient(top, #f2f2f2, #bfbfbf);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#f2f2f2), to(#bfbfbf));
+  background-image: -webkit-linear-gradient(top, #f2f2f2, #bfbfbf);
+  background-image: -o-linear-gradient(top, #f2f2f2, #bfbfbf);
+  background-image: linear-gradient(top, #f2f2f2, #bfbfbf);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#bfbfbf', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#f2f2f2', endColorstr='#bfbfbf', gradientType=0);
+  border: 1px solid #bfbfbf;
+}
+.Button.Inverse[disabled],
+.Button.Inverse.Disabled {
+  background-image: none;
+  filter: none;
+  background-color: #e6e6e6;
+}
+.Button.Success {
+  color: #ffffff;
+  background-color: #62c462;
+  background-image: -moz-linear-gradient(top, #62c462, #348c34);
+  background-image: -ms-linear-gradient(top, #62c462, #348c34);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#62c462), to(#348c34));
+  background-image: -webkit-linear-gradient(top, #62c462, #348c34);
+  background-image: -o-linear-gradient(top, #62c462, #348c34);
+  background-image: linear-gradient(top, #62c462, #348c34);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#348c34', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#62c462', endColorstr='#348c34', gradientType=0);
+  border: 1px solid #348c34;
+}
+.Button.Success:hover {
+  color: #ffffff;
+  background-color: #4fbd4f;
+  background-image: -moz-linear-gradient(top, #4fbd4f, #2d792d);
+  background-image: -ms-linear-gradient(top, #4fbd4f, #2d792d);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#4fbd4f), to(#2d792d));
+  background-image: -webkit-linear-gradient(top, #4fbd4f, #2d792d);
+  background-image: -o-linear-gradient(top, #4fbd4f, #2d792d);
+  background-image: linear-gradient(top, #4fbd4f, #2d792d);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4fbd4f', endColorstr='#2d792d', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#4fbd4f', endColorstr='#2d792d', gradientType=0);
+  border: 1px solid #2d792d;
+}
+.Button.Success[disabled],
+.Button.Success.Disabled {
+  background-image: none;
+  filter: none;
+  background-color: #87d287;
+}
+.Button.Information {
+  color: #ffffff;
+  background-color: #5bc0de;
+  background-image: -moz-linear-gradient(top, #5bc0de, #2390b0);
+  background-image: -ms-linear-gradient(top, #5bc0de, #2390b0);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#5bc0de), to(#2390b0));
+  background-image: -webkit-linear-gradient(top, #5bc0de, #2390b0);
+  background-image: -o-linear-gradient(top, #5bc0de, #2390b0);
+  background-image: linear-gradient(top, #5bc0de, #2390b0);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2390b0', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#5bc0de', endColorstr='#2390b0', gradientType=0);
+  border: 1px solid #2390b0;
+}
+.Button.Information:hover {
+  color: #ffffff;
+  background-color: #46b8da;
+  background-image: -moz-linear-gradient(top, #46b8da, #1f7e9a);
+  background-image: -ms-linear-gradient(top, #46b8da, #1f7e9a);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#46b8da), to(#1f7e9a));
+  background-image: -webkit-linear-gradient(top, #46b8da, #1f7e9a);
+  background-image: -o-linear-gradient(top, #46b8da, #1f7e9a);
+  background-image: linear-gradient(top, #46b8da, #1f7e9a);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#46b8da', endColorstr='#1f7e9a', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#46b8da', endColorstr='#1f7e9a', gradientType=0);
+  border: 1px solid #1f7e9a;
+}
+.Button.Information[disabled],
+.Button.Information.Disabled {
+  background-image: none;
+  filter: none;
+  background-color: #85d0e7;
+}
+.Button.Error {
+  color: #ffffff;
+  background-color: #ee5f5b;
+  background-image: -moz-linear-gradient(top, #ee5f5b, #ce1a15);
+  background-image: -ms-linear-gradient(top, #ee5f5b, #ce1a15);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ee5f5b), to(#ce1a15));
+  background-image: -webkit-linear-gradient(top, #ee5f5b, #ce1a15);
+  background-image: -o-linear-gradient(top, #ee5f5b, #ce1a15);
+  background-image: linear-gradient(top, #ee5f5b, #ce1a15);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#ce1a15', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ee5f5b', endColorstr='#ce1a15', gradientType=0);
+  border: 1px solid #ce1a15;
+}
+.Button.Error:hover {
+  color: #ffffff;
+  background-color: #ec4844;
+  background-image: -moz-linear-gradient(top, #ec4844, #b71713);
+  background-image: -ms-linear-gradient(top, #ec4844, #b71713);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ec4844), to(#b71713));
+  background-image: -webkit-linear-gradient(top, #ec4844, #b71713);
+  background-image: -o-linear-gradient(top, #ec4844, #b71713);
+  background-image: linear-gradient(top, #ec4844, #b71713);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ec4844', endColorstr='#b71713', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ec4844', endColorstr='#b71713', gradientType=0);
+  border: 1px solid #b71713;
+}
+.Button.Error[disabled],
+.Button.Error.Disabled {
+  background-image: none;
+  filter: none;
+  background-color: #f38c89;
+}
+/* 按钮组 */
+.ButtonGroup {
+  position: relative;
+  *margin-left: .3em;
+  display: inline-block;
+  *display: inline;
+  /* IE7 inline-block hack */
+
+  *zoom: 1;
+}
+.ButtonGroup:after {
+  clear: both;
+}
+.ButtonGroup .DropDownMenu {
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  border-radius: 5px;
+  margin-top: 2px;
+}
+.ButtonGroup.Open .DropDownMenu {
+  display: block;
+  *z-index: 1000;
+}
+.ButtonGroup .Caret {
+  margin-top: 8px;
+  margin-left: 4px;
+}
+.ButtonGroup .Button {
+  margin-left: -1px !important;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+}
+.ButtonGroup .Button.DropDownToggle,
+.ButtonGroup .Button:last-child {
+  -webkit-border-top-right-radius: 4px;
+  -moz-border-radius-topright: 4px;
+  border-top-right-radius: 4px;
+  -webkit-border-bottom-right-radius: 4px;
+  -moz-border-radius-bottomright: 4px;
+  border-bottom-right-radius: 4px;
+  padding-left: 4px;
+  padding-right: 8px;
+}
+.ButtonGroup .Button:first-child {
+  margin-left: 0;
+  -webkit-border-top-left-radius: 4px;
+  -moz-border-radius-topleft: 4px;
+  border-top-left-radius: 4px;
+  -webkit-border-bottom-left-radius: 4px;
+  -moz-border-radius-bottomleft: 4px;
+  border-bottom-left-radius: 4px;
+  padding-left: 8px;
+}
+/* 表单 */
+input[type="button"].Button,
+input[type="submit"].Button,
+input[type="reset"].Button,
+button.Button {
+  height: 27px;
+  line-height: 22px;
+  cursor: pointer;
+  padding: 1px 10px 8px;
+}
+input[type="button"].CloseButton,
+input[type="submit"].CloseButton,
+input[type="reset"].CloseButton,
+button.CloseButton {
+  color: #666666;
+  background-color: #ffffff;
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(top, #ffffff, #ffffff);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', gradientType=0);
+  border: 1px solid #ffffff;
+}
+input[type="button"].CloseButton:hover,
+input[type="submit"].CloseButton:hover,
+input[type="reset"].CloseButton:hover,
+button.CloseButton:hover {
+  color: #000000;
+  background-color: #ffffff;
+  background-image: -moz-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -ms-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -webkit-gradient(linear, 0 0, 0 100%, from(#ffffff), to(#ffffff));
+  background-image: -webkit-linear-gradient(top, #ffffff, #ffffff);
+  background-image: -o-linear-gradient(top, #ffffff, #ffffff);
+  background-image: linear-gradient(top, #ffffff, #ffffff);
+  -ms-filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', gradientType=0);
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorstr='#ffffff', endColorstr='#ffffff', gradientType=0);
+  border: 1px solid #ffffff;
+}
+button,
+input,
+select,
+textarea {
+  margin: 0;
+  vertical-align: middle;
+  font-size: 100%;
+  border: 1px solid #CCCCCC;
+  font-size: 12px;
+  padding: 3px;  
+  width: 300px;
+}
+.FormEditor {
+  padding: 8px 13px 0px 8px;
+  clear: both;
+}
+.FormEditor label {
+  font-weight: bold;
+  display: block;
+  margin-bottom: 2px;
+  font-size: 13px;
+}
+.FormEditor .Option {
+  padding-left: 0;
+  margin-bottom: 0;
+  padding-right: 5px;
+  vertical-align: middle;
+  display: inline-block;
+  padding-top: 5px;
+}
+.FormEditor .Option input[type="checkbox"],
+.FormEditor .Option input[type="radio"] {
+  width: auto;
+  height: auto;
+  padding: 0;
+  line-height: normal;
+  cursor: pointer;
+  -webkit-border-radius: 0;
+  -moz-border-radius: 0;
+  border-radius: 0;
+  float: left;
+  margin: 3px 0px;
+  margin-right: 5px;
+  *margin-top: 0;
+  border: 0 \9;
+}
+.FormEditor input[type="text"],
+.FormEditor input[type="checkbox"],
+.FormEditor input[type="radio"],
+.FormEditor input[type="file"],
+.FormEditor textarea,
+.FormEditor select,
+.FormEditor .UneditableInput {
+  padding: 3px;
+  height: 18px;
+  border: 1px solid #999;
+  font-size: 13px;
+  display: inline-block;
+  line-height: 18px;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  border-radius: 3px;
+  color: #666;
+}
+.FormEditor input[type="text"].valid,
+.FormEditor input[type="checkbox"].valid,
+.FormEditor input[type="radio"].valid,
+.FormEditor input[type="file"].valid,
+.FormEditor textarea.valid,
+.FormEditor select.valid,
+.FormEditor .UneditableInput.valid {
+  border: 1px solid #62c462;
+}
+.FormEditor input[type="text"][disabled],
+.FormEditor input[type="checkbox"][disabled],
+.FormEditor input[type="radio"][disabled],
+.FormEditor input[type="file"][disabled],
+.FormEditor textarea[disabled],
+.FormEditor select[disabled],
+.FormEditor .UneditableInput[disabled] {
+  background-color: #eeeeee;
+  border-color: #ddd;
+  cursor: not-allowed;
+}
+.FormEditor input[type="text"][disabled]:hover,
+.FormEditor input[type="checkbox"][disabled]:hover,
+.FormEditor input[type="radio"][disabled]:hover,
+.FormEditor input[type="file"][disabled]:hover,
+.FormEditor textarea[disabled]:hover,
+.FormEditor select[disabled]:hover,
+.FormEditor .UneditableInput[disabled]:hover {
+  cursor: not-allowed;
+}
+.FormEditor .UneditableInput {
+  cursor: not-allowed;
+  margin-bottom: 0px;
+  margin-top: 0px;
+}
+.FormEditor .SingleText,
+.FormEditor .UneditableInput {
+  /*width: 300px;*/
+
+}
+.FormEditor .SingleText.SmallInput,
+.FormEditor .UneditableInput.SmallInput,
+.FormEditor .SingleText.Small,
+.FormEditor .UneditableInput.Small {
+  width: 25% !important;
+}
+.FormEditor .SingleText.MediumInput,
+.FormEditor .UneditableInput.MediumInput,
+.FormEditor .SingleText.Medium,
+.FormEditor .UneditableInput.Medium {
+  width: 50% !important;
+}
+.FormEditor .SingleText.MaxInput,
+.FormEditor .UneditableInput.MaxInput,
+.FormEditor .SingleText.Max,
+.FormEditor .UneditableInput.Max {
+  width: 97.5% !important;
+}
+.FormEditor textarea {
+  width: 97.5%;
+  height: 100px;
+}
+.FormEditor textarea.Max {
+  height: 300px;
+}
+.FormEditor textarea.Medium {
+  height: 150px;
+}
+.FormEditor input[type="file"] {
+  width: auto;
+  padding: initial;
+  line-height: initial;
+  border: initial;
+  background-color: #ffffff;
+  background-color: initial;
+  -webkit-box-shadow: none;
+  -moz-box-shadow: none;
+  box-shadow: none;
+  height: 28px;
+  *margin-top: 4px;
+  line-height: 18px \9;
+}
+.FormEditor select {
+  height: 28px;
+  *margin-top: 4px;
+  line-height: 28px;
+  font-size: 13px;
+  display: inline-block;
+  margin-bottom: 0;
+}
+.FormEditor .field-validation-error {
+  color: #ee5f5b;
+}
+.FormEditor input.input-validation-error,
+.FormEditor input.Error {
+  border: 1px solid #ee5f5b;
+  color: #ee5f5b;
+}
+.FormEditor .LargeInput {
+  width: 97.5% !important;
+  font-size: 16px !important;
+  padding: 8px !important;
+}
+.FormEditor .CheckBoxList {
+  padding: 0px;
+  margin: 0px;
+  clear: both;
+}
+.FormEditor .CheckBoxList li {
+  list-style-type: none;
+  float: left;
+  padding: 5px;
+}
+.FormEditor.FormLine label {
+  display: inline-block;
+  margin-bottom: 0px;
+}
+.FormEditor.FormLine .SingleText.SmallInput,
+.FormEditor.FormLine .UneditableInput.SmallInput,
+.FormEditor.FormLine .SingleText.Small,
+.FormEditor.FormLine .UneditableInput.Small {
+  width: 100px !important;
+}
+.FormEditor.FormLine .SingleText.MediumInput,
+.FormEditor.FormLine .UneditableInput.MediumInput,
+.FormEditor.FormLine .SingleText.Medium,
+.FormEditor.FormLine .UneditableInput.Medium {
+  width: 200px!important;
+}
+.FormEditor.FormLine .SingleText.MaxInput,
+.FormEditor.FormLine .UneditableInput.MaxInput,
+.FormEditor.FormLine .SingleText.Max,
+.FormEditor.FormLine .UneditableInput.Max {
+  width: 300px !important;
+}
+.FormEditor .InputAppendBefore,
+.FormEditor .InputAppendAfter {
+  display: inline-block;
+  /*.SingleText {
+            width: 200px;
+        }*/
+
+}
+.FormEditor .InputAppendBefore .Addon,
+.FormEditor .InputAppendAfter .Addon {
+  display: inline-block;
+  width: auto;
+  min-width: 16px;
+  text-shadow: 0 1px 0 #ffffff;
+  height: 18px;
+  padding: 3px 5px;
+  font-weight: normal;
+  line-height: 18px;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #eeeeee;
+  border: 1px solid #999;
+}
+.FormEditor .InputAppendBefore .SingleText {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+.FormEditor .InputAppendBefore .Addon:first-child {
+  margin-right: -1px;
+  -webkit-border-radius: 3px 0 0 3px;
+  -moz-border-radius: 3px 0 0 3px;
+  border-radius: 3px 0 0 3px;
+}
+.FormEditor .InputAppendAfter .SingleText {
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+.FormEditor .InputAppendAfter .Addon:last-child {
+  margin-left: -2px;
+  -webkit-border-radius: 0 3px 3px 0;
+  -moz-border-radius: 0 3px 3px 0;
+  border-radius: 0 3px 3px 0;
+}
+.FormBottom {
+  padding: 10px 0px 10px 0px;
+  margin-left: 8px;
+}

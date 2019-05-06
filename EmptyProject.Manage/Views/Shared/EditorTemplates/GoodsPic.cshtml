@@ -1,0 +1,55 @@
+﻿@model IList<Guid>
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Domain;
+@using EmptyProject.Manage.Code;
+@{
+    IAttachmentService AttachmentService = GlobalController.IoC.Resolve<IAttachmentService>();
+    IList<AttachmentInfo> Infos = AttachmentService.GetAttachments(Model.ToArray());
+    }
+<input type="file" id="fileToUpload" name="fileToUpload" onkeydown="event.returnValue=false;" onchange="javascript:return ajaxFileUpload(1);"/>
+<dl class="PicList" style="width:650px">
+@foreach (var Item in Infos)
+{
+    if (Item.Default)
+    {
+    <dd class="curr" id="@Item.Id"><img class="pic" src="@Item.Url" /><span title="默认"></span><em title="删除"></em><input type="hidden" name="AttachmentIds" value="@Item.Id" /></dd>
+    }
+    else
+    {
+    <dd id="@Item.Id"><img class="pic" src="@Item.Url" /><span title="默认"></span><em title="删除"></em><input type="hidden" name="AttachmentIds" value="@Item.Id" /></dd> 
+    }
+}
+</dl>
+<script language=javascript>
+    //ajax上传附件
+    function ajaxFileUpload(btnid) {
+        $("#loading").ajaxStart(function () {
+		    $(this).show();
+		}).ajaxComplete(function () {
+		    $(this).hide();
+		});
+		addDo("正在上传，请稍后……",false);
+		$.ajaxFileUpload
+		(
+			{
+			    url: '/Upload_Ajax.aspx',
+			    secureuri: false,
+			    fileElementId: 'fileToUpload',
+			    attachmentType: "GoodsPic",
+			    dataType: 'json',
+			    success: function (data, status) {
+			        removeDo();
+			        if (data.error == "") {
+			            $(".PicList").append('<dd id="' + data.msg.Id + '"><img class="pic" src="' + data.msg.Url + '" /><span title="默认"></span><em title="删除"></em><input type="hidden" name="AttachmentIds" value="' + data.msg.Id + '" /></dd> ')
+			            if ($(".PicList dd").length == 1) {
+			                //当前如仅有一个附件上传，设置为默认附件
+			                $.post('@Url.Action("SetDefault","Attachment")', { Id: data.msg.Id }, function () {
+			                    $(".PicList dd").addClass("curr");
+                            });
+			            }
+			        }
+			    }
+			}
+		)
+    }
+</script>

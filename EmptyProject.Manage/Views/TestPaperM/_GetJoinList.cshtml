@@ -1,0 +1,43 @@
+﻿@model  BC.Core.ReturnPaging<EmptyProject.Domain.TestPaper>
+<table class="module_table">
+    <thead>
+        <tr>
+            <th width="5%"><input type="checkbox" onclick="SelectAllCheckBox('ckAll','module_table');" name="ckAll" class="form_checkbox" id="ckAll"></th>
+            <th class="text_left" style="width:400px">名称</th>
+            <th nowrap style="width:5%">是否推荐</th>
+            <th nowrap style="width:5%">是否推出</th>
+            <th nowrap style="width:15%">管理</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.PageListInfos.Count > 0)
+        {
+            foreach (var Item in Model.PageListInfos)
+            {
+        <tr id="@Item.Id">
+            <td class="center"><input id="IDS" class="form_checkbox" type="checkbox" value="@Item.Id" name="IDS"></td>
+            <td class="" style="width:400px">
+                <a href="javascript:" class="TestPaperPic">
+                    <img src="@Item.Covermap" style="width:50px;height:50px" />
+                </a>
+                <div class="desc">
+                    @Item.Title
+                </div>
+            </td>
+            <td align="center">@Html.TrueOrFalseImage(Item.IsRecommond == 1)</td>
+            <td align="center">@Html.TrueOrFalseImage(Item.IsIntroduction == 1)</td>
+            <td class="link" nowrap="">
+                <a href="javascript:" title="加入" class="Join join">加入</a>
+            </td>
+        </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th colspan=5>暂无记录！</th>
+            </tr>
+        }
+    </tbody>
+</table>
+@Html.Partial("_Paging", Model.Module_Page)

@@ -1,0 +1,34 @@
+﻿@model IList<Guid>
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Manage.Code;
+@using EmptyProject.Manage.Models;
+@using EmptyProject.Domain;
+@using EmptyProject.Domain.ValueObject;
+@{
+    ICategoryService CategoryService = GlobalController.IoC.Resolve<EmptyProject.DomainService.Interface.ICategoryService>();
+    IList<Category> AreaCategorys = CategoryService.GetRootCategorys("AreaGroup");
+    IList<Category> ProvinceCityCategorys = CategoryService.GetRootCategorys("ProvinceCity");
+    foreach (var AreaCategory in AreaCategorys)
+    {
+        EmptyProject.Domain.ValueObject.Category.AreaGroupCategoryExtended AreaGroupCategoryExtended =
+            new EmptyProject.Domain.ValueObject.Category.AreaGroupCategoryExtended().FromConfig(AreaCategory.ExtendedConfig);
+        IList<Category> AreaProvinceCityCategorys = ProvinceCityCategorys.Where(p => AreaGroupCategoryExtended.ProvinceCityCategoryIds.ToArray().Contains(p.Id)).ToList();
+		<li>
+            <span class="f_con"  style="width:600px"><label>@AreaCategory.Name @Html.CheckBox(AreaCategory.Id.ToString(), new { @class="AreaGroup"})</label>
+                <dl class="SelectList">
+                    @foreach (var Item in AreaProvinceCityCategorys)
+                    {
+                        if (Model.Contains(Item.Id))
+                        {
+                        <dd><label>@Item.Name <input type="checkbox" value="@Item.Id" name="ProvinceCityIds" class="ProvinceCity" disabled="disabled"/></label></dd>
+                        }
+                        else
+                        { 
+                        <dd><label>@Item.Name <input type="checkbox" value="@Item.Id" name="ProvinceCityIds" class="ProvinceCity" /></label></dd>
+                        }
+                    }
+                </dl>
+			</span>
+        </li>
+    }
+}

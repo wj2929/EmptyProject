@@ -1,0 +1,80 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="12.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{205006A1-E039-487F-9313-FAAA717ED2F7}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>EmptyProject.Core</RootNamespace>
+    <AssemblyName>EmptyProject.Core</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Collection\CollectionExpand.cs" />
+    <Compile Include="Collection\SyncDictionary.cs" />
+    <Compile Include="Config\Config.cs" />
+    <Compile Include="Config\ConfigHelper.cs" />
+    <Compile Include="Config\IConfigAccessHelper.cs" />
+    <Compile Include="Config\IConfigBase.cs" />
+    <Compile Include="Config\IConfigEditable.cs" />
+    <Compile Include="Config\LocalConfigurationAccessHelper.cs" />
+    <Compile Include="Config\ReflectionPathInfo.cs" />
+    <Compile Include="Enum\EnumHelper.cs" />
+    <Compile Include="IOutHtml.cs" />
+    <Compile Include="IO\IOHelper.cs" />
+    <Compile Include="IO\StreamHelper.cs" />
+    <Compile Include="Json\JsonReturnInfo.cs" />
+    <Compile Include="Net\HttpParameterCollection.cs" />
+    <Compile Include="Net\HttpProc.cs" />
+    <Compile Include="Net\IHttpParameterCollection.cs" />
+    <Compile Include="Net\INetHelper.cs" />
+    <Compile Include="Net\NetHelper.cs" />
+    <Compile Include="Net\SecurityCommunication.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Security\AESHelper.cs" />
+    <Compile Include="Security\DesHelper.cs" />
+    <Compile Include="Security\SignatureHelper.cs" />
+    <Compile Include="Time\DateTimeHelper.cs" />
+    <Compile Include="Time\ShortDate.cs" />
+    <Compile Include="Time\ShortTime.cs" />
+    <Compile Include="Validation\ValidationHelper.cs" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

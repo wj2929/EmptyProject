@@ -1,0 +1,33 @@
+﻿@model  IList<EmptyProject.Domain.TestQuestion>
+<table class="module_table">
+    <thead>
+        <tr>
+            <th width="5%"><input type="checkbox" onclick="SelectAllCheckBox('ckAll','module_table');" name="ckAll" class="form_checkbox" id="ckAll"></th>
+            <th class="text_left" style="width:400px">名称</th>
+            <th class="text_left">题型</th>
+            <th nowrap style="width:15%">管理</th>
+        </tr>
+    </thead>
+    <tbody>
+        @if (Model.Count > 0)
+        {
+            foreach (var Item in Model)
+            {
+        <tr id="@Item.Id">
+            <td class="center"><input id="IDS" class="form_checkbox" type="checkbox" value="@Item.Id" name="IDS"></td>
+            <td class="time">@Item.Title</td>
+            <td class="time">@((EmptyProject.Domain.QuestionType)Item.Type)</td>
+            <td class="link" nowrap="">
+                <a href="javascript:" title="删除" class="del">移除试题</a>
+            </td>
+        </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <th colspan=4>暂无记录！</th>
+            </tr>
+        }
+    </tbody>
+</table>

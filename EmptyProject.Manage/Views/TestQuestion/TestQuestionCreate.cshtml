@@ -1,0 +1,213 @@
+﻿@model EmptyProject.Manage.Models.AddTestQuestionModel
+
+@{
+    ViewBag.Title = "GoodsCreate";
+    Layout = "~/Views/Shared/PopupForm.cshtml";
+}
+<script src="@Url.Content("~/Scripts/xheditor/xheditor-1.1.13-zh-cn.min.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ValidateExpand.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/ajaxfileupload.js")" type="text/javascript"></script>
+<script src="@Url.Content("~/Scripts/jquery.autocomplete.js")" type="text/javascript"></script>
+<link type="text/css" rel="stylesheet" href="@Url.Content("~/css/jquery.autocomplete.css")" />
+<script src="@Url.Content("~/Scripts/jquery.livequery.js")" type="text/javascript"></script>
+
+<style>
+    select {
+        margin: 0;
+        vertical-align: middle;
+        font-size: 100%;
+        border: 1px solid #CCCCCC;
+        font-size: 12px;
+        padding: 3px;
+        width: 307px;
+    }
+</style>
+
+@using (Html.BeginForm())
+{
+    @Html.ValidationSummary(true)
+    <div id="layOver" class="module_layover tabsMenu">
+        <ul class="tabs_nav">
+            <li><a href="#con1">基本设置</a></li>
+            <li><a href="#con2">选项设置</a></li>
+        </ul>
+        <ul class="tabs_con">
+            <li id="con1">
+                <ul class="module_form">
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.Title)
+                            @Html.TextBoxFor(model => model.Title, new { @class = "form_text" })
+                        </span>@Html.ValidationMessageFor(model => model.Title)
+                    </li>
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.SpeechSoundUrl)
+                            @Html.EditorFor(model => model.SpeechSoundUrl)
+                        </span>@Html.ValidationMessageFor(model => model.SpeechSoundUrl)
+                    </li>
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.BackgroundMusicUrl)
+                            @Html.EditorFor(model => model.BackgroundMusicUrl)
+                        </span>@Html.ValidationMessageFor(model => model.BackgroundMusicUrl)
+                    </li>
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.Score)
+                            @Html.TextBoxFor(model => model.Score, new { @class = "form_text" })
+                        </span>@Html.ValidationMessageFor(model => model.Score)
+                    </li>
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.AnswerSecond)
+                            @Html.TextBoxFor(model => model.AnswerSecond, new { @class = "form_text" })
+                        </span>@Html.ValidationMessageFor(model => model.AnswerSecond)
+                    </li>
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.CategoryId)
+                            @Html.EditorFor(model => model.CategoryId)
+                        </span>@Html.ValidationMessageFor(model => model.CategoryId)
+                    </li>
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.CustomFormKeycode)
+                            @Html.EditorFor(model => model.CustomFormKeycode)
+                        </span>@Html.ValidationMessageFor(model => model.CustomFormKeycode)
+                    </li>
+                    <div id="DivExtendedAttributeList"></div>
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.Type)
+                            @Html.EditorFor(model => model.Type)
+                        </span>@Html.ValidationMessageFor(model => model.Type)
+                    </li>
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.Content)
+                            @Html.TextAreaFor(model => model.Content, new { rows = "20", cols = "80", style = "width: 600px" })
+                        </span>@Html.ValidationMessageFor(model => model.Content)
+                    </li>
+                    <li>
+                        <span class="f_con">
+                            @Html.LabelFor(model => model.QuestionParse)
+                            @Html.TextAreaFor(model => model.QuestionParse, new { rows = "20", cols = "80", style = "width: 600px" })
+                        </span>@Html.ValidationMessageFor(model => model.QuestionParse)
+                    </li>
+                </ul>
+            </li>
+            <li id=con2>
+                <ul class="module_form">
+                    @for (int i = 0; i < Model.TestQuestionItemModels.Count; i++)
+                    {
+                        EmptyProject.Manage.Models.TestQuestionItemModel TestQuestionItemModel = Model.TestQuestionItemModels[i];
+                        <li>
+                            <span class="f_con">
+                                <label for="Title">@(i + 1)</label>
+                                @Html.Hidden("TestQuestionItemModels[" + i + "].OrderBy", @i)
+                                @Html.Hidden("TestQuestionItemModels[" + i + "].Id", TestQuestionItemModel.Id)
+                                标题 @Html.TextBox("TestQuestionItemModels[" + i + "].Title", TestQuestionItemModel.Title)
+                            </span>
+                        </li>
+                        <li>
+                            <span class="f_con">
+                                <label for="Title"></label>
+                                答案 @Html.TextBox("TestQuestionItemModels[" + i + "].Answer", TestQuestionItemModel.Answer)
+                            </span>
+                        </li>
+                        <li>
+                            <span class="f_con">
+                                <label for="Title">&nbsp;</label>
+                                附件 <input type="file" id="UploadTestQuestionItemAttachment_@i" name="UploadTestQuestionItemAttachment_@i" onkeydown="event.returnValue=false;" onchange="javascript: return ajaxFileUploadTestQuestionItemAttachment( @i );">
+                                <dl class="UploadTestQuestionItemAttachment_dl_@i" style="width:650px">
+                                    @Html.Hidden("TestQuestionItemModels[" + i + "].AttachmentUrl", TestQuestionItemModel.AttachmentUrl)
+                                    @if (!string.IsNullOrEmpty(TestQuestionItemModel.AttachmentUrl))
+                                    {
+                                        <dd>地址 @TestQuestionItemModel.AttachmentUrl</dd>
+                                    }
+                                </dl>
+
+                            </span>
+                        </li>
+                    }
+                </ul>
+            </li>
+        </ul>
+        <div class="module-f"><input type="submit" value='提交' class='form_button button_add' /></div>
+	</div>
+}
+<script language=javascript>
+    $("#Content").xheditor(true, {
+        tools: "simple"
+    });
+    $("#QuestionParse").xheditor(true, {
+        tools: "simple"
+    });
+    $(function () {
+        CustomFormKeycodeChange($("#CustomFormKeycode").val());
+
+        $("#CategoryId").change(function () {
+            $.post("@Url.Action("GetGooodsCategoryRelationCustomFormKeycode","Goods")", { GoodsCategoryId: $(this).val() }, function (data) {
+                if (data.State) {
+                    if ($("#CustomFormKeycode").val() != data.Message) {
+                        $("#CustomFormKeycode").val(data.Message);
+                        CustomFormKeycodeChange(data.Message);
+                    }
+                    //$("#CustomFormKeycode").attr("disabled","disabled");
+                } else {
+                    // $("#CustomFormKeycode").removeAttr("disabled");
+                }
+            });
+        });
+
+        $("#CustomFormKeycode").change(function () {
+            CustomFormKeycodeChange($(this).val());
+        });
+
+        $(".PicList dd").live("click", function () {
+            if ($(".PicList .curr").attr("id") != $(this).attr("id")) {
+                //取消之前设置的默认附件
+                $.post('@Url.Action("CancelDefault","Attachment")', { Id: $(".PicList .curr").attr("id") }, function () { });
+                $(".PicList dd").removeClass("curr");
+                $(this).addClass("curr");
+                //设置新默认附件
+                $.post('@Url.Action("SetDefault","Attachment")', { Id: $(this).attr("id") }, function () { });
+            }
+        });
+
+        $(".PicList dd em").live("click", function () {
+            var Id = $(this).parent().attr("id");
+            var _this = $(this);
+            yonLay("删除", "确认删除吗？", function (flag) {
+                if (flag) {
+                    addDo("正在处理，请稍后……");
+                    $.post('@Url.Action("DeleteAttachment", "Attachment")', { Id: Id }, function (data) {
+                        _this.parent().remove();
+                        if ($(".PicList dd").length != 0 && $(".PicList .curr").length == 0) {
+                            //自动设置第一项为默认附件
+                            $(".PicList dd").eq(0).addClass("curr");
+                            $.post('@Url.Action("SetDefault","Attachment")', { Id: $(".PicList dd").eq(0).attr("id") }, function () { });
+                        }
+                    });
+                }
+            });
+            return false;
+        });
+    });
+
+    function formatItem(row) {
+        return row[1];//row[0] + " (<strong>id: " + row[1] + "</strong>)";
+    }
+    function formatResult(row) {
+        return row[0].replace(/(<.+?>)/gi, '');
+    }
+
+    function CustomFormKeycodeChange(CustomFormKeycode) {
+        if (CustomFormKeycode != "") {
+            $.post('@Url.Action("GetExtendedAttributes")', { CustomFormKeycode: CustomFormKeycode }, function (data) {
+                $("#DivExtendedAttributeList").html(data);
+            });
+        }
+    }
+</script>

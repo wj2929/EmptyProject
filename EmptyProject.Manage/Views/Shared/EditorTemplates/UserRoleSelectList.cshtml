@@ -1,0 +1,12 @@
+﻿@model string
+@using EmptyProject.DomainService.Interface;
+@using EmptyProject.Manage.Code;
+@{
+    IList<SelectListItem> UserRoleSelectListItems = GlobalController.UserRoleConfig.ConfigEntity.UserRoleItems.Select(t => new SelectListItem
+    {
+        Text = t.Value.Name,
+        Value = t.Key,
+        Selected = t.Key == Model
+    }).ToList();
+    }
+@Html.DropDownListFor(model => model, UserRoleSelectListItems)

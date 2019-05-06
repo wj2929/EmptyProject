@@ -1,0 +1,32 @@
+﻿@model EmptyProject.Manage.Models.LogOnModel
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+<html>
+<head>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>管理系统</title>
+    <link type="text/css" rel="stylesheet" href="@Url.Content("~/css/login.css")" />
+    <script src="@Url.Content("~/Scripts/jquery-1.7.1.min.js")" type="text/javascript"></script>
+    <script src="@Url.Content("~/Scripts/jquery.cookies.2.2.0.min.js")" type="text/javascript"></script>
+</head>
+ 
+<body id="login">
+<h1 id="login_logo">管理系统</h1>
+<div id="login_main">
+@using (Html.BeginForm("Login","Account", FormMethod.Post))
+{
+  <div class="login_form_main">
+    <p><label for="username" class="un">用户名</label>@Html.TextBoxFor(m => m.UserName, new { @class = "form_text" })</p>
+    <p><label for="password" class="pw">密码</label>@Html.PasswordFor(m => m.Password, new { @class = "form_text" })</p>
+  </div>
+  <div class="login_form_foot"><input type="submit" value="登录" class="form_button" title="登录" /><div style="float:right;color: #FF0000; font-size: small;">@Html.ValidationMessage("Error")</div></div>
+}
+</div>
+<div id="login_foot" style="display:none">CopyRight 2018 xx 版权所有</div>
+<script type="text/javascript">
+    //var CookiesUserName = $.cookies.get("CMSManageCookies");
+</script>
+</body>
+</html>

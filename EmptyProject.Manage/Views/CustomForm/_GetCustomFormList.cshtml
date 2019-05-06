@@ -1,0 +1,15 @@
+﻿@model IList<EmptyProject.Domain.CustomForm>
+@{
+    Layout = null;
+}
+@foreach (var item in Model.OrderBy(g => g.CreateDate).ToList())
+{
+    <li id="@item.Id" class="ContentItem">
+        <span><a href="javascript:" title="@item.Key">@item.Name</a></span>
+        <em>
+            <a href="javascript:" title="编辑" class="EditOn edit">编辑</a>
+            <a href="javascript:" title="删除" class="Remove del">删除</a>
+        </em>
+    </li>
+}
+<li class="add"><a href="javascript:" title="新建类目">新建类目</a></li>
