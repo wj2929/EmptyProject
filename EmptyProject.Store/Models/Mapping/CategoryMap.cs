@@ -1,4 +1,4 @@
-﻿using DM.Domain;
+﻿using EmptyProject.Domain;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity.ModelConfiguration;
@@ -6,7 +6,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace DM.Store.Models.Mapping
+namespace EmptyProject.Store.Models.Mapping
 {
     public class CategoryMap : EntityTypeConfiguration<Category>
     {
