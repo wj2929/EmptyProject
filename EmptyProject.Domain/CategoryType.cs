@@ -30,5 +30,10 @@ namespace EmptyProject.Domain
         /// </summary>
         [Required]
         public DateTime CreateDate { get; private set; }
+
+        public virtual CustomForm CustomForm { get; set; }
+        public Guid CustomForm_Id { get; set; }
+
+        public int Order { get; set; }
     }
 }

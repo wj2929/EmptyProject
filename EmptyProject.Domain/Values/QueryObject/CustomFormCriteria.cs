@@ -19,6 +19,12 @@ namespace EmptyProject.Domain.QueryObject
                 if (Ids != null && Ids.Length > 0 && !Ids[0].IsEmpty())
                     Specification = Specification.And(t => Ids.Contains(t.Id));
 
+                if (Keys != null && Keys.Length > 0 && !Keys[0].IsEmpty())
+                    Specification = Specification.And(t => Keys.Contains(t.Key));
+
+                if (!Key.IsEmpty())
+                    Specification = Specification.And(t => t.Key == Key);
+
                 return Specification.Expressions;
             }
         }
@@ -27,5 +33,8 @@ namespace EmptyProject.Domain.QueryObject
 		/// </summary>
 		public Guid[] Ids { get; set; }
 
+        public string Key { get; set; }
+
+        public string[] Keys { get; set; }
 	}
 }

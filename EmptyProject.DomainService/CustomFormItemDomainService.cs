@@ -11,7 +11,7 @@ using EmptyProject.Domain;
 using EmptyProject.Store.Interface;
 using EmptyProject.DomainService.Interface;
 using EmptyProject.Domain.QueryObject;
-
+using Z.EntityFramework.Plus;
 namespace EmptyProject.DomainService
 {
 	internal class CustomFormItemDomainService : BaseDomainService, ICustomFormItemDomainService
@@ -33,6 +33,7 @@ namespace EmptyProject.DomainService
 			if (AddInfo == null)
 				throw new ArgumentNullException("AddInfo");
 
+            AddInfo.Order = GetOrder(AddInfo.CustomForm_Id);
 			AddInfo = this.CustomFormItemStore.Add(AddInfo);
 			this.SaveChanage();
 			return AddInfo;
@@ -43,11 +44,16 @@ namespace EmptyProject.DomainService
 		/// </summary>		
 		public IList<CustomFormItem> AddCustomFormItems(IList<CustomFormItem> Infos)
 		{
-            Infos.ForEach(t => 
+            if (Infos.Count > 0)
             {
-                this.CustomFormItemStore.Add(t);
-            });
-			this.SaveChanage();
+                int Order = GetOrder(Infos.Select(t => t.CustomForm_Id).First());
+                Infos.ForEach(t =>
+                {
+                    t.Order = Order++;
+                    this.CustomFormItemStore.Add(t);
+                });
+                this.SaveChanage();
+            }
 			return Infos;
 		}
 
@@ -73,8 +79,9 @@ namespace EmptyProject.DomainService
 		/// </summary>		
 		public void Remove(Guid Id)
 		{
-			this.CustomFormItemStore.Remove(Id);
-			this.SaveChanage();
+            Removes(new CustomFormItemCriteria() { Id = Id, IsLock = false });
+            //this.CustomFormItemStore.Remove(Id);
+            //this.SaveChanage();
 		}
 
 		/// <summary>
@@ -82,11 +89,12 @@ namespace EmptyProject.DomainService
 		/// </summary>		
 		public void Removes(Guid[] Ids)
 		{
-			if (Ids.Length > 0)
-			{
-				this.CustomFormItemStore.Remove(Ids);
-				this.SaveChanage();
-			}
+            Removes(new CustomFormItemCriteria() { Ids = Ids, IsLock = false });
+            //if (Ids.Length > 0)
+            //{
+            //    this.CustomFormItemStore.Remove(Ids);
+            //    this.SaveChanage();
+            //}
 		}
 
 		/// <summary>
@@ -125,7 +133,7 @@ namespace EmptyProject.DomainService
 			_Pages.PageSize = PageSize;
 			_Pages.Compute();
 			returnPaging.Module_Page = _Pages;
-			returnPaging.PageListInfos = q.OrderByDescending(c => c.CreateDate).Skip(_Pages.First).Take(_Pages.Max).ToList();
+			returnPaging.PageListInfos = q.OrderBy(c => c.Order).Skip(_Pages.First).Take(_Pages.Max).ToList();
 			return returnPaging;
 		}
 
@@ -150,9 +158,9 @@ namespace EmptyProject.DomainService
 		{
 			PageNum = PageNum == 0 ? 1 : PageNum;
             if (PageNum == 1 && PageSize == int.MaxValue)
-                return GetQueryable(CustomFormItemCriteria).OrderByDescending(c => c.CreateDate).ToList();
+                return GetQueryable(CustomFormItemCriteria).OrderBy(c => c.Order).ToList();
             else
-				return GetQueryable(CustomFormItemCriteria).OrderByDescending(c => c.CreateDate).Skip((PageNum - 1) * PageSize).Take(PageSize).ToList();
+				return GetQueryable(CustomFormItemCriteria).OrderBy(c => c.Order).Skip((PageNum - 1) * PageSize).Take(PageSize).ToList();
 		}
 		/// <summary>
 		/// 检查Id是否存在
@@ -194,6 +202,16 @@ namespace EmptyProject.DomainService
         {
             return this.CustomFormItemStore.Find(g => g.CustomForm_Id == CustomFormId).OrderBy(g => g.CreateDate).OrderBy(g => g.Order).ToList();
         }
+
+        ///// <summary>
+        ///// 获取类目下的自定义表单列表
+        ///// </summary>
+        ///// <param name="CustomFormId"></param>
+        ///// <returns></returns>
+        //public IList<CustomFormItem> GetCustomFormItemsByKey(string CustomFormKey)
+        //{
+        //    return this.CustomFormItemStore.Find(g => g.CustomForm.).OrderBy(g => g.CreateDate).OrderBy(g => g.Order).ToList();
+        //}
 
         /// <summary>
         /// 保存排序
@@ -248,6 +266,31 @@ namespace EmptyProject.DomainService
         }
 
         /// <summary>
+        /// 设置表单项排序
+        /// </summary>
+        /// <param name="CustomFormId"></param>
+        /// <param name="SortIds"></param>
+        public void SaveItemOrder(Guid CustomFormId, Guid[] SortIds)
+        {
+            if (SortIds.Length > 0)
+            {
+                IList<CustomFormItem> CustomFormItems = GetList(new CustomFormItemCriteria() { CustomFormId = CustomFormId });
+                if (CustomFormItems.Where(t => SortIds.Contains(t.Id)).Count() == SortIds.Length)
+                {
+                    IDictionary<Guid, CustomFormItem> CustomFormItemDic = CustomFormItems.ToDictionary(t => t.Id, t => t);
+                    int i = 0;
+                    SortIds.ForEach(t =>
+                    {
+                        CustomFormItemDic[t].Order = i++;
+                        this.CustomFormItemStore.Edit(CustomFormItemDic[t]);
+                    });
+                    this.SaveChanage();
+                }
+            }
+        }
+
+
+        /// <summary>
         /// 获取排序值
         /// </summary>
         /// <param name="Type"></param>
@@ -257,6 +300,26 @@ namespace EmptyProject.DomainService
                 .OrderByDescending(t => t.Order)
                 .Select(t => t.Order);
             return q.Count() == 0 ? 0 : q.First() + 1;
+        }
+
+        /// <summary>
+        /// 锁定
+        /// </summary>
+        /// <param name="Id"></param>
+        public void Lock(Guid Id)
+        {
+            GetQueryable(new CustomFormItemCriteria() { Id = Id, IsLock = false }).Update(t => new CustomFormItem() { IsLock = true });
+            this.SaveChanage();
+        }
+
+        /// <summary>
+        /// 解锁
+        /// </summary>
+        /// <param name="Id"></param>
+        public void Unlock(Guid Id)
+        {
+            GetQueryable(new CustomFormItemCriteria() { Id = Id, IsLock = true }).Update(t => new CustomFormItem() { IsLock = false});
+            this.SaveChanage();
         }
 	}
 }

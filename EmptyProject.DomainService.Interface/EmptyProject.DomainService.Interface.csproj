@@ -53,8 +53,17 @@
     <Compile Include="ICategoryTypeDomainService.cs" />
     <Compile Include="ICustomFormDomainService.cs" />
     <Compile Include="ICustomFormItemDomainService.cs" />
+    <Compile Include="ICustomFormStepDomainService.cs" />
+    <Compile Include="IDataHistoryDomainService.cs" />
     <Compile Include="IDataInfoDomainService.cs" />
+    <Compile Include="IDataStatisticsDetailDomainService.cs" />
+    <Compile Include="IDataStatisticsDomainService.cs" />
+    <Compile Include="ILogDomainService.cs" />
     <Compile Include="ITestDomainService.cs" />
+    <Compile Include="IUserAccessTokenDomainService.cs" />
+    <Compile Include="IUserExtendDomainService.cs" />
+    <Compile Include="IUserThirdLoginExtendDomainService.cs" />
+    <Compile Include="IUserThirdLoginHistoryDomainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

@@ -15,14 +15,10 @@ namespace EmptyProject.Domain
         {
             this.CreateDate = DateTime.Now;
             this.DicExtendedAttributes = new Dictionary<string, ExtendedAttribute>();
-
+            this.DataStatistics = new List<DataStatistics>();
+            this.DataHistorys = new List<DataHistory>();
+            this.ChildDataInfos = new List<DataInfo>();
         }
-
-        /// <summary>
-        /// FormId
-        /// </summary>
-        public Guid CustomForm_Id { get; set; }
-        public virtual CustomForm CustomForm { get; set; }
 
         /// <summary>
         /// 创建日期
@@ -31,8 +27,16 @@ namespace EmptyProject.Domain
         public DateTime CreateDate { get; private set; }
 
         /// <summary>
-        /// ExtendedAttributes
+        /// 名称
         /// </summary>
+        public string Name { get; set; }
+
+        /// <summary>
+        /// 自定义表单Key
+        /// </summary>
+        public string CustomFormKeycode { get; set; }
+
+
         /// <summary>
         /// 扩展属性存储字段
         /// </summary>
@@ -88,6 +92,12 @@ namespace EmptyProject.Domain
                 }
             }
         }
+
+        public void SetDicExtendedAttributes(IDictionary<string, ExtendedAttribute> DicExtendedAttributes)
+        {
+            this.DicExtendedAttributes = DicExtendedAttributes;
+        }
+
         /// <summary>
         /// 扩展属性列表
         /// </summary>
@@ -99,6 +109,47 @@ namespace EmptyProject.Domain
             else
                 return string.Empty;
         }
-    }
 
+        /// <summary>
+        /// 数据统计
+        /// </summary>
+        public virtual ICollection<DataStatistics> DataStatistics { get; set; }
+
+        /// <summary>
+        /// 数据历史
+        /// </summary>
+        public virtual ICollection<DataHistory> DataHistorys { get; set; }
+
+        /// <summary>
+        /// 创建者
+        /// </summary>
+        public string Creator { get; set; }
+
+        /// <summary>
+        /// 上次修改者
+        /// </summary>
+        public string LastModifyUser { get; set; }
+
+        /// <summary>
+        /// 父数据
+        /// </summary>
+        public virtual DataInfo ParentDataInfo { get; set; }
+        public Guid? ParentDataInfo_Id { get; set; }
+
+        /// <summary>
+        /// Level
+        /// </summary>
+        public int Level { get; set; }
+
+        /// <summary>
+        /// Index
+        /// </summary>
+        public string Index { get; set; }
+
+        /// <summary>
+        /// 子数据列表
+        /// </summary>
+        public virtual ICollection<DataInfo> ChildDataInfos { get; set; }
+
+    }
 }

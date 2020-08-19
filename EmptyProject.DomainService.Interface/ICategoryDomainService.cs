@@ -11,88 +11,88 @@ using EmptyProject.Domain.QueryObject;
 namespace EmptyProject.DomainService.Interface
 {
 	public interface ICategoryDomainService
-	{ 
+	{
 
-		#region AutoCode
-		/// <summary>
-		/// 添加一条信息
-		/// </summary>		
-		Category AddCategory(Category Info);
+        #region AutoCode
+        /// <summary>
+        /// 添加一条信息
+        /// </summary>		
+        Category AddCategory(Category Info);
 
-		/// <summary>
-		/// 添加多条信息
-		/// </summary>		
-		IList<Category> AddCategorys(IList<Category> Info);
+        /// <summary>
+        /// 添加多条信息
+        /// </summary>		
+        IList<Category> AddCategorys(IList<Category> Info);
 
-		/// <summary>
-		/// 编辑一条信息
-		/// </summary>		
-		void EditCategory(Category Info);
-		
-		/// <summary>
-		/// 读取一条数据，如数据不存在，返回null
-		/// </summary>		
-		Category Single(Guid Id);
+        /// <summary>
+        /// 编辑一条信息
+        /// </summary>		
+        void EditCategory(Category Info);
 
-		/// <summary>
-		/// 删除一条信息
-		/// </summary>		
-		void Remove(Guid Id);
+        /// <summary>
+        /// 读取一条数据，如数据不存在，返回null
+        /// </summary>		
+        Category Single(Guid Id);
 
-		/// <summary>
-		/// 删除多条信息
-		/// </summary>		
-		void Removes(Guid[] Ids);
+        /// <summary>
+        /// 删除一条信息
+        /// </summary>		
+        void Remove(Guid Id);
 
-		/// <summary>
-		/// 删除多条信息
-		/// </summary>		
-		void Removes(CategoryCriteria CategoryCriteria);
+        /// <summary>
+        /// 删除多条信息
+        /// </summary>		
+        void Removes(Guid[] Ids);
 
-		/// <summary>
-		/// 获得所有信息
-		/// </summary>		
-		IList<Category> All();
+        /// <summary>
+        /// 删除多条信息
+        /// </summary>		
+        void Removes(CategoryCriteria CategoryCriteria);
 
-		/// <summary>
-		/// 检查Id是否存在
-		/// </summary>
-		/// <param name="Id"></param>
-		/// <returns></returns>
-		bool IsExist(Guid Id);
+        /// <summary>
+        /// 获得所有信息
+        /// </summary>		
+        IList<Category> All();
 
-		/// <summary>
-		/// 检查查询表达式是否存在记录
-		/// </summary>
-		/// <param name="Id"></param>
-		/// <returns></returns>
-		bool IsExist(CategoryCriteria CategoryCriteria);
+        /// <summary>
+        /// 检查Id是否存在
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        bool IsExist(Guid Id);
 
-		/// <summary>
-		/// 获取分页数据
-		/// </summary>
-		/// <param name="CategoryCriteria"></param>
-		/// <param name="PageNum"></param>
-		/// <param name="PageSize"></param>
-		/// <returns></returns>
-		ReturnPaging<Category> GetCategoryPaging(CategoryCriteria CategoryCriteria, int PageNum = 1, int PageSize = 20);
-        
-		/// <summary>
-		/// 统计数量
-		/// </summary>
-		/// <param name="WasteCertificateCriteria"></param>
-		/// <returns></returns>
-		int Count(CategoryCriteria CategoryCriteria);        
+        /// <summary>
+        /// 检查查询表达式是否存在记录
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        bool IsExist(CategoryCriteria CategoryCriteria);
 
-		/// <summary>
-		/// 获取列表
-		/// </summary>
-		/// <param name="CategoryCriteria"></param>
-		/// <param name="PageNum"></param>
-		/// <param name="PageSize"></param>
-		/// <returns></returns>
-		IList<Category> GetList(CategoryCriteria CategoryCriteria, int PageNum = 1, int PageSize = int.MaxValue);
-		#endregion
+        /// <summary>
+        /// 获取分页数据
+        /// </summary>
+        /// <param name="CategoryCriteria"></param>
+        /// <param name="PageNum"></param>
+        /// <param name="PageSize"></param>
+        /// <returns></returns>
+        ReturnPaging<Category> GetCategoryPaging(CategoryCriteria CategoryCriteria, int PageNum = 1, int PageSize = 20);
+
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <param name="WasteCertificateCriteria"></param>
+        /// <returns></returns>
+        int Count(CategoryCriteria CategoryCriteria);
+
+        /// <summary>
+        /// 获取列表
+        /// </summary>
+        /// <param name="CategoryCriteria"></param>
+        /// <param name="PageNum"></param>
+        /// <param name="PageSize"></param>
+        /// <returns></returns>
+        IList<Category> GetList(CategoryCriteria CategoryCriteria, int PageNum = 1, int PageSize = int.MaxValue);
+        #endregion
 
         /// <summary>
         /// 添加一条信息
@@ -112,7 +112,7 @@ namespace EmptyProject.DomainService.Interface
         /// </summary>
         /// <param name="info"></param>
         /// <param name="ParentCategory"></param>
-        void AddCategorysWithParent(IList<Category> infos, Category ParentCategory);
+        IList<Category> AddCategorysWithParent(IList<Category> infos, Category ParentCategory);
 
         /// <summary>
         /// 获取指定类型所有分类列表
@@ -127,6 +127,20 @@ namespace EmptyProject.DomainService.Interface
         /// <param name="Type"></param>
         /// <returns></returns>
         IList<Category> GetRootCategorys(string Type);
+
+        /// <summary>
+        /// 获取指定类型根分类列表
+        /// </summary>
+        /// <param name="Type"></param>
+        /// <returns></returns>
+        IList<Category> GetRootCategorys(Guid CategoryTypeId);
+
+        /// <summary>
+        /// 获取指定类型根分类列表
+        /// </summary>
+        /// <param name="Type"></param>
+        /// <returns></returns>
+        IList<Category> GetRootCategoryWithCategoryTypeKeycodes(string CategoryTypeKeycode);
 
         /// <summary>
         /// 获取子分类列表
@@ -184,5 +198,17 @@ namespace EmptyProject.DomainService.Interface
         /// <returns></returns>
         Category GetRootCategory(string Type, string Name);
 
-	}
+        /// <summary>
+        /// 获取排序值
+        /// </summary>
+        /// <param name="Type"></param>
+        int GetOrder(Guid CategoryTypeId, Guid? ParentCategory_Id);
+
+        /// <summary>
+        /// 设置表单项排序
+        /// </summary>
+        /// <param name="CustomFormId"></param>
+        /// <param name="SortIds"></param>
+        void SaveOrder(Guid CategoryTypeId, Guid? ParentCategory_Id, Guid[] SortIds);
+    }
 }

@@ -16,6 +16,8 @@ namespace EmptyProject.Domain
         public CustomForm()
         {
             this.CreateDate = DateTime.Now;
+            this.Items = new List<CustomFormItem>();
+            this.CustomFormSteps = new List<CustomFormStep>();
         }
 
         /// <summary>
@@ -40,5 +42,9 @@ namespace EmptyProject.Domain
         /// 所属扩展项
         /// </summary>
         public virtual ICollection<CustomFormItem> Items { get; set; }
+
+        public int Order { get; set; }
+
+        public virtual ICollection<CustomFormStep> CustomFormSteps { get; set; }
     }
 }

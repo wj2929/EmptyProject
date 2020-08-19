@@ -1,5 +1,4 @@
-﻿
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -46,14 +45,59 @@ namespace EmptyProject.Store.Models
         public IDbSet<CustomFormItem> CustomFormItems { get; set; }
 
         /// <summary>
+        /// CustomFormStep
+        /// </summary>
+        public IDbSet<CustomFormStep> CustomFormSteps { get; set; }
+
+        /// <summary>
+        /// DataHistory
+        /// </summary>
+        public IDbSet<DataHistory> DataHistories { get; set; }
+
+        /// <summary>
         /// DataInfo
         /// </summary>
         public IDbSet<DataInfo> DataInfoes { get; set; }
 
         /// <summary>
+        /// DataStatistics
+        /// </summary>
+        public IDbSet<DataStatistics> DataStatistics { get; set; }
+
+        /// <summary>
+        /// DataStatisticsDetail
+        /// </summary>
+        public IDbSet<DataStatisticsDetail> DataStatisticsDetails { get; set; }
+
+        /// <summary>
+        /// Log
+        /// </summary>
+        public IDbSet<Log> Logs { get; set; }
+
+        /// <summary>
         /// Test
         /// </summary>
         public IDbSet<Test> Tests { get; set; }
+
+        /// <summary>
+        /// UserAccessToken
+        /// </summary>
+        public IDbSet<UserAccessToken> UserAccessTokens { get; set; }
+
+        /// <summary>
+        /// UserExtend
+        /// </summary>
+        public IDbSet<UserExtend> UserExtends { get; set; }
+
+        /// <summary>
+        /// UserThirdLoginExtend
+        /// </summary>
+        public IDbSet<UserThirdLoginExtend> UserThirdLoginExtends { get; set; }
+
+        /// <summary>
+        /// UserThirdLoginHistory
+        /// </summary>
+        public IDbSet<UserThirdLoginHistory> UserThirdLoginHistories { get; set; }
 
         public EmptyProjectDBContext(string nameOrConnectionString)
             : base(nameOrConnectionString)

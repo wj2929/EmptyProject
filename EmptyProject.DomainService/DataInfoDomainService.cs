@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -74,8 +73,12 @@ namespace EmptyProject.DomainService
 		/// </summary>		
 		public void Remove(Guid Id)
 		{
-			this.DataInfoStore.Remove(Id);
-			this.SaveChanage();
+            //this.DataInfoStore.Remove(Id);
+            //this.SaveChanage();
+
+            string Index = this.DataInfoStore.Single(Id).Index;
+            this.DataInfoStore.Remove(t => t.Index.Contains(Index));
+            this.SaveChanage();
 		}
 
 		/// <summary>
@@ -83,11 +86,20 @@ namespace EmptyProject.DomainService
 		/// </summary>		
 		public void Removes(Guid[] Ids)
 		{
-			if (Ids.Length > 0)
-			{
-				this.DataInfoStore.Remove(Ids);
-				this.SaveChanage();
-			}
+            //if (Ids.Length > 0)
+            //{
+            //    this.DataInfoStore.Remove(Ids);
+            //    this.SaveChanage();
+            //}
+
+            if (Ids.Length > 0)
+            {
+                string[] Indexs = this.DataInfoStore.Find(t => Ids.Contains(t.Id)).Select(t => t.Index).ToArray();
+                Indexs.ForEach(Index => this.DataInfoStore.Remove(t => t.Index.Contains(Index)));
+                //this.CategoryStore.Remove(Ids);
+                this.SaveChanage();
+            }
+
 		}
 
 		/// <summary>
@@ -185,5 +197,91 @@ namespace EmptyProject.DomainService
         }
 
 		#endregion
+
+        /// <summary>
+        /// 获取数据的层级关系
+        /// </summary>
+        /// <param name="DataInfoId"></param>
+        /// <returns></returns>
+        public string GetDataInfos(Guid DataInfoId)
+        {
+            string retStr = string.Empty;
+
+            DataInfo cur = this.Single(DataInfoId);
+
+            return string.Join(",", GetDataInfos(cur.Index).Select(c => c.Name).ToArray());
+        }
+
+        /// <summary>
+        /// 获取数据的层级关系
+        /// </summary>
+        /// <param name="DataIndex"></param>
+        /// <returns></returns>
+        public IList<DataInfo> GetDataInfos(string DataIndex)
+        {
+            Guid[] DataInfoIds = DataIndex.Trim(',').Split(',').Select(t => t.GuidByString()).ToArray();
+            return this.DataInfoStore.Find(c => DataInfoIds.Contains(c.Id)).OrderBy(c => c.Level).ToList();
+        }
+
+        /// <summary>
+        /// 添加一条信息
+        /// </summary>		
+        public DataInfo AddDataInfo(DataInfo info, Guid? ParentDataInfo_Id)
+        {
+            if (ParentDataInfo_Id.HasValue && !ParentDataInfo_Id.Value.IsEmpty())
+            {
+                DataInfo ParentDataInfo = this.DataInfoStore.Single(ParentDataInfo_Id.Value);
+                info.ParentDataInfo_Id = ParentDataInfo_Id.Value;
+                info.Index = ParentDataInfo.Index + info.Id + ",";
+                info.Level = ParentDataInfo.Level + 1;
+            }
+            else
+            {
+                info.Index = "," + info.Id + ",";
+                info.Level = 0;
+                info.ParentDataInfo_Id = null;
+            }
+            info = this.DataInfoStore.Add(info);
+            this.SaveChanage();
+            return info;
+        }
+
+        /// <summary>
+        /// 添加一条信息
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ParentDataInfo"></param>
+        /// <returns></returns>
+        public DataInfo AddDataInfoWithParent(DataInfo info, DataInfo ParentDataInfo)
+        {
+            info.ParentDataInfo_Id = ParentDataInfo.Id;
+            info.Index = ParentDataInfo.Index + info.Id + ",";
+            info.Level = ParentDataInfo.Level + 1;
+
+            info = this.DataInfoStore.Add(info);
+            this.SaveChanage();
+            return info;
+        }
+
+        /// <summary>
+        /// 添加多条信息
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ParentDataInfo"></param>
+        public void AddDataInfosWithParent(IList<DataInfo> infos, DataInfo ParentDataInfo)
+        {
+            if (infos.Count > 0)
+            {
+                foreach (var info in infos)
+                {
+                    info.ParentDataInfo_Id = ParentDataInfo.Id;
+                    info.Index = ParentDataInfo.Index + info.Id + ",";
+                    info.Level = ParentDataInfo.Level + 1;
+
+                    this.DataInfoStore.Add(info);
+                }
+                this.SaveChanage();
+            }
+        }
 	}
 }

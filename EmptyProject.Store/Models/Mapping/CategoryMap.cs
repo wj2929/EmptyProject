@@ -14,9 +14,12 @@ namespace EmptyProject.Store.Models.Mapping
         {
             this.HasRequired(t => t.CategoryType).WithMany().HasForeignKey(t => t.CategoryType_Id);
 
-            this.HasOptional<Category>(t => t.ParentCategory).WithMany();
+            //this.HasOptional<Category>(t => t.ParentCategory).WithMany();
 
-            this.HasOptional(t => t.ParentCategory).WithMany().HasForeignKey(t => t.ParentCategory_Id);
+            //this.HasOptional<Category>(t => t.ParentCategory).WithMany(t => t.ChildCategorys).HasForeignKey(t=>t.ParentCategory_Id);
+
+            this.HasOptional(t => t.ParentCategory).WithMany(t => t.ChildCategorys).HasForeignKey(t => t.ParentCategory_Id);
+
         }
     }
 }

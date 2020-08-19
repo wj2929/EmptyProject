@@ -194,5 +194,39 @@ namespace EmptyProject.DomainService
         {
             return this.CategoryTypeStore.IsExist(c => c.Keycode == Keycode);
         }
-	}
+
+        /// <summary>
+        /// 获取一条数据
+        /// </summary>
+        /// <param name="Keycode"></param>
+        /// <returns></returns>
+        public CategoryType Single(string Keycode)
+        {
+            return this.CategoryTypeStore.Single(c => c.Keycode == Keycode);
+        }
+
+        /// <summary>
+        /// 设置分类类型排序
+        /// </summary>
+        /// <param name="SortIds"></param>
+        public void SaveOrder(Guid[] SortIds)
+        {
+            if (SortIds.Length > 0)
+            {
+                IList<CategoryType> CategoryTypes = All();
+                if (CategoryTypes.Where(t => SortIds.Contains(t.Id)).Count() == SortIds.Length)
+                {
+                    IDictionary<Guid, CategoryType> CategoryTypeDic = CategoryTypes.ToDictionary(t => t.Id, t => t);
+                    int i = 0;
+                    SortIds.ForEach(t =>
+                    {
+                        CategoryTypeDic[t].Order = i++;
+                        this.CategoryTypeStore.Edit(CategoryTypeDic[t]);
+                    });
+                    this.SaveChanage();
+                }
+            }
+        }
+
+    }
 }

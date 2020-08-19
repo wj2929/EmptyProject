@@ -100,5 +100,12 @@ namespace EmptyProject.DomainService.Interface
         /// <param name="Keycode"></param>
         /// <returns></returns>
         CustomForm SingleByKeycode(string Keycode);
-	}
+
+
+        /// <summary>
+        /// 设置表单排序
+        /// </summary>
+        /// <param name="SortIds"></param>
+        void SaveOrder(Guid[] SortIds);
+    }
 }

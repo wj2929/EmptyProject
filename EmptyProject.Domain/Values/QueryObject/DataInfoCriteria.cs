@@ -1,4 +1,3 @@
-
 using BC.DDD.Specification;
 using System;
 using System.Linq.Expressions;
@@ -6,8 +5,8 @@ using System.Linq;
 
 namespace EmptyProject.Domain.QueryObject
 {
-	public class DataInfoCriteria : IQueryCriteria<DataInfo>
-	{ 
+    public class DataInfoCriteria : IQueryCriteria<DataInfo>
+    {
         /// <summary>
         /// 查询对象
         /// </summary>
@@ -20,18 +19,43 @@ namespace EmptyProject.Domain.QueryObject
                 if (Ids != null && Ids.Length > 0 && !Ids[0].IsEmpty())
                     Specification = Specification.And(t => Ids.Contains(t.Id));
 
-                if(!CustomForm_Id.IsEmpty())
-                    Specification = Specification.And(t => CustomForm_Id == t.CustomForm_Id);
+                if (!Name.IsEmpty())
+                    Specification = Specification.And(t => t.Name.Contains(Name));
+
+                if (!CustomFormKeycode.IsEmpty())
+                    Specification = Specification.And(t => t.CustomFormKeycode == CustomFormKeycode);
+
+                if (!CreateDate_Begin.IsEmpty())
+                {
+                    DateTime d_begin_date = CreateDate_Begin.DateTimeByString();
+                    Specification = Specification.And(t => t.CreateDate >= d_begin_date);
+                }
+                if (!CreateDate_End.IsEmpty())
+                {
+                    DateTime d_end_date = CreateDate_End.DateTimeByString().AddDays(1);
+                    Specification = Specification.And(t => t.CreateDate < d_end_date);
+                }
+
+                Specification = Specification.And(t => t.ParentDataInfo_Id == ParentDataInfo_Id);
 
                 return Specification.Expressions;
             }
         }
-		/// <summary>
-		/// Ids
-		/// </summary>
-		public Guid[] Ids { get; set; }
+        /// <summary>
+        /// Ids
+        /// </summary>
+        public Guid[] Ids { get; set; }
 
-        public Guid CustomForm_Id { get; set; }
+        public string Name { get; set; }
 
-	}
+        public string CreateDate_Begin { get; set; }
+
+        public string CreateDate_End { get; set; }
+
+        public string CustomFormKeycode { get; set; }
+
+        public Guid? ParentDataInfo_Id { get; set; }
+
+
+    }
 }

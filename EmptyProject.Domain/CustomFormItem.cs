@@ -91,6 +91,18 @@ namespace EmptyProject.Domain
         /// </summary>
         public string OptionText { get; set; }
 
+        /// <summary>
+        /// 是否锁定
+        /// </summary>
+        public bool IsLock { get; set; }
+
+        /// <summary>
+        /// 是否隐藏
+        /// </summary>
+        public bool IsHide { get; set; }
+
+        public virtual CustomFormStep CustomFormStep { get; set; }
+        public Guid? CustomFormStep_Id { get; set; }
 
         #region IConfigBase<CustomFormItem>成员
         public string ToConfig()
@@ -138,10 +150,22 @@ namespace EmptyProject.Domain
         #endregion
     }
 
+
     public enum FormItemType
     {
         单行文本框 = 0,
         多行文本框 = 1,
         列表框 = 2,
+        上传文件 = 3,
+        日期选择框 = 4,
+        日期范围选择框 = 5,
+        表单选择框 = 6,
+        CKEditor富文本编辑器 = 7,
+        分类选择框 = 8,
+        可动态维护表单框 = 9,
+        上传身份证正面 = 10,
+        上传身份证背面 = 11,
+        Summernote富文本编辑器 = 12,
+        微信自定义菜单内容 = 13
     }
 }

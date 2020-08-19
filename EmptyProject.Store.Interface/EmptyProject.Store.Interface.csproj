@@ -50,9 +50,18 @@
     <Compile Include="ICategoryStore.cs" />
     <Compile Include="ICategoryTypeStore.cs" />
     <Compile Include="ICustomFormItemStore.cs" />
+    <Compile Include="ICustomFormStepStore.cs" />
     <Compile Include="ICustomFormStore.cs" />
+    <Compile Include="IDataHistoryStore.cs" />
     <Compile Include="IDataInfoStore.cs" />
+    <Compile Include="IDataStatisticsDetailStore.cs" />
+    <Compile Include="IDataStatisticsStore.cs" />
+    <Compile Include="ILogStore.cs" />
     <Compile Include="ITestStore.cs" />
+    <Compile Include="IUserAccessTokenStore.cs" />
+    <Compile Include="IUserExtendStore.cs" />
+    <Compile Include="IUserThirdLoginExtendStore.cs" />
+    <Compile Include="IUserThirdLoginHistoryStore.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>
   <ItemGroup>

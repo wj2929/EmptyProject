@@ -52,11 +52,20 @@
     <Compile Include="CategoryType.cs" />
     <Compile Include="CustomForm.cs" />
     <Compile Include="CustomFormItem.cs" />
+    <Compile Include="CustomFormStep.cs" />
     <Compile Include="CustomValidation.cs" />
+    <Compile Include="DataHistory.cs" />
     <Compile Include="DataInfo.cs" />
+    <Compile Include="DataStatistics.cs" />
+    <Compile Include="DataStatisticsDetail.cs" />
     <Compile Include="ExtendedAttribute.cs" />
+    <Compile Include="Log.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test.cs" />
+    <Compile Include="UserAccessToken.cs" />
+    <Compile Include="UserExtend.cs" />
+    <Compile Include="UserThirdLoginExtend.cs" />
+    <Compile Include="UserThirdLoginHistory.cs" />
     <Compile Include="Values\Category\AreaGroupCategoryExtended.cs" />
     <Compile Include="Values\Category\ProvinceCityCategoryExtended.cs" />
     <Compile Include="Values\Configs\CategoryConfig.cs" />
@@ -71,8 +80,17 @@
     <Compile Include="Values\QueryObject\CategoryTypeCriteria.cs" />
     <Compile Include="Values\QueryObject\CustomFormCriteria.cs" />
     <Compile Include="Values\QueryObject\CustomFormItemCriteria.cs" />
+    <Compile Include="Values\QueryObject\CustomFormStepCriteria.cs" />
+    <Compile Include="Values\QueryObject\DataHistoryCriteria.cs" />
     <Compile Include="Values\QueryObject\DataInfoCriteria.cs" />
+    <Compile Include="Values\QueryObject\DataStatisticsCriteria.cs" />
+    <Compile Include="Values\QueryObject\DataStatisticsDetailCriteria.cs" />
+    <Compile Include="Values\QueryObject\LogCriteria.cs" />
     <Compile Include="Values\QueryObject\TestCriteria.cs" />
+    <Compile Include="Values\QueryObject\UserAccessTokenCriteria.cs" />
+    <Compile Include="Values\QueryObject\UserExtendCriteria.cs" />
+    <Compile Include="Values\QueryObject\UserThirdLoginExtendCriteria.cs" />
+    <Compile Include="Values\QueryObject\UserThirdLoginHistoryCriteria.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Values\QueryObject\T4\BaseQueryObject.tt">

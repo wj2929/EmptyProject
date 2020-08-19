@@ -14,165 +14,168 @@ using EmptyProject.Domain.QueryObject;
 
 namespace EmptyProject.DomainService
 {
-	internal class CategoryDomainService : BaseDomainService, ICategoryDomainService
-	{ 
-		public CategoryDomainService(ICategoryStore CategoryStore,
-			IUnitOfWork UnitOfWork)
-			: base(UnitOfWork)
-		{
-			this.CategoryStore = CategoryStore;
-		}
-		private readonly ICategoryStore CategoryStore;
+    internal class CategoryDomainService : BaseDomainService, ICategoryDomainService
+    {
+        public CategoryDomainService(ICategoryStore CategoryStore,
+            IUnitOfWork UnitOfWork)
+            : base(UnitOfWork)
+        {
+            this.CategoryStore = CategoryStore;
+        }
+        private readonly ICategoryStore CategoryStore;
 
-		#region AutoCode
-		/// <summary>
-		/// 添加一条信息
-		/// </summary>		
-		public Category AddCategory(Category AddInfo)
-		{
-			if (AddInfo == null)
-				throw new ArgumentNullException("AddInfo");
+        #region AutoCode
+        /// <summary>
+        /// 添加一条信息
+        /// </summary>		
+        public Category AddCategory(Category AddInfo)
+        {
+            if (AddInfo == null)
+                throw new ArgumentNullException("AddInfo");
 
-			AddInfo = this.CategoryStore.Add(AddInfo);
-			this.SaveChanage();
-			return AddInfo;
-		}
+            AddInfo = this.CategoryStore.Add(AddInfo);
+            this.SaveChanage();
+            return AddInfo;
+        }
 
-		/// <summary>
-		/// 添加多条信息
-		/// </summary>		
-		public IList<Category> AddCategorys(IList<Category> Infos)
-		{
-            Infos.ForEach(t => 
+        /// <summary>
+        /// 添加多条信息
+        /// </summary>		
+        public IList<Category> AddCategorys(IList<Category> Infos)
+        {
+            Infos.ForEach(t =>
             {
                 this.CategoryStore.Add(t);
             });
-			this.SaveChanage();
-			return Infos;
-		}
+            this.SaveChanage();
+            return Infos;
+        }
 
-		/// <summary>
-		/// 编辑一条信息
-		/// </summary>		
-		public void EditCategory(Category Info)
-		{
-			this.CategoryStore.Edit(Info);
-			this.SaveChanage();
-		}
+        /// <summary>
+        /// 编辑一条信息
+        /// </summary>		
+        public void EditCategory(Category Info)
+        {
+            this.CategoryStore.Edit(Info);
+            this.SaveChanage();
+        }
 
-		/// <summary>
-		/// 读取一条数据，如数据不存在，返回null
-		/// </summary>		
-		public Category Single(Guid Id)
-		{
-			return this.CategoryStore.Single(Id);
-		}
+        /// <summary>
+        /// 读取一条数据，如数据不存在，返回null
+        /// </summary>		
+        public Category Single(Guid Id)
+        {
+            return this.CategoryStore.Single(Id);
+        }
 
-		/// <summary>
-		/// 删除一条信息
-		/// </summary>		
-		public void Remove(Guid Id)
-		{
-			this.CategoryStore.Remove(Id);
-			this.SaveChanage();
-		}
+        /// <summary>
+        /// 删除一条信息
+        /// </summary>		
+        public void Remove(Guid Id)
+        {
+            string Index = this.CategoryStore.Single(Id).Index;
+            this.CategoryStore.Remove(t => t.Index.Contains(Index));
+            this.SaveChanage();
+        }
 
-		/// <summary>
-		/// 删除多条信息
-		/// </summary>		
-		public void Removes(Guid[] Ids)
-		{
-			if (Ids.Length > 0)
-			{
-				this.CategoryStore.Remove(Ids);
-				this.SaveChanage();
-			}
-		}
+        /// <summary>
+        /// 删除多条信息
+        /// </summary>		
+        public void Removes(Guid[] Ids)
+        {
+            if (Ids.Length > 0)
+            {
+                string[] Indexs = this.CategoryStore.Find(t => Ids.Contains(t.Id)).Select(t => t.Index).ToArray();
+                Indexs.ForEach(Index => this.CategoryStore.Remove(t => t.Index.Contains(Index)));
+                //this.CategoryStore.Remove(Ids);
+                this.SaveChanage();
+            }
+        }
 
-		/// <summary>
-		/// 删除多条信息
-		/// </summary>		
-		public void Removes(CategoryCriteria CategoryCriteria)
-		{
-			this.CategoryStore.Remove(CategoryCriteria.Query);
-			this.SaveChanage();
-		}
+        /// <summary>
+        /// 删除多条信息
+        /// </summary>		
+        public void Removes(CategoryCriteria CategoryCriteria)
+        {
+            this.CategoryStore.Remove(CategoryCriteria.Query);
+            this.SaveChanage();
+        }
 
 
-		/// <summary>
-		/// 获得所有信息
-		/// </summary>		
-		public IList<Category> All()
-		{
-			return this.CategoryStore.All().ToList();
-		}
+        /// <summary>
+        /// 获得所有信息
+        /// </summary>		
+        public IList<Category> All()
+        {
+            return this.CategoryStore.All().ToList();
+        }
 
-		/// <summary>
-		/// 获取分页数据
-		/// </summary>
-		/// <param name="CategoryCriteria"></param>
-		/// <param name="PageSize"></param>
-		/// <param name="PageNum"></param>
-		/// <returns></returns>
-		public ReturnPaging<Category> GetCategoryPaging(CategoryCriteria CategoryCriteria, int PageNum = 1, int PageSize = 20)
-		{
-			var q = GetQueryable(CategoryCriteria);
+        /// <summary>
+        /// 获取分页数据
+        /// </summary>
+        /// <param name="CategoryCriteria"></param>
+        /// <param name="PageSize"></param>
+        /// <param name="PageNum"></param>
+        /// <returns></returns>
+        public ReturnPaging<Category> GetCategoryPaging(CategoryCriteria CategoryCriteria, int PageNum = 1, int PageSize = 20)
+        {
+            var q = GetQueryable(CategoryCriteria);
 
-			ReturnPaging<Category> returnPaging = new ReturnPaging<Category>();
-			Module_Page _Pages = new Module_Page();
-			_Pages.PageNum = PageNum;
-			_Pages.AllCount = q.Count();
-			_Pages.PageSize = PageSize;
-			_Pages.Compute();
-			returnPaging.Module_Page = _Pages;
-			returnPaging.PageListInfos = q.OrderByDescending(c => c.CreateDate).Skip(_Pages.First).Take(_Pages.Max).ToList();
-			return returnPaging;
-		}
+            ReturnPaging<Category> returnPaging = new ReturnPaging<Category>();
+            Module_Page _Pages = new Module_Page();
+            _Pages.PageNum = PageNum;
+            _Pages.AllCount = q.Count();
+            _Pages.PageSize = PageSize;
+            _Pages.Compute();
+            returnPaging.Module_Page = _Pages;
+            returnPaging.PageListInfos = q.OrderByDescending(c => c.CreateDate).Skip(_Pages.First).Take(_Pages.Max).ToList();
+            return returnPaging;
+        }
 
-		/// <summary>
-		/// 统计数量
-		/// </summary>
-		/// <param name="CategoryCriteria"></param>
-		/// <returns></returns>
-		public int Count(CategoryCriteria CategoryCriteria)
-		{
-			return GetQueryable(CategoryCriteria).Count();
-		}
+        /// <summary>
+        /// 统计数量
+        /// </summary>
+        /// <param name="CategoryCriteria"></param>
+        /// <returns></returns>
+        public int Count(CategoryCriteria CategoryCriteria)
+        {
+            return GetQueryable(CategoryCriteria).Count();
+        }
 
-		/// <summary>
-		/// 获取列表
-		/// </summary>
-		/// <param name="CategoryCriteria"></param>
-		/// <param name="PageSize"></param>
-		/// <param name="PageNum"></param>
-		/// <returns></returns>
-		public IList<Category> GetList(CategoryCriteria CategoryCriteria, int PageNum = 1, int PageSize = int.MaxValue)
-		{
-			PageNum = PageNum == 0 ? 1 : PageNum;
+        /// <summary>
+        /// 获取列表
+        /// </summary>
+        /// <param name="CategoryCriteria"></param>
+        /// <param name="PageSize"></param>
+        /// <param name="PageNum"></param>
+        /// <returns></returns>
+        public IList<Category> GetList(CategoryCriteria CategoryCriteria, int PageNum = 1, int PageSize = int.MaxValue)
+        {
+            PageNum = PageNum == 0 ? 1 : PageNum;
             if (PageNum == 1 && PageSize == int.MaxValue)
                 return GetQueryable(CategoryCriteria).OrderByDescending(c => c.CreateDate).ToList();
             else
-				return GetQueryable(CategoryCriteria).OrderByDescending(c => c.CreateDate).Skip((PageNum - 1) * PageSize).Take(PageSize).ToList();
-		}
-		/// <summary>
-		/// 检查Id是否存在
-		/// </summary>
-		/// <param name="Id"></param>
-		/// <returns></returns>
-		public bool IsExist(Guid Id)
-		{
-			return this.CategoryStore.IsExist(t => t.Id == Id);
-		}
+                return GetQueryable(CategoryCriteria).OrderByDescending(c => c.CreateDate).Skip((PageNum - 1) * PageSize).Take(PageSize).ToList();
+        }
+        /// <summary>
+        /// 检查Id是否存在
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public bool IsExist(Guid Id)
+        {
+            return this.CategoryStore.IsExist(t => t.Id == Id);
+        }
 
-		/// <summary>
-		/// 检查查询表达式是否存在记录
-		/// </summary>
-		/// <param name="Id"></param>
-		/// <returns></returns>
-		public bool IsExist(CategoryCriteria CategoryCriteria)
-		{
-			return Count(CategoryCriteria) > 0;
-		}
+        /// <summary>
+        /// 检查查询表达式是否存在记录
+        /// </summary>
+        /// <param name="Id"></param>
+        /// <returns></returns>
+        public bool IsExist(CategoryCriteria CategoryCriteria)
+        {
+            return Count(CategoryCriteria) > 0;
+        }
 
         /// <summary>
         /// 数据库查询表达式
@@ -183,7 +186,7 @@ namespace EmptyProject.DomainService
             return this.CategoryStore.Find(CategoryCriteria.Query);
         }
 
-		#endregion
+        #endregion
 
         ///// <summary>
         ///// 添加一条信息
@@ -220,6 +223,8 @@ namespace EmptyProject.DomainService
             info.Index = ParentCategory.Index + info.Id + ",";
             info.Level = ParentCategory.Level + 1;
 
+            info.OrderBy = GetOrder(info.CategoryType_Id, ParentCategory.Id);
+
             info = this.CategoryStore.Add(info);
             this.SaveChanage();
             return info;
@@ -230,17 +235,29 @@ namespace EmptyProject.DomainService
         /// </summary>
         /// <param name="info"></param>
         /// <param name="ParentCategory"></param>
-        public void AddCategorysWithParent(IList<Category> infos, Category ParentCategory)
+        public IList<Category> AddCategorysWithParent(IList<Category> infos, Category ParentCategory)
         {
-            foreach (var info in infos)
+            if (infos.Count > 0)
             {
-                info.ParentCategory_Id = ParentCategory.Id;
-                info.Index = ParentCategory.Index + info.Id + ",";
-                info.Level = ParentCategory.Level + 1;
+                Guid? ParentCategoryId = null;
+                if (ParentCategory != null)
+                    ParentCategoryId = ParentCategory.Id;
 
-                this.CategoryStore.Add(info);
+                int Order = GetOrder(infos.Select(t => t.CategoryType_Id).First(), ParentCategoryId);
+
+                foreach (var info in infos)
+                {
+                    info.OrderBy = Order++;
+                    info.ParentCategory_Id = ParentCategoryId;
+                    info.Index = (ParentCategoryId.HasValue ? ParentCategory.Index : ",") + info.Id + ",";
+                    info.Level = (ParentCategoryId.HasValue ? ParentCategory.Level : 0) + 1;
+
+                    this.CategoryStore.Add(info);
+                }
+                this.SaveChanage();
             }
-            this.SaveChanage();
+
+            return infos;
         }
 
         /// <summary>
@@ -259,7 +276,9 @@ namespace EmptyProject.DomainService
             {
                 info.Index = "," + info.Id + ",";
                 info.Level = 0;
+                info.ParentCategory_Id = null;
             }
+            info.OrderBy = GetOrder(info.CategoryType_Id, ParentCategory_Id);
             info = this.CategoryStore.Add(info);
             this.SaveChanage();
             return info;
@@ -283,6 +302,26 @@ namespace EmptyProject.DomainService
         public IList<Category> GetRootCategorys(string Type)
         {
             return this.CategoryStore.Find(c => c.Type == Type && (c.ParentCategory_Id == null || c.ParentCategory_Id == Guid.Empty)).OrderBy(c => c.CreateDate).OrderBy(c => c.OrderBy).ToList();
+        }
+
+        /// <summary>
+        /// 获取指定类型根分类列表
+        /// </summary>
+        /// <param name="Type"></param>
+        /// <returns></returns>
+        public IList<Category> GetRootCategorys(Guid CategoryTypeId)
+        {
+            return this.CategoryStore.Find(c => c.CategoryType_Id == CategoryTypeId && (c.ParentCategory_Id == null || c.ParentCategory_Id == Guid.Empty)).OrderBy(c => c.CreateDate).OrderBy(c => c.OrderBy).ToList();
+        }
+
+        /// <summary>
+        /// 获取指定类型根分类列表
+        /// </summary>
+        /// <param name="Type"></param>
+        /// <returns></returns>
+        public IList<Category> GetRootCategoryWithCategoryTypeKeycodes(string CategoryTypeKeycode)
+        {
+            return this.CategoryStore.Find(c => c.CategoryType.Keycode == CategoryTypeKeycode && (c.ParentCategory_Id == null || c.ParentCategory_Id == Guid.Empty)).OrderBy(c => c.CreateDate).OrderBy(c => c.OrderBy).ToList();
         }
 
         /// <summary>
@@ -393,5 +432,41 @@ namespace EmptyProject.DomainService
         {
             return this.CategoryStore.Single(c => c.Type == Type && c.Name == Name && c.Level == 0);
         }
-	}
+
+        /// <summary>
+        /// 获取排序值
+        /// </summary>
+        /// <param name="Type"></param>
+        public int GetOrder(Guid CategoryTypeId, Guid? ParentCategory_Id)
+        {
+            var q = this.CategoryStore.Find(t => t.CategoryType_Id == CategoryTypeId && t.ParentCategory_Id == ParentCategory_Id)
+                .OrderByDescending(t => t.OrderBy)
+                .Select(t => t.OrderBy);
+            return q.Count() == 0 ? 0 : q.First() + 1;
+        }
+
+        /// <summary>
+        /// 设置表单项排序
+        /// </summary>
+        /// <param name="CustomFormId"></param>
+        /// <param name="SortIds"></param>
+        public void SaveOrder(Guid CategoryTypeId, Guid? ParentCategory_Id, Guid[] SortIds)
+        {
+            if (SortIds.Length > 0)
+            {
+                IList<Category> Categorys = GetList(new CategoryCriteria() { CategoryTypeId = CategoryTypeId, ParentCategory_Id = ParentCategory_Id });
+                if (Categorys.Where(t => SortIds.Contains(t.Id)).Count() == SortIds.Length)
+                {
+                    IDictionary<Guid, Category> CategoryDic = Categorys.ToDictionary(t => t.Id, t => t);
+                    int i = 0;
+                    SortIds.ForEach(t =>
+                    {
+                        CategoryDic[t].OrderBy = i++;
+                        this.CategoryStore.Edit(CategoryDic[t]);
+                    });
+                    this.SaveChanage();
+                }
+            }
+        }
+    }
 }

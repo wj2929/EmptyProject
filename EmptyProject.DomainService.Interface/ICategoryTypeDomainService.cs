@@ -100,5 +100,19 @@ namespace EmptyProject.DomainService.Interface
         /// <param name="Keycode"></param>
         /// <returns></returns>
         bool CheckKeyExist(string Keycode);
-	}
+
+        /// <summary>
+        /// 获取一条数据
+        /// </summary>
+        /// <param name="Keycode"></param>
+        /// <returns></returns>
+        CategoryType Single(string Keycode);
+
+        /// <summary>
+        /// 设置分类类型排序
+        /// </summary>
+        /// <param name="SortIds"></param>
+        void SaveOrder(Guid[] SortIds);
+
+    }
 }

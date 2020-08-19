@@ -65,17 +65,33 @@
     <Compile Include="CategoryStore.cs" />
     <Compile Include="CategoryTypeStore.cs" />
     <Compile Include="CustomFormItemStore.cs" />
+    <Compile Include="CustomFormStepStore.cs" />
     <Compile Include="CustomFormStore.cs" />
+    <Compile Include="DataHistoryStore.cs" />
     <Compile Include="DataInfoStore.cs" />
+    <Compile Include="DataStatisticsDetailStore.cs" />
+    <Compile Include="DataStatisticsStore.cs" />
+    <Compile Include="LogStore.cs" />
     <Compile Include="Models\EmptyProjectDBContext.cs" />
     <Compile Include="Models\CustomCreateDatabaseIfNotExists.cs" />
     <Compile Include="Models\DatabaseFactory.cs" />
     <Compile Include="Models\DataFill\BaseData.cs" />
     <Compile Include="Models\Mapping\CategoryMap.cs" />
+    <Compile Include="Models\Mapping\CategoryTypeMap.cs" />
     <Compile Include="Models\Mapping\CustomFormItemMap.cs" />
+    <Compile Include="Models\Mapping\CustomFormStepMap.cs" />
+    <Compile Include="Models\Mapping\DataHistoryMap.cs" />
     <Compile Include="Models\Mapping\DataInfoMap.cs" />
+    <Compile Include="Models\Mapping\DataStatisticsDetailMap.cs" />
+    <Compile Include="Models\Mapping\DataStatisticsMap.cs" />
+    <Compile Include="Models\Mapping\UserExtendMap.cs" />
+    <Compile Include="Models\Mapping\UserThirdLoginHistoryMap.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestStore.cs" />
+    <Compile Include="UserAccessTokenStore.cs" />
+    <Compile Include="UserExtendStore.cs" />
+    <Compile Include="UserThirdLoginExtendStore.cs" />
+    <Compile Include="UserThirdLoginHistoryStore.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EmptyProject.Domain\EmptyProject.Domain.csproj">

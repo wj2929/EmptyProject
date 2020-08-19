@@ -46,6 +46,12 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>..\Libs\BC\BC.DDD.dll</HintPath>
     </Reference>
+    <Reference Include="EntityFramework, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.dll</HintPath>
+    </Reference>
+    <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
+      <HintPath>..\packages\EntityFramework.6.1.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
+    </Reference>
     <Reference Include="Excel, Version=2.1.2.3, Culture=neutral, PublicKeyToken=93517dbe6a4012fa, processorArchitecture=MSIL">
       <HintPath>..\packages\ExcelDataReader.2.1.2.3\lib\net45\Excel.dll</HintPath>
       <Private>True</Private>
@@ -55,6 +61,7 @@
       <Private>True</Private>
     </Reference>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
     <Reference Include="System.Data.DataSetExtensions" />
@@ -62,6 +69,30 @@
     <Reference Include="System.Data" />
     <Reference Include="System.Net.Http" />
     <Reference Include="System.Xml" />
+    <Reference Include="TrainServices.BAL">
+      <HintPath>..\Libs\UserServices\TrainServices.BAL.dll</HintPath>
+    </Reference>
+    <Reference Include="TrainServices.Entity">
+      <HintPath>..\Libs\UserServices\TrainServices.Entity.dll</HintPath>
+    </Reference>
+    <Reference Include="TrainServices.Models">
+      <HintPath>..\Libs\UserServices\TrainServices.Models.dll</HintPath>
+    </Reference>
+    <Reference Include="TrainServices.WEB">
+      <HintPath>..\Libs\UserServices\TrainServices.WEB.dll</HintPath>
+    </Reference>
+    <Reference Include="Z.EntityFramework.Extensions, Version=4.0.89.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Extensions.4.0.89\lib\net45\Z.EntityFramework.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Z.EntityFramework.Plus.BatchDelete.EF6, Version=1.8.6.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Plus.BatchDelete.EF6.1.8.6\lib\net45\Z.EntityFramework.Plus.BatchDelete.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Z.EntityFramework.Plus.EF6, Version=1.12.31.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.EntityFramework.Plus.EF6.1.12.31\lib\net45\Z.EntityFramework.Plus.EF6.dll</HintPath>
+    </Reference>
+    <Reference Include="Z.Expressions.Eval, Version=4.0.12.0, Culture=neutral, PublicKeyToken=59b66d028979105b, processorArchitecture=MSIL">
+      <HintPath>..\packages\Z.Expressions.Eval.4.0.12\lib\net45\Z.Expressions.Eval.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
     <Compile Include="AttachmentDomainService.cs" />
@@ -69,14 +100,32 @@
     <Compile Include="CategoryTypeDomainService.cs" />
     <Compile Include="CustomFormDomainService.cs" />
     <Compile Include="CustomFormItemDomainService.cs" />
+    <Compile Include="CustomFormStepDomainService.cs" />
+    <Compile Include="DataHistoryDomainService.cs" />
     <Compile Include="DataInfoDomainService.cs" />
+    <Compile Include="DataStatisticsDetailDomainService.cs" />
+    <Compile Include="DataStatisticsDomainService.cs" />
+    <Compile Include="EFExtends\DistinctExtends.cs" />
     <Compile Include="EFExtends\IOrderByExpression.cs" />
     <Compile Include="EFExtends\OrderByExpression.cs" />
     <Compile Include="EFExtends\QueryableExtends.cs" />
+    <Compile Include="LogDomainService.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="TestDomainService.cs" />
+    <Compile Include="UserAccessTokenDomainService.cs" />
+    <Compile Include="UserExtendDomainService.cs" />
+    <Compile Include="UserThirdLoginExtendDomainService.cs" />
+    <Compile Include="UserThirdLoginHistoryDomainService.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\EmptyProject.Core.WebOnly\EmptyProject.Core.WebOnly.csproj">
+      <Project>{b509e78f-9660-48f9-abba-860cdd849072}</Project>
+      <Name>EmptyProject.Core.WebOnly</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\EmptyProject.Core\EmptyProject.Core.csproj">
+      <Project>{205006a1-e039-487f-9313-faaa717ed2f7}</Project>
+      <Name>EmptyProject.Core</Name>
+    </ProjectReference>
     <ProjectReference Include="..\EmptyProject.DomainService.Interface\EmptyProject.DomainService.Interface.csproj">
       <Project>{016a575e-141c-424a-bee9-4d62c717ff8e}</Project>
       <Name>EmptyProject.DomainService.Interface</Name>
@@ -100,6 +149,7 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="App.config" />
     <None Include="packages.config" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

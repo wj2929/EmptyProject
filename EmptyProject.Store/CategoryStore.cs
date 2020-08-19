@@ -9,7 +9,7 @@ namespace EmptyProject.Store
 	{ 
 		public CategoryStore(IDbContextFactory DatabaseFactory) : base(DatabaseFactory) 
 		{
- 
-		}
+
+        }
 	}
 }

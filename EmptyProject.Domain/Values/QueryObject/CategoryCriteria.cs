@@ -19,6 +19,11 @@ namespace EmptyProject.Domain.QueryObject
                 if (Ids != null && Ids.Length > 0 && !Ids[0].IsEmpty())
                     Specification = Specification.And(t => Ids.Contains(t.Id));
 
+                if (!CategoryTypeId.IsEmpty())
+                    Specification = Specification.And(t => t.CategoryType_Id == CategoryTypeId);
+
+                Specification = Specification.And(t => t.ParentCategory_Id == ParentCategory_Id);
+
                 return Specification.Expressions;
             }
         }
@@ -26,6 +31,10 @@ namespace EmptyProject.Domain.QueryObject
 		/// Ids
 		/// </summary>
 		public Guid[] Ids { get; set; }
+
+        public Guid CategoryTypeId { get; set; }
+
+        public Guid? ParentCategory_Id { get; set; }
 
 	}
 }

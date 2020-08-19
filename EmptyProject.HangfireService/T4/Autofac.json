@@ -1,22 +1,4 @@
-﻿
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-{
+﻿{
   "components": [
     {
       "type": "BC.DDD.EntityFramework.UnitOfWork,BC.DDD.EntityFramework",
@@ -36,14 +18,40 @@
 	{ "type": "EmptyProject.HangfireService.Schedule.TestEndProcessingRecurringJob, EmptyProject.HangfireService.Schedule" },
 	{ "type": "EmptyProject.HangfireService.Schedule.TestStartProcessingRecurringJob, EmptyProject.HangfireService.Schedule" },
 	//Store 开始
-
+    { "type": "EmptyProject.Store.AttachmentStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.IAttachmentStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.CategoryStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.ICategoryStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.CategoryTypeStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.ICategoryTypeStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.CustomFormStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.ICustomFormStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.CustomFormItemStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.ICustomFormItemStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.CustomFormStepStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.ICustomFormStepStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.DataHistoryStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.IDataHistoryStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.DataInfoStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.IDataInfoStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.DataStatisticsStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.IDataStatisticsStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.DataStatisticsDetailStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.IDataStatisticsDetailStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.LogStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.ILogStore,EmptyProject.Store.Interface" } ] },
     { "type": "EmptyProject.Store.TestStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.ITestStore,EmptyProject.Store.Interface" } ] },
-
+    { "type": "EmptyProject.Store.UserAccessTokenStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.IUserAccessTokenStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.UserExtendStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.IUserExtendStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.UserThirdLoginExtendStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.IUserThirdLoginExtendStore,EmptyProject.Store.Interface" } ] },
+    { "type": "EmptyProject.Store.UserThirdLoginHistoryStore,EmptyProject.Store", "services": [ { "type": "EmptyProject.Store.Interface.IUserThirdLoginHistoryStore,EmptyProject.Store.Interface" } ] },
 	//Store 结束
 	//Service 开始
-
+    { "type": "EmptyProject.DomainService.AttachmentDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.IAttachmentDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.CategoryDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.ICategoryDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.CategoryTypeDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.ICategoryTypeDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.CustomFormDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.ICustomFormDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.CustomFormItemDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.ICustomFormItemDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.CustomFormStepDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.ICustomFormStepDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.DataHistoryDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.IDataHistoryDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.DataInfoDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.IDataInfoDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.DataStatisticsDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.IDataStatisticsDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.DataStatisticsDetailDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.IDataStatisticsDetailDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.LogDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.ILogDomainService,EmptyProject.DomainService.Interface" } ] },
     { "type": "EmptyProject.DomainService.TestDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.ITestDomainService,EmptyProject.DomainService.Interface" } ] },
-
+    { "type": "EmptyProject.DomainService.UserAccessTokenDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.IUserAccessTokenDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.UserExtendDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.IUserExtendDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.UserThirdLoginExtendDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.IUserThirdLoginExtendDomainService,EmptyProject.DomainService.Interface" } ] },
+    { "type": "EmptyProject.DomainService.UserThirdLoginHistoryDomainService,EmptyProject.DomainService", "services": [ { "type": "EmptyProject.DomainService.Interface.IUserThirdLoginHistoryDomainService,EmptyProject.DomainService.Interface" } ] },
 	//Service 结束
 	]
 }

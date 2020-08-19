@@ -1,4 +1,3 @@
-
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -95,5 +94,38 @@ namespace EmptyProject.DomainService.Interface
 		IList<DataInfo> GetList(DataInfoCriteria DataInfoCriteria, int PageNum = 1, int PageSize = int.MaxValue);
 		#endregion
 
+        /// <summary>
+        /// 获取数据的层级关系
+        /// </summary>
+        /// <param name="DataInfoId"></param>
+        /// <returns></returns>
+        string GetDataInfos(Guid DataInfoId);
+
+        /// <summary>
+        /// 获取数据的层级关系
+        /// </summary>
+        /// <param name="DataIndex"></param>
+        /// <returns></returns>
+        IList<DataInfo> GetDataInfos(string DataIndex);
+
+        /// <summary>
+        /// 添加一条信息
+        /// </summary>		
+        DataInfo AddDataInfo(DataInfo info, Guid? ParentDataInfo_Id);
+
+        /// <summary>
+        /// 添加一条信息
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ParentDataInfo"></param>
+        /// <returns></returns>
+        DataInfo AddDataInfoWithParent(DataInfo info, DataInfo ParentDataInfo);
+
+        /// <summary>
+        /// 添加多条信息
+        /// </summary>
+        /// <param name="info"></param>
+        /// <param name="ParentDataInfo"></param>
+        void AddDataInfosWithParent(IList<DataInfo> infos, DataInfo ParentDataInfo);
 	}
 }

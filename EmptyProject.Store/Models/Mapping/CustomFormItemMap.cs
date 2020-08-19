@@ -14,6 +14,7 @@ namespace EmptyProject.Store.Models.Mapping
         {
             this.HasRequired(t => t.CustomForm).WithMany(t => t.Items).HasForeignKey(t => t.CustomForm_Id);
 
+            this.HasOptional(t => t.CustomFormStep).WithMany(t => t.CustomFormItems).HasForeignKey(t => t.CustomFormStep_Id);
         }
     }
 }
