@@ -1,0 +1,8 @@
+<ul class="pagination">
+  <li class="disabled"><a href="javascript:">共有：{{AllCount}}条数据</a></li>
+  <li class="disabled"><a href="javascript:">分页：{{CurrentPage}}/{{PageCount}}</a></li>
+  <li class="pgNext" [class.disabled]="this.CurrentPage==1 ? 'disabled' : ''" (click)="OnPageChanged(1)"><a href="javascript:">首页</a></li>
+  <li class="pgNext" [class.disabled]="this.CurrentPage==1 ? 'disabled' : ''" (click)="OnPageChanged(this.CurrentPage==1 ? 1 : (this.CurrentPage - 1))"><a href="javascript:">上一页</a></li>
+  <li class="pgNext" [class.disabled]="this.CurrentPage>=this.PageCount ? 'disabled' : ''" (click)="OnPageChanged(this.CurrentPage==this.PageCount ? this.PageCount : (this.CurrentPage + 1))"><a href="javascript:">下一页</a></li>
+  <li class="pgNext" [class.disabled]="this.CurrentPage==this.PageCount ? 'disabled' : ''" (click)="OnPageChanged(this.PageCount)"><a href="javascript:">末页</a></li>
+</ul>

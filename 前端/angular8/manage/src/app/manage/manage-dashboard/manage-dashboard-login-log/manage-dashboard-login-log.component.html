@@ -1,0 +1,27 @@
+<div class="panel panel-white">
+  <div class="panel-heading">
+    <h6 class="panel-title">系统操作日志</h6>
+  </div>
+  <div class="panel-body">
+    <div class="category-content">
+      <legend class="text-size-mini text-muted no-border no-padding"><i class="icon-calendar3 position-left"></i>今日</legend>
+      <ul class="list-feed">
+        <li class="border-warning-400" *ngFor="let item of recentLoginRecordList.Today">
+          <div class="text-muted text-size-small mb-5">{{item.CreateDate.slice(6,-2) | date :'yyyy-MM-dd HH:mm:ss' }}
+          </div>
+          <a href="javascript:">{{item.UserName}}</a> 登录系统
+        </li>
+      </ul>
+    </div>
+    <div class="category-content" *ngIf="recentLoginRecordList.PastDay.length>0">
+      <legend class="text-size-mini text-muted no-border no-padding"><i class="icon-calendar3 position-left"></i>往日</legend>
+      <ul class="list-feed">
+        <li class="border-warning-400" *ngFor="let item of recentLoginRecordList.PastDay">
+          <div class="text-muted text-size-small mb-5">{{item.CreateDate.slice(6,-2) | date :'yyyy-MM-dd HH:mm:ss' }}
+          </div>
+          <a href="javascript:">{{item.UserName}}</a> 登录系统
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>

@@ -888,8 +888,8 @@ $.extend($.validator, {
 		return data;
 	},
 	
-	// http://docs.jquery.com/Plugins/Validation/Validator/addMethod
-	addMethod: function(name, method, message) {
+	// http://docs.jquery.com/Plugins/Validation/Validator/adEmptyProjectethod
+	adEmptyProjectethod: function(name, method, message) {
 		$.validator.methods[name] = method;
 		$.validator.messages[name] = message != undefined ? message : $.validator.messages[name];
 		if (method.length < 3) {

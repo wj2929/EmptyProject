@@ -29,7 +29,7 @@
         return fieldName.substr(0, fieldName.lastIndexOf(".") + 1);
     }
 
-    function appendModelPrefix(value, prefix) {
+    function appenEmptyProjectodelPrefix(value, prefix) {
         if (value.indexOf("*.") === 0) {
             value = value.replace("*.", prefix);
         }
@@ -216,7 +216,7 @@
         });
     };
 
-    adapters.addMinMax = function (adapterName, minRuleName, maxRuleName, minMaxRuleName, minAttribute, maxAttribute) {
+    adapters.adEmptyProjectinMax = function (adapterName, minRuleName, maxRuleName, minMaxRuleName, minAttribute, maxAttribute) {
         /// <summary>Adds a new adapter to convert unobtrusive HTML into a jQuery Validate validation, where
         /// the jQuery Validate validation has three potential rules (one for min-only, one for max-only, and
         /// one for min-and-max). The HTML parameters are expected to be named -min and -max.</summary>
@@ -264,11 +264,11 @@
         });
     };
 
-    $jQval.addMethod("__dummy__", function (value, element, params) {
+    $jQval.adEmptyProjectethod("__dummy__", function (value, element, params) {
         return true;
     });
 
-    $jQval.addMethod("regex", function (value, element, params) {
+    $jQval.adEmptyProjectethod("regex", function (value, element, params) {
         var match;
         if (this.optional(element)) {
             return true;
@@ -280,11 +280,11 @@
 
     adapters.addSingleVal("accept", "exts").addSingleVal("regex", "pattern");
     adapters.addBool("creditcard").addBool("date").addBool("digits").addBool("email").addBool("number").addBool("url");
-    adapters.addMinMax("length", "minlength", "maxlength", "rangelength").addMinMax("range", "min", "max", "range");
+    adapters.adEmptyProjectinMax("length", "minlength", "maxlength", "rangelength").adEmptyProjectinMax("range", "min", "max", "range");
     adapters.add("equalto", ["other"], function (options) {
         var prefix = getModelPrefix(options.element.name),
             other = options.params.other,
-            fullOtherName = appendModelPrefix(other, prefix),
+            fullOtherName = appenEmptyProjectodelPrefix(other, prefix),
             element = $(options.form).find(":input[name=" + fullOtherName + "]")[0];
 
         setValidationValues(options, "equalTo", element);
@@ -304,7 +304,7 @@
             prefix = getModelPrefix(options.element.name);
 
         $.each(splitAndTrim(options.params.additionalfields || options.element.name), function (i, fieldName) {
-            var paramName = appendModelPrefix(fieldName, prefix);
+            var paramName = appenEmptyProjectodelPrefix(fieldName, prefix);
             value.data[paramName] = function () {
                 return $(options.form).find(":input[name='" + paramName + "']").val();
             };

@@ -1,0 +1,139 @@
+<!-- Main content -->
+<div class="panel panel-white">
+  <div class="panel-heading">
+    <h6 class="panel-title">管理表单项</h6>
+
+    <!-- <div class="heading-elements not-collapsible">
+        <span class="label bg-blue heading-text">259 new today</span>
+      </div> -->
+  </div>
+
+  <div class="panel-toolbar panel-toolbar-inbox">
+    <div class="navbar navbar-default">
+      <ul class="nav navbar-nav visible-xs-block no-border">
+        <li>
+          <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-single">
+            <i class="icon-circle-down2"></i>
+          </a>
+        </li>
+      </ul>
+
+      <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-single">
+        <div class="btn-group navbar-btn">
+          <button type="button" class="btn btn-default btn-icon btn-checkbox-all">
+            <div class="checker"><span [class]="this.isSelectAll ?'checked' :''"><input type="checkbox" class="styled"
+                  (change)="updateAllSelect($event)"></span></div>
+          </button>
+
+          <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown"
+            aria-expanded="false">
+            <span class="caret"></span>
+          </button>
+
+          <ul class="dropdown-menu">
+            <li><a (click)="selectAll(true)">选择所有</a></li>
+            <li class="divider"></li>
+            <li><a (click)="selectAll(false)">清除选择</a></li>
+          </ul>
+        </div>
+
+        <div class="btn-group navbar-btn">
+          <button type="button" class="btn btn-default" (click)="removeCustomFormItems()"><i class="icon-bin"></i> <span
+              class="hidden-xs position-right">删除</span></button>
+          <button type="button" class="btn btn-default" (click)="createCustomFormItem()"><i class=" icon-database-add"></i>
+            <span class="hidden-xs position-right">创建</span></button>
+        </div>
+
+        <div class="navbar-right" style="display:none">
+          <p class="navbar-text"><span class="text-semibold">1-50</span> of <span class="text-semibold">528</span></p>
+
+          <div class="btn-group navbar-left navbar-btn">
+            <button type="button" class="btn btn-default btn-icon disabled"><i class="icon-arrow-left12"></i></button>
+            <button type="button" class="btn btn-default btn-icon"><i class="icon-arrow-right13"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td style="width:80px">选择</td>
+          <td>名称</td>
+          <td>Key</td>
+          <td>类型</td>
+          <td>是否多选</td>
+          <td>启用</td>
+          <td>必填</td>
+          <td>锁定</td>
+          <td>隐藏</td>
+          <td>管理</td>
+        </tr>
+      </thead>
+      <tbody data-link="row" class="rowlink" (cdkDropListDropped)="drop($event)" cdkDropList>
+        <tr *ngFor="let item of this.customFormItemList;let idx=index" cdkDrag>
+          <td class="table-inbox-checkbox rowlink-skip">
+            <div [class]="item.IsLock ? 'checker disabled' :'checker'"><span
+                [class]="this.selectCustomFormItemList.indexOf(item) !==-1 ?'checked' :''"><input type="checkbox"
+                  class="styled" (change)="updateSelect(item,$event)"></span></div>
+          </td>
+          <td>{{item.Name}}</td>
+          <td>{{item.Key}}</td>
+          <td>{{item.FormItemType}}</td>
+          <td *ngIf="item.FormType==2 && item.MoreSelect">
+            <div class="checker"><span class="checked"><input type="checkbox" class="styled"></span></div>
+          </td>
+          <td *ngIf="item.FormType==2 && !item.MoreSelect">
+            <div class="checker"><span class=""><input type="checkbox" class="styled"></span></div>
+          </td>
+          <td *ngIf="item.FormType!=2">--</td>
+          <td *ngIf="item.Enabled">
+            <div class="checker"><span class="checked"><input type="checkbox" class="styled"></span></div>
+          </td>
+          <td *ngIf="!item.Enabled">
+            <div class="checker"><span class=""><input type="checkbox" class="styled"></span></div>
+          </td>
+          <td *ngIf="item.ValidationConfig_Required">
+            <div class="checker"><span class="checked"><input type="checkbox" class="styled"></span></div>
+          </td>
+          <td *ngIf="!item.ValidationConfig_Required">
+            <div class="checker"><span class="cecked"><input type="checkbox" class="styled"></span></div>
+          </td>
+          <td *ngIf="item.IsLock">
+            <div class="checker"><span class="checked"><input type="checkbox" class="styled"></span></div>
+          </td>
+          <td *ngIf="!item.IsLock">
+            <div class="checker"><span class="cecked"><input type="checkbox" class="styled"></span></div>
+          </td>
+          <td *ngIf="item.IsHide">
+            <div class="checker"><span class="checked"><input type="checkbox" class="styled"></span></div>
+          </td>
+          <td *ngIf="!item.IsHide">
+            <div class="checker"><span class="cecked"><input type="checkbox" class="styled"></span></div>
+          </td>          
+          <td nowrap>
+            <div class="btn-group">
+              <button type="button" class="btn btn-default" (click)="editCustomFormItem(item)" *ngIf="!item.IsLock"><i
+                  class="icon-pencil7"></i>
+                <span class="hidden-xs position-right">编辑</span></button>
+              <button type="button" class="btn btn-default" (click)="removeCustomFormItem(item.Id)"
+                *ngIf="!item.IsLock"><i class="icon-bin"></i> <span class="hidden-xs position-right">删除</span></button>
+              <button type="button" class="btn btn-default" (click)="unlockCustomFormItem(item.Id)"
+                *ngIf="item.IsLock"><i class=" icon-unlocked2"></i> <span
+                  class="hidden-xs position-right">解锁</span></button>
+              <button type="button" class="btn btn-default" (click)="lockCustomFormItem(item.Id)"
+                *ngIf="!item.IsLock"><i class=" icon-lock2"></i> <span
+                  class="hidden-xs position-right">锁定</span></button>
+            </div>
+
+          </td>
+        </tr>
+
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- /main content -->

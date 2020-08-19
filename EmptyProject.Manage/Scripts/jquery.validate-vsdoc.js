@@ -1013,8 +1013,8 @@ $.extend($.validator, {
 		return data;
 	},
 	
-	// http://docs.jquery.com/Plugins/Validation/Validator/addMethod
-	addMethod: function(name, method, message) {
+	// http://docs.jquery.com/Plugins/Validation/Validator/adEmptyProjectethod
+	adEmptyProjectethod: function(name, method, message) {
 		/// <summary>
 		/// 添加一个自定义验证方法。此方法必须包含一个名称(必须是合法的 javascript 
 		/// 标识符)、一个基于 javascript 的函数和一个默认字符串消息。

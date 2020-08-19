@@ -1189,9 +1189,9 @@ $.widget("ui.draggable", $.ui.mouse, {
 		//Cache the helper size
 		this._cacheHelperProportions();
 
-		//If ddmanager is used for droppables, set the global draggable
-		if($.ui.ddmanager)
-			$.ui.ddmanager.current = this;
+		//If dEmptyProjectanager is used for droppables, set the global draggable
+		if($.ui.dEmptyProjectanager)
+			$.ui.dEmptyProjectanager.current = this;
 
 		/*
 		 * - Position generation -
@@ -1243,14 +1243,14 @@ $.widget("ui.draggable", $.ui.mouse, {
 		this._cacheHelperProportions();
 
 		//Prepare the droppable offsets
-		if ($.ui.ddmanager && !o.dropBehaviour)
-			$.ui.ddmanager.prepareOffsets(this, event);
+		if ($.ui.dEmptyProjectanager && !o.dropBehaviour)
+			$.ui.dEmptyProjectanager.prepareOffsets(this, event);
 
 		
 		this._mouseDrag(event, true); //Execute the drag once - this causes the helper not to be visible before getting its correct position
 		
-		//If the ddmanager is used for droppables, inform the manager that dragging has started (see #5003)
-		if ( $.ui.ddmanager ) $.ui.ddmanager.dragStart(this, event);
+		//If the dEmptyProjectanager is used for droppables, inform the manager that dragging has started (see #5003)
+		if ( $.ui.dEmptyProjectanager ) $.ui.dEmptyProjectanager.dragStart(this, event);
 		
 		return true;
 	},
@@ -1273,7 +1273,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 
 		if(!this.options.axis || this.options.axis != "y") this.helper[0].style.left = this.position.left+'px';
 		if(!this.options.axis || this.options.axis != "x") this.helper[0].style.top = this.position.top+'px';
-		if($.ui.ddmanager) $.ui.ddmanager.drag(this, event);
+		if($.ui.dEmptyProjectanager) $.ui.dEmptyProjectanager.drag(this, event);
 
 		return false;
 	},
@@ -1282,8 +1282,8 @@ $.widget("ui.draggable", $.ui.mouse, {
 
 		//If we are using droppables, inform the manager about the drop
 		var dropped = false;
-		if ($.ui.ddmanager && !this.options.dropBehaviour)
-			dropped = $.ui.ddmanager.drop(this, event);
+		if ($.ui.dEmptyProjectanager && !this.options.dropBehaviour)
+			dropped = $.ui.dEmptyProjectanager.drop(this, event);
 
 		//if a drop comes from outside (a sortable)
 		if(this.dropped) {
@@ -1323,8 +1323,8 @@ $.widget("ui.draggable", $.ui.mouse, {
 			this.parentNode.removeChild(this); 
 		});
 		
-		//If the ddmanager is used for droppables, inform the manager that dragging has stopped (see #5003)
-		if( $.ui.ddmanager ) $.ui.ddmanager.dragStop(this, event);
+		//If the dEmptyProjectanager is used for droppables, inform the manager that dragging has stopped (see #5003)
+		if( $.ui.dEmptyProjectanager ) $.ui.dEmptyProjectanager.dragStop(this, event);
 		
 		return $.ui.mouse.prototype._mouseUp.call(this, event);
 	},
@@ -1565,7 +1565,7 @@ $.widget("ui.draggable", $.ui.mouse, {
 	_clear: function() {
 		this.helper.removeClass("ui-draggable-dragging");
 		if(this.helper[0] != this.element[0] && !this.cancelHelperRemoval) this.helper.remove();
-		//if($.ui.ddmanager) $.ui.ddmanager.current = null;
+		//if($.ui.dEmptyProjectanager) $.ui.dEmptyProjectanager.current = null;
 		this.helper = null;
 		this.cancelHelperRemoval = false;
 	},
@@ -1803,8 +1803,8 @@ $.ui.plugin.add("draggable", "scroll", {
 
 		}
 
-		if(scrolled !== false && $.ui.ddmanager && !o.dropBehaviour)
-			$.ui.ddmanager.prepareOffsets(i, event);
+		if(scrolled !== false && $.ui.dEmptyProjectanager && !o.dropBehaviour)
+			$.ui.dEmptyProjectanager.prepareOffsets(i, event);
 
 	}
 });
@@ -1952,15 +1952,15 @@ $.widget("ui.droppable", {
 		this.proportions = { width: this.element[0].offsetWidth, height: this.element[0].offsetHeight };
 
 		// Add the reference and positions to the manager
-		$.ui.ddmanager.droppables[o.scope] = $.ui.ddmanager.droppables[o.scope] || [];
-		$.ui.ddmanager.droppables[o.scope].push(this);
+		$.ui.dEmptyProjectanager.droppables[o.scope] = $.ui.dEmptyProjectanager.droppables[o.scope] || [];
+		$.ui.dEmptyProjectanager.droppables[o.scope].push(this);
 
 		(o.addClasses && this.element.addClass("ui-droppable"));
 
 	},
 
 	destroy: function() {
-		var drop = $.ui.ddmanager.droppables[this.options.scope];
+		var drop = $.ui.dEmptyProjectanager.droppables[this.options.scope];
 		for ( var i = 0; i < drop.length; i++ )
 			if ( drop[i] == this )
 				drop.splice(i, 1);
@@ -1984,20 +1984,20 @@ $.widget("ui.droppable", {
 	},
 
 	_activate: function(event) {
-		var draggable = $.ui.ddmanager.current;
+		var draggable = $.ui.dEmptyProjectanager.current;
 		if(this.options.activeClass) this.element.addClass(this.options.activeClass);
 		(draggable && this._trigger('activate', event, this.ui(draggable)));
 	},
 
 	_deactivate: function(event) {
-		var draggable = $.ui.ddmanager.current;
+		var draggable = $.ui.dEmptyProjectanager.current;
 		if(this.options.activeClass) this.element.removeClass(this.options.activeClass);
 		(draggable && this._trigger('deactivate', event, this.ui(draggable)));
 	},
 
 	_over: function(event) {
 
-		var draggable = $.ui.ddmanager.current;
+		var draggable = $.ui.dEmptyProjectanager.current;
 		if (!draggable || (draggable.currentItem || draggable.element)[0] == this.element[0]) return; // Bail if draggable and droppable are same element
 
 		if (this.accept.call(this.element[0],(draggable.currentItem || draggable.element))) {
@@ -2009,7 +2009,7 @@ $.widget("ui.droppable", {
 
 	_out: function(event) {
 
-		var draggable = $.ui.ddmanager.current;
+		var draggable = $.ui.dEmptyProjectanager.current;
 		if (!draggable || (draggable.currentItem || draggable.element)[0] == this.element[0]) return; // Bail if draggable and droppable are same element
 
 		if (this.accept.call(this.element[0],(draggable.currentItem || draggable.element))) {
@@ -2021,7 +2021,7 @@ $.widget("ui.droppable", {
 
 	_drop: function(event,custom) {
 
-		var draggable = custom || $.ui.ddmanager.current;
+		var draggable = custom || $.ui.dEmptyProjectanager.current;
 		if (!draggable || (draggable.currentItem || draggable.element)[0] == this.element[0]) return false; // Bail if draggable and droppable are same element
 
 		var childrenIntersection = false;
@@ -2110,12 +2110,12 @@ $.ui.intersect = function(draggable, droppable, toleranceMode) {
 /*
 	This manager tracks offsets of draggables and droppables
 */
-$.ui.ddmanager = {
+$.ui.dEmptyProjectanager = {
 	current: null,
 	droppables: { 'default': [] },
 	prepareOffsets: function(t, event) {
 
-		var m = $.ui.ddmanager.droppables[t.options.scope] || [];
+		var m = $.ui.dEmptyProjectanager.droppables[t.options.scope] || [];
 		var type = event ? event.type : null; // workaround for #2317
 		var list = (t.currentItem || t.element).find(":data(droppable)").andSelf();
 
@@ -2136,7 +2136,7 @@ $.ui.ddmanager = {
 	drop: function(draggable, event) {
 
 		var dropped = false;
-		$.each($.ui.ddmanager.droppables[draggable.options.scope] || [], function() {
+		$.each($.ui.dEmptyProjectanager.droppables[draggable.options.scope] || [], function() {
 
 			if(!this.options) return;
 			if (!this.options.disabled && this.visible && $.ui.intersect(draggable, this, this.options.tolerance))
@@ -2154,16 +2154,16 @@ $.ui.ddmanager = {
 	dragStart: function( draggable, event ) {
 		//Listen for scrolling so that if the dragging causes scrolling the position of the droppables can be recalculated (see #5003)
 		draggable.element.parents( ":not(body,html)" ).bind( "scroll.droppable", function() {
-			if( !draggable.options.refreshPositions ) $.ui.ddmanager.prepareOffsets( draggable, event );
+			if( !draggable.options.refreshPositions ) $.ui.dEmptyProjectanager.prepareOffsets( draggable, event );
 		});
 	},
 	drag: function(draggable, event) {
 
 		//If you have a highly dynamic page, you might try this option. It renders positions every time you move the mouse.
-		if(draggable.options.refreshPositions) $.ui.ddmanager.prepareOffsets(draggable, event);
+		if(draggable.options.refreshPositions) $.ui.dEmptyProjectanager.prepareOffsets(draggable, event);
 
 		//Run through all droppables and check their positions based on specific tolerance options
-		$.each($.ui.ddmanager.droppables[draggable.options.scope] || [], function() {
+		$.each($.ui.dEmptyProjectanager.droppables[draggable.options.scope] || [], function() {
 
 			if(this.options.disabled || this.greedyChild || !this.visible) return;
 			var intersects = $.ui.intersect(draggable, this, this.options.tolerance);
@@ -2207,7 +2207,7 @@ $.ui.ddmanager = {
 	dragStop: function( draggable, event ) {
 		draggable.element.parents( ":not(body,html)" ).unbind( "scroll.droppable" );
 		//Call prepareOffsets one final time since IE does not fire return scroll events when overflow was caused by drag (see #5003)
-		if( !draggable.options.refreshPositions ) $.ui.ddmanager.prepareOffsets( draggable, event );
+		if( !draggable.options.refreshPositions ) $.ui.dEmptyProjectanager.prepareOffsets( draggable, event );
 	}
 };
 
@@ -3513,11 +3513,11 @@ $.widget("ui.sortable", $.ui.mouse, {
 		}
 
 		//Prepare possible droppables
-		if($.ui.ddmanager)
-			$.ui.ddmanager.current = this;
+		if($.ui.dEmptyProjectanager)
+			$.ui.dEmptyProjectanager.current = this;
 
-		if ($.ui.ddmanager && !o.dropBehaviour)
-			$.ui.ddmanager.prepareOffsets(this, event);
+		if ($.ui.dEmptyProjectanager && !o.dropBehaviour)
+			$.ui.dEmptyProjectanager.prepareOffsets(this, event);
 
 		this.dragging = true;
 
@@ -3566,8 +3566,8 @@ $.widget("ui.sortable", $.ui.mouse, {
 
 			}
 
-			if(scrolled !== false && $.ui.ddmanager && !o.dropBehaviour)
-				$.ui.ddmanager.prepareOffsets(this, event);
+			if(scrolled !== false && $.ui.dEmptyProjectanager && !o.dropBehaviour)
+				$.ui.dEmptyProjectanager.prepareOffsets(this, event);
 		}
 
 		//Regenerate the absolute position used for position checks
@@ -3617,7 +3617,7 @@ $.widget("ui.sortable", $.ui.mouse, {
 		this._contactContainers(event);
 
 		//Interconnect with droppables
-		if($.ui.ddmanager) $.ui.ddmanager.drag(this, event);
+		if($.ui.dEmptyProjectanager) $.ui.dEmptyProjectanager.drag(this, event);
 
 		//Call callbacks
 		this._trigger('sort', event, this._uiHash());
@@ -3632,8 +3632,8 @@ $.widget("ui.sortable", $.ui.mouse, {
 		if(!event) return;
 
 		//If we are using droppables, inform the manager about the drop
-		if ($.ui.ddmanager && !this.options.dropBehaviour)
-			$.ui.ddmanager.drop(this, event);
+		if ($.ui.dEmptyProjectanager && !this.options.dropBehaviour)
+			$.ui.dEmptyProjectanager.drop(this, event);
 
 		if(this.options.revert) {
 			var self = this;
@@ -8497,7 +8497,7 @@ $.extend(Datepicker.prototype, {
 	_newInst: function(target, inline) {
 		var id = target[0].id.replace(/([^A-Za-z0-9_-])/g, '\\\\$1'); // escape jQuery meta chars
 		return {id: id, input: target, // associated target
-			selectedDay: 0, selectedMonth: 0, selectedYear: 0, // current selection
+			selectedDay: 0, selecteEmptyProjectonth: 0, selectedYear: 0, // current selection
 			drawMonth: 0, drawYear: 0, // month being drawn
 			inline: inline, // is datepicker inline or not
 			dpDiv: (!inline ? this.dpDiv : // presentation div
@@ -8571,8 +8571,8 @@ $.extend(Datepicker.prototype, {
 		if (this._get(inst, 'autoSize') && !inst.inline) {
 			var date = new Date(2009, 12 - 1, 20); // Ensure double digits
 			var dateFormat = this._get(inst, 'dateFormat');
-			if (dateFormat.match(/[DM]/)) {
-				var findMax = function(names) {
+			if (dateFormat.match(/[EmptyProject]/)) {
+				var finEmptyProjectax = function(names) {
 					var max = 0;
 					var maxI = 0;
 					for (var i = 0; i < names.length; i++) {
@@ -8583,9 +8583,9 @@ $.extend(Datepicker.prototype, {
 					}
 					return maxI;
 				};
-				date.setMonth(findMax(this._get(inst, (dateFormat.match(/MM/) ?
+				date.setMonth(finEmptyProjectax(this._get(inst, (dateFormat.match(/MM/) ?
 					'monthNames' : 'monthNamesShort'))));
-				date.setDate(findMax(this._get(inst, (dateFormat.match(/DD/) ?
+				date.setDate(finEmptyProjectax(this._get(inst, (dateFormat.match(/DD/) ?
 					'dayNames' : 'dayNamesShort'))) + 20 - date.getDay());
 			}
 			inst.input.attr('size', this._formatDate(inst, date).length);
@@ -8856,7 +8856,7 @@ $.extend(Datepicker.prototype, {
 				case 13: var sel = $('td.' + $.datepicker._dayOverClass + ':not(.' + 
 									$.datepicker._currentClass + ')', inst.dpDiv);
 						if (sel[0])
-							$.datepicker._selectDay(event.target, inst.selectedMonth, inst.selectedYear, sel[0]);
+							$.datepicker._selectDay(event.target, inst.selecteEmptyProjectonth, inst.selectedYear, sel[0]);
 							var onSelect = $.datepicker._get(inst, 'onSelect');
 							if (onSelect) {
 								var dateStr = $.datepicker._formatDate(inst);
@@ -9192,13 +9192,13 @@ $.extend(Datepicker.prototype, {
 		var inst = this._getInst(target[0]);
 		if (this._get(inst, 'gotoCurrent') && inst.currentDay) {
 			inst.selectedDay = inst.currentDay;
-			inst.drawMonth = inst.selectedMonth = inst.currentMonth;
+			inst.drawMonth = inst.selecteEmptyProjectonth = inst.currentMonth;
 			inst.drawYear = inst.selectedYear = inst.currentYear;
 		}
 		else {
 			var date = new Date();
 			inst.selectedDay = date.getDate();
-			inst.drawMonth = inst.selectedMonth = date.getMonth();
+			inst.drawMonth = inst.selecteEmptyProjectonth = date.getMonth();
 			inst.drawYear = inst.selectedYear = date.getFullYear();
 		}
 		this._notifyChange(inst);
@@ -9224,7 +9224,7 @@ $.extend(Datepicker.prototype, {
 		}
 		var inst = this._getInst(target[0]);
 		inst.selectedDay = inst.currentDay = $('a', td).html();
-		inst.selectedMonth = inst.currentMonth = month;
+		inst.selecteEmptyProjectonth = inst.currentMonth = month;
 		inst.selectedYear = inst.currentYear = year;
 		this._selectDate(id, this._formatDate(inst,
 			inst.currentDay, inst.currentMonth, inst.currentYear));
@@ -9622,7 +9622,7 @@ $.extend(Datepicker.prototype, {
 			dates = (noDefault ? '' : dates);
 		}
 		inst.selectedDay = date.getDate();
-		inst.drawMonth = inst.selectedMonth = date.getMonth();
+		inst.drawMonth = inst.selecteEmptyProjectonth = date.getMonth();
 		inst.drawYear = inst.selectedYear = date.getFullYear();
 		inst.currentDay = (dates ? date.getDate() : 0);
 		inst.currentMonth = (dates ? date.getMonth() : 0);
@@ -9704,13 +9704,13 @@ $.extend(Datepicker.prototype, {
 	/* Set the date(s) directly. */
 	_setDate: function(inst, date, noChange) {
 		var clear = !date;
-		var origMonth = inst.selectedMonth;
+		var origMonth = inst.selecteEmptyProjectonth;
 		var origYear = inst.selectedYear;
 		var newDate = this._restrictMinMax(inst, this._determineDate(inst, date, new Date()));
 		inst.selectedDay = inst.currentDay = newDate.getDate();
-		inst.drawMonth = inst.selectedMonth = inst.currentMonth = newDate.getMonth();
+		inst.drawMonth = inst.selecteEmptyProjectonth = inst.currentMonth = newDate.getMonth();
 		inst.drawYear = inst.selectedYear = inst.currentYear = newDate.getFullYear();
-		if ((origMonth != inst.selectedMonth || origYear != inst.selectedYear) && !noChange)
+		if ((origMonth != inst.selecteEmptyProjectonth || origYear != inst.selectedYear) && !noChange)
 			this._notifyChange(inst);
 		this._adjustInstDate(inst);
 		if (inst.input) {
@@ -9873,7 +9873,7 @@ $.extend(Datepicker.prototype, {
 				}
 				calender += thead + '</tr></thead><tbody>';
 				var daysInMonth = this._getDaysInMonth(drawYear, drawMonth);
-				if (drawYear == inst.selectedYear && drawMonth == inst.selectedMonth)
+				if (drawYear == inst.selectedYear && drawMonth == inst.selecteEmptyProjectonth)
 					inst.selectedDay = Math.min(inst.selectedDay, daysInMonth);
 				var leadDays = (this._getFirstDayOfMonth(drawYear, drawMonth) - firstDay + 7) % 7;
 				var curRows = Math.ceil((leadDays + daysInMonth) / 7); // calculate the number of rows to generate
@@ -9893,7 +9893,7 @@ $.extend(Datepicker.prototype, {
 						tbody += '<td class="' +
 							((dow + firstDay + 6) % 7 >= 5 ? ' ui-datepicker-week-end' : '') + // highlight weekends
 							(otherMonth ? ' ui-datepicker-other-month' : '') + // highlight days from other months
-							((printDate.getTime() == selectedDate.getTime() && drawMonth == inst.selectedMonth && inst._keyEvent) || // user pressed key
+							((printDate.getTime() == selectedDate.getTime() && drawMonth == inst.selecteEmptyProjectonth && inst._keyEvent) || // user pressed key
 							(defaultDate.getTime() == printDate.getTime() && defaultDate.getTime() == selectedDate.getTime()) ?
 							// or defaultDate is current printedDate and defaultDate is selectedDate
 							' ' + this._dayOverClass : '') + // highlight selected day
@@ -10004,7 +10004,7 @@ $.extend(Datepicker.prototype, {
 		var date = this._restrictMinMax(inst,
 			this._daylightSavingAdjust(new Date(year, month, day)));
 		inst.selectedDay = date.getDate();
-		inst.drawMonth = inst.selectedMonth = date.getMonth();
+		inst.drawMonth = inst.selecteEmptyProjectonth = date.getMonth();
 		inst.drawYear = inst.selectedYear = date.getFullYear();
 		if (period == 'M' || period == 'Y')
 			this._notifyChange(inst);
@@ -10024,7 +10024,7 @@ $.extend(Datepicker.prototype, {
 		var onChange = this._get(inst, 'onChangeMonthYear');
 		if (onChange)
 			onChange.apply((inst.input ? inst.input[0] : null),
-				[inst.selectedYear, inst.selectedMonth + 1, inst]);
+				[inst.selectedYear, inst.selecteEmptyProjectonth + 1, inst]);
 	},
 
 	/* Determine the number of months to show. */
@@ -10080,7 +10080,7 @@ $.extend(Datepicker.prototype, {
 	_formatDate: function(inst, day, month, year) {
 		if (!day) {
 			inst.currentDay = inst.selectedDay;
-			inst.currentMonth = inst.selectedMonth;
+			inst.currentMonth = inst.selecteEmptyProjectonth;
 			inst.currentYear = inst.selectedYear;
 		}
 		var date = (day ? (typeof day == 'object' ? day :

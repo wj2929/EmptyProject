@@ -1,0 +1,125 @@
+<div class="modal-header">
+  <h4 class="modal-title">编辑表单项</h4>
+  <button type="button" class="close" aria-label="Close" (click)="this.activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="formModel" (submit)="OnSubmit()">
+  <div class="modal-body">
+    <div class="form-group" [class.has-error]="Error('Enabled')">
+      <label class="control-label" for="Enabled">是否启用</label>
+      <div><input id="Enabled" name="Enabled" type="checkbox" formControlName="Enabled">
+      </div>
+      <div *ngIf="Error('Enabled')">
+        <span class="help-block" *ngIf="hasError('required','Enabled')">请填写是否启用</span>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="Error('Name')">
+      <label class="control-label" for="Name">名称</label>
+      <div><input class="form-control" id="Name" name="Name" type="text" formControlName="Name"
+          ></div>
+      <div *ngIf="Error('Name')">
+        <span class="help-block" *ngIf="hasError('required','Name')">请填写名称</span>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="Error('Key')">
+      <label class="control-label" for="Key">关键字</label>
+      <div><input class="form-control" id="Key" name="Key" type="text" formControlName="Key" readonly="readonly"
+          disabled="disabled">
+      </div>
+      <div *ngIf="Error('Key')">
+        <span class="help-block" *ngIf="hasError('required','Key')">请填写关键字</span>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="Error('Description')">
+      <label class="control-label" for="Description">描述</label>
+      <div><textarea cols="3" rows="3" class="form-control" id="Description" name="Description" type="text"
+        formControlName="Description"></textarea>
+      </div>
+      <div *ngIf="Error('Description')">
+        <span class="help-block" *ngIf="hasError('required','Description')">请填写描述</span>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="Error('FormType')">
+      <label class="control-label" for="FormType">表单项类型</label>
+      <div>
+        <select class="select-search" id="FormType" name="FormType" formControlName="FormType">
+          <option [value]="item.index" *ngFor="let item of FormTypes">{{item.name}}</option>
+        </select>
+      </div>
+      <div *ngIf="Error('FormType')">
+        <span class="help-block" *ngIf="hasError('required','FormType')">请设置表单项类型</span>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="Error('OptionText')">
+      <label class="control-label" for="OptionText">预设内容</label>
+      <div>
+        <textarea cols="8" rows="8" class="form-control" id="OptionText" name="OptionText" type="text"
+          formControlName="OptionText"></textarea>
+      </div>
+      <div *ngIf="Error('OptionText')">
+        <span class="help-block" *ngIf="hasError('required','OptionText')">请填写预设内容</span>
+      </div>
+    </div>
+    <div class="form-group">
+      <label class="control-label">设置</label>
+      <div>
+        <label class="checkbox-inline">
+          <label for="MoreSelect">是否多选</label>
+          <input id="MoreSelect" name="MoreSelect" type="checkbox" formControlName="MoreSelect">
+        </label>
+        <label class="checkbox-inline">
+          <label for="ValidationConfig_Required">是否必填</label>
+          <input id="ValidationConfig_Required" name="ValidationConfig_Required" type="checkbox"
+            formControlName="ValidationConfig_Required">
+        </label>
+        <label class="checkbox-inline">
+          <label for="ValidationConfig_AllowExtensionValidation">是否启用正则扩展验证</label>
+          <input id="ValidationConfig_AllowExtensionValidation" name="ValidationConfig_AllowExtensionValidation"
+            type="checkbox" formControlName="ValidationConfig_AllowExtensionValidation">
+        </label>
+        <label class="checkbox-inline">
+          <label for="IsLock">是否锁定</label>
+          <input id="IsLock" name="IsLock" type="checkbox" formControlName="IsLock">
+        </label>
+        <label class="checkbox-inline">
+          <label for="IsHide">是否隐藏</label>
+          <input id="IsHide" name="IsHide" type="checkbox" formControlName="IsHide">
+        </label>         
+      </div>
+      <div class="form-group" [class.has-error]="Error('ValidationConfig_RegularExpressionValidator')">
+        <label class="control-label" for="ValidationConfig_RegularExpressionValidator">正则扩展验证设置</label>
+        <div><input class="form-control" id="Description" name="Description" type="text"
+            formControlName="ValidationConfig_RegularExpressionValidator">
+        </div>
+        <div *ngIf="Error('ValidationConfig_RegularExpressionValidator')">
+          <span class="help-block"
+            *ngIf="hasError('required','ValidationConfig_RegularExpressionValidator')">请填写正则扩展验证设置</span>
+        </div>
+      </div>
+      <div class="form-group" [class.has-error]="Error('ValidationConfig_ErrorMessage')">
+        <label class="control-label" for="ValidationConfig_ErrorMessage">出错时显示的信息</label>
+        <div><input class="form-control" id="ValidationConfig_ErrorMessage" name="ValidationConfig_ErrorMessage"
+            type="text" formControlName="ValidationConfig_ErrorMessage">
+        </div>
+        <div *ngIf="Error('ValidationConfig_ErrorMessage')">
+          <span class="help-block" *ngIf="hasError('required','ValidationConfig_ErrorMessage')">请填写出错时显示的信息</span>
+        </div>
+      </div>
+      <div class="form-group">
+        <label class="control-label" for="ExpressionValidatorLibrary">正则扩展验证库</label>
+        <div>
+          <select class="select-search" id="ExpressionValidatorLibrary"  name="ExpressionValidatorLibrary"
+            (change)="onChangeExpressionValidatorLibrary($event)">
+            <option [value]="item.value" *ngFor="let item of ExpressionValidatorLibrarys">{{item.name}}</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-danger">提交</button>
+    <button type="button" class="btn btn-default" (click)="this.activeModal.close()">取消</button>
+  </div>
+</form>

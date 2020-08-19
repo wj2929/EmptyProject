@@ -5099,7 +5099,7 @@ if ( document.querySelectorAll ) {
 	if ( matches ) {
 		// Check to see if it's possible to do matchesSelector
 		// on a disconnected node (IE 9 fails this)
-		var disconnectedMatch = !matches.call( document.createElement( "div" ), "div" ),
+		var disconnecteEmptyProjectatch = !matches.call( document.createElement( "div" ), "div" ),
 			pseudoWorks = false;
 
 		try {
@@ -5121,7 +5121,7 @@ if ( document.querySelectorAll ) {
 						var ret = matches.call( node, expr );
 
 						// IE 9's matchesSelector returns false on disconnected nodes
-						if ( ret || !disconnectedMatch ||
+						if ( ret || !disconnecteEmptyProjectatch ||
 								// As well, disconnected nodes are said to be in a document
 								// fragment in IE 9, so check for that
 								node.document && node.document.nodeType !== 11 ) {

@@ -98,7 +98,7 @@ namespace EmptyProject.Manage.Controllers
         //        }
         //        else
         //        {
-        //            ModelState.AddModelError("", "提供的用户名或密码不正确。");
+        //            ModelState.AdEmptyProjectodelError("", "提供的用户名或密码不正确。");
         //        }
         //    }
 
@@ -142,7 +142,7 @@ namespace EmptyProject.Manage.Controllers
         //        }
         //        else
         //        {
-        //            ModelState.AddModelError("", AccountValidation.ErrorCodeToString(createStatus));
+        //            ModelState.AdEmptyProjectodelError("", AccountValidation.ErrorCodeToString(createStatus));
         //        }
         //    }
 
@@ -164,7 +164,7 @@ namespace EmptyProject.Manage.Controllers
 
         //[Authorize]
         //[HttpPost]
-        //public ActionResult ChangePassword(ChangePasswordModel model)
+        //public ActionResult ChangePassword(ChangePassworEmptyProjectodel model)
         //{
         //    if (ModelState.IsValid)
         //    {
@@ -174,7 +174,7 @@ namespace EmptyProject.Manage.Controllers
         //        }
         //        else
         //        {
-        //            ModelState.AddModelError("", "当前密码不正确或新密码无效。");
+        //            ModelState.AdEmptyProjectodelError("", "当前密码不正确或新密码无效。");
         //        }
         //    }
 

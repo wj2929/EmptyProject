@@ -13,7 +13,7 @@ namespace EmptyProject.Manage.Models
 
     #region 模型
 
-    public class ChangePasswordModel
+    public class ChangePassworEmptyProjectodel
     {
         [Required]
         [DataType(DataType.Password)]

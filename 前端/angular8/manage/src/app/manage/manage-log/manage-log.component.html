@@ -1,0 +1,241 @@
+<div class="page-container no-padding-bottom">
+  <div class="page-header page-header-default  no-margin-bottom" style="border: 1px solid #ddd;border-bottom: 0px;">
+    <div class="breadcrumb-line">
+      <a class="breadcrumb-elements-toggle">
+        <i class="icon-menu-open"></i>
+      </a>
+      <ul class="breadcrumb breadcrumb-caret position-right">
+        <li>
+          <a [routerLink]="['/manage']">首页</a>
+        </li>
+        <li>
+          <a [routerLink]="['/manage/log']">操作日志</a>
+        </li>
+        <!-- <li class="active">详情</li> -->
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-container">
+  <div class="page-content">
+    <!-- Main sidebar -->
+    <div class="sidebar sidebar-opposite sidebar-default" style="padding-right: 20px;padding-left:0px">
+      <div class="sidebar-content">
+        <!-- Sidebar search -->
+        <div class="sidebar-category">
+          <div class="category-title">
+            <span>搜索</span>
+            <ul class="icons-list">
+              <li><a href="#" data-action="collapse"></a></li>
+            </ul>
+          </div>
+
+          <div class="category-content">
+            <form action="#">
+              <div class="has-feedback has-feedback-left form-group">
+                <input type="search" class="form-control" placeholder="请输入管理员账号" name="userName" [(ngModel)]="userName">
+                <div class="form-control-feedback">
+                  <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+              </div>
+
+              <div class="has-feedback has-feedback-left form-group">
+                <input type="search" class="form-control" placeholder="请输入ip地址" name="ip" [(ngModel)]="ip">
+                <div class="form-control-feedback">
+                  <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+              </div>
+
+              <div class="has-feedback has-feedback-left form-group">
+                <input type="search" class="form-control" placeholder="请输入事件描述" name="content" [(ngModel)]="content">
+                <div class="form-control-feedback">
+                  <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+              </div>
+
+              <div class="has-feedback has-feedback-left form-group">
+                <input type="text" ngxDaterangepickerMd 
+                  class="form-control daterange-left" alwaysShowCalendars=true [ranges]="ranges" (click)="changeDaterangepickerWidth()" (change)="onDaterangepickerChange($event)" name="selectdate" [(ngModel)]="selectdate" [locale]="locale">
+                <div class="form-control-feedback">
+                  <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+              </div>
+              
+
+              <div class="form-group">
+                <legend class="text-size-mini text-muted no-border no-padding">日志类型</legend>
+
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.logType ==='' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateLogTypeSelect('',$event)"></span></div>
+                    不限
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.logType ==='0' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateLogTypeSelect('0',$event)"></span></div>
+                    登录系统
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.logType ==='1' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateLogTypeSelect('1',$event)"></span></div>
+                    服务调用
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.logType ==='2' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateLogTypeSelect('2',$event)"></span></div>
+                    系统错误
+                  </label>
+                </div>
+
+              </div>
+
+
+              <button type="button" class="btn bg-blue btn-block" (click)="onSearch()">
+                <i class="icon-search4 text-size-base position-left"></i>
+                搜索日志
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- /sidebar search -->
+      </div>
+
+      <!-- /secondary sidebar -->
+    </div>
+    <!-- Main content -->
+    <div class="content-wrapper" id="LogManage">
+      <div class="panel panel-white">
+        <div class="panel-heading">
+          <h6 class="panel-title">管理日志</h6>
+
+          <!-- <div class="heading-elements not-collapsible">
+          <span class="label bg-blue heading-text">259 new today</span>
+        </div> -->
+        </div>
+
+        <div class="panel-toolbar panel-toolbar-inbox">
+          <div class="navbar navbar-default">
+            <ul class="nav navbar-nav visible-xs-block no-border">
+              <li>
+                <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-single">
+                  <i class="icon-circle-down2"></i>
+                </a>
+              </li>
+            </ul>
+
+            <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-single">
+              <div class="btn-group navbar-btn">
+                <button type="button" class="btn btn-default btn-icon btn-checkbox-all">
+                  <div class="checker"><span [class]="this.isSelectAll ?'checked' :''"><input type="checkbox"
+                        class="styled" (change)="updateAllSelect($event)"></span></div>
+                </button>
+
+                <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu">
+                  <li><a (click)="selectAll(true)">选择所有</a></li>
+                  <li class="divider"></li>
+                  <li><a (click)="selectAll(false)">清除选择</a></li>
+                </ul>
+              </div>
+
+              <div class="btn-group navbar-btn">
+                <!-- <button type="button" class="btn btn-default" (click)="auditlogs()"><i class="icon-check"></i> <span
+                    class="hidden-xs position-right">审核通过</span></button>
+                <button type="button" class="btn btn-default" (click)="cancelAuditlogs()"><i class="icon-cross"></i> <span
+                    class="hidden-xs position-right">取消审核</span></button>
+                <button type="button" class="btn btn-default" (click)="removelogs()"><i class="icon-bin"></i> <span
+                    class="hidden-xs position-right">删除</span></button>
+                <button type="button" class="btn btn-default" (click)="logCreate()"><i class="icon-pencil7"></i> <span
+                    class="hidden-xs position-right">创建</span></button> -->
+                    <button type="button" class="btn btn-default" (click)="removeLogs()"><i class="icon-bin"></i> <span
+                      class="hidden-xs position-right">删除</span></button>
+                <button type="button" class="btn btn-default" (click)="exportLogs()"><i class=" icon-database-export"></i> <span
+                    class="hidden-xs position-right">导出日志</span></button>
+              </div>
+
+              <div class="navbar-right" style="display:none">
+                <p class="navbar-text"><span class="text-semibold">1-50</span> of <span class="text-semibold">528</span>
+                </p>
+
+                <div class="btn-group navbar-left navbar-btn">
+                  <button type="button" class="btn btn-default btn-icon disabled"><i
+                      class="icon-arrow-left12"></i></button>
+                  <button type="button" class="btn btn-default btn-icon"><i class="icon-arrow-right13"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <td class="text-nowrap">选择</td>
+                <td class="text-nowrap">账号</td>
+                <td class="text-nowrap">日志类型</td>
+                <td class="text-nowrap">IP地址</td>
+                <td class="text-nowrap">记录时间</td>
+                <td>事件描述</td>
+                <td>扩展信息</td>
+                <td>管理</td>
+              </tr>
+            </thead>
+            <tbody data-link="row" class="rowlink">
+              <tr *ngFor="let item of this.logPaging.PageListInfos;let idx=index">
+                <td class="table-inbox-checkbox rowlink-skip">
+                  <div class="checker"><span [class]="this.selectLogList.indexOf(item) !==-1 ?'checked' :''"><input
+                        type="checkbox" class="styled" (change)="updateSelect(item,$event)"></span></div>
+                </td>
+                <td class="text-nowrap">{{item.UserName}}</td>
+                <td class="text-nowrap">{{item.LogTypeName}}</td>
+                <td class="text-nowrap">{{item.ClientIp}}</td>
+                <td class="text-nowrap">{{item.CreateDate.slice(6,-2) | date :'yyyy-MM-dd HH:mm:ss' }}</td>
+                <td>{{item.Content}}</td>
+                <td class="table_td_overflow">
+                    <div *ngFor="let childItem of item.CustomFormSetting.CustomFormItemSettings">
+                        {{childItem.Name}}:{{childItem.Value}}
+                      </div>
+                </td>
+                <td nowrap>
+                  <div class="btn-group">
+                    <!-- <button type="button" class="btn btn-default" (click)="editlog(item)"><i class="icon-pencil7"></i>
+                      <span class="hidden-xs position-right">编辑</span></button> -->
+                    <button type="button" class="btn btn-default" (click)="removeLog(item.Id)"><i class="icon-bin"></i>
+                      <span class="hidden-xs position-right">删除</span></button>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="8" class="Paging text-right">
+                  <app-pagination [AllCount]="logPaginationModel.AllCount"
+                    [CurrentPage]="logPaginationModel.CurrentPage" [PageCount]="logPaginationModel.PageCount"
+                    (pageChanged)="onLogPageChanged($event)"></app-pagination>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- /main content -->
+
+  </div>
+</div>

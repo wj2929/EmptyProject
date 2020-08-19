@@ -1,7 +1,7 @@
 ﻿@model  IList<EmptyProject.Domain.TestQuestion>
 @{
     ViewBag.Title = "Index";
-    Layout = "~/Views/Shared/Admin.cshtml";
+    Layout = "~/Views/Shared/AEmptyProjectin.cshtml";
 }
 <script src="@Url.Content("~/Scripts/jquery.autocomplete.js")" type="text/javascript"></script>
 <script src="@Url.Content("~/Scripts/jquery.select.js")" type="text/javascript"></script>
@@ -202,7 +202,7 @@
         ReLoad("TestQuestion");
     }
 
-    function LoadMainCategoryList() {
+    function LoaEmptyProjectainCategoryList() {
         $("#MainTestQuestionCategory").showLoading();
         $.post('@Url.Action("GetMainCategoryList")', {}, function (data) {
             $("#MainTestQuestionCategory").html(data);

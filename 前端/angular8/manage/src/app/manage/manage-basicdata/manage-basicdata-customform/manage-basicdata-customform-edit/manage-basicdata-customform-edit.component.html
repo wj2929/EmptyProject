@@ -1,0 +1,31 @@
+<div class="modal-header">
+  <h4 class="modal-title">编辑表单</h4>
+  <button type="button" class="close" aria-label="Close" (click)="this.activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="formModel" (submit)="OnSubmit()">
+  <div class="modal-body">
+    <div class="form-group" [class.has-error]="Error('Key')">
+      <label class="control-label" for="Key">Key</label>
+      <div><input class="form-control" id="Key" readonly="readonly" disabled="disabled" name="Key" type="text"
+          formControlName="Key">
+      </div>
+      <div *ngIf="Error('Key')">
+        <span class="help-block" *ngIf="hasError('required','Key')">请填写Key</span>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="Error('Name')">
+      <label class="control-label" for="Name">表单名称</label>
+      <div><input class="form-control" id="Name" name="Name" type="text" formControlName="Name"></div>
+      <div *ngIf="Error('Name')">
+        <span class="help-block" *ngIf="hasError('required','Name')">请填写表单名称</span>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-danger">提交</button>
+    <button type="button" class="btn btn-default" (click)="this.activeModal.close()">取消</button>
+  </div>
+</form>

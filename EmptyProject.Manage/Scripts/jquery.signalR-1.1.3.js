@@ -346,7 +346,7 @@
 
                 if (config.transport === "auto") {
                     // Try webSockets and longPolling since SSE doesn't support CORS
-                    // TODO: Support XDM with foreverFrame
+                    // TODO: Support XEmptyProject with foreverFrame
                     config.transport = ["webSockets", "longPolling"];
                 }
 

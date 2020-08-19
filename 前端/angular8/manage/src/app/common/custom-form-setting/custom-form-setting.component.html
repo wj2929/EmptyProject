@@ -1,0 +1,19 @@
+<!-- <label class="control-label" for="Value">{{this.CustomFormItemModel.Name}}</label>
+<div *ngIf="this.CustomFormItemModel.FormType==0">
+  <input class="form-control" id="Value" name="Value" type="text"
+    [(ngModel)]="Value">
+</div>
+<div *ngIf="this.CustomFormItemModel.FormType==1">
+  <textarea cols="5" rows="5" class="form-control" id="Value"
+    name="Value" type="text" [(ngModel)]="Value"></textarea>
+</div>
+<div *ngIf="this.CustomFormItemModel.FormType==2 && !this.CustomFormItemModel.MoreSelect">
+  <select class="form-control" id="Value" name="Value" [(ngModel)]="Value">
+    <option [value]="item" *ngFor="let item of this.CustomFormItemModel.OptionText.split(',')">{{item}}</option>
+  </select>
+</div>
+<div *ngIf="this.CustomFormItemModel.FormType==2 && this.CustomFormItemModel.MoreSelect">
+  <select class="form-control" multiple="multiple" id="Value" name="Value" [(ngModel)]="Value">
+    <option [value]="item" *ngFor="let item of this.CustomFormItemModel.OptionText.split(',')">{{item}}</option>
+  </select>
+</div> -->

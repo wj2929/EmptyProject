@@ -1,0 +1,362 @@
+<div class="page-container no-padding-bottom">
+  <div class="page-header page-header-default  no-margin-bottom" style="border: 1px solid #ddd;border-bottom: 0px;">
+    <div class="breadcrumb-line">
+      <a class="breadcrumb-elements-toggle">
+        <i class="icon-menu-open"></i>
+      </a>
+      <ul class="breadcrumb breadcrumb-caret position-right">
+        <li>
+          <a [routerLink]="['/manage']">首页</a>
+        </li>
+        <li>
+          <a [routerLink]="['/manage/Data']">数据管理</a>
+        </li>
+        <!-- <li class="active">详情</li> -->
+      </ul>
+    </div>
+  </div>
+  <!-- <pre>{{selectedFormModel() | json}}</pre>  -->
+</div>
+
+<div class="page-container">
+  <div class="page-content">
+    <!-- Main sidebar -->
+    <div class="sidebar sidebar-opposite sidebar-default" style="padding-right: 20px;padding-left:0px">
+      <div class="sidebar-content">
+        <!-- Sidebar search -->
+        <div class="sidebar-category">
+          <div class="category-title">
+            <span>搜索</span>
+            <ul class="icons-list">
+              <li><a href="#" data-action="collapse"></a></li>
+            </ul>
+          </div>
+
+          <div class="category-content">
+            <form action="#" [formGroup]="formModel">
+              <!-- <div class="has-feedback has-feedback-left form-group">
+                <input type="search" class="form-control" placeholder="请输入数据编号" name="Number" formControlName="Number">
+                <div class="form-control-feedback">
+                  <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+              </div>
+
+              <div class="has-feedback has-feedback-left form-group">
+                <input type="search" class="form-control" placeholder="请输入学生姓名" name="Xm" formControlName="Xm">
+                <div class="form-control-feedback">
+                  <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+              </div>
+
+              <div class="has-feedback has-feedback-left form-group">
+                <input type="search" class="form-control" placeholder="请输入证件号码" name="Sfzh" formControlName="Sfzh">
+                <div class="form-control-feedback">
+                  <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+              </div> -->
+
+              <div class="has-feedback has-feedback-left form-group">
+                  <input autocomplete="off" [showDropdowns]="true" type="text" ngxDaterangepickerMd class="form-control daterange-left ranges" alwaysShowCalendars=true
+                    [ranges]="ranges" (change)="onLuRuDaterangepickerChange($event)" (click)="changeDaterangepickerWidth()" autoApply=true
+                    name="selectdate" placeholder="请输入录入日期">
+                  <div class="form-control-feedback">
+                    <i class="icon-search4 text-size-base text-muted"></i>
+                  </div>
+                </div>
+
+              <!-- <div class="has-feedback has-feedback-left form-group">
+                <input autocomplete="off" [showDropdowns]="true" type="text" ngxDaterangepickerMd class="form-control daterange-left ranges" alwaysShowCalendars=true
+                  [ranges]="fzranges"  (change)="onFzDaterangepickerChange($event)" (click)="changeDaterangepickerWidth()" autoApply=true
+                  name="selectdate" placeholder="请输入发证日期" [locale]="locale">
+                <div class="form-control-feedback">
+                  <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+              </div>
+
+              <div class="form-group" *ngIf="this.organType!='分部'">
+                  <legend class="text-size-mini text-muted no-border no-padding">选择机构</legend>
+                  <select class="select-search" name="OrganId" placeholder="请选择机构" name="OrganId" formControlName="OrganId">
+                    <option value="" selected>全部</option>
+                    <option value="{{item.Id}}" *ngFor="let item of this.organList;let idx=index">{{item.Name}}</option>
+                  </select>
+                </div>
+
+              <div class="form-group">
+                <legend class="text-size-mini text-muted no-border no-padding">数据分类</legend>
+
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.categoryId === '' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateCategorySelect('',$event)"></span></div>
+                    所有
+                  </label>
+                </div>
+                <div class="radio" *ngFor="let item of this.DataCategories">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.categoryId === item.Id ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateCategorySelect(item.Id,$event)"></span></div>
+                    {{item.Name}}
+                    <span class="text-muted" style="display: none">(83)</span>
+                  </label>
+                </div>
+
+              </div>
+
+              <div class="form-group">
+                <legend class="text-size-mini text-muted no-border no-padding">数据状态</legend>
+
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.DataInfostatus ==='' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateDataInfostatusSelect('',$event)"></span></div>
+                    所有
+                  </label>
+                </div>
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.DataInfostatus ==='0' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateDataInfostatusSelect('0',$event)"></span></div>
+                    待审核
+                  </label>
+                </div>
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.DataInfostatus ==='1' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateDataInfostatusSelect('1',$event)"></span></div>
+                    审核通过
+                  </label>
+                </div>
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.DataInfostatus ==='2' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateDataInfostatusSelect('2',$event)"></span></div>
+                    取消审核
+                  </label>
+                </div>
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.DataInfostatus ==='3' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateDataInfostatusSelect('3',$event)"></span></div>
+                    生成编号
+                  </label>
+                </div>
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.DataInfostatus ==='4' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateDataInfostatusSelect('4',$event)"></span></div>
+                    制证
+                  </label>
+                </div>
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.DataInfostatus ==='5' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateDataInfostatusSelect('5',$event)"></span></div>
+                    数据发放
+                  </label>
+                </div>
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.DataInfostatus ==='6' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateDataInfostatusSelect('6',$event)"></span></div>
+                    数据换领
+                  </label>
+                </div>
+
+
+              </div> -->
+
+              <button type="button" class="btn bg-blue btn-block" (click)="onSearch()">
+                <i class="icon-search4 text-size-base position-left"></i>
+                搜索数据
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- /sidebar search -->
+      </div>
+
+      <!-- /secondary sidebar -->
+    </div>
+    <!-- Main content -->
+    <div class="content-wrapper">
+      <div class="panel panel-white">
+        <div class="panel-heading">
+          <h6 class="panel-title">管理数据</h6>
+
+          <!-- <div class="heading-elements not-collapsible">
+          <span class="label bg-blue heading-text">259 new today</span>
+        </div> -->
+        </div>
+
+        <div class="panel-toolbar panel-toolbar-inbox">
+          <div class="navbar navbar-default">
+            <ul class="nav navbar-nav visible-xs-block no-border">
+              <li>
+                <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-single">
+                  <i class="icon-circle-down2"></i>
+                </a>
+              </li>
+            </ul>
+
+            <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-single">
+              <div class="btn-group navbar-btn">
+                <button type="button" class="btn btn-default btn-icon btn-checkbox-all">
+                  <div class="checker"><span [class]="this.isSelectAll ?'checked' :''"><input type="checkbox"
+                        class="styled" (change)="updateAllSelect($event)"></span></div>
+                </button>
+
+                <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu">
+                  <li><a (click)="selectAll(true)">选择所有</a></li>
+                  <li class="divider"></li>
+                  <li><a (click)="selectAll(false)">清除选择</a></li>
+                </ul>
+              </div>
+
+              <div class="btn-group navbar-btn">
+                <!-- <button type="button" class="btn btn-default" (click)="importDataInfos()"><i
+                    class=" icon-import"></i>
+                  <span class="hidden-xs position-right">导入数据</span></button>
+                <button type="button" class="btn btn-default" (click)="exportDataInfos()"><i
+                    class="icon-database-export"></i>
+                  <span class="hidden-xs position-right">导出数据</span></button> -->
+                  <!-- <button type="button" class="btn btn-default" (click)="setStatusDataInfos()" *ngIf="this.organType!='分部'"><i class="icon-cog5"></i>
+                    <span class="hidden-xs position-right">设置状态</span></button> -->
+                <!-- <button type="button" class="btn btn-default" (click)="auditDataInfos()" *ngIf="this.organType!='分部'"><i class="icon-check"></i>
+                  <span class="hidden-xs position-right">审核通过</span></button>
+                <button type="button" class="btn btn-default" (click)="cancelAuditDataInfos()" *ngIf="this.organType!='分部'"><i
+                    class="icon-cross"></i> <span class="hidden-xs position-right">取消审核</span></button> -->
+
+                <!-- <button type="button" class="btn btn-default" (click)="removeDataInfos()"><i class="icon-bin"></i>
+                  <span class="hidden-xs position-right">删除</span></button>
+
+ 
+                <button type="button" class="btn btn-default" (click)="createDataInfo()"><i class="icon-pencil7"></i>
+                  <span class="hidden-xs position-right">创建</span></button> -->
+              </div>
+
+              <div class="btn-group navbar-btn">
+                <div class="btn-group-btn">
+                  <button type="button" class="btn btn-default" (click)="removeDataInfos()"><i
+                      class="icon-bin"></i><span class="hidden-xs position-right">删除</span></button>
+                  <button type="button" class="btn btn-default dropdown-toggle btn-icon" data-toggle="dropdown"
+                    aria-expanded="true">
+                    <span class="caret"></span>
+                  </button>
+
+                  <ul class="dropdown-menu dropdown-menu-left">
+                    <li><a (click)="removeCurrentPageDataInfos()"><i class="icon-bin"></i> <span
+                      class="hidden-xs position-right">当前页删除</span></a></li>
+                    <li><a (click)="removeAllPageDataInfos()"><i class="icon-bin"></i> <span
+                      class="hidden-xs position-right">所有页删除</span></a></li>
+                  </ul>
+
+                  <button type="button" class="btn btn-default" (click)="createDataInfo()"><i class=" icon-database-add"></i>
+                    <span class="hidden-xs position-right">创建</span></button>
+                </div>
+                
+              </div>
+
+
+              <div class="navbar-right" style="display:none">
+                <p class="navbar-text"><span class="text-semibold">1-50</span> of <span class="text-semibold">528</span>
+                </p>
+
+                <div class="btn-group navbar-left navbar-btn">
+                  <button type="button" class="btn btn-default btn-icon disabled"><i
+                      class="icon-arrow-left12"></i></button>
+                  <button type="button" class="btn btn-default btn-icon"><i class="icon-arrow-right13"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <td class="text-nowrap">选择</td>
+                <td class="text-nowrap">数据分类</td>
+                <td class="text-nowrap">颁发机构</td>
+                <td class="text-nowrap">数据编号</td>
+                <td class="text-nowrap">姓名</td>
+                <td class="text-nowrap">性别</td>
+                <td class="text-nowrap">证件号码</td>
+                <td class="text-nowrap">发证日期</td>
+                <td class="text-nowrap">状态</td>
+                <td>扩展信息</td>
+                <td>管理</td>
+              </tr>
+            </thead>
+            <tbody data-link="row" class="rowlink">
+              <tr *ngFor="let item of this.DataInfoPaging.PageListInfos;let idx=index">
+                <td class="table-inbox-checkbox rowlink-skip" >
+                  <div><span
+                      [class]="this.selectDataInfoList.indexOf(item) !==-1 ?'checked' :''"><input type="checkbox"
+                        class="styled" (change)="updateSelect(item,$event)"></span></div>
+                </td>
+                <td class="text-nowrap">{{item.CategoryName}}</td>
+                <td class="text-nowrap">{{item.OrganName}}</td>
+                <td class="text-nowrap">{{item.Number}}</td>
+                <td class="text-nowrap">{{item.Xm}}</td>
+                <td class="text-nowrap">{{item.Xb}}</td>
+                <td class="text-nowrap">{{item.Sfzh}}</td>
+                <td class="text-nowrap">{{item.Fzrq}}</td>
+                <td class="text-nowrap">{{item.DataInfostatusName}}</td>
+                <td class="table_td_overflow" title="{{item.CustomFormSettingDescription}}">
+                  <div *ngFor="let childItem of item.CustomFormSetting.CustomFormItemSettings">
+                    {{childItem.Name}}:{{childItem.Value}}
+                  </div>
+                </td>
+                <td nowrap>
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default" (click)="editDataInfo(item)"><i
+                          class="icon-pencil7"></i><span class="hidden-xs position-right">编辑</span></button>
+                      <button type="button" class="btn btn-default dropdown-toggle btn-icon" data-toggle="dropdown"
+                        aria-expanded="true">
+                        <span class="caret"></span>
+                      </button>
+
+                      <ul class="dropdown-menu dropdown-menu-left" style="min-width:120px">
+                        <li ><a (click)="removeDataInfo(item.Id)"><i
+                          class="icon-bin"></i><span class="hidden-xs position-right">删除</span></a></li>
+                        <!-- <li><a (click)="showDataWorkFlow(item)"><i
+                          class="icon-diff"></i><span class="hidden-xs position-right">变更记录</span></a></li>  -->
+                      </ul>
+                    </div>
+                  </div>
+                  <!-- <div class="btn-group">
+                    <button type="button" class="btn btn-default" (click)="editDataInfo(item)"><i class="icon-pencil7"></i>
+                      <span class="hidden-xs position-right">编辑</span></button>
+                    <button type="button" class="btn btn-default" (click)="removeDataInfo(item.Id)"><i class="icon-bin"></i>
+                      <span class="hidden-xs position-right">删除</span></button>
+                      <button type="button" class="btn btn-default" (click)="showDataWorkFlow(item)"><i class=" icon-grid-alt"></i>
+                        <span class="hidden-xs position-right">流转记录</span></button>                      
+                  </div> -->
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="11" class="Paging text-right">
+                  <app-pagination [AllCount]="DataInfoPaginationModel.AllCount"
+                    [CurrentPage]="DataInfoPaginationModel.CurrentPage"
+                    [PageCount]="DataInfoPaginationModel.PageCount" (pageChanged)="onDataInfoPageChanged($event)">
+                  </app-pagination>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- /main content -->
+
+  </div>
+</div>

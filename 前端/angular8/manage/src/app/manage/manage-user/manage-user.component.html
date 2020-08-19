@@ -1,0 +1,229 @@
+<div class="page-container no-padding-bottom">
+  <div class="page-header page-header-default  no-margin-bottom" style="border: 1px solid #ddd;border-bottom: 0px;">
+    <div class="breadcrumb-line">
+      <a class="breadcrumb-elements-toggle">
+        <i class="icon-menu-open"></i>
+      </a>
+      <ul class="breadcrumb breadcrumb-caret position-right">
+        <li>
+          <a [routerLink]="['/manage']">首页</a>
+        </li>
+        <li>
+          <a [routerLink]="['/manage/User']">用户管理</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+
+<div class="page-container">
+  <div class="page-content">
+    <!-- Main sidebar -->
+    <div class="sidebar sidebar-opposite sidebar-default" style="padding-right: 20px;padding-left:0px">
+      <div class="sidebar-content">
+        <!-- Sidebar search -->
+        <div class="sidebar-category">
+          <div class="category-title">
+            <span>搜索</span>
+            <ul class="icons-list">
+              <li><a href="#" data-action="collapse"></a></li>
+            </ul>
+          </div>
+
+          <div class="category-content">
+            <form action="#" [formGroup]="formModel">
+              <div class="has-feedback has-feedback-left form-group">
+                <input type="search" class="form-control" placeholder="请输入用户名" name="UserName"
+                  formControlName="UserName">
+                <div class="form-control-feedback">
+                  <i class="icon-search4 text-size-base text-muted"></i>
+                </div>
+              </div>
+
+              <div class="form-group">
+                <legend class="text-size-mini text-muted no-border no-padding">是否锁定</legend>
+
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.isLock ==='' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateIsLockSelect('',$event)"></span></div>
+                    不限
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.isLock ==='false' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateIsLockSelect('false',$event)"></span></div>
+                    正常
+                  </label>
+                </div>
+
+                <div class="radio">
+                  <label class="display-block">
+                    <div class="choice"><span [class]="this.isLock ==='true' ?'checked' :''"><input type="radio"
+                          class="styled" (click)="updateIsLockSelect('true',$event)"></span></div>
+                    锁定
+                  </label>
+                </div>
+              </div>
+
+              <!-- <pre>{{selectedFormModel() | json}}</pre> -->
+
+              <button type="button" class="btn bg-blue btn-block" (click)="onSearch()">
+                <i class="icon-search4 text-size-base position-left"></i>
+                搜索用户
+              </button>
+            </form>
+          </div>
+        </div>
+        <!-- /sidebar search -->
+      </div>
+
+      <!-- /secondary sidebar -->
+    </div>
+    <!-- Main content -->
+    <div class="content-wrapper">
+      <div class="panel panel-white">
+        <div class="panel-heading">
+          <h6 class="panel-title">管理用户</h6>
+
+          <!-- <div class="heading-elements not-collapsible">
+            <span class="label bg-blue heading-text">259 new today</span>
+          </div> -->
+        </div>
+
+        <div class="panel-toolbar panel-toolbar-inbox">
+          <div class="navbar navbar-default">
+            <ul class="nav navbar-nav visible-xs-block no-border">
+              <li>
+                <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-single">
+                  <i class="icon-circle-down2"></i>
+                </a>
+              </li>
+            </ul>
+
+            <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-single">
+              <div class="btn-group navbar-btn">
+                <button type="button" class="btn btn-default btn-icon btn-checkbox-all">
+                  <div class="checker"><span [class]="this.isSelectAll ?'checked' :''"><input type="checkbox"
+                        class="styled" (change)="updateAllSelect($event)"></span></div>
+                </button>
+
+                <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown"
+                  aria-expanded="false">
+                  <span class="caret"></span>
+                </button>
+
+                <ul class="dropdown-menu">
+                  <li><a (click)="selectAll(true)">选择所有</a></li>
+                  <li class="divider"></li>
+                  <li><a (click)="selectAll(false)">清除选择</a></li>
+                </ul>
+              </div>
+
+              <div class="btn-group navbar-btn">
+                <!-- <button type="button" class="btn btn-default" (click)="auditUsers()"><i class="icon-check"></i> <span
+                      class="hidden-xs position-right">审核通过</span></button>
+                  <button type="button" class="btn btn-default" (click)="cancelAuditUsers()"><i class="icon-cross"></i> <span
+                      class="hidden-xs position-right">取消审核</span></button>
+                  <button type="button" class="btn btn-default" (click)="removeUsers()"><i class="icon-bin"></i> <span
+                      class="hidden-xs position-right">删除</span></button>
+                  <button type="button" class="btn btn-default" (click)="UserCreate()"><i class="icon-pencil7"></i> <span
+                      class="hidden-xs position-right">创建</span></button> -->
+                <button type="button" class="btn btn-default" (click)="removeUsers()"><i class="icon-bin"></i> <span
+                    class="hidden-xs position-right">删除</span></button>
+                <button type="button" class="btn btn-default" (click)="createUser()"><i class=" icon-user-plus"></i> <span
+                    class="hidden-xs position-right">创建</span></button>
+                <!-- <button type="button" class="btn btn-default" (click)="exportUsers()"><i class=" icon-database-export"></i> <span
+                      class="hidden-xs position-right">导出日志</span></button> -->
+              </div>
+
+              <div class="navbar-right" style="display:none">
+                <p class="navbar-text"><span class="text-semibold">1-50</span> of <span class="text-semibold">528</span>
+                </p>
+
+                <div class="btn-group navbar-left navbar-btn">
+                  <button type="button" class="btn btn-default btn-icon disabled"><i
+                      class="icon-arrow-left12"></i></button>
+                  <button type="button" class="btn btn-default btn-icon"><i class="icon-arrow-right13"></i></button>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table class="table table-hover">
+            <thead>
+              <tr>
+                <td style="width:80px">选择</td>
+                <td>用户名</td>
+                <td>用户角色</td>
+                <td>是否锁定</td>
+                <td style="width:300px">Token</td>
+                <td>Token过期时间</td>
+                <td>管理</td>
+              </tr>
+            </thead>
+            <tbody data-link="row" class="rowlink">
+              <tr *ngFor="let item of this.UserPaging.PageListInfos;let idx=index">
+                <td class="table-inbox-checkbox rowlink-skip">
+                  <div class="checker"><span [class]="this.selectUserList.indexOf(item) !==-1 ?'checked' :''"><input
+                        type="checkbox" class="styled" (change)="updateSelect(item,$event)"></span></div>
+                </td>
+                <td>{{item.UserName}}</td>
+                <td>{{item.OrganType}}</td>
+                <td>{{item.IsLock}}</td>
+                <td style="width:300px">{{item.AccessToken}}</td>
+                <td>{{item.Expires.slice(6,-2) | date :'yyyy-MM-dd' }}</td>
+                <td nowrap>
+                  <!-- <div class="btn-group">
+                      <button type="button" class="btn btn-default" (click)="editUser(item)"><i class="icon-pencil7"></i>
+                        <span class="hidden-xs position-right">编辑</span></button>
+                      <button type="button" class="btn btn-default" (click)="removeUser(item.Id)"><i class="icon-bin"></i>
+                        <span class="hidden-xs position-right">删除</span></button>
+                    </div> -->
+                  <div class="input-group">
+                    <div class="input-group-btn">
+                      <button type="button" class="btn btn-default" (click)="editUser(item)"><i
+                          class="icon-pencil7"></i><span class="hidden-xs position-right">编辑</span></button>
+                      <button type="button" class="btn btn-default dropdown-toggle btn-icon" data-toggle="dropdown"
+                        aria-expanded="true">
+                        <span class="caret"></span>
+                      </button>
+
+                      <ul class="dropdown-menu dropdown-menu-left">
+                        <li *ngIf="item.IsLock"><a (click)="unlockUser(item.UserName)"><i class=" icon-unlocked2"></i>
+                            <span class="hidden-xs position-right">解锁</span></a></li>
+                        <li *ngIf="!item.IsLock"><a (click)="lockUser(item.UserName)"><i class=" icon-user-lock"></i> <span
+                              class="hidden-xs position-right">锁定</span></a></li>
+                        <li><a (click)="editPassword(item)"><i class="icon-cog5"></i><span
+                              class="hidden-xs position-right">修改密码</span></a></li>
+                        <li><a (click)="refreshToken(item)"><i class=" icon-database-refresh"></i><span
+                              class="hidden-xs position-right">刷新Token</span></a></li>
+                        <li><a (click)="removeUser(item.UserName)"><i class="icon-bin"></i> <span
+                              class="hidden-xs position-right">删除</span></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                </td>
+              </tr>
+            </tbody>
+            <tfoot>
+              <tr>
+                <td colspan="7" class="Paging text-right">
+                  <app-pagination [AllCount]="UserPaginationModel.AllCount"
+                    [CurrentPage]="UserPaginationModel.CurrentPage" [PageCount]="UserPaginationModel.PageCount"
+                    (pageChanged)="onUserPageChanged($event)"></app-pagination>
+                </td>
+              </tr>
+            </tfoot>
+          </table>
+        </div>
+      </div>
+    </div>
+    <!-- /main content -->
+
+  </div>
+</div>

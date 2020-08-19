@@ -1,0 +1,245 @@
+<div class="modal-header">
+  <h4 class="modal-title">编辑{{categoryTypeName}}</h4>
+  <button type="button" class="close" aria-label="Close" (click)="this.activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="formModel" (submit)="OnSubmit()">
+  <div class="modal-body">
+    <div class="form-group" [class.has-error]="Error('Name')">
+      <label class="control-label" for="Name">名称</label>
+      <div><input class="form-control" id="Name" name="Name" type="text" formControlName="Name"></div>
+      <div *ngIf="Error('Name')">
+        <span class="help-block" *ngIf="hasError('required','Name')">请填写名称</span>
+      </div>
+    </div>
+    <div formGroupName="CustomFormSetting">
+      <div formArrayName="CustomFormItemSettings">
+        <div class="form-group" *ngFor="let item of customFormItemList;let i = index;" [formGroupName]="i"
+          [class.has-error]="CustomFormItemError(item.Key)">
+          <label class="control-label" for="Value">{{item.Name}}</label>
+          <input class="form-control" type="hidden" formControlName="Key" value="{{item.Key}}">
+          <input class="form-control" type="hidden" formControlName="Name" value="{{item.Name}}">
+          <input class="form-control" type="hidden" name="formpath"
+            value="{{'CustomFormSetting.CustomFormItemSettings.' + i + '.Value'}}">
+          <div *ngIf="item.FormType==0">
+            <input class="form-control" id="Value" name="Value" type="text" formControlName="Value">
+          </div>
+          <div *ngIf="item.FormType==1">
+            <textarea cols="5" rows="10" class="form-control" id="Value" name="Value" type="text"
+              formControlName="Value"></textarea>
+          </div>
+          <div *ngIf="item.FormType==2 && !item.MoreSelect">
+            <select class="select-search customformitem" id="Value" name="Value" formControlName="Value">
+              <option [value]="childItem.value" *ngFor="let childItem of item.OptionList">{{childItem.text}}</option>
+            </select>
+          </div>
+          <div *ngIf="item.FormType==2 && item.MoreSelect">
+            <select class="form-control" multiple="multiple" formControlName="Value">
+              <option [value]="childItem.value" *ngFor="let childItem of item.OptionList">{{childItem.text}}</option>
+            </select>
+          </div>
+          <div *ngIf="item.FormType==3">
+            <input type="file" class="file" formControlName="Value" multiple [eNgxFileUpload]="fileInputOpts"
+              (ready)="ready($event,item)" (filebatchuploadcomplete)="filebatchuploadcomplete($event,item)"
+              (filebatchuploaderror)="filebatchuploaderror($event)" (fileuploaded)="fileuploaded($event,item)"
+              (fileuploaderror)="fileuploaderror($event)" (filedeleted)="filedeleted($event,item)"
+              (fileclear)="fileclear($event,item)" (filesuccessremove)="filedeleted($event,item)">
+          </div>
+          <div *ngIf="item.FormType==4">
+            <input autocomplete="off" readonly="readonly" [showDropdowns]="true" id="Value" name="Value" type="text"
+              formControlName="Value" ngxDaterangepickerMd class="form-control daterange-left" singleDatePicker=true
+              autoApply=true (change)="onFormItemDaterangepickerChange($event,item,true)"
+              [locale]="daterangepickerLocale">
+          </div>
+          <div *ngIf="item.FormType==5">
+            <input autocomplete="off" readonly="readonly" [showDropdowns]="true" id="Value" name="Value" type="text"
+              formControlName="Value" ngxDaterangepickerMd class="form-control daterange-left show-ranges"
+              autoApply=true alwaysShowCalendars=true [ranges]="daterangepickerRanges"
+              (click)="changeRangeDaterangepickerWidth()" (change)="onFormItemDaterangepickerChange($event,item,false)"
+              [locale]="daterangepickerLocale">
+          </div>
+          <div *ngIf="item.FormType==6">
+            <select class="select-search customformitem" id="Value" name="Value" formControlName="Value">
+              <option value="{{item.Key}}" *ngFor="let item of this.customFormList;let idx=index">{{item.Name}}</option>
+            </select>
+          </div>
+          <div *ngIf="item.FormType==7">
+            <ckeditor [editor]="Editor" data="" [config]="EditorConfig" name="Value" formControlName="Value"></ckeditor>
+          </div>
+          <div *ngIf="item.FormType==12">
+            <div [ngxSummernote]="SummernoteConfig" name="Value" formControlName="Value"></div>
+          </div>
+          <div *ngIf="item.FormType==13">
+            <input class="form-control" name="Value" type="hidden" formControlName="Value">
+            <ul class="nav nav-lg nav-tabs nav-tabs-bottom search-results-tabs">
+              <li [class]="item.current ==='text' ?'active' :''"><a data-toggle="tab" href="#text"><i
+                    class="position-left"></i> 文本消息</a></li>
+              <li [class]="item.current ==='image' ?'active' :''"><a data-toggle="tab" href="#image"><i
+                    class="position-left"></i> 图片消息</a></li>
+              <li [class]="item.current ==='newsmedia' ?'active' :''"><a data-toggle="tab" href="#newsmedia"><i
+                    class="position-left"></i> 图文消息</a></li>
+            </ul>
+            <div class="tab-content">
+              <div [class]="item.current ==='text' ?'tab-pane active' :'tab-pane'" id="text">
+                <textarea cols="5" rows="10" class="form-control" type="text"
+                  (change)="onFormItemWexXinTextChange($event,item)"
+                  (ngModelChange)="onFormItemWexXinTextChange($event,item)">{{item.text}}</textarea>
+              </div>
+              <div [class]="item.current ==='image' ?'tab-pane active' :'tab-pane'" id="image">
+                <input type="file" class="file" multiple [eNgxFileUpload]="fileInputOptsWithWexXinForeverMedia"
+                  (ready)="readyWithWexXinForeverMedia($event,item)"
+                  (filebatchuploadcomplete)="filebatchuploadcomplete($event,item)"
+                  (filebatchuploaderror)="filebatchuploaderror($event)"
+                  (fileuploaded)="fileuploadedWithWexXinForeverMedia($event,item)"
+                  (fileuploaderror)="fileuploaderror($event)"
+                  (filedeleted)="filedeletedWithWexXinForeverMedia($event,item)"
+                  (fileclear)="fileclearWithWexXinForeverMedia($event,item)"
+                  (filesuccessremove)="filedeleted($event,item)">
+              </div>
+              <div [class]="item.current ==='newsmedia' ?'tab-pane active' :'tab-pane'" id="newsmedia">
+                <div class="search-results-list">
+                  <div class="row panel panel-default">
+                    <div class="panel-heading">
+                      <h6 class="panel-title">选择图文消息</h6>
+                    </div>
+                    <div class="panel-body">
+                      <div *ngIf="item.selectNewsMedia!=null">
+                        <div class="col-md-4">
+                          <div class="thumbnail">
+                            <div class="thumb">
+                              <img
+                                src="http://wechat.eenet.com/web/index.php?c=utility&a=wxcode&do=image&attach={{item.selectNewsMedia.content.news_item[0].thumb_url}}"
+                                alt="">
+                            </div>
+                            <div class="caption">
+                              <h6 class="text-semibold no-margin-top"><a class="text-default"
+                                  (click)="selectNewsMedia($event,item,item.selectNewsMedia)">{{item.selectNewsMedia.content.news_item[0].title}}</a>
+                              </h6>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="row panel panel-default">
+                    <div class="panel-heading">
+                      <h6 class="panel-title">
+                        云端图文消息
+                      </h6>
+                    </div>
+                    <div class="panel-body">
+                      <div class="col-md-4" *ngFor="let childItem of newsMediaList;let j = index;">
+                        <div class="thumbnail">
+                          <div class="thumb">
+                            <img
+                              src="http://wechat.eenet.com/web/index.php?c=utility&a=wxcode&do=image&attach={{childItem.content.news_item[0].thumb_url}}"
+                              alt="">
+                          </div>
+
+                          <div class="caption">
+                            <h6 class="text-semibold no-margin-top"><a class="text-default"
+                                (click)="selectNewsMedia($event,item,childItem)">{{childItem.content.news_item[0].title}}</a>
+                            </h6>
+                          </div>
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="item.FormType==8 && !item.MoreSelect">
+            <select class="select-search categoryitem" id="Value" name="Value" formControlName="Value">
+              <option value="{{item.Id}}" *ngFor="let item of item.CategoryList;let idx=index"
+                [attr.data-parent]="item.ParentCategory_Id">{{item.Name}}</option>
+            </select>
+          </div>
+          <div *ngIf="item.FormType==8 && item.MoreSelect">
+            <select class="form-control" multiple="multiple" formControlName="Value">
+              <option [value]="childItem.Id" *ngFor="let childItem of item.CategoryList">{{childItem.Name}}</option>
+            </select>
+          </div>
+          <div *ngIf="item.FormType==9">
+            <div formGroupName="Value">
+              <div formArrayName="ChildCustomForms">
+                <div class="panel panel-flat" *ngFor="let moreCustomForm of item.ChildCustomForms;let m=index"
+                  [formGroupName]="m">
+                  <!-- <input class="form-control" type="hidden" formControlName="Key" value="{{moreCustomForm.Key}}">
+                      <input class="form-control" type="hidden" formControlName="Name" value="{{moreCustomForm.Name}}"> -->
+                  <!-- <input class="form-control" type="hidden" formControlName="Key" value="{{moreCustomForm.Key}}"> -->
+                  <div class="panel-heading">
+                    <h5 class="panel-title">
+                      {{(item.Description !='' && item.Description != null) ? (item.Description+"--") : ""}}{{m+1}}</h5>
+                    <div class="heading-elements">
+                      <ul class="icons-list">
+                        <li><a data-action="collapse"></a></li>
+                        <li (click)="removeChildCustomForm(item,i,m)"><a data-action="close"></a></li>
+                      </ul>
+                    </div>
+                  </div>
+                  <div class="panel-body">
+                    <div class="form-horizontal">
+                      <div formArrayName="ChildCustomFormItemSettings">
+                        <div class="form-group" *ngFor="let childItem of childCustomFormItemList;let j = index;"
+                          [formGroupName]="j">
+                          <label class="control-label" for="Value">{{childItem.Name}}</label>
+                          <input class="form-control" type="hidden" formControlName="Key" value="{{childItem.Key}}">
+                          <input class="form-control" type="hidden" formControlName="Name" value="{{childItem.Name}}">
+                          <input class="form-control" type="hidden" name="formpath"
+                            value="{{'CustomFormSetting.CustomFormItemSettings.' + i + '.Value.ChildCustomForms.'+m+'.ChildCustomFormItemSettings.'+j +'.Value'}}">
+                          <div *ngIf="childItem.FormType==0">
+                            <input class="form-control" name="Value" type="text" title="{{childItem.Name}}"
+                              formControlName="Value">
+                          </div>
+                          <div *ngIf="childItem.FormType==1">
+                            <textarea cols="5" rows="10" class="form-control" name="Value" type="text"
+                              title="{{childItem.Name}}" formControlName="Value"></textarea>
+                          </div>
+                          <div *ngIf="childItem.FormType==2 && !childItem.MoreSelect">
+                            <select class="select-search customformitem" name="Value" title="childItem.Name"
+                              formControlName="Value">
+                              <option [value]="childChildItem.value"
+                                *ngFor="let childChildItem of childItem.OptionList">
+                                {{childChildItem.text}}</option>
+                            </select>
+                          </div>
+                          <div *ngIf="childItem.FormType==2 && childItem.MoreSelect">
+                            <select class="form-control" multiple="multiple" formControlName="Value"
+                              title="{{childItem.Name}}">
+                              <option [value]="childChildItem.value"
+                                *ngFor="let childChildItem of childItem.OptionList">
+                                {{childChildItem.text}}</option>
+                            </select>
+                          </div>
+                          <!-- <pre>{{'CustomFormSetting.CustomFormItemSettings.' + i + '.Value.CustomForms.'+m+'.CustomFormItemSettings.'+j +'.Value'}}</pre> -->
+                          <!-- <pre>{{'CustomFormSetting.CustomFormItemSettings.' + i + '.Value.ChildCustomForms.'+m+'.ChildCustomFormItemSettings.'+j +'.Value'}} ： {{ this.formModel.get('CustomFormSetting.CustomFormItemSettings.' + i + '.Value.ChildCustomForms.'+m+'.ChildCustomFormItemSettings.'+j +'.Value').value}}</pre> -->
+                        </div>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <button class="btn btn-default" type="button" id="NewItem"
+                  (click)="createChildCustomForm(item,i)">新建项</button>
+              </div>
+            </div>
+          </div>
+          <div *ngIf="CustomFormItemError(item.Key)">
+            <span class="help-block"
+              *ngIf="hasError('required','CustomFormSetting.CustomFormItemSettings.' + i + '.Value')">请填写{{item.Name}}</span>
+            <span class="help-block"
+              *ngIf="hasError('RegularExpressionValidator','CustomFormSetting.CustomFormItemSettings.' + i + '.Value')">{{item.ValidationConfig_ErrorMessage}}</span>
+          </div>
+          <!-- <pre>{{'CustomFormSetting.CustomFormItemSettings.' + i + '.Value'}} ： {{ this.formModel.get('CustomFormSetting.CustomFormItemSettings.' + i + '.Value').value}}</pre> -->
+        </div>
+      </div>
+    </div>
+  </div>
+  <pre>{{formModelValue() | json}}</pre>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-danger">提交</button>
+    <button type="button" class="btn btn-default" (click)="this.activeModal.close()">取消</button>
+  </div>
+</form>

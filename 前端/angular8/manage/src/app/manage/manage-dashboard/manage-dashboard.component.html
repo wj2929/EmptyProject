@@ -1,0 +1,35 @@
+<div class="page-container no-padding-bottom">
+  <div class="page-header page-header-default  no-margin-bottom" style="border: 1px solid #ddd;border-bottom: 0px;">
+    <div class="breadcrumb-line">
+      <a class="breadcrumb-elements-toggle">
+        <i class="icon-menu-open"></i>
+      </a>
+      <ul class="breadcrumb breadcrumb-caret position-right">
+        <li>
+          <a [routerLink]="['/manage']">首页</a>
+        </li>
+        <li>
+          <a [routerLink]="['/manage/dashboard']">dashboard</a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</div>
+<div class="page-container">
+  <div class="page-content">
+    <div class="row">
+      <div class="col-md-8">
+        <div class="panel panel-white">
+          <div class="panel-heading">
+            <h1 class="panel-title  text-center">欢迎光临<br>xxx管理系统</h1>
+          </div>
+        </div>
+
+        <!-- <app-manage-dashboard-certificate-stat></app-manage-dashboard-certificate-stat> -->
+      </div>
+      <div class="col-md-4">
+        <app-manage-dashboard-login-log></app-manage-dashboard-login-log>
+      </div>
+    </div>
+  </div>
+</div>

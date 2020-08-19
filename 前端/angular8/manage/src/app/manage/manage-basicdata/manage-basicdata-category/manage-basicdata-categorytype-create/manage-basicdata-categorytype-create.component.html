@@ -1,0 +1,42 @@
+<div class="modal-header">
+  <h4 class="modal-title">创建分类类型</h4>
+  <button type="button" class="close" aria-label="Close" (click)="this.activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="formModel" (submit)="OnSubmit()">
+  <div class="modal-body">
+    <div class="form-group" [class.has-error]="Error('Keycode')">
+      <label class="control-label" for="Keycode">关键字</label>
+      <div><input class="form-control" id="Keycode" name="Keycode" type="text" formControlName="Keycode">
+      </div>
+      <div *ngIf="Error('Keycode')">
+        <span class="help-block" *ngIf="hasError('required','Keycode')">请填写关键字</span>
+        <span class="help-block" *ngIf="hasError('CategoryTypeKeyExists','Keycode')">该关键字已存在</span>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="Error('Name')">
+      <label class="control-label" for="Name">名称</label>
+      <div><input class="form-control" id="Name" name="Name" type="text" formControlName="Name"></div>
+      <div *ngIf="Error('Name')">
+        <span class="help-block" *ngIf="hasError('required','Name')">请填写名称</span>
+      </div>
+    </div>
+    <div class="form-group" [class.has-error]="Error('CustomFormId')">
+      <label class="control-label" for="CustomFormId">表单</label>
+      <div>
+        <select class="select-search" id="CustomFormId" name="CustomFormId" formControlName="CustomFormId">
+          <option [value]="item.Id" *ngFor="let item of customFormList">{{item.Name}}</option>
+        </select>
+      </div>
+      <div *ngIf="Error('CustomFormId')">
+        <span class="help-block" *ngIf="hasError('required','CustomFormId')">请选择表单</span>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-danger">提交</button>
+    <button type="button" class="btn btn-default" (click)="this.activeModal.close()">取消</button>
+  </div>
+</form>

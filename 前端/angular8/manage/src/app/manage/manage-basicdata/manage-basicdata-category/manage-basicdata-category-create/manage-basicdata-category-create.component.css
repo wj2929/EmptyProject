@@ -1,0 +1,7 @@
+.ck-editor__editable { min-height: 100px; }
+.ck-content {
+    min-height: 200px;
+}
+.ck-editor__editable_inline {
+    min-height: 500px;
+}

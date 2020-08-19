@@ -1,0 +1,48 @@
+.ImageUpload {
+    border: 2px dashed #ddd;
+    height: 250px;
+    text-align: center;
+    cursor: pointer;
+}
+.ImageUpload img {
+    height: 230px;
+    margin-top: 8px;
+    text-align: center;
+}
+.ImageUpload .Message {
+    height: 230px;
+    color: #bbb;
+    position: absolute;
+    bottom: 15px;
+    width: 100%;
+    text-align: center;
+    margin: 0px auto;
+    margin-top: -115px;
+}
+.ImageUpload .Message span {
+    font-size: 19px;
+    color: #bbb;
+    text-align: center;
+    margin-top: 140px;
+    display: block;
+    font-weight: 500;
+    text-shadow: 0 1px 1px #fff;
+}
+.ImageUpload .Message:before {
+    content: '\EA0E';
+    font-family: 'icomoon';
+    position: absolute;
+    font-size: 80px;
+    top: 48px;
+    width: 80px;
+    height: 80px;
+    display: inline-block;
+    left: 50%;
+    margin-left: -32px;
+    line-height: 1;
+    z-index: 2;
+    color: #ddd;
+    text-indent: 0;
+    font-weight: normal;
+    -webkit-font-smoothing: antialiased;
+}

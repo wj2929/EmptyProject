@@ -1,0 +1,119 @@
+<!-- Main content -->
+
+<div class="panel panel-white">
+  <div class="panel-heading">
+    <h6 class="panel-title">管理{{categoryTypeName}}</h6>
+
+    <!-- <div class="heading-elements not-collapsible">
+          <span class="label bg-blue heading-text">259 new today</span>
+        </div> -->
+    <div class="heading-elements" *ngIf="this.parentCategoryId!='' && this.parentCategoryId!=null">
+      <button class="btn btn-default btn-xs" (click)="goBack()">返回</button>
+    </div>
+  </div>
+
+  <div class="panel-toolbar panel-toolbar-inbox">
+    <div class="navbar navbar-default">
+      <ul class="nav navbar-nav visible-xs-block no-border">
+        <li>
+          <a class="text-center collapsed" data-toggle="collapse" data-target="#inbox-toolbar-toggle-single">
+            <i class="icon-circle-down2"></i>
+          </a>
+        </li>
+      </ul>
+      <ul class="breadcrumb breadcrumb-caret position-right">
+        <li>
+          <a [routerLink]="['../../../category',this.cagegoryTypeId,this.customFormId]">根节点</a>
+        </li>
+        <li *ngFor="let item of this.ramusCategoryList;let idx=index">
+          <a [routerLink]="['../../../childcategory',this.cagegoryTypeId,item.Id]">{{item.Name}}</a>
+        </li>
+        <!-- <li class="active">详情</li> -->
+      </ul>
+      <div class="navbar-collapse collapse" id="inbox-toolbar-toggle-single">
+        <div class="btn-group navbar-btn">
+          <button type="button" class="btn btn-default btn-icon btn-checkbox-all">
+            <div class="checker"><span [class]="this.isSelectAll ?'checked' :''"><input type="checkbox" class="styled"
+                  (change)="updateAllSelect($event)"></span></div>
+          </button>
+
+          <button type="button" class="btn btn-default btn-icon dropdown-toggle" data-toggle="dropdown"
+            aria-expanded="false">
+            <span class="caret"></span>
+          </button>
+
+          <ul class="dropdown-menu">
+            <li><a (click)="selectAll(true)">选择所有</a></li>
+            <li class="divider"></li>
+            <li><a (click)="selectAll(false)">清除选择</a></li>
+          </ul>
+        </div>
+        <div class="btn-group navbar-btn">
+          <button type="button" class="btn btn-default" (click)="importCategorys()"><i
+              class=" icon-import"></i>
+            <span class="hidden-xs position-right">导入数据</span></button>
+          <button type="button" class="btn btn-default" (click)="exportCategorys()"><i
+              class="icon-database-export"></i>
+            <span class="hidden-xs position-right">导出数据</span></button>
+
+        </div>
+        <div class="btn-group navbar-btn">
+          <button type="button" class="btn btn-default" (click)="removeCategorys()"><i class="icon-bin"></i> <span
+              class="hidden-xs position-right">删除</span></button>
+          <button type="button" class="btn btn-default" (click)="createCategory()"><i class=" icon-database-add"></i> <span
+              class="hidden-xs position-right">创建</span></button>
+        </div>
+
+        <div class="navbar-right" style="display:none">
+          <p class="navbar-text"><span class="text-semibold">1-50</span> of <span class="text-semibold">528</span></p>
+
+          <div class="btn-group navbar-left navbar-btn">
+            <button type="button" class="btn btn-default btn-icon disabled"><i class="icon-arrow-left12"></i></button>
+            <button type="button" class="btn btn-default btn-icon"><i class="icon-arrow-right13"></i></button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="table-responsive">
+    <table class="table table-hover">
+      <thead>
+        <tr>
+          <td style="width:80px">选择</td>
+          <td>名称</td>
+          <td>扩展信息</td>
+          <!-- <td>排序</td> -->
+          <td>管理</td>
+        </tr>
+      </thead>
+      <tbody data-link="row" class="rowlink" (cdkDropListDropped)="drop($event)" cdkDropList>
+        <tr *ngFor="let item of this.categoryList;let idx=index" cdkDrag>
+          <td class="table-inbox-checkbox rowlink-skip">
+            <div class="checker"><span [class]="this.selectCategoryList.indexOf(item) !==-1 ?'checked' :''"><input
+                  type="checkbox" class="styled" (change)="updateSelect(item,$event)"></span></div>
+          </td>
+          <td><a [routerLink]="['../../../childcategory',this.cagegoryTypeId,item.Id]">{{item.Name}}</a></td>
+          <td class="table_td_overflow" title="{{item.CustomFormSettingDescription}}">
+            <div *ngFor="let childItem of item.CustomFormSetting.CustomFormItemSettings">
+              {{childItem.Name}}:{{childItem.Value}}
+            </div>
+          </td>
+          <!-- <td>{{item.OrderBy}}</td> -->
+          <td nowrap>
+            <!-- <button type="button" class="btn btn-primary btn-xs" (click)="editCategory(item)">编辑</button>
+              <button type="button" class="btn btn-danger btn-xs" (click)="removeCategory(item.Id)">删除</button> -->
+            <div class="btn-group">
+              <button type="button" class="btn btn-default" (click)="editCategory(item)"><i class="icon-pencil7"></i>
+                <span class="hidden-xs position-right">编辑</span></button>
+              <button type="button" class="btn btn-default" (click)="removeCategory(item.Id)"><i class="icon-bin"></i>
+                <span class="hidden-xs position-right">删除</span></button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
+
+<!-- /main content -->

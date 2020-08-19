@@ -1,0 +1,107 @@
+@import "_main_starters/bootstrap.less";
+@import "_main_starters/core.less";
+@import "_main_starters/components.less";
+@import "_main_starters/colors.less";
+.media-list {
+    .media {
+        &.active {
+            background-color: #f7f7f7;
+        }
+    }
+}
+
+.select-list-group {
+    min-height: 400px;
+    max-height: 400px;
+    overflow: auto;
+}
+
+.media-list-linked.media-list-bordered > li:first-child {
+    border-top-width: 0px;
+}
+
+.layout-boxed {
+    .navbar .navbar-boxed,
+    .page-header-content,
+    .page-header .breadcrumb-boxed,
+    .page-container,
+    .footer-boxed {
+        max-width: 100%;
+    }
+}
+
+body {
+    font-family: "微软雅黑";
+}
+ .media-list{
+     .media{
+         &.active{
+             background-color: #f7f7f7;
+         }
+     }
+ }
+ .border {
+     border-width: 1px;
+     border-style: solid;
+     border-radius: 3px;
+ }
+ .p2 {
+     padding: 2px;
+ }
+ .m4 {
+     margin: 4px;
+ }
+ .height-200 {
+     min-height: 190px;
+ }
+ .flex {
+     display: flex;
+     justify-content: space-around;
+     align-items: center;
+ }
+.flex-between {
+    justify-content: space-between;
+}
+ .flex-default {
+     display: flex;
+ }
+ .panel {
+     border: 0;
+     box-shadow: 0 0px 8px rgba(0, 0, 0, 0.05);
+ }
+ .panel-custom {
+     box-shadow: 0 0px 8px rgba(0, 0, 0, 0.05);
+     border: 0;
+     .panel-title {
+         border-bottom: 2px solid #ddd;
+     }
+ }
+ .part {
+     padding: 20px;
+     box-shadow: 0 0px 8px rgba(0, 0, 0, 0.05);
+     background-color: white;
+     .list-group {
+         border: 0;
+         border-radius: 0;
+         .list-group-item {
+             border-top: 1px solid #ececec;
+             padding-left: 4px;
+             padding-right: 4px;
+             a {
+                 color: #333;
+             }
+             &.active {
+                 a {
+                     color: white;
+                 }
+             }
+             &:last-child {
+                border-bottom: 1px solid #ececec;
+             }
+         }
+     }
+     .btn-default {
+         border: 0;
+         background-color: #f8f8f8;
+     }
+ }

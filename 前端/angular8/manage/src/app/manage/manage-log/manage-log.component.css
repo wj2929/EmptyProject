@@ -1,0 +1,9 @@
+.md-drppicker {
+    width: 600px!important;
+}
+.table_td_overflow{
+    white-space: nowrap;  
+    overflow: hidden;  
+    text-overflow: ellipsis;
+    max-width:300px;
+}

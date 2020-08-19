@@ -1,0 +1,80 @@
+<div class="modal-header">
+  <h4 class="modal-title">编辑用户</h4>
+  <button type="button" class="close" aria-label="Close" (click)="this.activeModal.close()">
+    <span aria-hidden="true">&times;</span>
+  </button>
+</div>
+
+<form [formGroup]="formModel" (submit)="OnSubmit()">
+  <div class="modal-body">
+    <div class="form-group" [class.has-error]="Error('UserName')">
+      <label class="control-label" for="UserName">用户名</label>
+      <div><input class="form-control" id="UserName" name="UserName" type="text" formControlName="UserName"></div>
+      <div *ngIf="Error('UserName')">
+        <span class="help-block" *ngIf="hasError('required','UserName')">请填写用户名</span>
+      </div>
+    </div>
+    <div formGroupName="CustomFormSetting">
+      <div formArrayName="CustomFormItemSettings">
+        <div class="form-group" *ngFor="let item of customFormItemList;let i = index;" [formGroupName]="i"
+          [class.has-error]="CustomFormItemError(item.Key)">
+          <label class="control-label" for="Value">{{item.Name}}</label>
+          <input class="form-control" type="hidden" formControlName="Key" value="{{item.Key}}">
+          <input class="form-control" type="hidden" formControlName="Name" value="{{item.Name}}">
+          <div *ngIf="item.FormType==0">
+            <input class="form-control" id="Value" name="Value" type="text" formControlName="Value">
+          </div>
+          <div *ngIf="item.FormType==1">
+            <textarea cols="5" rows="10" class="form-control" id="Value" name="Value" type="text"
+              formControlName="Value"></textarea>
+          </div>
+          <div *ngIf="item.FormType==2 && !item.MoreSelect">
+            <select class="select-search customformitem" id="Value" name="Value" formControlName="Value">
+              <option [value]="childItem.value" *ngFor="let childItem of item.OptionList">{{childItem.text}}</option>
+            </select>
+          </div>
+          <div *ngIf="item.FormType==2 && item.MoreSelect">
+            <select class="form-control" multiple="multiple" formControlName="Value">
+              <option [value]="childItem.value" *ngFor="let childItem of item.OptionList">{{childItem.text}}</option>
+            </select>
+          </div>
+          <div *ngIf="item.FormType==3">
+            <input type="file" class="file" formControlName="Value" multiple [eNgxFileUpload]="fileInputOpts"
+              (ready)="ready($event,item)" (filebatchuploadcomplete)="filebatchuploadcomplete($event,item)"
+              (filebatchuploaderror)="filebatchuploaderror($event)" (fileuploaded)="fileuploaded($event,item)"
+              (fileuploaderror)="fileuploaderror($event)" (filedeleted)="filedeleted($event,item)"
+              (fileclear)="fileclear($event,item)" (filesuccessremove)="filedeleted($event,item)">
+          </div>
+          <div *ngIf="item.FormType==4">
+            <input autocomplete="off" readonly="readonly" [showDropdowns]="true" id="Value" name="Value" type="text"
+              formControlName="Value" ngxDaterangepickerMd class="form-control daterange-left" singleDatePicker=true
+              autoApply=true (change)="onFormItemDaterangepickerChange($event,item,true)"
+              [locale]="daterangepickerLocale">
+          </div>
+          <div *ngIf="item.FormType==5">
+            <input autocomplete="off" readonly="readonly" [showDropdowns]="true" id="Value" name="Value" type="text"
+              formControlName="Value" ngxDaterangepickerMd class="form-control daterange-left show-ranges"
+              autoApply=true alwaysShowCalendars=true [ranges]="daterangepickerRanges"
+              (click)="changeRangeDaterangepickerWidth()" (change)="onFormItemDaterangepickerChange($event,item,false)"
+              [locale]="daterangepickerLocale">
+          </div>
+          <div *ngIf="item.FormType==6">
+            <select class="select-search customformitem" id="Value" name="Value" formControlName="Value">
+              <option value="{{item.Key}}" *ngFor="let item of this.customFormList;let idx=index">{{item.Name}}</option>
+            </select>
+          </div>
+          <div *ngIf="CustomFormItemError(item.Key)">
+            <span class="help-block"
+              *ngIf="hasError('required','CustomFormSetting.CustomFormItemSettings.' + i + '.Value')">请填写{{item.Name}}</span>
+            <span class="help-block"
+              *ngIf="hasError('RegularExpressionValidator','CustomFormSetting.CustomFormItemSettings.' + i + '.Value')">{{item.ValidationConfig_ErrorMessage}}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button type="submit" class="btn btn-danger">提交</button>
+    <button type="button" class="btn btn-default" (click)="this.activeModal.close()">取消</button>
+  </div>
+</form>
